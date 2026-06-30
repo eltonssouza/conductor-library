@@ -8612,4 +8612,1248 @@ echo "$RESP" | jq -e '.status == "ok"' > /dev/null && echo "smoke OK" || { echo 
 
 > **End of Part VI.** Your n8n practice is now an engineering discipline: Git as the source of truth, clear versioning, separated environments, automated tests, CI/CD pipelines, and zero-downtime deployment with rollback. **Part VII — Enterprise** (Chapters 47–53) addresses the concerns that gate large-scale adoption: security, SSO, governance, observability, scalability, high availability, and multi-tenancy.
 
+## Part VII – Enterprise
+
+Part VII covers the concerns that decide whether n8n is approved for large-scale, mission-critical use: security, single sign-on, governance, observability, scalability, high availability, and multi-tenancy. These build directly on n8n 2.x's secure-by-default foundation (task runners, blocked `process.env`, restricted file access) and the Enterprise feature set (RBAC, SSO, environments, external secrets, log streaming).
+
+---
+
+## Chapter 47 — Security
+
+### 47.1 Introduction
+
+Security is the gate for enterprise adoption. This chapter covers n8n's security model end-to-end: the 2.x secure-by-default execution (task runners, blocked env/file access), credential encryption and custody, network/transport security, webhook hardening, secrets management, RBAC, and the audit surface. It consolidates security threads from earlier chapters into a coherent posture.
+
+### 47.2 Business context
+
+A single leaked credential or an unprotected webhook can compromise every system n8n touches — it sits at the center of your integrations. A strong security posture is both a risk-reduction imperative and, for regulated industries, a compliance prerequisite (LGPD/GDPR/SOC2/HIPAA). Getting it right is what lets security teams approve n8n for sensitive workloads.
+
+### 47.3 Theoretical concepts
+
+- **Secure-by-default execution (2.x):** Code runs in **task runners**; `process.env` is blocked; file access is limited to `~/.n8n-files`; arbitrary command nodes are disabled by default. Re-enable only with justification.
+- **Credential encryption:** secrets encrypted at rest with `N8N_ENCRYPTION_KEY`; custody and rotation are critical (Chapter 12).
+- **External secrets:** integrate Vault/cloud secret managers so secrets live outside n8n (`$secrets`).
+- **Transport/network:** TLS everywhere, n8n behind a reverse proxy/WAF, private networking to data stores, no direct exposure of port 5678.
+- **Webhook hardening:** auth + signature verification + idempotency (Chapter 23).
+- **RBAC (Enterprise):** roles/projects limit who can see/edit workflows and credentials.
+- **AuthN/AuthZ:** owner/admin/member roles, SSO (Chapter 48), and OAuth 2.0 Token Exchange (RFC 8693) for delegated access.
+- **Audit:** log access, changes, and executions (Chapters 49–50).
+
+### 47.4 Architecture
+
+```mermaid
+flowchart TB
+    inet[Internet] --> waf[WAF + TLS]
+    waf --> proxy[Reverse proxy]
+    proxy --> n8n[n8n main]
+    n8n --> runner[Task runner<br/>isolated Code]
+    n8n --> vault[(External secrets)]
+    n8n --> db[(Encrypted DB)]
+    n8n -. private network .- data[(Postgres/Redis)]
+    rbac[(RBAC: roles/projects)] -.-> n8n
+    audit[(Audit log)] -.-> n8n
+```
+
+### 47.5 Real example
+
+**Scenario.** A security review must approve n8n before it handles customer PII and payment data.
+
+**Problem.** The initial setup exposed port 5678 publicly, used `process.env` for keys (now blocked in 2.x anyway), stored secrets in n8n's DB, and had unauthenticated webhooks — all findings.
+
+**Solution.** Harden to 2.x secure defaults: behind WAF+TLS+proxy, private networking, external secrets via Vault, signed/authenticated webhooks, RBAC scoping, and full audit logging.
+
+**Implementation.** A hardening checklist + config (TLS, external secrets, webhook auth). See code.
+
+**Result.** Review passed: isolated Code execution, secrets in Vault, no public exposure, signed webhooks, least-privilege RBAC, and an audit trail.
+
+**Future improvements.** Add SSO (Chapter 48), automated secret rotation, and SIEM integration via log streaming (Chapter 50).
+
+### 47.6 Step by step
+
+1. Keep 2.x secure defaults (task runners on; env/file/command restrictions).
+2. Put n8n behind WAF + TLS + reverse proxy; private-network the data stores.
+3. Move secrets to an external secrets provider.
+4. Harden webhooks (auth + signature + idempotency).
+5. Apply RBAC (roles/projects); enable audit logging.
+6. Rotate the encryption key and credentials on a schedule.
+
+### 47.7 Complete code (hardened env + external secrets)
+
+```bash
+# Secure-by-default + external secrets + transport
+N8N_RUNNERS_ENABLED=true
+N8N_RUNNERS_MODE=external          # stronger isolation for untrusted code
+# process.env blocked in Code by default in 2.x — use credentials/$secrets
+N8N_PROTOCOL=https
+N8N_SECURE_COOKIE=true
+N8N_ENCRYPTION_KEY=<from-vault>
+# External secrets (example: HashiCorp Vault)
+N8N_EXTERNAL_SECRETS_UPDATE_INTERVAL=300
+# Restrict file access (default ~/.n8n-files)
+```
+
+```javascript
+// Reference an external secret instead of an inline key (expression context):
+// ={{ $secrets.vault.stripeApiKey }}
+// Webhook auth/signature is enforced in the workflow (Chapter 23).
+```
+
+### 47.8 Complete n8n workflow (importable JSON — auth + audit on a webhook)
+
+```json
+{
+  "name": "Secured Endpoint with Audit",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "secure", "responseMode": "responseNode", "authentication": "headerAuth" },
+      "id": "62000001-0000-0000-0000-000000000001",
+      "name": "Auth Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300],
+      "credentials": { "httpHeaderAuth": { "id": "1", "name": "Endpoint Key" } }
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "schema": { "__rl": true, "value": "audit", "mode": "list" },
+        "table": { "__rl": true, "value": "access_log", "mode": "list" },
+        "columns": { "mappingMode": "defineBelow", "value": { "ip": "={{ $json.headers['x-forwarded-for'] || 'n/a' }}", "path": "secure", "at": "={{ $now.toISO() }}" } },
+        "options": {}
+      },
+      "id": "62000002-0000-0000-0000-000000000002",
+      "name": "Audit Log",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [440, 300],
+      "credentials": { "postgres": { "id": "2", "name": "Audit DB" } }
+    },
+    {
+      "parameters": { "respondWith": "text", "responseCode": 200, "responseBody": "ok" },
+      "id": "62000003-0000-0000-0000-000000000003",
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [660, 300]
+    }
+  ],
+  "connections": {
+    "Auth Webhook": { "main": [[{ "node": "Audit Log", "type": "main", "index": 0 }]] },
+    "Audit Log": { "main": [[{ "node": "Respond", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 47.9 Exercises
+
+1. Verify task runners are isolating Code execution (try and fail to read `process.env`).
+2. Move a secret to an external secrets provider and reference `$secrets`.
+3. Add header auth + audit logging to a webhook.
+
+### 47.10 Challenges
+
+- **Challenge 1.** Implement encryption-key rotation with credential re-encryption and no downtime.
+- **Challenge 2.** Stream audit/access logs to a SIEM (Chapter 50) and build an alert on anomalous access.
+
+### 47.11 Checklist
+
+- [ ] 2.x secure defaults retained (runners/env/file/command).
+- [ ] No public 5678; behind WAF+TLS+proxy.
+- [ ] Secrets in an external provider; key in custody.
+- [ ] Webhooks authenticated/signed/idempotent.
+- [ ] RBAC + audit logging enabled.
+
+### 47.12 Best practices
+
+- Keep secure-by-default; justify any relaxation.
+- External secrets + key custody/rotation.
+- Least-privilege everywhere (RBAC, IAM, scopes).
+- Private-network data stores; never expose them publicly.
+
+### 47.13 Anti-patterns
+
+- Re-enabling command nodes / broad Code access without need.
+- Secrets in the DB or workflow JSON.
+- Public, unauthenticated webhooks.
+- One admin role for everyone.
+
+### 47.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Code can't read env | 2.x blocks `process.env` | Use credentials/`$secrets` |
+| Secret in export | Inline credential | External secrets; rotate |
+| Unauthorized webhook hits | No auth/signature | Add auth + verification |
+| Over-broad access | No RBAC | Apply roles/projects |
+| No audit trail | Logging off | Enable audit + log streaming |
+
+### 47.15 Official references
+
+- Securing n8n: https://docs.n8n.io/hosting/securing/
+- Task runners: https://docs.n8n.io/hosting/configuration/task-runners/
+- External secrets: https://docs.n8n.io/external-secrets/
+- RBAC: https://docs.n8n.io/user-management/rbac/
+
+---
+
+## Chapter 48 — SSO
+
+### 48.1 Introduction
+
+Single Sign-On (SSO) centralizes authentication through the company identity provider (IdP). n8n Enterprise supports **SAML 2.0** and **OIDC**, plus **LDAP**, and (2.x) **OAuth 2.0 Token Exchange (RFC 8693)** for delegated/embedded scenarios. This chapter covers configuring SSO, mapping IdP groups to n8n roles/projects, SCIM-style provisioning concepts, and enforcing SSO-only access.
+
+### 48.2 Business context
+
+SSO is a hard requirement for most enterprises: it centralizes access control, enforces MFA/conditional access from the IdP, removes per-app passwords, and enables instant deprovisioning when someone leaves. Without SSO, n8n is often rejected by security/IT. With it, n8n inherits the organization's identity governance.
+
+### 48.3 Theoretical concepts
+
+- **SAML 2.0 / OIDC:** the IdP (Entra ID, Okta, Google) authenticates users; n8n trusts the IdP assertion/token.
+- **LDAP:** authenticate against a directory (AD), syncing users/groups.
+- **Role/group mapping:** map IdP groups to n8n roles/projects so access reflects org structure.
+- **OAuth 2.0 Token Exchange (RFC 8693, 2.x):** exchange tokens for delegated access — enables secure iframe embedding and API delegation.
+- **Provisioning/deprovisioning:** automate account lifecycle from the IdP (joiners/leavers).
+- **Enforcement:** disable local login so SSO is the only path.
+
+### 48.4 Architecture
+
+```mermaid
+flowchart LR
+    user([User]) --> idp[IdP<br/>Entra/Okta/Google]
+    idp -->|SAML/OIDC assertion| n8n[n8n Enterprise]
+    idp -. groups .-> map[Group→role/project map]
+    map --> rbac[(RBAC)]
+    n8n --> rbac
+    leaver[Leaver in IdP] -. deprovision .-> n8n
+```
+
+### 48.5 Real example
+
+**Scenario.** An enterprise on Entra ID requires all n8n access via SSO with MFA, mapping the "Automation-Admins" group to admin and "Automation-Builders" to a builder project.
+
+**Problem.** Local n8n accounts bypass IdP MFA/conditional access and aren't deprovisioned when employees leave — a security gap.
+
+**Solution.** Configure SAML/OIDC against Entra ID, map groups to roles/projects, and disable local login so SSO is mandatory.
+
+**Implementation.** SSO config + group mapping. See code.
+
+**Result.** All access flows through Entra ID with MFA; roles reflect group membership; leavers lose access automatically — IT and security approve.
+
+**Future improvements.** Add automated provisioning (SCIM) and conditional-access policies per sensitivity.
+
+### 48.6 Step by step
+
+1. Register n8n as an app in the IdP (SAML/OIDC); exchange metadata.
+2. Configure SSO in n8n with the IdP's endpoints/certs.
+3. Map IdP groups to n8n roles/projects.
+4. Test login; then disable local login to enforce SSO.
+5. Verify deprovisioning removes access.
+
+### 48.7 Complete code (OIDC/SAML config sketch)
+
+```bash
+# Enterprise SSO (conceptual env / configured via UI for SAML/OIDC)
+N8N_SSO_TYPE=oidc                    # or saml
+N8N_SSO_OIDC_DISCOVERY_URL=https://login.microsoftonline.com/<tenant>/v2.0/.well-known/openid-configuration
+N8N_SSO_OIDC_CLIENT_ID=<client-id>
+# Disable local login to enforce SSO-only
+N8N_USER_MANAGEMENT_DISABLED_LOCAL_LOGIN=true
+```
+
+```text
+Group → role/project mapping (configured in n8n):
+  Automation-Admins   -> role: admin
+  Automation-Builders -> project: Builders (editor)
+  Automation-Viewers  -> project: Builders (viewer)
+```
+
+### 48.8 Complete n8n workflow (importable JSON — access review report)
+
+```json
+{
+  "name": "Weekly Access Review",
+  "nodes": [
+    {
+      "parameters": { "rule": { "interval": [{ "field": "weeks", "weekday": 1, "triggerAtHour": 7 }] } },
+      "id": "72000001-0000-0000-0000-000000000001",
+      "name": "Weekly Monday",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://n8n.internal/api/v1/users",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "72000002-0000-0000-0000-000000000002",
+      "name": "List Users",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 300],
+      "credentials": { "httpHeaderAuth": { "id": "1", "name": "n8n API" } }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://hooks.slack.com/services/REPLACE",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { \"text\": 'Access review: ' + ($json.data ? $json.data.length : 0) + ' users with n8n access' } }}",
+        "options": {}
+      },
+      "id": "72000003-0000-0000-0000-000000000003",
+      "name": "Post Review",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [660, 300]
+    }
+  ],
+  "connections": {
+    "Weekly Monday": { "main": [[{ "node": "List Users", "type": "main", "index": 0 }]] },
+    "List Users": { "main": [[{ "node": "Post Review", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 48.9 Exercises
+
+1. Configure OIDC or SAML against a test IdP and log in.
+2. Map a group to a role and verify the assigned permissions.
+3. Disable local login and confirm SSO-only access.
+
+### 48.10 Challenges
+
+- **Challenge 1.** Automate provisioning/deprovisioning from the IdP (SCIM-style).
+- **Challenge 2.** Use OAuth 2.0 Token Exchange to embed n8n securely in an internal portal.
+
+### 48.11 Checklist
+
+- [ ] SAML/OIDC (or LDAP) configured against the IdP.
+- [ ] Groups mapped to roles/projects.
+- [ ] Local login disabled (SSO enforced).
+- [ ] Deprovisioning verified.
+- [ ] MFA/conditional access enforced by the IdP.
+
+### 48.12 Best practices
+
+- Enforce SSO-only; disable local login.
+- Drive roles from IdP groups, not manual assignment.
+- Automate the joiner/leaver lifecycle.
+- Use Token Exchange for embedding/delegation.
+
+### 48.13 Anti-patterns
+
+- Local accounts bypassing IdP controls.
+- Manual role assignment that drifts from org structure.
+- No deprovisioning (orphaned access).
+- Sharing one SSO account.
+
+### 48.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| SSO login fails | Metadata/cert mismatch | Re-exchange IdP metadata |
+| Wrong permissions | Group mapping off | Fix group→role map |
+| Local login still works | Not disabled | Disable local login |
+| Leaver retains access | No deprovisioning | Automate lifecycle |
+| Embed auth fails | Token exchange misconfig | Configure RFC 8693 flow |
+
+### 48.15 Official references
+
+- SSO (SAML/OIDC): https://docs.n8n.io/user-management/saml/
+- LDAP: https://docs.n8n.io/user-management/ldap/
+- RBAC: https://docs.n8n.io/user-management/rbac/
+- OAuth 2.0 Token Exchange: https://docs.n8n.io/release-notes/
+
+---
+
+## Chapter 49 — Governance
+
+### 49.1 Introduction
+
+Governance is how an organization keeps a growing automation estate safe, compliant, and maintainable: ownership, naming/standards, RBAC and projects, change control, data classification, audit, and lifecycle management. This chapter turns the engineering practices of Part VI and the security of Chapters 47–48 into organizational policy.
+
+### 49.2 Business context
+
+Ungoverned automation rots: orphaned workflows, unclear ownership, secrets sprawl, and no audit trail create risk and cost. Governance ensures every workflow has an owner, follows standards, is access-controlled, and is auditable — which is what auditors, security, and leadership require to trust automation at scale.
+
+### 49.3 Theoretical concepts
+
+- **Ownership:** every workflow has a business owner and a technical maintainer; no orphans.
+- **Projects & RBAC (Enterprise):** group workflows/credentials into projects with role-based access (admin/editor/viewer), isolating teams.
+- **Standards:** naming conventions, documentation (sticky notes/README), error-handling and secrets policies.
+- **Change control:** Git + PR review + CI/CD (Part VI) as the only path to production.
+- **Data classification:** tag workflows by data sensitivity (PII/PCI) to apply stricter controls.
+- **Audit:** who changed what/when; execution logs; access logs (Chapter 50).
+- **Lifecycle:** review/retire unused workflows; deprecate safely.
+
+### 49.4 Architecture
+
+```mermaid
+flowchart TB
+    policy[Governance policy] --> std[Standards: naming/docs/secrets]
+    policy --> rbac[Projects + RBAC]
+    policy --> cc[Change control: Git/PR/CI]
+    policy --> dc[Data classification]
+    std --> wf[(Workflow estate)]
+    rbac --> wf
+    cc --> wf
+    dc --> wf
+    wf --> audit[(Audit + lifecycle review)]
+```
+
+### 49.5 Real example
+
+**Scenario.** A company's n8n grew to 300 workflows across teams with no ownership, inconsistent naming, and secrets in fields — an audit failed.
+
+**Problem.** No one knows who owns what; access is all-or-nothing; sensitive flows aren't identified; changes bypass review.
+
+**Solution.** Introduce projects + RBAC per team, an ownership registry, naming/secrets standards, mandatory Git/PR change control, and data classification tags, with quarterly lifecycle reviews.
+
+**Implementation.** A governance registry workflow + standards doc + RBAC structure. See JSON (registry).
+
+**Result.** Every workflow has an owner and classification; teams are isolated by project; changes go through review; unused flows are retired — the next audit passes.
+
+**Future improvements.** Automate orphan detection and standards linting in CI.
+
+### 49.6 Step by step
+
+1. Define projects per team; assign RBAC roles.
+2. Establish standards (naming, docs, error handling, secrets).
+3. Require Git/PR/CI for all changes.
+4. Tag workflows with data classification + owner.
+5. Run quarterly lifecycle reviews (retire/deprecate).
+
+### 49.7 Complete code (standards lint — exported workflows)
+
+```bash
+#!/usr/bin/env bash
+# lint-standards.sh — enforce naming + no inline secrets + required owner tag
+set -euo pipefail
+fail=0
+for f in workflows/*.json; do
+  name=$(jq -r '.name' "$f")
+  # naming convention: <domain>-<purpose>
+  echo "$name" | grep -qE '^[a-z]+-[a-z0-9-]+$' || { echo "BAD NAME: $name"; fail=1; }
+  # forbid obvious inline secrets
+  grep -qiE '"(api[_-]?key|password|secret)"\s*:\s*"[^"]+"' "$f" && { echo "SECRET IN: $f"; fail=1; }
+done
+exit $fail
+```
+
+### 49.8 Complete n8n workflow (importable JSON — ownership registry)
+
+```json
+{
+  "name": "governance-ownership-registry",
+  "nodes": [
+    {
+      "parameters": { "rule": { "interval": [{ "field": "days", "triggerAtHour": 6 }] } },
+      "id": "82000001-0000-0000-0000-000000000001",
+      "name": "Daily",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://n8n.internal/api/v1/workflows",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "82000002-0000-0000-0000-000000000002",
+      "name": "All Workflows",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 300],
+      "credentials": { "httpHeaderAuth": { "id": "1", "name": "n8n API" } }
+    },
+    {
+      "parameters": {
+        "jsCode": "const wfs = $json.data ?? [];\nconst orphans = wfs.filter(w => !(w.tags || []).some(t => /owner:/.test(t.name)));\nreturn [{ json: { total: wfs.length, orphans: orphans.map(w => w.name) } }];"
+      },
+      "id": "82000003-0000-0000-0000-000000000003",
+      "name": "Find Orphans",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [660, 300]
+    }
+  ],
+  "connections": {
+    "Daily": { "main": [[{ "node": "All Workflows", "type": "main", "index": 0 }]] },
+    "All Workflows": { "main": [[{ "node": "Find Orphans", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 49.9 Exercises
+
+1. Create projects with RBAC for two teams and verify isolation.
+2. Run the standards lint and fix a violation.
+3. Tag workflows with owner + data classification.
+
+### 49.10 Challenges
+
+- **Challenge 1.** Automate orphan detection and notify owners weekly.
+- **Challenge 2.** Add standards linting to CI so non-conforming workflows fail the build.
+
+### 49.11 Checklist
+
+- [ ] Every workflow has an owner + classification.
+- [ ] Projects + RBAC isolate teams.
+- [ ] Standards (naming/docs/secrets) enforced.
+- [ ] Changes go through Git/PR/CI.
+- [ ] Lifecycle reviews scheduled.
+
+### 49.12 Best practices
+
+- No orphans: mandate ownership tags.
+- Isolate teams with projects/RBAC.
+- Lint standards in CI; classify by data sensitivity.
+- Review and retire unused workflows regularly.
+
+### 49.13 Anti-patterns
+
+- Shared admin access for all.
+- Unowned, unclassified workflows.
+- Direct prod edits bypassing review.
+- Secrets in fields; inconsistent naming.
+
+### 49.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Can't find an owner | No ownership tags | Mandate owner tags |
+| Team sees others' flows | No project isolation | Use projects + RBAC |
+| Standards drift | No linting | Lint in CI |
+| Sensitive flow unprotected | No classification | Tag + apply controls |
+| Estate sprawl | No lifecycle review | Schedule retirements |
+
+### 49.15 Official references
+
+- RBAC: https://docs.n8n.io/user-management/rbac/
+- Projects: https://docs.n8n.io/user-management/rbac/projects/
+- Source control & environments: https://docs.n8n.io/source-control-environments/
+- Audit logs / log streaming: https://docs.n8n.io/log-streaming/
+
+---
+
+## Chapter 50 — Observability
+
+### 50.1 Introduction
+
+You cannot operate what you cannot see. This chapter covers n8n observability: **execution data**, **metrics** (Prometheus endpoint), **log streaming** to external systems (SIEM/log platforms), **health/readiness** endpoints, alerting, and dashboards. The goal is to detect, diagnose, and resolve issues fast — and to prove the system is healthy.
+
+### 50.2 Business context
+
+Observability is what turns "an automation broke and no one noticed for a day" into "we were paged in 60 seconds with the root cause." For mission-critical automation, observability protects SLAs and shortens MTTR. For AI workflows, it also tracks cost and quality (Chapter 40).
+
+### 50.3 Theoretical concepts
+
+- **Execution data:** per-execution status/duration/error; the primary forensic source (Chapter 20). Configure save policy + pruning (Chapter 3).
+- **Metrics:** n8n exposes Prometheus metrics (`N8N_METRICS=true`) — execution counts, durations, queue stats — scraped into Grafana.
+- **Log streaming (Enterprise):** stream events (executions, audit) to external destinations (Datadog, Splunk, webhook) for SIEM/log analytics.
+- **Health endpoints:** `/healthz` (and readiness) for orchestrators and external monitors.
+- **Alerting:** drive alerts from metrics (queue depth, error rate) and from Error Trigger workflows (Chapter 19).
+- **Tracing AI:** log tokens/latency/tool calls for AI cost and quality.
+- **Dashboards:** Grafana for metrics; log platform for events.
+
+### 50.4 Architecture
+
+```mermaid
+flowchart LR
+    n8n[n8n] -->|/metrics| prom[Prometheus]
+    prom --> graf[Grafana dashboards]
+    n8n -->|log streaming| sink[(SIEM / Datadog / Splunk)]
+    n8n -->|/healthz| mon[Uptime monitor]
+    err[Error Trigger] --> alert[Alerting]
+    prom --> alert
+    alert --> oncall[On-call / Slack / PagerDuty]
+```
+
+### 50.5 Real example
+
+**Scenario.** An operations team must be alerted within a minute when error rate spikes or the queue backs up, with dashboards for execution health and AI cost.
+
+**Problem.** Failures were discovered by users; there were no metrics, no alerting, and no cost visibility.
+
+**Solution.** Enable Prometheus metrics → Grafana dashboards; stream logs to the SIEM; alert on error rate and queue depth; centralize failure alerts via the Error Trigger (Chapter 19); log AI tokens for a cost panel.
+
+**Implementation.** Metrics config + an alerting rule + a metrics-publishing workflow. See JSON.
+
+**Result.** Sub-minute alerting on errors/backlog, dashboards for health and AI cost, and SIEM-searchable logs — MTTR drops sharply.
+
+**Future improvements.** Add SLO-based alerting (burn rate) and anomaly detection on cost.
+
+### 50.6 Step by step
+
+1. Enable metrics (`N8N_METRICS=true`); scrape with Prometheus.
+2. Build Grafana dashboards (executions, errors, queue, AI cost).
+3. Configure log streaming to your SIEM.
+4. Add alert rules (error rate, queue depth) + central Error Trigger alerting.
+5. Monitor `/healthz` externally.
+
+### 50.7 Complete code (metrics + alerting rule)
+
+```bash
+# Enable Prometheus metrics + readiness
+N8N_METRICS=true
+N8N_METRICS_INCLUDE_DEFAULT_METRICS=true
+QUEUE_HEALTH_CHECK_ACTIVE=true
+```
+
+```yaml
+# Prometheus alert rule: error rate and queue backlog
+groups:
+  - name: n8n
+    rules:
+      - alert: N8nHighErrorRate
+        expr: rate(n8n_workflow_failed_total[5m]) > 0.1
+        for: 2m
+        labels: { severity: critical }
+        annotations: { summary: "n8n error rate high" }
+      - alert: N8nQueueBacklog
+        expr: n8n_queue_jobs_waiting > 100
+        for: 5m
+        labels: { severity: warning }
+        annotations: { summary: "n8n queue backlog growing" }
+```
+
+### 50.8 Complete n8n workflow (importable JSON — metric pusher)
+
+```json
+{
+  "name": "AI Cost Metric Pusher",
+  "nodes": [
+    {
+      "parameters": { "rule": { "interval": [{ "field": "minutes", "minutesInterval": 5 }] } },
+      "id": "92000001-0000-0000-0000-000000000001",
+      "name": "Every 5m",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT COALESCE(SUM(tokens),0) AS tokens, COUNT(*) AS calls FROM ai_usage WHERE created_at > now() - interval '5 minutes';",
+        "options": {}
+      },
+      "id": "92000002-0000-0000-0000-000000000002",
+      "name": "Aggregate Usage",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [440, 300],
+      "credentials": { "postgres": { "id": "1", "name": "Metrics DB" } }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://pushgateway:9091/metrics/job/n8n_ai",
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "text/plain",
+        "body": "=ai_tokens_5m {{ $json.tokens }}\nai_calls_5m {{ $json.calls }}\n",
+        "options": {}
+      },
+      "id": "92000003-0000-0000-0000-000000000003",
+      "name": "Push to Gateway",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [660, 300]
+    }
+  ],
+  "connections": {
+    "Every 5m": { "main": [[{ "node": "Aggregate Usage", "type": "main", "index": 0 }]] },
+    "Aggregate Usage": { "main": [[{ "node": "Push to Gateway", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 50.9 Exercises
+
+1. Enable metrics and scrape them with Prometheus.
+2. Build a Grafana panel for execution error rate.
+3. Stream logs to a destination and search for an execution.
+
+### 50.10 Challenges
+
+- **Challenge 1.** Implement SLO burn-rate alerting on success rate.
+- **Challenge 2.** Build an AI cost dashboard with per-workflow token attribution.
+
+### 50.11 Checklist
+
+- [ ] Metrics enabled and scraped.
+- [ ] Dashboards for executions/errors/queue/AI cost.
+- [ ] Log streaming to SIEM configured.
+- [ ] Alerting on error rate + queue depth.
+- [ ] `/healthz` monitored externally.
+
+### 50.12 Best practices
+
+- Alert on symptoms users feel (error rate, latency, backlog), not just resource usage.
+- Centralize failure alerting via the Error Trigger.
+- Track AI tokens/cost as first-class metrics.
+- Keep execution pruning on while retaining enough history to diagnose.
+
+### 50.13 Anti-patterns
+
+- No metrics/alerts (users are your monitoring).
+- Logging everything with no retention/pruning policy.
+- Alert fatigue from noisy, non-actionable alerts.
+- No AI cost visibility.
+
+### 50.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| No metrics | `N8N_METRICS` off | Enable + scrape |
+| Blind to failures | No alerting | Add alert rules + Error Trigger |
+| Can't search logs | No streaming | Configure log streaming |
+| DB huge from logs | No pruning | Enable pruning |
+| Unknown AI cost | No token logging | Log + dashboard tokens |
+
+### 50.15 Official references
+
+- Metrics: https://docs.n8n.io/hosting/logging-monitoring/monitoring/
+- Log streaming: https://docs.n8n.io/log-streaming/
+- Execution data: https://docs.n8n.io/hosting/scaling/execution-data/
+- Health checks: https://docs.n8n.io/hosting/scaling/queue-mode/
+
+---
+
+## Chapter 51 — Scalability
+
+### 51.1 Introduction
+
+Scalability is the ability to handle growing load without redesign. For n8n that means **queue mode**, **horizontal workers**, **concurrency tuning**, **task-runner scaling**, **database** and **Redis** sizing, **binary-data offload**, and **autoscaling** (Chapter 8). This chapter is the capacity-planning playbook: identify bottlenecks, scale the right component, and validate.
+
+### 51.2 Business context
+
+Under-scaling causes incidents (timeouts, backlogs); over-scaling wastes money. Right-sizing n8n to demand — and autoscaling to spikes — keeps SLAs while controlling cost. As automation adoption grows, scalability is what prevents a successful platform from becoming a victim of its own success.
+
+### 51.3 Theoretical concepts
+
+- **Queue mode:** the foundation of scale — main enqueues, workers execute (Chapters 3/7).
+- **Horizontal workers:** add workers to increase throughput; each has `--concurrency=N`.
+- **Concurrency tuning:** size concurrency to the I/O-bound nature of workflows and CPU; too high causes contention, too low underuses resources.
+- **Task runners:** scale Code execution; external runners isolate and scale independently.
+- **Data layer:** Postgres (connection limits, read replicas) and Redis sizing; the DB is the most common bottleneck at scale.
+- **Binary offload:** move files to S3/filesystem to keep the DB lean (Chapter 9).
+- **Autoscaling:** KEDA on queue depth (Chapter 8).
+- **Capacity formula:** required throughput vs per-execution time and worker concurrency.
+
+### 51.4 Architecture
+
+```mermaid
+flowchart TB
+    load[Load] --> main[Main: enqueue]
+    main --> redis[(Redis queue)]
+    redis --> workers[Workers x N<br/>--concurrency=M]
+    keda[KEDA] -. scale on depth .-> workers
+    workers --> pg[(Postgres + replicas)]
+    workers --> s3[(S3 binary)]
+    workers --> runners[Task runners]
+```
+
+### 51.5 Real example
+
+**Scenario.** Throughput must grow from 5k to 100k executions/hour with end-of-month spikes, holding a 2-second p95 latency SLA.
+
+**Problem.** A fixed worker pool can't meet the spike; the Postgres connection pool saturates as workers scale.
+
+**Solution.** Queue mode + KEDA autoscaling workers on queue depth, tuned concurrency, a Postgres connection pooler (PgBouncer) + read scaling, and S3 binary offload.
+
+**Implementation.** Capacity calc + pooler + autoscaling config. See code.
+
+**Result.** Throughput scales to 100k/hour at peak within SLA; the DB pool no longer saturates; cost tracks demand via autoscaling.
+
+**Future improvements.** Add per-tenant queue partitioning (Chapter 53) and SLO-based autoscaling.
+
+### 51.6 Step by step
+
+1. Move to queue mode (if not already).
+2. Compute required workers: `workers = ceil(throughput_per_sec * avg_exec_seconds / concurrency)`.
+3. Tune `--concurrency` per worker for your I/O profile.
+4. Add a Postgres pooler; consider read replicas.
+5. Offload binary data to S3.
+6. Autoscale workers on queue depth (KEDA).
+
+### 51.7 Complete code (capacity calc + pooler)
+
+```javascript
+// Capacity calculator (Code node or notebook):
+// throughput: 100000/hour = 27.8/sec; avg exec = 2s; concurrency = 10
+const perSec = 100000 / 3600;     // ~27.8
+const avgExec = 2;                // seconds
+const concurrency = 10;
+const workers = Math.ceil((perSec * avgExec) / concurrency);  // ~6
+return [{ json: { perSec: perSec.toFixed(1), workers } }];
+```
+
+```ini
+; pgbouncer.ini — pool connections so many workers don't exhaust Postgres
+[databases]
+n8n = host=pg.internal dbname=n8n
+[pgbouncer]
+pool_mode = transaction
+max_client_conn = 1000
+default_pool_size = 50
+```
+
+### 51.8 Complete n8n workflow (importable JSON — load generator)
+
+```json
+{
+  "name": "Load Generator",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "load", "responseMode": "onReceived" },
+      "id": "a3000001-0000-0000-0000-000000000001",
+      "name": "Kick",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": { "jsCode": "const n = Number($json.body?.count) || 100;\nreturn Array.from({length:n}, (_,i) => ({ json: { i } }));" },
+      "id": "a3000002-0000-0000-0000-000000000002",
+      "name": "Fan Out",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [440, 300]
+    },
+    {
+      "parameters": { "amount": 2 },
+      "id": "a3000003-0000-0000-0000-000000000003",
+      "name": "Simulate 2s Work",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [660, 300]
+    }
+  ],
+  "connections": {
+    "Kick": { "main": [[{ "node": "Fan Out", "type": "main", "index": 0 }]] },
+    "Fan Out": { "main": [[{ "node": "Simulate 2s Work", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 51.9 Exercises
+
+1. Compute required workers for your target throughput.
+2. Tune concurrency and measure throughput change.
+3. Add a Postgres pooler and observe connection usage.
+
+### 51.10 Challenges
+
+- **Challenge 1.** Autoscale workers on queue depth and load-test the spike.
+- **Challenge 2.** Add read replicas and route read-heavy steps to them.
+
+### 51.11 Checklist
+
+- [ ] Queue mode + horizontal workers.
+- [ ] Concurrency tuned to workload.
+- [ ] DB pooling/replicas in place.
+- [ ] Binary data offloaded.
+- [ ] Autoscaling on queue depth.
+
+### 51.12 Best practices
+
+- Scale workers horizontally; tune concurrency per I/O profile.
+- Pool DB connections; the DB is the usual bottleneck.
+- Offload binary to S3.
+- Autoscale on queue depth, not CPU.
+
+### 51.13 Anti-patterns
+
+- One giant worker (poor resilience, hard to scale).
+- No connection pooling (DB saturation).
+- Binary data in the DB.
+- CPU-only autoscaling for I/O-bound work.
+
+### 51.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Growing backlog | Too few workers | Scale workers/concurrency |
+| "too many connections" | No pooling | Add PgBouncer |
+| DB slow at scale | No replicas/indexes | Add replicas; index |
+| OOM on big files | Binary in memory/DB | Offload to S3 |
+| Slow to react to spikes | CPU autoscaling | Autoscale on queue depth |
+
+### 51.15 Official references
+
+- Scaling / queue mode: https://docs.n8n.io/hosting/scaling/queue-mode/
+- Concurrency control: https://docs.n8n.io/hosting/scaling/concurrency-control/
+- Binary data: https://docs.n8n.io/hosting/scaling/binary-data/
+- Task runners: https://docs.n8n.io/hosting/configuration/task-runners/
+
+---
+
+## Chapter 52 — High Availability
+
+### 52.1 Introduction
+
+High Availability (HA) means no single point of failure: if any component dies, the system keeps running. For n8n that requires redundant **workers**, an HA **database** and **Redis**, careful handling of the **main/trigger** singleton, **multi-AZ** placement, and graceful failover. This chapter designs an HA topology and addresses n8n-specific HA constraints.
+
+### 52.2 Business context
+
+For automations in the critical path of revenue or operations, downtime is direct loss. HA — measured as uptime SLA — is the difference between "the integration hub is reliable infrastructure" and "the thing that occasionally takes everything down." HA is a prerequisite for mission-critical adoption.
+
+### 52.3 Theoretical concepts
+
+- **Stateless redundancy:** workers and webhook processes are stateless — run multiple replicas across nodes/AZs.
+- **The main/trigger singleton:** schedule/webhook **trigger registration** must not be duplicated; run a single active main (or use leader election / dedicated trigger handling) to avoid duplicate firing. n8n's queue mode separates this concern.
+- **HA database:** Postgres with multi-AZ/replication and automatic failover (managed RDS/Cloud SQL).
+- **HA Redis:** Redis Sentinel/Cluster or managed Redis with failover.
+- **Multi-AZ:** spread replicas across availability zones.
+- **Graceful failover:** health probes + orchestrator reschedule + worker drain (Chapter 46).
+- **RPO/RTO:** backups (Chapter 12) define recovery point/time objectives.
+
+### 52.4 Architecture
+
+```mermaid
+flowchart TB
+    lb[Load balancer] --> m[Main main - single active]
+    lb --> wh1[Webhook proc AZ-a]
+    lb --> wh2[Webhook proc AZ-b]
+    m --> redis[(Redis HA<br/>Sentinel/managed)]
+    wh1 --> redis
+    wh2 --> redis
+    redis --> w1[Worker AZ-a]
+    redis --> w2[Worker AZ-b]
+    w1 --> pg[(Postgres multi-AZ<br/>auto failover)]
+    w2 --> pg
+```
+
+### 52.5 Real example
+
+**Scenario.** A 99.9% uptime SLA for automation that triggers customer billing; any AZ failure must not cause downtime or duplicate billing.
+
+**Problem.** A single-AZ deployment with one main risked total outage on AZ failure and duplicate trigger firing if naively replicated.
+
+**Solution.** Multi-AZ queue mode: redundant workers and webhook processes across AZs, a single active main for triggers (with standby + leader election), managed multi-AZ Postgres and HA Redis, idempotent billing (Chapter 19/27).
+
+**Implementation.** HA topology + leader-election note + idempotency. See code.
+
+**Result.** AZ failure causes automatic failover with no downtime; idempotency prevents duplicate billing on retries/failover — SLA met.
+
+**Future improvements.** Multi-region DR with replicated DB and a documented failover runbook.
+
+### 52.6 Step by step
+
+1. Deploy workers + webhook processes redundantly across AZs.
+2. Keep a single active main for triggers (standby + leader election).
+3. Use managed multi-AZ Postgres and HA Redis.
+4. Make critical side effects idempotent.
+5. Configure health probes + graceful drain; test failover.
+
+### 52.7 Complete code (HA config + idempotency)
+
+```bash
+# Queue mode across AZs; managed HA data stores
+EXECUTIONS_MODE=queue
+QUEUE_BULL_REDIS_HOST=redis-ha.internal        # Sentinel/managed endpoint
+DB_POSTGRESDB_HOST=pg-ha.internal              # multi-AZ managed
+# Workers and webhook processes scaled to >=2 across AZs (orchestrator-level)
+```
+
+```javascript
+// Idempotent billing guard (Redis SET NX) so failover/retries don't double-charge.
+// Conceptual: SET bill:<invoiceId> 1 NX EX 86400 -> proceed only if newly claimed.
+const id = $json.invoiceId;
+return [{ json: { idempotencyKey: `bill:${id}`, invoiceId: id } }];
+```
+
+### 52.8 Complete n8n workflow (importable JSON — failover-safe billing trigger)
+
+```json
+{
+  "name": "Idempotent Billing Trigger",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "bill", "responseMode": "lastNode" },
+      "id": "b3000001-0000-0000-0000-000000000001",
+      "name": "Billing Event",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "=bill:{{ $json.body.invoiceId }}",
+        "value": "1",
+        "keyType": "string",
+        "expire": true,
+        "ttl": 86400,
+        "options": { "setIfNotExist": true }
+      },
+      "id": "b3000002-0000-0000-0000-000000000002",
+      "name": "Claim Invoice",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [440, 300],
+      "credentials": { "redis": { "id": "1", "name": "Redis HA" } }
+    },
+    {
+      "parameters": {
+        "conditions": { "options": {}, "conditions": [ { "leftValue": "={{ $json.value }}", "rightValue": "1", "operator": { "type": "string", "operation": "equals" } } ] }
+      },
+      "id": "b3000003-0000-0000-0000-000000000003",
+      "name": "First Time?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [660, 300]
+    }
+  ],
+  "connections": {
+    "Billing Event": { "main": [[{ "node": "Claim Invoice", "type": "main", "index": 0 }]] },
+    "Claim Invoice": { "main": [[{ "node": "First Time?", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 52.9 Exercises
+
+1. Deploy workers across two AZs and kill one; confirm continuity.
+2. Trigger a Postgres failover and verify no workflow loss.
+3. Prove idempotency prevents duplicate side effects on retry.
+
+### 52.10 Challenges
+
+- **Challenge 1.** Implement leader election so only one main registers triggers.
+- **Challenge 2.** Design a multi-region DR plan with RPO/RTO targets.
+
+### 52.11 Checklist
+
+- [ ] Redundant workers/webhook processes across AZs.
+- [ ] Single active main for triggers.
+- [ ] HA Postgres + Redis with failover.
+- [ ] Idempotent critical side effects.
+- [ ] Failover tested; RPO/RTO defined.
+
+### 52.12 Best practices
+
+- Spread stateless components across AZs.
+- Keep trigger registration singular (leader election).
+- Use managed HA data stores.
+- Make critical actions idempotent for safe failover.
+
+### 52.13 Anti-patterns
+
+- Single-AZ, single-everything.
+- Multiple mains all registering triggers (duplicates).
+- Self-managed single Postgres for critical workloads.
+- Non-idempotent side effects (double-charge on failover).
+
+### 52.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Total outage on AZ loss | Single-AZ | Spread across AZs |
+| Duplicate trigger firing | Multiple active mains | Leader election/single main |
+| Data loss on DB failure | No HA DB | Managed multi-AZ Postgres |
+| Double side effects | No idempotency | Add idempotency keys |
+| Slow recovery | No drain/probes | Add probes + graceful drain |
+
+### 52.15 Official references
+
+- Scaling / queue mode: https://docs.n8n.io/hosting/scaling/queue-mode/
+- AWS server setup (HA): https://docs.n8n.io/hosting/installation/server-setups/aws/
+- Kubernetes hosting: https://docs.n8n.io/hosting/installation/server-setups/kubernetes/
+- Concurrency control: https://docs.n8n.io/hosting/scaling/concurrency-control/
+
+---
+
+## Chapter 53 — Multi-Tenant
+
+### 53.1 Introduction
+
+Multi-tenancy means serving multiple isolated customers/teams from one platform. n8n supports this through **projects + RBAC** (logical isolation within an instance), **instance-per-tenant** (strong isolation), and **n8n Embed** (white-label n8n in your product). This chapter covers the isolation models, data and execution isolation (external task runners), credential isolation, and the trade-offs — closing Part VII.
+
+### 53.2 Business context
+
+SaaS builders and large enterprises with strict team separation need tenant isolation: one tenant must never see another's workflows, credentials, data, or executions. The isolation model chosen drives security posture, cost, and operational complexity. Getting it right enables n8n to power multi-customer products and federated enterprise platforms.
+
+### 53.3 Theoretical concepts
+
+- **Logical isolation (projects + RBAC):** one instance, tenants separated by projects with role-based access; simplest and cheapest, but shared infrastructure and a shared encryption key — weaker isolation.
+- **Instance-per-tenant:** each tenant gets its own n8n instance (and ideally DB/key); strongest isolation, highest cost/ops; common for regulated or high-value tenants.
+- **Execution isolation:** **external task runners** isolate Code execution so one tenant's code can't affect another (critical when tenants write Code).
+- **Credential isolation:** per-tenant credentials/external secrets; never share secrets across tenants.
+- **Data isolation:** separate schemas/DBs or strict row-level scoping; separate binary-data prefixes.
+- **n8n Embed:** white-label n8n embedded in your SaaS, with the embedding app managing tenancy and SSO (Token Exchange, Chapter 48).
+- **Noisy-neighbor control:** per-tenant concurrency/quotas to prevent one tenant starving others.
+
+### 53.4 Architecture
+
+```mermaid
+flowchart TB
+    subgraph logical["Logical (projects + RBAC)"]
+        inst[Single instance]
+        inst --> pA[Project: Tenant A]
+        inst --> pB[Project: Tenant B]
+        inst --> runners[External task runners<br/>execution isolation]
+    end
+    subgraph physical["Instance-per-tenant"]
+        iA[n8n + DB + key: A]
+        iB[n8n + DB + key: B]
+    end
+    embed[n8n Embed] -.white-label.-> product[Your SaaS]
+```
+
+### 53.5 Real example
+
+**Scenario.** A SaaS product lets customers build their own automations; tenants must be fully isolated, including any custom Code they write, with per-tenant quotas.
+
+**Problem.** A single shared instance with projects leaves a shared encryption key and shared Code execution — unacceptable isolation for untrusted tenant Code.
+
+**Solution.** Per high-value tenant: instance-per-tenant with its own DB/key; for the long tail: shared instance with projects + RBAC **and external task runners** for execution isolation, plus per-tenant credentials and concurrency quotas; embed via n8n Embed with Token-Exchange SSO.
+
+**Implementation.** Tenant provisioning approach + external runner + quota config. See code.
+
+**Result.** Strong isolation matched to tenant value: untrusted Code is sandboxed in external runners, secrets are per-tenant, and quotas prevent noisy neighbors — safe multi-tenant SaaS.
+
+**Future improvements.** Automate tenant provisioning/deprovisioning and per-tenant cost attribution.
+
+### 53.6 Step by step
+
+1. Choose the isolation model per tenant tier (logical vs instance-per-tenant).
+2. For logical: create a project per tenant + RBAC; enable **external task runners**.
+3. Isolate credentials/external secrets per tenant.
+4. Set per-tenant concurrency/quotas.
+5. For embedding: integrate n8n Embed with Token-Exchange SSO.
+
+### 53.7 Complete code (external runners + per-tenant quota)
+
+```bash
+# Execution isolation for untrusted tenant Code
+N8N_RUNNERS_ENABLED=true
+N8N_RUNNERS_MODE=external           # isolate Code per runner/container
+# Concurrency control to prevent noisy neighbors (per worker)
+N8N_CONCURRENCY_PRODUCTION_LIMIT=10
+# Per-tenant credentials/secrets are provisioned separately (external secrets)
+```
+
+```javascript
+// Tenant-scoping guard: ensure every item carries a tenantId and never crosses tenants.
+const tenantId = $json.tenantId ?? $json.body?.tenantId;
+if (!tenantId) throw new Error('Missing tenantId — refusing to process unscoped data');
+return $input.all().map(i => ({ json: { ...i.json, tenantId } }));
+```
+
+### 53.8 Complete n8n workflow (importable JSON — tenant-scoped processing)
+
+```json
+{
+  "name": "Tenant-Scoped Processor",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "tenant/:tenantId/process", "responseMode": "lastNode" },
+      "id": "c3000001-0000-0000-0000-000000000001",
+      "name": "Tenant In",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const tenantId = $json.params?.tenantId;\nif (!tenantId) throw new Error('Missing tenantId');\nreturn [{ json: { tenantId, payload: $json.body } }];"
+      },
+      "id": "c3000002-0000-0000-0000-000000000002",
+      "name": "Scope Tenant",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "schema": { "__rl": true, "value": "={{ 'tenant_' + $json.tenantId }}", "mode": "expression" },
+        "table": { "__rl": true, "value": "events", "mode": "list" },
+        "columns": { "mappingMode": "autoMapInputData", "value": {} },
+        "options": {}
+      },
+      "id": "c3000003-0000-0000-0000-000000000003",
+      "name": "Write to Tenant Schema",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [660, 300],
+      "credentials": { "postgres": { "id": "1", "name": "Tenant DB" } }
+    }
+  ],
+  "connections": {
+    "Tenant In": { "main": [[{ "node": "Scope Tenant", "type": "main", "index": 0 }]] },
+    "Scope Tenant": { "main": [[{ "node": "Write to Tenant Schema", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### 53.9 Exercises
+
+1. Create two projects with RBAC and confirm tenants can't see each other's workflows.
+2. Enable external task runners and verify Code execution is isolated.
+3. Scope a workflow strictly to a `tenantId` and reject unscoped data.
+
+### 53.10 Challenges
+
+- **Challenge 1.** Automate instance-per-tenant provisioning (IaC) with isolated DB and key.
+- **Challenge 2.** Implement per-tenant concurrency quotas and cost attribution.
+
+### 53.11 Checklist
+
+- [ ] Isolation model chosen per tenant tier.
+- [ ] External task runners for untrusted Code.
+- [ ] Per-tenant credentials/secrets.
+- [ ] Data isolation (schema/DB/row scoping).
+- [ ] Per-tenant quotas (no noisy neighbors).
+
+### 53.12 Best practices
+
+- Match isolation strength to tenant value/risk.
+- Always use external runners when tenants write Code.
+- Never share secrets/keys across tenants.
+- Enforce tenant scoping defensively in every workflow.
+
+### 53.13 Anti-patterns
+
+- Shared encryption key/credentials across tenants.
+- Shared Code execution for untrusted tenant Code.
+- No tenant scoping (cross-tenant data leakage).
+- No quotas (one tenant starves the rest).
+
+### 53.14 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Tenant sees others' data | No scoping/isolation | Enforce scoping; separate schemas |
+| Tenant Code affects others | Shared runner | Use external task runners |
+| Secret reuse across tenants | Shared credentials | Per-tenant secrets |
+| One tenant degrades all | No quotas | Per-tenant concurrency limits |
+| Cross-tenant credential access | Weak RBAC | Tighten projects/roles |
+
+### 53.15 Official references
+
+- Projects & RBAC: https://docs.n8n.io/user-management/rbac/projects/
+- Task runners (isolation): https://docs.n8n.io/hosting/configuration/task-runners/
+- n8n Embed: https://docs.n8n.io/embed/
+- External secrets: https://docs.n8n.io/external-secrets/
+
+---
+
+> **End of Part VII.** n8n is now enterprise-ready in your hands: secured by default and hardened, integrated with SSO and governed with RBAC/projects, fully observable, scalable via queue mode and autoscaling, highly available across AZs, and safely multi-tenant. **Part VIII — Real Projects** (P1–P6) applies everything in six complete, end-to-end builds.
+
 <!--APPEND-PARTE-II-->
