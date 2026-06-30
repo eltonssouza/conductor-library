@@ -83,7 +83,7 @@ Progressive depth across five maturity levels:
 23. Security: input, output, secrets, and crypto
 24. Deployment: configuration, processes, and observability
 
-> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Parts I–VI (Ch. 1–20). **In progress:** Parts VII–VIII.
+> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Parts I–VII (Ch. 1–22). **In progress:** Part VIII.
 
 ---
 
@@ -2462,4 +2462,230 @@ final class AuthMiddleware implements MiddlewareInterface
 
 > **End of Part VI.** A real PHP app relies on **multibyte-safe strings** and the standard library, **immutable dates** (`DateTimeImmutable`, UTC) for correct temporal logic, **PDO prepared statements** for safe database access (no SQL injection), and **PSR-7/PSR-15** for interoperable, middleware-composed HTTP. Part VII covers **testing (PHPUnit)** and **performance (OPcache, JIT)**.
 
-<!--APPEND-PART-VII-->
+---
+
+## Part VII – Testing & Performance
+
+Part VII covers two pillars of professional PHP: **testing** with PHPUnit (the safety net for change) and **performance** — how OPcache and the JIT make PHP fast, and how to reason about it.
+
+---
+
+## Chapter 21 — Testing with PHPUnit
+
+### 21.1 Introduction
+
+**PHPUnit** is PHP's standard testing framework. A test is a method on a `TestCase` subclass that exercises code and **asserts** the result (`assertSame`, `assertEquals`, `expectException`). **Data providers** parameterize a test over many inputs, and **test doubles** (mocks/stubs) replace dependencies so a unit is tested in isolation — which is why depending on interfaces (Ch. 8) matters. Tests run via the `phpunit` CLI and gate CI. A fast, trustworthy suite is what makes refactoring and continuous change safe.
+
+### 21.2 Business context
+
+Tests are the safety net that lets a team change code quickly without fear of regressions — the difference between shipping confidently and praying after each deploy. Without them, every change risks breaking something silently, velocity collapses, and bugs reach production. A good PHPUnit suite encodes the expected behavior as executable specification, catches regressions in seconds in CI, and documents how the code is meant to be used. For a business, that means fewer incidents, faster delivery, and lower maintenance cost.
+
+### 21.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    tc["TestCase method"] --> arrange["arrange: set up + test doubles"]
+    arrange --> act["act: call the unit"]
+    act --> assert["assert: assertSame / expectException"]
+    dp["#[DataProvider] -> many input cases"] --> tc
+```
+
+A test follows **arrange-act-assert**. Prefer **`assertSame`** (strict) over `assertEquals` (loose) for exact checks. **Data providers** (a method returning cases, referenced by `#[DataProvider]`) run the same test across inputs. **Test doubles** — created with `createStub`/`createMock` or hand-written fakes — stand in for dependencies (a clock, a gateway), so the test is deterministic and isolated. Test **behavior** (observable outputs), not internal implementation, so refactors don't break tests.
+
+### 21.4 Architecture: isolated, fast, behavior-focused tests
+
+```mermaid
+flowchart LR
+    unit["unit under test"] --> doubles["dependencies replaced by stubs/mocks"]
+    unit --> assertb["assert observable behavior"]
+    note["Inject dependencies (interfaces) to enable substitution"]
+```
+
+Designing for testability (constructor injection of interfaces) is what makes units cheap to test in isolation.
+
+### 21.5 Real example
+
+**Scenario.** Test a `Checkout` that computes a total with tax, across several rates.
+
+**Problem.** Hard-coded dependencies and a single hard-coded case give weak coverage.
+
+**Solution.** Inject a fake, and use a **data provider** for multiple rates.
+
+**Implementation.**
+
+```php
+use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
+
+final class CheckoutTest extends TestCase
+{
+    #[DataProvider('rates')]
+    public function test_total_applies_tax(float $rate, float $expected): void
+    {
+        $checkout = new Checkout(new FakeOrders(subtotal: 100.0), $rate);  // injected fake
+        self::assertSame($expected, $checkout->total());                    // assert behavior
+    }
+
+    public static function rates(): array
+    {
+        return [[0.0, 100.0], [0.1, 110.0], [0.25, 125.0]];   // many cases
+    }
+}
+```
+
+**Result.** One test covers several tax rates via the data provider, and the injected `FakeOrders` makes it deterministic and free of a real database. It asserts the observable `total()` (behavior), so refactoring `Checkout`'s internals won't break it. Run in CI, it catches any regression to the tax calculation in seconds.
+
+**Future improvements.** Add edge cases (negative inputs throw); measure coverage but optimize for meaningful assertions over a number; add integration tests for the real repository.
+
+### 21.6 Exercises
+
+1. What is arrange-act-assert, and why prefer `assertSame` over `assertEquals`?
+2. What does a data provider give you?
+3. Why test observable behavior rather than internal implementation?
+
+### 21.7 Challenges
+
+- **Challenge.** Write a PHPUnit test for a function with a dependency (e.g., a clock); inject a fake clock and use a data provider to cover three time scenarios.
+
+### 21.8 Checklist
+
+- [ ] Units are tested in isolation with injected fakes/mocks.
+- [ ] I use data providers to cover multiple inputs.
+- [ ] I assert observable behavior, not internals.
+- [ ] The suite runs in CI as a quality gate.
+
+### 21.9 Best practices
+
+- Design for testability (inject interfaces); keep tests fast and isolated.
+- Prefer strict assertions and meaningful cases over coverage numbers.
+- Run the suite in CI on every change.
+
+### 21.10 Anti-patterns
+
+- Tests coupled to implementation details (brittle).
+- No test doubles — tests hitting real databases/HTTP.
+- One giant test instead of focused cases / data providers.
+
+### 21.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Tests break on every refactor | Asserting internals | Test observable behavior instead |
+| Slow, flaky suite | Real I/O in unit tests | Inject fakes; isolate units |
+| Hard to test a class | Hard-coded dependencies | Inject via the constructor (interfaces) |
+
+### 21.12 References
+
+- PHPUnit documentation: https://docs.phpunit.de.
+- V. Khorikov, *Unit Testing: Principles, Practices, and Patterns* (Manning, 2020) — ISBN 978-1617296277.
+
+---
+
+## Chapter 22 — Performance: OPcache and the JIT
+
+### 22.1 Introduction
+
+PHP compiles each script to **opcodes** before executing them. **OPcache** caches those compiled opcodes in shared memory so scripts aren't recompiled on every request — the single most important PHP performance setting, essential in production. The **JIT** (just-in-time compiler, PHP 8) can further compile hot opcodes to native machine code; it helps **CPU-bound** work (computation, math) significantly but does little for typical **I/O-bound** web requests. Real performance work means **measuring** first (profiling) and optimizing the actual bottleneck, usually I/O and queries, not micro-optimizing PHP.
+
+### 22.2 Business context
+
+Performance is cost and experience: faster responses mean lower infrastructure bills and better conversion/retention. OPcache alone can multiply throughput by avoiding recompilation — leaving it off in production is a common, expensive mistake. Understanding that the JIT helps CPU-bound, not I/O-bound, workloads prevents wasted effort enabling it where it won't help, and redirects attention to the real wins: database queries, N+1 problems, caching, and external calls. Measuring before optimizing avoids the classic trap of speeding up code that wasn't slow.
+
+### 22.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    src["PHP script"] --> compile["compile to opcodes"] --> opcache["OPcache: cache opcodes (skip recompilation)"]
+    opcache --> exec["execute"]
+    jit["JIT: hot opcodes -> native code"] --> cpu["big win for CPU-bound; little for I/O-bound"]
+```
+
+**OPcache** stores compiled opcodes in shared memory; enable it and size it adequately in production. The **JIT** (configured via `opcache.jit`) compiles frequently-run opcodes to native code — measurable gains on numeric/CPU-heavy code, negligible on database-driven request handling (where the time is spent waiting on I/O). The right method is **profile** (Xdebug/Blackfire/`profiling`), find the bottleneck (usually queries or external calls), and fix that — not guess.
+
+### 22.4 Architecture: cache opcodes, measure, fix the bottleneck
+
+```mermaid
+flowchart LR
+    prod["production"] --> opc["OPcache ON (mandatory)"]
+    perf["perf problem"] --> profile["profile to find the bottleneck"] --> fix["fix I/O/queries (usually), JIT for CPU-bound"]
+```
+
+OPcache is a baseline production setting; beyond it, measurement directs effort to where time is actually spent.
+
+### 22.5 Real example
+
+**Scenario.** A page is slow under load; the team debates enabling the JIT.
+
+**Problem.** Guessing at optimizations (JIT) may not touch the real cost, which is database access.
+
+**Solution.** Ensure **OPcache** is on, then **profile** — and fix the actual bottleneck (an N+1 query), reserving JIT for genuinely CPU-bound code.
+
+**Implementation.**
+
+```ini
+; php.ini (production)
+opcache.enable=1
+opcache.memory_consumption=256
+opcache.max_accelerated_files=20000
+; JIT: only worthwhile for CPU-bound workloads
+opcache.jit_buffer_size=64M
+opcache.jit=tracing
+```
+
+```text
+Profiling result: 85% of request time is in 200 small SQL queries (N+1)
+Fix: replace the N+1 with one query (a JOIN / batched IN) -> page time drops ~80%
+(JIT would have changed almost nothing here — the cost was I/O, not CPU)
+```
+
+**Result.** OPcache (mandatory) avoids recompilation; profiling reveals the real cost is an N+1 query, and fixing that — not the JIT — cuts page time dramatically. The JIT is left for the few CPU-bound routines where it actually pays. Effort went to the measured bottleneck instead of a guessed one.
+
+**Future improvements.** Add query result caching where appropriate; set up continuous profiling in staging; benchmark JIT on the specific CPU-bound code before enabling it broadly.
+
+### 22.6 Exercises
+
+1. What does OPcache cache, and why is it essential in production?
+2. Which workloads does the JIT help, and which does it not?
+3. Why profile before optimizing?
+
+### 22.7 Challenges
+
+- **Challenge.** Take a slow endpoint, profile it (or reason about it), identify whether the bottleneck is I/O or CPU, and describe the fix — noting whether the JIT would help.
+
+### 22.8 Checklist
+
+- [ ] OPcache is enabled and sized in production.
+- [ ] I profile to find the real bottleneck before optimizing.
+- [ ] I fix I/O/query bottlenecks (usually the biggest win).
+- [ ] I enable the JIT only where CPU-bound work justifies it.
+
+### 22.9 Best practices
+
+- Always run OPcache in production.
+- Measure (profile) before changing anything.
+- Optimize the bottleneck — usually queries/I/O — not micro-code.
+
+### 22.10 Anti-patterns
+
+- Production without OPcache.
+- Enabling the JIT expecting it to speed up I/O-bound requests.
+- Micro-optimizing by guesswork instead of profiling.
+
+### 22.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| High CPU recompiling scripts | OPcache off/undersized | Enable and size OPcache |
+| No gain from the JIT | I/O-bound workload | Profile; fix queries/I/O instead |
+| Optimized code, still slow | Wrong bottleneck targeted | Profile and target the measured hotspot |
+
+### 22.12 References
+
+- PHP Manual, "OPcache" & "JIT": https://www.php.net/manual/en/book.opcache.php.
+- Blackfire/Xdebug profiling docs; J. Lockhart, *Modern PHP* — ISBN 978-1491905012.
+
+---
+
+> **End of Part VII.** Professional PHP rests on a fast, trustworthy **PHPUnit** suite (isolated, behavior-focused, CI-gated) and on **performance** discipline: **OPcache** always on in production, the **JIT** for CPU-bound work only, and **profiling** before optimizing the real (usually I/O) bottleneck. Part VIII closes the guide with **security and deployment**.
+
+<!--APPEND-PART-VIII-->
