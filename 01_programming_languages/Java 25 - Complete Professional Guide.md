@@ -43,7 +43,7 @@ version: 25
 **Part II – Modern Java**
 3. Concurrency with virtual threads
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -249,4 +249,122 @@ for (String w : text.split("\\s+")) {
 
 > **End of Part I.** You can now work with Java's foundations: a **static type system** (now concise via records, sealed types, pattern matching) that catches errors at compile time, running as portable bytecode on the **JVM**, and the **collections framework** with **generics** for type-safe, efficient data handling programmed to interfaces. **Part II — Modern Java** (Chapter 3) covers concurrency with **virtual threads** (Java 21+), which make high-concurrency code simple by giving each task a cheap thread without blocking platform threads.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Modern Java
+
+The Java of 2025 is far more concise and scalable than its reputation. Part II covers the single change that most reshapes how everyday server code is written: **virtual threads** (final in Java 21), which let you keep simple, blocking, one-thread-per-task code while scaling to hundreds of thousands of concurrent tasks.
+
+---
+
+## Chapter 3 — Concurrency with virtual threads
+
+### 3.1 Introduction
+
+As of Java 21 there are **two kinds of threads**. A **platform thread** is a thin wrapper over an operating-system thread, scheduled by the OS. A **virtual thread** runs *on top of* platform threads and is scheduled by the Java runtime. Virtual threads are **cheap** — you can create hundreds of thousands of them — because when one **blocks** (on I/O, a lock, `sleep`), it steps off its carrier platform thread and frees it for other work. The payoff: you write ordinary, sequential, blocking code (one thread per task) and it scales like hand-written asynchronous code, without the callback or reactive complexity.
+
+### 3.2 Business context
+
+A typical web service handles a very large number of concurrent requests, most of them **I/O-bound** — waiting on a database, a cache, or another service. With platform threads this forces a trade-off: platform threads are heavyweight (thousands of CPU instructions to start, plus reserved memory), so you cap them in a **pool** and, once the pool is saturated, either queue requests or rewrite everything in an asynchronous/reactive style that is hard to read and debug. Virtual threads remove the trade-off: give **each request its own virtual thread**, let it block freely, and the runtime multiplexes thousands of them onto a small set of carriers. Simple code, high throughput.
+
+### 3.3 Theoretical concepts: platform vs. virtual threads
+
+```mermaid
+flowchart LR
+    subgraph carriers["few platform (carrier) threads"]
+        p1["platform thread 1"]
+        p2["platform thread 2"]
+    end
+    v1["virtual thread A"] -->|"mounted while running"| p1
+    v2["virtual thread B (blocked on I/O)"] -.->|"unmounted, frees carrier"| carriers
+    note["Runtime mounts a virtual thread on a carrier to run;<br/>on blocking it unmounts so the carrier serves others"]
+```
+
+Platform threads use **preemptive** OS scheduling; virtual threads use **cooperative** scheduling and lose control only when they block or yield. You create them three ways: `Thread.startVirtualThread(runnable)`, `Thread.ofVirtual().start(runnable)`, or — most commonly — an executor from `Executors.newVirtualThreadPerTaskExecutor()`, which runs **each submitted task on its own new virtual thread**. Tasks are `Runnable` (no result) or `Callable<V>` (returns `V`); submitting a `Callable` yields a `Future<V>` whose `get()` blocks until the result is ready.
+
+### 3.4 Architecture: thread-per-task, not thread-pool
+
+```mermaid
+flowchart TB
+    req["N incoming requests"] --> ex["newVirtualThreadPerTaskExecutor()"]
+    ex --> t1["virtual thread / request 1"]
+    ex --> t2["virtual thread / request 2"]
+    ex --> tn["virtual thread / request N"]
+    note["One cheap virtual thread per task;<br/>blocking calls are fine — do NOT pool them"]
+```
+
+`ExecutorService` is `AutoCloseable`, so a try-with-resources block submits work and waits for every task to finish at the closing brace. The mental model returns to the simplest one — **one thread per task** — because the threads are now cheap enough to make that practical.
+
+### 3.5 Real example
+
+**Scenario.** A request must call several slow downstream services and combine their results.
+
+**Problem.** Doing the calls sequentially is slow; using a bounded platform-thread pool makes them compete for a few threads; rewriting in a reactive style is complex.
+
+**Solution.** Submit one `Callable` per downstream call to a **virtual-thread-per-task** executor; each runs on its own virtual thread and blocks freely.
+
+**Implementation.**
+
+```java
+record Profile(String user, List<String> orders, int credit) {}
+
+Profile loadProfile(String user) throws Exception {
+    // Each submitted task runs on its OWN new virtual thread.
+    try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
+        Future<List<String>> orders = executor.submit(() -> orderService.list(user)); // blocks — fine
+        Future<Integer>      credit = executor.submit(() -> creditService.score(user));
+        // get() blocks until each virtual thread finishes; both run concurrently.
+        return new Profile(user, orders.get(), credit.get());
+    } // executor.close() waits for all tasks, then releases resources
+}
+```
+
+**Result.** The two downstream calls run **concurrently** on separate virtual threads; the code reads like a straight-line synchronous function — no callbacks, no manual thread pool sizing. Scaled to one virtual thread per request, a single server can hold hundreds of thousands of in-flight, blocked tasks cheaply.
+
+**Future improvements.** Use **structured concurrency** (`StructuredTaskScope`) to treat the sub-tasks as a unit — cancel the siblings if one fails, and propagate deadlines — instead of managing `Future`s by hand.
+
+### 3.6 Exercises
+
+1. What is the difference between a platform thread and a virtual thread, and who schedules each?
+2. Why does blocking a virtual thread *not* tie up an operating-system thread?
+3. When you submit a `Callable<V>` to an executor, what do you get back, and what does its `get()` do?
+
+### 3.7 Challenges
+
+- **Challenge.** Launch 100,000 virtual threads that each sleep one second and print, using `newVirtualThreadPerTaskExecutor()`. Observe that it completes in about a second. Then try the same with a fixed platform-thread pool and compare.
+
+### 3.8 Checklist
+
+- [ ] I give each task its own virtual thread instead of pooling virtual threads.
+- [ ] I reserve virtual threads for I/O-bound work, not CPU-bound parallelism.
+- [ ] I use try-with-resources on the executor so all tasks complete before I continue.
+- [ ] I keep tasks blocking-but-simple rather than reaching for reactive code.
+
+### 3.9 Best practices
+
+- Use `newVirtualThreadPerTaskExecutor()` (or `Thread.ofVirtual()`); never pool virtual threads — pooling defeats their purpose.
+- Keep them for blocking/I/O-bound tasks; use a sized platform-thread pool for CPU-bound parallelism.
+- Avoid `synchronized` around blocking calls (it can **pin** a virtual thread to its carrier); prefer `ReentrantLock`.
+
+### 3.10 Anti-patterns
+
+- Pooling or rate-limiting virtual threads as if they were scarce.
+- Storing large per-thread state in `ThreadLocal` across millions of threads.
+- Using virtual threads for CPU-bound number crunching (no benefit — they still need a carrier).
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| No speedup vs. platform threads | Workload is CPU-bound | Virtual threads help I/O-bound work; use a platform pool for CPU work |
+| Throughput collapses under load | Virtual thread **pinned** by `synchronized` over a blocking call | Replace `synchronized` with `ReentrantLock` |
+| Tasks not finished after the block | Executor not closed / not awaited | Use try-with-resources so `close()` awaits all tasks |
+
+### 3.12 References
+
+- C. Horstmann, *Core Java*, Vol. I, 12th ed., ch. 10 "Concurrency", §10.3 (platform vs. virtual threads, executors) — ISBN 978-0137673629.
+- JEP 444, "Virtual Threads" (final in Java 21): https://openjdk.org/jeps/444.
+
+---
+
+> **End of Part II.** Java's **virtual threads** make the simplest concurrency model — one thread per task, written with ordinary blocking calls — scale to hundreds of thousands of concurrent tasks, because a blocked virtual thread releases its carrier instead of an OS thread. With Part I's compile-time **type system** on the **JVM** and the **collections framework with generics**, you now have Java's foundations plus the modern concurrency model that powers today's high-throughput services.
