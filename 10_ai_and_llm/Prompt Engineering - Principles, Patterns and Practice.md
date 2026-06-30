@@ -1024,4 +1024,74 @@ The pattern across all four studies, stated once as the book's closing principle
 
 ---
 
+## References
+
+> Canonical, verifiable sources for the techniques and empirical findings this book draws on — pointers only. Each is the primary source behind a claim made above; specific model names and benchmark numbers in those papers age quickly, but the mechanisms are durable.
+
+### Foundations: instruction following, tuning, and sensitivity (Ch. 1–2)
+
+- Brown, T. et al. (2020). *Language Models are Few-Shot Learners* (GPT-3) — in-context learning.
+- Ouyang, L. et al. (2022). *Training Language Models to Follow Instructions with Human Feedback* (InstructGPT) — instruction tuning and RLHF.
+- Wei, J. et al. (2022). *Finetuned Language Models Are Zero-Shot Learners* (FLAN) — why zero-shot instruction following works.
+- Bai, Y. et al. (2022). *Constitutional AI: Harmlessness from AI Feedback.*
+- Wallace, E. et al. (2024). *The Instruction Hierarchy: Training LLMs to Prioritize Privileged Instructions.*
+- Sclar, M. et al. (2024). *Quantifying Language Models' Sensitivity to Spurious Features in Prompt Design.*
+
+### Clarity, few-shot, balance, and ordering (Ch. 3–4)
+
+- Min, S. et al. (2022). *Rethinking the Role of Demonstrations: What Makes In-Context Learning Work?* — format matters more than label correctness.
+- Zhao, Z. et al. (2021). *Calibrate Before Use: Improving Few-Shot Performance of Language Models* — majority-label and recency bias.
+- Lu, Y. et al. (2022). *Fantastically Ordered Prompts and Where to Find Them* — example-order sensitivity.
+- Agarwal, R. et al. (2024). *Many-Shot In-Context Learning.*
+
+### Reasoning elicitation (Ch. 5)
+
+- Wei, J. et al. (2022). *Chain-of-Thought Prompting Elicits Reasoning in Large Language Models.*
+- Kojima, T. et al. (2022). *Large Language Models are Zero-Shot Reasoners* — "Let's think step by step".
+- Wang, X. et al. (2022). *Self-Consistency Improves Chain of Thought Reasoning in Language Models.*
+- Zhou, D. et al. (2022). *Least-to-Most Prompting Enables Complex Reasoning in Large Language Models.*
+- Turpin, M. et al. (2023). *Language Models Don't Always Say What They Think: Unfaithful Explanations in Chain-of-Thought Prompting.*
+- Lanham, T. et al. (2023). *Measuring Faithfulness in Chain-of-Thought Reasoning.*
+- Sprague, Z. et al. (2024). *To CoT or Not to CoT? Chain-of-thought Helps Mainly on Math and Symbolic Reasoning.*
+- OpenAI (2024). *Learning to Reason with LLMs* (o1); DeepSeek-AI (2025). *DeepSeek-R1.*
+
+### Output control and structured generation (Ch. 6)
+
+- Willard, B. & Louf, R. (2023). *Efficient Guided Generation for Large Language Models* (constrained decoding).
+- Anthropic and OpenAI product documentation on structured outputs, JSON mode, and tool/function calling.
+
+### Roles, personas, and sycophancy (Ch. 7)
+
+- Zheng, M. et al. (2024). *When "A Helpful Assistant" Is Not Really Helpful: Personas in System Prompts Do Not Improve Performance.*
+- Sharma, M. et al. (2023). *Towards Understanding Sycophancy in Language Models.*
+- Perez, E. et al. (2022). *Discovering Language Model Behaviors with Model-Written Evaluations.*
+
+### Decomposition, chaining, and LLM-as-judge (Ch. 8)
+
+- Khot, T. et al. (2022). *Decomposed Prompting: A Modular Approach for Solving Complex Tasks.*
+- Wu, T. et al. (2022). *AI Chains: Transparent and Controllable Human-AI Interaction by Chaining LLM Prompts.*
+- Madaan, A. et al. (2023). *Self-Refine: Iterative Refinement with Self-Feedback.*
+- Zheng, L. et al. (2023). *Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena* — judge biases (position, verbosity, self-preference).
+
+### Robustness and prompt injection (Ch. 9)
+
+- Perez, F. & Ribeiro, I. (2022). *Ignore Previous Prompt: Attack Techniques for Language Models.*
+- Greshake, K. et al. (2023). *Not What You've Signed Up For: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection.*
+- OWASP (2023–2025). *OWASP Top 10 for Large Language Model Applications.*
+- Willison, S. *Prompt injection* essays (simonwillison.net), ongoing.
+
+### Agentic prompting (Ch. 12)
+
+- Yao, S. et al. (2022). *ReAct: Synergizing Reasoning and Acting in Language Models.*
+- Shinn, N. et al. (2023). *Reflexion: Language Agents with Verbal Reinforcement Learning.*
+- Anthropic (2024). *Building Effective Agents.*
+
+### Practitioner guides
+
+- Anthropic. *Prompt Engineering* documentation (docs.anthropic.com).
+- OpenAI. *Prompt Engineering / GPT best practices* guide (platform.openai.com).
+- DAIR.ai. *Prompt Engineering Guide* (promptingguide.ai).
+
+---
+
 *End of book.*
