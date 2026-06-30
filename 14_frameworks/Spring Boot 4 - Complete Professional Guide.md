@@ -534,4 +534,731 @@ class OrderServiceTest {
 
 > **End of Part I.** You now have the foundational mental model of Spring Boot 4: the **project model** (starters, BOM, modularized auto-config, embedded server, `@SpringBootApplication`), the **auto-configuration** mechanism (conditional beans and the "back off" rule), and the **IoC container** with constructor-based, JSpecify-null-safe dependency injection. **Part II — Configuration & Web APIs** (Chapters 4–6) builds on this to cover externalized configuration and profiles, REST APIs with Spring MVC including **built-in API versioning**, and validation with RFC 7807 `ProblemDetail` error handling.
 
+
+---
+
+# Part II – Configuration & Web APIs
+
+Part II turns the foundational mental model from Part I into a service that is *configurable* and *exposed*. A real application must run unchanged across environments (the 12-factor ideal), so we start with **externalized configuration, profiles, and type-safe `@ConfigurationProperties`**. We then build the HTTP surface with **Spring MVC** — `@RestController`, content negotiation, and Spring Boot 4's **first-class API versioning** — and finally make that surface robust with **Bean Validation** and **RFC 9457 `ProblemDetail`** error handling. Together these three chapters take you from "an app that runs" to "an app that talks to the world correctly across every environment."
+
+---
+
+## Chapter 4 — Externalized configuration, profiles, and `@ConfigurationProperties`
+
+### 4.1 Introduction
+
+A Spring Boot 4 application is built once and deployed many times — locally, in CI, in staging, in production — and each deployment needs different settings: a database URL, a connection-pool size, a feature flag. **Externalized configuration** is the mechanism that lets a single immutable jar absorb those differences at startup rather than at build time. Configuration values arrive from many **property sources** (files, environment variables, command-line arguments, imported config), are layered in a defined **precedence order**, and are exposed to your code either through loosely-typed `@Value` injections or, preferably, through **type-safe `@ConfigurationProperties`** beans. **Profiles** then let you switch whole sets of beans and properties on or off per environment. This chapter covers the property model, profiles, binding, and how to keep secrets out of your artifact.
+
+### 4.2 Business context
+
+Hardcoded configuration is one of the most common causes of production incidents and security breaches. A database URL compiled into a jar is correct in exactly one environment and wrong everywhere else; a password committed to a properties file is a leak that survives in git history forever. Externalized configuration directly serves three business concerns: **reliability** (the same tested artifact promotes from dev to prod, eliminating "rebuilt for prod" drift), **security** (secrets live in a vault or environment, never in source), and **auditability** (configuration changes are traceable and reviewable separately from code). For a fleet of microservices, a consistent, validated configuration model is the difference between governable infrastructure and a sprawl of bespoke setups. Spring Boot 4 keeps this model stable across the 3.x→4.0 upgrade, so the investment carries forward cleanly.
+
+### 4.3 Theoretical concepts: property sources, profiles, and binding
+
+```mermaid
+mindmap
+  root((Externalized config))
+    Property sources
+      Command-line args
+      OS env vars / secrets
+      application-{profile}.yml
+      application.yml
+      Code defaults
+    Profiles
+      spring.profiles.active
+      @Profile on beans
+      profile-specific YAML
+    Binding
+      @Value (loose)
+      @ConfigurationProperties (type-safe)
+      @Validated constraints
+    Imports and secrets
+      spring.config.import
+      Vault / Kubernetes
+      env-injected passwords
+```
+
+Three ideas do most of the work. First, **precedence**: when the same key is defined in several sources, the higher-priority source wins. The simplified order, from strongest to weakest, is command-line arguments, then OS environment variables and secrets, then `application-{profile}.yml`, then `application.yml`, then code defaults (the full, exhaustive order is in the reference docs). Second, **profiles**: `spring.profiles.active=prod` activates the `prod` profile, which both registers `@Profile("prod")` beans and pulls in `application-prod.yml`. Third, **binding**: `@ConfigurationProperties(prefix = "app")` maps a whole properties subtree onto a record or class, and `@Validated` runs Jakarta Bean Validation on it at startup so misconfiguration **fails fast** rather than surfacing as a runtime surprise.
+
+### 4.4 Architecture: how a value is resolved
+
+```mermaid
+flowchart TB
+    cli["Command-line args<br/>--app.pool.max-size=80"] --> merge["Merged Environment<br/>(ordered PropertySources)"]
+    env["OS env vars / secrets<br/>DB_PASSWORD, APP_POOL_MAXSIZE"] --> merge
+    prof["application-{profile}.yml<br/>(active profile overrides)"] --> merge
+    base["application.yml<br/>(shared defaults)"] --> merge
+    defaults["Code defaults<br/>(record/@Value fallbacks)"] --> merge
+    active["spring.profiles.active=prod"] --> prof
+    merge --> cp["@ConfigurationProperties beans<br/>(type-safe, @Validated)"]
+    merge --> val["@Value injections<br/>(loose, string-based)"]
+    cp --> app["Application beans"]
+    val --> app
+```
+
+The `Environment` abstraction holds an ordered list of `PropertySource` objects; resolving a key walks that list and returns the first match. Because binding happens at startup, a validated `@ConfigurationProperties` record that fails its constraints aborts the boot with a clear message — you never ship a service that is silently misconfigured. Relaxed binding means `app.pool.max-size`, `APP_POOL_MAXSIZE`, and `app.poolMaxSize` all map to the same property, which is what makes environment-variable overrides ergonomic in containers.
+
+### 4.5 Real example
+
+**Scenario.** A checkout service must run with different connection-pool sizes and feature flags per environment, and the production database password must come from a secret store — never from a file in the artifact.
+
+**Problem.** Today the settings are scattered across a dozen `@Value` annotations with no validation, and the password is one careless commit away from ending up in `application.yml` and leaking into git history.
+
+**Solution.** Consolidate the settings into a single validated `@ConfigurationProperties` record, put environment differences in profile-specific YAML, and inject the password from an environment variable that the platform populates from the secret store.
+
+**Implementation.**
+
+```yaml
+# application.yml — shared defaults (committed, no secrets)
+app:
+  features:
+    new-checkout: false
+  pool:
+    max-size: 10
+spring:
+  config:
+    activate:
+      on-profile: "default"
+---
+# application-prod.yml — production overrides
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: jdbc:postgresql://db.prod.internal:5432/checkout
+    username: checkout
+    password: ${DB_PASSWORD}     # injected from the secret store at deploy time
+app:
+  features:
+    new-checkout: true
+  pool:
+    max-size: 50
+```
+
+```java
+package com.example.checkout.config;
+
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.validation.annotation.Validated;
+
+// Type-safe, validated configuration bound from the "app.*" subtree.
+@ConfigurationProperties(prefix = "app")
+@Validated
+public record AppProperties(
+    Features features,
+    @Valid Pool pool
+) {
+    public record Features(boolean newCheckout) {}
+
+    public record Pool(@Min(1) @Max(200) int maxSize) {}
+}
+```
+
+```java
+package com.example.checkout;
+
+import com.example.checkout.config.AppProperties;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.stereotype.Service;
+
+@SpringBootApplication
+@EnableConfigurationProperties(AppProperties.class)
+public class CheckoutApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(CheckoutApplication.class, args);
+    }
+}
+
+@Service
+class CheckoutFeature {
+
+    private final AppProperties props;
+
+    CheckoutFeature(AppProperties props) {   // constructor injection (Chapter 3)
+        this.props = props;
+    }
+
+    boolean isNewCheckoutEnabled() {
+        return props.features().newCheckout();
+    }
+}
+```
+
+```java
+package com.example.checkout;
+
+import com.example.checkout.config.AppProperties;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+@SpringBootTest
+@ActiveProfiles("prod")
+class ProdConfigTest {
+
+    @Autowired
+    AppProperties props;
+
+    @Test
+    void productionOverridesAreApplied() {
+        assertThat(props.features().newCheckout()).isTrue();
+        assertThat(props.pool().maxSize()).isEqualTo(50);
+    }
+}
+```
+
+**Result.** One artifact behaves correctly in every environment: dev uses the defaults, prod picks up the overrides via `spring.profiles.active=prod`, and the password is supplied by `DB_PASSWORD` at deploy time so it never lives in a file. An invalid value such as `app.pool.max-size: 0` aborts startup with a validation error instead of failing mysteriously under load.
+
+**Future improvements.** Source the password from Vault using `spring.config.import=vault://`, group related flags behind a feature-flag service, and surface the bound properties through Actuator's `/configprops` endpoint (Chapter 18) for operational visibility.
+
+### 4.6 Exercises
+
+1. Order these property sources from strongest to weakest precedence: `application.yml`, a command-line argument, an OS environment variable.
+2. Convert three related `@Value("${app.pool.*}")` injections into one `@ConfigurationProperties` record with validation.
+3. Name two ways to activate the `prod` profile at runtime.
+
+### 4.7 Challenges
+
+- **Challenge.** Externalize *all* configuration of a small service into `default` and `prod` profiles, bind it through a single `@Validated @ConfigurationProperties` record, inject one secret from an environment variable, and write a `@SpringBootTest` with `@ActiveProfiles("prod")` proving the overrides apply and that an out-of-range value fails startup.
+
+### 4.8 Checklist
+
+- [ ] No secrets live in source or in committed properties files.
+- [ ] Environment differences live in profile-specific YAML, not in code branches.
+- [ ] Configuration is bound through validated `@ConfigurationProperties`, not scattered `@Value`.
+- [ ] The active profile is set explicitly per environment.
+- [ ] Invalid configuration fails fast at startup.
+
+### 4.9 Best practices
+
+- Prefer `@ConfigurationProperties` (type-safe, validated, discoverable) over scattered `@Value` strings.
+- Build one immutable artifact and vary behavior only through externalized configuration.
+- Inject secrets from environment variables or Vault; never commit them.
+- Use `@Validated` with Bean Validation constraints so misconfiguration aborts the boot.
+- Lean on relaxed binding so the same key can be overridden by an environment variable in a container.
+
+### 4.10 Anti-patterns
+
+- Passwords or API keys in `application.yml` committed to git.
+- Building a separate artifact per environment instead of externalizing config.
+- Deeply scattered `@Value` strings with no central type or validation.
+- Reading `spring.profiles.active` in business logic to branch behavior instead of using `@Profile` beans.
+
+### 4.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Wrong value at runtime | Precedence misunderstanding | Inspect the ordered property sources; remember CLI args beat env vars beat files |
+| Profile properties ignored | Profile not active | Set `spring.profiles.active` for that environment |
+| Binding fails at startup | Type or validation constraint mismatch | Fix the property value or the constraint; read the failure message |
+| Env-var override not picked up | Relaxed-binding name mismatch | Use the `APP_POOL_MAXSIZE` form for `app.pool.max-size` |
+| Secret found in a file | Password placed in YAML | Move to env var / Vault and rotate the credential |
+
+### 4.12 Official references
+
+- Externalized configuration: https://docs.spring.io/spring-boot/reference/features/external-config.html
+- Profiles: https://docs.spring.io/spring-boot/reference/features/profiles.html
+- Type-safe `@ConfigurationProperties`: https://docs.spring.io/spring-boot/reference/features/external-config.html#features.external-config.typesafe-configuration-properties
+- Importing additional config with `spring.config.import`: https://docs.spring.io/spring-boot/reference/features/external-config.html#features.external-config.files.importing
+
+---
+
+## Chapter 5 — Building REST APIs with Spring MVC
+
+### 5.1 Introduction
+
+**Spring MVC** is Spring Boot 4's servlet-based web stack, running on Servlet 6.1 inside the embedded container. At its center is the `DispatcherServlet`, a front controller that routes each request to a handler method on a controller, applies argument resolution and validation, invokes your code, and serializes the result. For JSON and other machine-to-machine APIs you use `@RestController`, where every handler's return value becomes the response body (via Jackson 3 by default). This chapter covers the essentials — controllers, request mapping, content negotiation — and then Spring Boot 4's headline web feature: **first-class API versioning** through a `version` attribute on `@RequestMapping` and an `ApiVersionStrategy` that resolves the requested version from a header, query parameter, media-type parameter, or path segment.
+
+### 5.2 Business context
+
+An API is a contract, and contracts evolve. The moment a second team or an external partner depends on your endpoint, a careless field rename becomes a breaking change that ripples across consumers and forces coordinated, risky deployments. Historically teams hand-rolled versioning — parsing custom headers or inventing `/v2/` path conventions inconsistently across services — which made API evolution expensive and error-prone. Spring Boot 4 makes versioning a **framework concern**: a service can serve `v1` and `v2` of the same logical endpoint side by side, signal deprecation cleanly, and protect existing consumers while shipping breaking changes. The business payoff is faster, safer API evolution and far less bespoke routing code to maintain across a fleet of services.
+
+### 5.3 Theoretical concepts: the request lifecycle and versioning
+
+- **`DispatcherServlet`.** The front controller that receives every request and dispatches it to the matching handler method.
+- **Controllers and mappings.** `@RestController` serializes return values directly; `@GetMapping`, `@PostMapping`, and the general `@RequestMapping` bind HTTP methods and paths to handler methods; `@PathVariable`, `@RequestParam`, and `@RequestBody` resolve method arguments.
+- **Content negotiation.** Spring selects a representation based on the `Accept` header and `produces`/`consumes` attributes; JSON via Jackson 3 is the default.
+- **API versioning.** The `version` attribute on mapping annotations declares which version a handler serves; an `ApiVersionStrategy` (configured through `ApiVersionConfigurer`) resolves the incoming version from a **header**, **query parameter**, **media-type parameter**, or **path**. The same versioning is supported on the client side (`RestClient`, HTTP interface clients) and in tests (`MockMvc`, `WebTestClient`).
+
+### 5.4 Architecture: request flow with content negotiation and versioning
+
+```mermaid
+flowchart TB
+    client["HTTP client<br/>Accept: application/json<br/>X-API-Version: 2"] --> ds["DispatcherServlet<br/>(front controller)"]
+    ds --> ver["ApiVersionStrategy<br/>resolve version: header/query/path/media-type"]
+    ver --> hm["HandlerMapping<br/>match by method + path + version"]
+    hm --> ctrl["@RestController handler<br/>(version = &quot;2&quot;)"]
+    ctrl --> svc["Service layer<br/>(business logic)"]
+    svc --> ctrl
+    ctrl --> conv["HttpMessageConverter<br/>(Jackson 3 → JSON)"]
+    conv --> resp["HTTP response<br/>+ Deprecation / Sunset headers"]
+```
+
+```mermaid
+flowchart LR
+    v1req["Request<br/>X-API-Version: 1"] --> route{"Resolve and match<br/>version"}
+    v2req["Request<br/>X-API-Version: 2"] --> route
+    route -- "version = 1" --> h1["getV1()<br/>returns OrderV1 (amount)"]
+    route -- "version = 2" --> h2["getV2()<br/>returns OrderV2 (totalAmount)"]
+    h1 --> out["Serialized response"]
+    h2 --> out
+```
+
+Versioning is layered *on top of* ordinary path matching: the resolver extracts the requested version, then handler mapping selects the controller method whose path **and** declared `version` both match. Because each version is its own method returning its own DTO, the two contracts never share serialization logic and cannot accidentally drift into each other.
+
+### 5.5 Real example
+
+**Scenario.** An orders API must introduce a breaking change — renaming the JSON field `amount` to `totalAmount` — while keeping every existing `v1` consumer working untouched.
+
+**Problem.** A naive rename of the field on a single DTO breaks all current clients at once, forcing a coordinated big-bang migration across every consumer.
+
+**Solution.** Configure header-based versioning once, then expose two handlers for the same path: `version = "1"` returning the original DTO and `version = "2"` returning the renamed one. Existing clients keep sending (or defaulting to) `v1`; new clients opt into `v2`.
+
+**Implementation.**
+
+```java
+package com.example.orders.web;
+
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ApiVersionConfigurer;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+// Configure a single version-resolution strategy for the whole API.
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+
+    @Override
+    public void configureApiVersioning(ApiVersionConfigurer configurer) {
+        configurer
+            .useRequestHeader("X-API-Version")   // resolve the version from a header
+            .setDefaultVersion("1");             // clients that omit it get v1
+    }
+}
+```
+
+```java
+package com.example.orders.web;
+
+// Distinct DTOs per version — no shared serialization between contracts.
+public record OrderV1(String id, String item, long amount) {}
+
+public record OrderV2(String id, String item, long totalAmount) {}
+```
+
+```java
+package com.example.orders.web;
+
+import com.example.orders.OrderService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/orders")
+public class OrderController {
+
+    private final OrderService service;
+
+    public OrderController(OrderService service) {   // constructor injection
+        this.service = service;
+    }
+
+    // v1 — original contract, field "amount"
+    @GetMapping(path = "/{id}", version = "1")
+    public OrderV1 getV1(@PathVariable String id) {
+        var order = service.find(id);
+        return new OrderV1(order.id(), order.item(), order.amount());
+    }
+
+    // v2 — breaking change, field renamed to "totalAmount"
+    @GetMapping(path = "/{id}", version = "2")
+    public OrderV2 getV2(@PathVariable String id) {
+        var order = service.find(id);
+        return new OrderV2(order.id(), order.item(), order.amount());
+    }
+}
+```
+
+```java
+package com.example.orders.web;
+
+import com.example.orders.Order;
+import com.example.orders.OrderService;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.web.servlet.MockMvc;
+
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+@WebMvcTest(OrderController.class)
+class OrderControllerVersionTest {
+
+    @Autowired
+    MockMvc mockMvc;
+
+    @MockitoBean
+    OrderService service;
+
+    @Test
+    void servesV1ContractByHeader() throws Exception {
+        when(service.find("42")).thenReturn(new Order("42", "book", 1500));
+
+        mockMvc.perform(get("/orders/42").header("X-API-Version", "1"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.amount").value(1500))
+            .andExpect(jsonPath("$.totalAmount").doesNotExist());
+    }
+
+    @Test
+    void servesV2ContractByHeader() throws Exception {
+        when(service.find("42")).thenReturn(new Order("42", "book", 1500));
+
+        mockMvc.perform(get("/orders/42").header("X-API-Version", "2"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.totalAmount").value(1500))
+            .andExpect(jsonPath("$.amount").doesNotExist());
+    }
+}
+```
+
+**Result.** Existing `v1` consumers continue to receive `amount` with no change at all; new consumers opt into `v2` by sending `X-API-Version: 2` and receive `totalAmount`. The two contracts are independent DTOs, so neither can corrupt the other, and both are proven by `MockMvc` tests.
+
+**Future improvements.** Emit `Deprecation` and `Sunset` headers on the `v1` handler to signal its retirement timeline, generate a separate OpenAPI document per version, and call any external services through declarative HTTP interface clients to keep outbound integration code typed and boilerplate-free.
+
+### 5.6 Exercises
+
+1. List the four built-in API-version resolution strategies Spring Boot 4 supports.
+2. Explain how content negotiation chooses between JSON and another representation for the same handler.
+3. Why should each API version return its own DTO rather than a shared, evolving one?
+
+### 5.7 Challenges
+
+- **Challenge.** Take an existing endpoint, add a `v2` with a breaking change, serve both versions through one strategy, emit a `Deprecation` header on `v1`, and prove both contracts with `MockMvc` (including that the renamed field is absent on the other version).
+
+### 5.8 Checklist
+
+- [ ] I chose a single version-resolution strategy and applied it consistently across the API.
+- [ ] Each version has its own DTO; versions do not share a mutable contract.
+- [ ] Controllers stay thin and delegate to a service layer.
+- [ ] Versioned endpoints are covered by `MockMvc` tests asserting both the present and the absent fields.
+- [ ] A default version is configured for clients that omit the version.
+
+### 5.9 Best practices
+
+- Pick one versioning strategy per API — a header is common for internal services, a path segment for public ones — and apply it everywhere.
+- Keep controllers thin: resolve, validate, delegate to a service, return a DTO.
+- Use distinct DTOs per version so serialization contracts stay isolated.
+- Signal deprecation with `Deprecation`/`Sunset` headers well before removing a version.
+- Let Jackson 3 handle JSON; customize through a builder customizer rather than replacing the mapper wholesale (Chapter 2).
+
+### 5.10 Anti-patterns
+
+- Mixing multiple version-resolution strategies within one API.
+- Shipping a breaking change without a version bump, silently breaking consumers.
+- Sharing one DTO across versions and mutating it, causing cross-version drift.
+- Fat controllers that embed business logic instead of delegating to services.
+
+### 5.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Version never resolved | `ApiVersionConfigurer` not configured | Configure a strategy in a `WebMvcConfigurer` |
+| 404 for a versioned route | Request omits/mismatches the version | Send the configured header/param/path, or set a default version |
+| Wrong representation returned | Content-negotiation mismatch | Check the `Accept` header and `produces` attribute |
+| `406 Not Acceptable` | No converter for requested media type | Add the converter or correct the `Accept` header |
+| Both versions return the same fields | One shared DTO across handlers | Use a distinct DTO per version |
+
+### 5.12 Official references
+
+- Spring MVC (web on Servlet stack): https://docs.spring.io/spring-framework/reference/web/webmvc.html
+- API versioning (MVC): https://docs.spring.io/spring-framework/reference/web/webmvc-versioning.html
+- Content negotiation: https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-servlet/content-negotiation.html
+- API versioning (blog): https://spring.io/blog/2025/09/16/api-versioning-in-spring/
+- Spring Boot — developing web applications: https://docs.spring.io/spring-boot/reference/web/servlet.html
+
+---
+
+## Chapter 6 — Bean Validation and error handling
+
+### 6.1 Introduction
+
+A REST API must reject bad input clearly and report failures in a predictable, machine-readable shape. Spring Boot 4 gives you two complementary tools. **Jakarta Bean Validation** (`@Valid` with constraints like `@NotBlank`, `@Email`, `@Min`) declaratively checks request bodies and parameters before your handler runs, turning validation into annotations rather than imperative `if` checks. **`ProblemDetail`** — Spring's implementation of the **RFC 9457** "Problem Details for HTTP APIs" standard (the successor to RFC 7807) — gives every error a consistent JSON body with `type`, `title`, `status`, `detail`, and `instance` fields. Combined with a centralized `@ControllerAdvice` exception handler, you get one place that translates validation failures and domain exceptions into well-formed problem responses across the whole API.
+
+### 6.2 Business context
+
+Inconsistent error handling is a silent tax on every API consumer. When one endpoint returns a stack trace, another a plain string, and a third a bespoke JSON shape, every client must write custom parsing for each — and a leaked stack trace is both a poor experience and a security disclosure. Standardizing on `ProblemDetail` means consumers parse **one** error format everywhere, support teams diagnose issues from a stable `instance`/`detail` pair, and security reviewers can confirm internal details never escape. Declarative validation reinforces this: invalid input is rejected at the edge with a precise, field-level explanation instead of propagating into the domain and corrupting state. The result is an API that is cheaper to integrate against, easier to operate, and safer by default.
+
+### 6.3 Theoretical concepts: constraints, ProblemDetail, and advice
+
+- **Constraints.** Jakarta Bean Validation annotations (`@NotNull`, `@NotBlank`, `@Size`, `@Email`, `@Min`, `@Max`, `@Pattern`) declare the rules; `@Valid` on a `@RequestBody` parameter triggers validation, and a failure raises `MethodArgumentNotValidException` before the handler body executes.
+- **`ProblemDetail`.** The RFC 9457 model carrying `type` (a URI identifying the error kind), `title`, `status`, `detail`, `instance`, plus arbitrary extension properties. Spring can produce it automatically and lets you enrich it.
+- **`@ControllerAdvice` / `@ExceptionHandler`.** A cross-cutting component whose `@ExceptionHandler` methods catch exceptions thrown by any controller and translate them into `ProblemDetail` responses. Extending `ResponseEntityExceptionHandler` gives you Spring's built-in handling of framework exceptions (including validation) which you can then customize.
+
+```mermaid
+flowchart TB
+    req["POST /customers<br/>JSON body"] --> bind["Bind body to DTO"]
+    bind --> valid{"@Valid<br/>constraints pass?"}
+    valid -- "yes" --> handler["Controller handler runs"]
+    valid -- "no" --> ex1["MethodArgumentNotValidException"]
+    handler --> domain{"Domain rule ok?"}
+    domain -- "yes" --> ok["2xx + response body"]
+    domain -- "no" --> ex2["Domain exception<br/>(e.g. EmailAlreadyUsedException)"]
+    ex1 --> advice["@ControllerAdvice<br/>@ExceptionHandler"]
+    ex2 --> advice
+    advice --> pd["ProblemDetail (RFC 9457)<br/>type / title / status / detail / errors"]
+```
+
+### 6.4 Architecture: centralized error translation
+
+```mermaid
+flowchart LR
+    c1["CustomerController"] --> adv["@RestControllerAdvice"]
+    c2["OrderController"] --> adv
+    c3["PaymentController"] --> adv
+    adv --> h1["handleValidation()<br/>→ 400 + field errors"]
+    adv --> h2["handleDomain()<br/>→ 409 / 404 problem"]
+    adv --> h3["handleFallback()<br/>→ 500 (no internals leaked)"]
+    h1 --> pd["ProblemDetail JSON<br/>application/problem+json"]
+    h2 --> pd
+    h3 --> pd
+```
+
+Every controller funnels its exceptions into a single advice component, so error formatting lives in exactly one place. The advice maps each exception category to an HTTP status and a `ProblemDetail` body served as `application/problem+json`. A catch-all handler guarantees that even unexpected exceptions become a clean `500` problem response with no stack trace or internal detail leaking to the client.
+
+### 6.5 Real example
+
+**Scenario.** A customer-registration endpoint must reject malformed input (blank name, invalid email) with precise field-level messages, and reject a duplicate email as a business-rule conflict — all in a single consistent error format.
+
+**Problem.** The current handler does manual `if` checks scattered through the method, returns ad-hoc error strings with inconsistent status codes, and occasionally lets an unexpected exception surface as a stack trace.
+
+**Solution.** Declare constraints on the request record, trigger them with `@Valid`, throw a domain exception for the duplicate-email rule, and centralize all translation in a `@RestControllerAdvice` that emits `ProblemDetail`.
+
+**Implementation.**
+
+```java
+package com.example.customers.web;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
+// Constraints declared once, on the request DTO.
+public record CreateCustomerRequest(
+    @NotBlank @Size(max = 100) String name,
+    @NotBlank @Email String email
+) {}
+```
+
+```java
+package com.example.customers.web;
+
+import com.example.customers.CustomerService;
+import com.example.customers.EmailAlreadyUsedException;
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/customers")
+public class CustomerController {
+
+    private final CustomerService service;
+
+    public CustomerController(CustomerService service) {
+        this.service = service;
+    }
+
+    // @Valid triggers Bean Validation before the body runs.
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public CustomerView create(@Valid @RequestBody CreateCustomerRequest request) {
+        var id = service.register(request.name(), request.email());  // may throw EmailAlreadyUsedException
+        return new CustomerView(id, request.name(), request.email());
+    }
+
+    public record CustomerView(String id, String name, String email) {}
+}
+```
+
+```java
+package com.example.customers.web;
+
+import com.example.customers.EmailAlreadyUsedException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ProblemDetail;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.net.URI;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+// One place that translates every exception into RFC 9457 ProblemDetail.
+@RestControllerAdvice
+public class ApiExceptionHandler {
+
+    // 400 — Bean Validation failures, with per-field messages.
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ProblemDetail handleValidation(MethodArgumentNotValidException ex) {
+        var problem = ProblemDetail.forStatusAndDetail(
+            HttpStatus.BAD_REQUEST, "One or more fields are invalid.");
+        problem.setTitle("Validation failed");
+        problem.setType(URI.create("https://errors.example.com/validation"));
+
+        Map<String, String> errors = new LinkedHashMap<>();
+        ex.getBindingResult().getFieldErrors()
+            .forEach(fe -> errors.put(fe.getField(), fe.getDefaultMessage()));
+        problem.setProperty("errors", errors);   // RFC 9457 extension member
+        return problem;
+    }
+
+    // 409 — domain conflict (duplicate email).
+    @ExceptionHandler(EmailAlreadyUsedException.class)
+    public ProblemDetail handleDuplicateEmail(EmailAlreadyUsedException ex) {
+        var problem = ProblemDetail.forStatusAndDetail(
+            HttpStatus.CONFLICT, ex.getMessage());
+        problem.setTitle("Email already registered");
+        problem.setType(URI.create("https://errors.example.com/email-in-use"));
+        return problem;
+    }
+
+    // 500 — catch-all: never leak internals.
+    @ExceptionHandler(Exception.class)
+    public ProblemDetail handleUnexpected(Exception ex) {
+        var problem = ProblemDetail.forStatusAndDetail(
+            HttpStatus.INTERNAL_SERVER_ERROR, "An unexpected error occurred.");
+        problem.setTitle("Internal error");
+        return problem;
+    }
+}
+```
+
+```java
+package com.example.customers.web;
+
+import com.example.customers.CustomerService;
+import com.example.customers.EmailAlreadyUsedException;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.web.servlet.MockMvc;
+
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+@WebMvcTest(CustomerController.class)
+class CustomerControllerTest {
+
+    @Autowired
+    MockMvc mockMvc;
+
+    @MockitoBean
+    CustomerService service;
+
+    @Test
+    void rejectsInvalidBodyWithProblemDetail() throws Exception {
+        var body = "{\"name\":\"\",\"email\":\"not-an-email\"}";
+
+        mockMvc.perform(post("/customers")
+                .contentType(MediaType.APPLICATION_JSON).content(body))
+            .andExpect(status().isBadRequest())
+            .andExpect(content().contentType(MediaType.APPLICATION_PROBLEM_JSON))
+            .andExpect(jsonPath("$.title").value("Validation failed"))
+            .andExpect(jsonPath("$.errors.email").exists())
+            .andExpect(jsonPath("$.errors.name").exists());
+    }
+
+    @Test
+    void mapsDomainConflictTo409() throws Exception {
+        when(service.register(anyString(), anyString()))
+            .thenThrow(new EmailAlreadyUsedException("ada@example.com is already registered"));
+        var body = "{\"name\":\"Ada\",\"email\":\"ada@example.com\"}";
+
+        mockMvc.perform(post("/customers")
+                .contentType(MediaType.APPLICATION_JSON).content(body))
+            .andExpect(status().isConflict())
+            .andExpect(content().contentType(MediaType.APPLICATION_PROBLEM_JSON))
+            .andExpect(jsonPath("$.title").value("Email already registered"));
+    }
+}
+```
+
+**Result.** Malformed input returns `400` with `application/problem+json` and a per-field `errors` map; a duplicate email returns a `409` problem; anything unexpected becomes a `500` problem with no internals exposed. Every consumer parses one stable error shape across the whole API, and the controller stays free of validation and error-formatting noise.
+
+**Future improvements.** Add an `instance` URI and a correlation/trace id as a `ProblemDetail` extension for support diagnostics, externalize constraint messages for internationalization, and introduce custom class-level constraints for cross-field rules (for example, "end date after start date").
+
+### 6.6 Exercises
+
+1. Which exception does a failed `@Valid` on a `@RequestBody` raise, and at what point in the request lifecycle?
+2. Name the five standard RFC 9457 `ProblemDetail` members and what each conveys.
+3. Why is a catch-all `@ExceptionHandler(Exception.class)` important for security?
+
+### 6.7 Challenges
+
+- **Challenge.** Build an endpoint that validates a request record, throws a domain exception for one business rule, and centralizes all responses through a `@RestControllerAdvice` emitting `ProblemDetail`. Then write `MockMvc` tests asserting the `400` field-error map, the domain `409`, and that the content type is `application/problem+json`.
+
+### 6.8 Checklist
+
+- [ ] Request DTOs carry Bean Validation constraints triggered by `@Valid`.
+- [ ] All errors are returned as RFC 9457 `ProblemDetail` (`application/problem+json`).
+- [ ] A single `@RestControllerAdvice` centralizes exception translation.
+- [ ] A catch-all handler guarantees no stack trace or internal detail leaks.
+- [ ] Validation and conflict responses are covered by `MockMvc` tests.
+
+### 6.9 Best practices
+
+- Validate at the edge with declarative constraints; keep the domain free of redundant input checks.
+- Standardize on `ProblemDetail` for every error so consumers parse one format.
+- Centralize translation in one advice component; map each exception category to a precise status.
+- Always include a catch-all handler that hides internals behind a generic `500` problem.
+- Use stable, documented `type` URIs so clients can branch on the error kind, not on the message text.
+
+### 6.10 Anti-patterns
+
+- Returning ad-hoc error strings or bespoke JSON shapes that differ per endpoint.
+- Letting stack traces or exception messages with internal detail reach the client.
+- Scattering manual `if`-based validation through handlers instead of using constraints.
+- Catching exceptions inside each controller, duplicating error-formatting logic everywhere.
+
+### 6.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Validation not triggered | `@Valid` missing on the parameter | Add `@Valid` to the `@RequestBody`/parameter |
+| Error body is not `problem+json` | Returning a plain object/string | Return `ProblemDetail` (or `ResponseEntity<ProblemDetail>`) |
+| `500` instead of a `400` for bad input | Advice doesn't handle `MethodArgumentNotValidException` | Add an `@ExceptionHandler` for it |
+| Domain exception returns `500` | No specific handler mapped | Add an `@ExceptionHandler` mapping it to the right status |
+| Stack trace leaks to client | No catch-all handler | Add `@ExceptionHandler(Exception.class)` returning a generic problem |
+| Field messages are generic | Default constraint messages | Set custom `message` on constraints or externalize them |
+
+### 6.12 Official references
+
+- Validation: https://docs.spring.io/spring-framework/reference/core/validation/beanvalidation.html
+- Error handling and `ProblemDetail`: https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-ann-rest-exceptions.html
+- `@ControllerAdvice` / `@ExceptionHandler`: https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-controller/ann-advice.html
+- Spring Boot — error handling: https://docs.spring.io/spring-boot/reference/web/servlet.html#web.servlet.spring-mvc.error-handling
+- RFC 9457 — Problem Details for HTTP APIs: https://www.rfc-editor.org/rfc/rfc9457
+
+---
+
+> **End of Part II.** You can now take a Spring Boot 4 service from "runs" to "production-ready at the edge": **externalized configuration** with profiles and validated `@ConfigurationProperties` so one immutable artifact behaves correctly everywhere; **Spring MVC REST APIs** with content negotiation and Spring Boot 4's **first-class API versioning** for safe, side-by-side contract evolution; and **Bean Validation** with centralized **RFC 9457 `ProblemDetail`** error handling so every failure is rejected cleanly and reported in one consistent, secure shape. **Part III — Data & Transactions** (Chapters 7–9) goes a layer deeper, persisting and protecting that data: **Spring Data JPA** repositories and entity mapping, **`@Transactional`** boundaries and propagation, and operational concerns like schema **migrations** (Flyway/Liquibase) and connection **pooling**.
+
 <!--APPEND-PARTE-II-->
