@@ -4311,4 +4311,1465 @@ secrets:
 
 > **End of Part III.** Hermes now runs everywhere it should: locally and on Linux, Windows, and macOS; containerized with Docker; orchestrated on Kubernetes; deployed to a hardened VPS; and on the major clouds with hibernating serverless execution. The recurring lesson — *install once, configure per environment* — means the agent definition you built in Part II travels unchanged across all of them.
 
+## Part IV – Models and Providers
+
+Part IV is where Hermes stops being abstract and starts talking to real intelligence. The `AIAgent` core is **provider-agnostic**: it speaks three API dialects (`chat_completions`, `codex_responses`, `anthropic_messages`) and resolves any `(provider, model)` pair into a concrete `(api_mode, api_key, base_url)` triple. Around this resolver sit **18+ providers** — from the zero-config Nous Portal to fully local inference on your own GPU. This part teaches you to choose, configure, route, and fall back across all of them, with cost and sovereignty under your control.
+
+> **Mental model for the whole part.** Every chapter answers the same four questions: *how do I authenticate, which `api_mode` does it use, what does `config.yaml` look like, and when should I pick it over the alternatives?* Keep that grid in mind and the 18+ providers collapse into a handful of patterns.
+
+---
+
+## Chapter 22 — Nous Portal
+
+### 22.1 Introduction
+
+**Nous Portal** is the front door to Hermes Agent and the path the official documentation recommends for a first run. A single OAuth flow — `hermes setup --portal` — provisions two things at once: a **frontier model** to drive the agent and the **Tool Gateway**, a hosted bundle of four capabilities (web search, image generation, text-to-speech, and a remote browser). No API keys to copy, no base URLs to remember, no separate billing relationships with five vendors. For most teams, this is the difference between "running in two minutes" and "running after an afternoon of credential plumbing."
+
+### 22.2 Chapter objectives
+
+By the end you will be able to: (1) authenticate to Nous Portal via OAuth and understand what the flow grants; (2) explain the Tool Gateway and its four tools; (3) read the `provider: nous-portal` configuration; (4) decide when the Portal is the right choice versus a direct provider; (5) troubleshoot OAuth and gateway issues.
+
+### 22.3 Business context
+
+The hidden cost of multi-provider AI is **integration friction**: every provider has its own console, key rotation policy, rate limits, and invoice. For a pilot or a small team, that overhead dwarfs the inference cost itself. Nous Portal collapses it into one relationship — one login, one bill, one set of credentials managed by Nous. For an enterprise, the Portal is the fastest way to validate Hermes before committing to a sovereign, self-hosted provider topology; for an individual developer, it is simply the least-effort path to a working agent with web access and image generation included.
+
+### 22.4 Theoretical foundations
+
+The Portal is, architecturally, **a provider plus a tool backend behind one OAuth identity**. The model side resolves to `api_mode: chat_completions` against a Nous-hosted `base_url`; the OAuth token is stored in the credential store and refreshed automatically. The Tool Gateway is **server-side tool execution**: when the model emits a `web_search` or `image_generation` tool call, Hermes forwards it to the gateway endpoint rather than running a local backend. This means the four gateway tools work identically on a $5 VPS with no Chrome installed and on a workstation — the heavy lifting (a real browser, an image model) lives on Nous infrastructure.
+
+> **Java parallel.** Think of Nous Portal as a **BaaS (Backend-as-a-Service)** facade: one SDK key unlocks auth, a managed database, and managed functions. You trade some control for a dramatic drop in setup code.
+
+### 22.5 Architecture
+
+```mermaid
+flowchart TB
+    subgraph local["Hermes (your machine / VPS)"]
+        agent[AIAgent loop]
+        cred[Credential store<br/>OAuth token]
+        res[Provider resolution<br/>nous-portal: chat_completions]
+    end
+    agent --> res --> cred
+    cred -->|Bearer token| portal{{Nous Portal}}
+    portal --> model[Frontier model]
+    portal --> gw[Tool Gateway]
+    gw --> ws[Web search]
+    gw --> img[Image generation]
+    gw --> tts[Text-to-speech]
+    gw --> br[Remote browser]
+```
+
+### 22.6 Internal flows
+
+The OAuth handshake runs once; thereafter every request carries a refreshed bearer token. Gateway tool calls are transparent to the agentic loop — the loop sees an ordinary tool result.
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant H as hermes setup --portal
+    participant B as Browser
+    participant P as Nous Portal (OAuth)
+    participant S as Credential store
+    U->>H: run setup --portal
+    H->>B: open authorization URL
+    B->>P: login + consent
+    P-->>B: redirect with auth code
+    B-->>H: deliver code (local callback)
+    H->>P: exchange code for tokens
+    P-->>H: access + refresh token
+    H->>S: persist tokens
+    H-->>U: "Portal connected: model + gateway ready"
+```
+
+### 22.7 Complete example
+
+**Scenario.** A solo developer wants a research agent on a cheap VPS that can search the web and generate a header image for a daily report — without installing a browser or signing up for five APIs.
+
+**Problem.** Direct providers need keys; web search and image generation need separate services and local backends the VPS can't run.
+
+**Solution.** Connect Nous Portal: one OAuth gives the model plus the four gateway tools, all executed server-side.
+
+**Architecture.** CLI → AIAgent → Nous Portal (model + Tool Gateway). No local browser, no extra keys.
+
+**Implementation.**
+
+```bash
+curl -fsSL https://hermes-agent.nousresearch.com/install.sh | bash
+hermes setup --portal          # opens browser, completes OAuth
+hermes                         # start chatting; web search + image gen available
+```
+
+```yaml
+# ~/.hermes/config.yaml
+provider: nous-portal
+model: hermes-4-70b
+tools:
+  web_search: { enabled: true, backend: gateway }
+  image_generation: { enabled: true, backend: gateway }
+  tts: { enabled: true, backend: gateway }
+  browser: { enabled: true, backend: gateway }
+```
+
+**Tests.**
+
+```bash
+hermes doctor                  # should show: provider=nous-portal, gateway=connected
+hermes run "Search the web for today's top AI paper and summarize it."
+hermes run "Generate a 1024x1024 banner image about distributed training."
+```
+
+**Result.** A fully capable agent with web access and image generation on a server that has neither a GPU nor a browser installed.
+
+**Future improvements.** Add a direct provider as a **fallback** (Ch 23–26) so the agent keeps working if the Portal is unreachable; later migrate to a sovereign provider for compliance (Part XII).
+
+### 22.8 Source code
+
+```python
+# Conceptual: how the resolver maps nous-portal to an api_mode + token.
+def resolve_provider(provider: str, model: str, store) -> "ResolvedProvider":
+    if provider == "nous-portal":
+        token = store.get_oauth_token("nous-portal")  # auto-refreshed
+        return ResolvedProvider(
+            api_mode="chat_completions",
+            base_url="https://portal.nousresearch.com/v1",
+            auth=BearerToken(token),
+            gateway_tools={"web_search", "image_generation", "tts", "browser"},
+        )
+    ...
+```
+
+### 22.9 Configuration
+
+| Key | Value | Notes |
+|-----|-------|-------|
+| `provider` | `nous-portal` | Selects the Portal resolver |
+| `model` | e.g. `hermes-4-70b` | Catalog model served by the Portal |
+| `tools.*.backend` | `gateway` | Routes the tool to the hosted gateway |
+| credential | OAuth token | Stored by `hermes setup --portal`, not in `config.yaml` |
+
+### 22.10 Real-world use cases
+
+A daily-briefing bot that searches and illustrates reports; a non-technical user on the desktop app who wants web-aware answers with zero setup; a pilot project that must show value before infrastructure investment is approved.
+
+### 22.11 Exercises
+
+1. Name the four Tool Gateway capabilities and explain why server-side execution matters for a VPS.
+2. Describe what `hermes setup --portal` provisions in a single sentence.
+3. Where is the OAuth token stored, and why not in `config.yaml`?
+
+### 22.12 Challenges
+
+- **Challenge 1.** Connect the Portal, then add a direct OpenRouter fallback and prove the agent survives a simulated Portal outage.
+- **Challenge 2.** Build a one-command onboarding script for new teammates that runs `setup --portal` and verifies the gateway.
+
+### 22.13 Checklist
+
+- [ ] I authenticated via `hermes setup --portal`.
+- [ ] `hermes doctor` reports the gateway as connected.
+- [ ] I can run web search and image generation without local backends.
+- [ ] I understand the Portal resolves to `chat_completions`.
+
+### 22.14 Best practices
+
+- Start every new project with the Portal, then specialize providers as needs harden.
+- Keep at least one **fallback** provider so a Portal outage doesn't stop the agent.
+- Treat the OAuth token as a secret managed by Hermes — never paste it into config files.
+
+### 22.15 Anti-patterns
+
+- Using the Portal in a compliance-restricted environment that forbids third-party data egress.
+- Disabling the gateway tools and then wondering why web search fails on a browserless VPS.
+- Hardcoding a Portal token anywhere — it rotates and will break.
+
+### 22.16 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| OAuth window never returns | Local callback port blocked | Allow the callback port or use `--device-code` flow |
+| `gateway=disconnected` | Token expired / network egress blocked | Re-run `setup --portal`; check outbound HTTPS |
+| Web search returns nothing | Gateway tool disabled in config | Set `tools.web_search.backend: gateway` |
+| Image generation fails | Model/plan lacks image capability | Verify plan; switch model in catalog |
+
+### 22.17 Official references
+
+- Nous Portal: https://hermes-agent.nousresearch.com/docs/integrations/nous-portal
+- Providers: https://hermes-agent.nousresearch.com/docs/integrations/providers
+- Tool Gateway: https://hermes-agent.nousresearch.com/docs/user-guide/features/overview
+
+---
+
+## Chapter 23 — OpenAI
+
+### 23.1 Introduction
+
+OpenAI is the canonical **direct provider** and the one most teams already have credentials for. In Hermes it is interesting beyond "just another model": OpenAI exposes **two distinct API modes** that the resolver knows about — the classic `chat_completions` and the newer `codex_responses` (the Responses API used by agentic/coding workloads). Choosing between them affects streaming, tool-call shape, and how reasoning models behave. This chapter shows how to wire OpenAI in, pick the right `api_mode`, and manage the key safely.
+
+### 23.2 Chapter objectives
+
+(1) Configure OpenAI with an environment-referenced key; (2) distinguish `chat_completions` from `codex_responses` and know when each applies; (3) select models from the catalog; (4) set OpenAI as a primary or fallback provider; (5) troubleshoot auth and rate-limit errors.
+
+### 23.3 Business context
+
+Many organizations have an existing OpenAI contract, an enterprise agreement, or Azure OpenAI deployment. Reusing that relationship in Hermes means no new procurement, familiar billing, and known data-handling terms. The flip side — vendor concentration and per-token cost at scale — is exactly what Hermes's provider routing and fallbacks are designed to hedge.
+
+### 23.4 Theoretical foundations
+
+OpenAI maps to **two** of Hermes's three API modes. `chat_completions` is the widely compatible `/v1/chat/completions` contract. `codex_responses` targets the **Responses API**, which gives first-class handling of tool calls and reasoning state for agentic loops. The resolver picks the mode based on the configured provider entry; for reasoning models the Responses path typically yields cleaner multi-step tool orchestration. The API key is referenced **by environment variable name** (`api_key_env`), never stored inline.
+
+> **Java parallel.** `api_mode` is like choosing a `MessageConverter` for an HTTP client: same transport, different wire contract. Picking the wrong one yields valid-but-suboptimal serialization of tool calls.
+
+### 23.5 Architecture
+
+```mermaid
+flowchart LR
+    agent[AIAgent loop] --> res[Provider resolution]
+    res -->|provider: openai| pick{api_mode?}
+    pick -->|standard| cc[chat_completions]
+    pick -->|agentic/reasoning| cr[codex_responses]
+    cc --> oai[(OpenAI API)]
+    cr --> oai
+    res --> key[api_key_env: OPENAI_API_KEY]
+```
+
+### 23.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant A as AIAgent
+    participant R as Resolver
+    participant E as Env / Secret store
+    participant O as OpenAI API
+    A->>R: resolve(openai, gpt-5.1)
+    R->>E: read $OPENAI_API_KEY
+    E-->>R: key
+    R-->>A: (codex_responses, key, base_url)
+    A->>O: POST /v1/responses (messages + tools)
+    O-->>A: tool_call or final text
+    A->>O: continue loop with tool result
+    O-->>A: final response
+```
+
+### 23.7 Complete example
+
+**Scenario.** A team with an existing OpenAI enterprise key wants Hermes to drive an agentic coding workflow using a reasoning model.
+
+**Problem.** The default `chat_completions` mode handles multi-step tool calls less cleanly than the Responses API for reasoning models.
+
+**Solution.** Configure the OpenAI provider with `api_mode: codex_responses` and a reasoning-capable model.
+
+**Architecture.** AIAgent → resolver → `codex_responses` → OpenAI Responses API.
+
+**Implementation.**
+
+```bash
+export OPENAI_API_KEY="sk-..."          # set in the environment / secret manager
+hermes config set provider openai
+hermes config set model gpt-5.1
+```
+
+```yaml
+# ~/.hermes/config.yaml
+provider: openai
+model: gpt-5.1
+api_mode: codex_responses        # use the Responses API for agentic/reasoning work
+api_key_env: OPENAI_API_KEY
+base_url: https://api.openai.com/v1
+```
+
+**Tests.**
+
+```bash
+hermes doctor
+hermes run "Refactor utils.py to remove duplication and add type hints, then run the tests."
+```
+
+**Result.** Cleaner multi-step tool orchestration for coding tasks, reusing the existing OpenAI contract.
+
+**Future improvements.** Add OpenRouter as a fallback for outages and to access non-OpenAI models without new keys (Ch 26).
+
+### 23.8 Source code
+
+```python
+PROVIDER_TABLE = {
+    "openai": {
+        "default_api_mode": "chat_completions",
+        "responses_api_mode": "codex_responses",
+        "base_url": "https://api.openai.com/v1",
+        "api_key_env": "OPENAI_API_KEY",
+    },
+}
+
+def resolve_openai(model, cfg, env):
+    mode = cfg.get("api_mode") or PROVIDER_TABLE["openai"]["default_api_mode"]
+    key = env[cfg.get("api_key_env", "OPENAI_API_KEY")]
+    return ResolvedProvider(api_mode=mode, base_url=cfg["base_url"], auth=BearerToken(key))
+```
+
+### 23.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `provider` | `openai` | |
+| `model` | `gpt-5.1` | From the model catalog |
+| `api_mode` | `chat_completions` or `codex_responses` | Responses API for agentic/reasoning |
+| `api_key_env` | `OPENAI_API_KEY` | Env var name, not the key itself |
+| `base_url` | `https://api.openai.com/v1` | Override for Azure / proxies |
+
+### 23.10 Real-world use cases
+
+Coding agents on reasoning models via the Responses API; teams reusing an Azure OpenAI deployment by overriding `base_url`; an auxiliary OpenAI model for vision/summarization side tasks.
+
+### 23.11 Exercises
+
+1. When would you choose `codex_responses` over `chat_completions`?
+2. Show how to point Hermes at Azure OpenAI by changing only `base_url` and `api_key_env`.
+3. Why is the key referenced by env var name rather than stored inline?
+
+### 23.12 Challenges
+
+- **Challenge 1.** Configure OpenAI as a fallback behind Nous Portal and verify automatic failover.
+- **Challenge 2.** Run the same coding task in both API modes and compare tool-call cleanliness.
+
+### 23.13 Checklist
+
+- [ ] Key is set via environment, referenced by `api_key_env`.
+- [ ] I chose the correct `api_mode` for my workload.
+- [ ] `hermes doctor` confirms the provider resolves.
+
+### 23.14 Best practices
+
+- Use `codex_responses` for agentic/coding and reasoning models; `chat_completions` for simple chat.
+- Keep keys in a secret manager and inject as env vars; never commit them.
+- Use an OpenAI model as the **auxiliary** model for vision/summarization if your primary is local.
+
+### 23.15 Anti-patterns
+
+- Pasting `sk-...` directly into `config.yaml`.
+- Forcing `chat_completions` on reasoning models and getting messy tool loops.
+- Single-provider deployments with no fallback at production scale.
+
+### 23.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `401 Unauthorized` | Key missing/invalid | Confirm `$OPENAI_API_KEY` is exported in the agent's environment |
+| `429 Rate limit` | Quota exceeded | Add fallback provider; lower concurrency; request quota |
+| Tool calls malformed | Wrong `api_mode` | Switch reasoning models to `codex_responses` |
+| Works locally, fails on VPS | Env var not propagated | Set the var in the service unit / container env |
+
+### 23.17 Official references
+
+- Providers: https://hermes-agent.nousresearch.com/docs/integrations/providers
+- OpenAI integration: https://hermes-agent.nousresearch.com/docs/integrations/openai
+- Architecture (provider resolution): https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+
+---
+
+## Chapter 24 — Anthropic
+
+### 24.1 Introduction
+
+Anthropic is the provider behind Hermes's third API mode, `anthropic_messages` — the Messages API contract that differs meaningfully from OpenAI's. Beyond model choice, Anthropic unlocks one feature with direct cost impact: **prompt caching**, which Hermes's prompt-tier design (stable → context → volatile) is built to exploit. Cache the stable prefix once, pay a fraction on every subsequent turn. For long-running agents that resend a large system prompt thousands of times, this is not a micro-optimization; it is a line item.
+
+### 24.2 Chapter objectives
+
+(1) Configure Anthropic with `anthropic_messages`; (2) understand prompt caching and how Hermes's prompt tiers align with it; (3) select Claude models; (4) use Anthropic as primary or auxiliary; (5) troubleshoot Messages-API-specific issues.
+
+### 24.3 Business context
+
+Anthropic models are favored for careful tool use, long-context reasoning, and safety-sensitive workloads. The commercial hook for agent operators is prompt caching: an agent whose system prompt, Skills, and context files form a large stable prefix can cut input-token cost dramatically once that prefix is cached. At enterprise volume this changes the economics of always-on agents.
+
+### 24.4 Theoretical foundations
+
+`anthropic_messages` is a distinct wire contract: system content is a top-level field, tool definitions and tool results have their own shapes, and cache breakpoints are explicit. Hermes structures the prompt into **three tiers**: *stable* (system prompt, Skills metadata, context files — rarely changes), *context* (retrieved memory, summaries — changes slowly), and *volatile* (the live turn). Caching is applied to the stable (and where possible context) tiers so repeated turns reuse the cached prefix.
+
+> **Java parallel.** Prompt caching is a server-side **second-level cache** (think Hibernate's L2) for the immutable prefix of every request: compute the expensive part once, read it cheaply thereafter.
+
+### 24.5 Architecture
+
+```mermaid
+flowchart TB
+    agent[AIAgent loop] --> pb[prompt_builder]
+    pb --> stable[Stable tier<br/>system + skills + context files]
+    pb --> ctx[Context tier<br/>retrieved memory + summaries]
+    pb --> vol[Volatile tier<br/>current turn]
+    stable --> cache[[Anthropic prompt cache]]
+    ctx --> cache
+    cache --> api[(Anthropic Messages API)]
+    vol --> api
+```
+
+### 24.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant A as AIAgent
+    participant PB as prompt_builder
+    participant AN as Anthropic Messages API
+    A->>PB: build prompt (3 tiers)
+    PB->>AN: messages + cache_control on stable prefix
+    Note over AN: first call writes cache
+    AN-->>A: response
+    A->>PB: next turn (same stable prefix)
+    PB->>AN: messages + cache_control (prefix unchanged)
+    Note over AN: cache HIT - reduced input cost
+    AN-->>A: response
+```
+
+### 24.7 Complete example
+
+**Scenario.** An always-on support agent resends a 12k-token system prompt (instructions + Skills + context files) on every turn across thousands of daily turns.
+
+**Problem.** Re-billing the full prefix on every turn is the dominant cost.
+
+**Solution.** Use Anthropic with `anthropic_messages` and enable prompt caching on the stable tier.
+
+**Architecture.** AIAgent → prompt_builder (tiers) → cache_control on stable prefix → Messages API.
+
+**Implementation.**
+
+```bash
+export ANTHROPIC_API_KEY="sk-ant-..."
+hermes config set provider anthropic
+hermes config set model claude-sonnet-4-5
+```
+
+```yaml
+# ~/.hermes/config.yaml
+provider: anthropic
+model: claude-sonnet-4-5
+api_mode: anthropic_messages
+api_key_env: ANTHROPIC_API_KEY
+prompt_caching:
+  enabled: true        # cache the stable prefix (system + skills + context files)
+```
+
+**Tests.**
+
+```bash
+hermes doctor
+hermes run "Summarize the open tickets."          # first call writes cache
+hermes run "Now triage them by severity."         # subsequent call hits cache
+```
+
+**Result.** Input-token cost on the stable prefix drops sharply after the first call; latency improves on cached turns.
+
+**Future improvements.** Combine with `context_compressor.py` to keep the middle (context) tier small, maximizing the cacheable, stable portion.
+
+### 24.8 Source code
+
+```python
+def build_anthropic_payload(tiers, model, caching_enabled):
+    system = [{"type": "text", "text": tiers.stable}]
+    if caching_enabled:
+        system[-1]["cache_control"] = {"type": "ephemeral"}  # cache the stable prefix
+    return {
+        "model": model,
+        "system": system,
+        "messages": tiers.context_and_volatile_as_messages(),
+        "tools": tiers.tool_definitions(),
+    }
+```
+
+### 24.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `provider` | `anthropic` | |
+| `model` | `claude-sonnet-4-5` | |
+| `api_mode` | `anthropic_messages` | Required for Anthropic |
+| `api_key_env` | `ANTHROPIC_API_KEY` | |
+| `prompt_caching.enabled` | `true` | Cache stable prefix |
+
+### 24.10 Real-world use cases
+
+Always-on assistants with large stable prompts; long-context document agents; safety-sensitive workflows; Anthropic as an auxiliary model for careful summarization.
+
+### 24.11 Exercises
+
+1. Map Hermes's three prompt tiers to what should and shouldn't be cached.
+2. Explain why a large *stable* tier plus a small *context* tier maximizes cache savings.
+3. Why does Anthropic require a different `api_mode` than OpenAI?
+
+### 24.12 Challenges
+
+- **Challenge 1.** Measure input-token cost with and without `prompt_caching.enabled` over 50 turns.
+- **Challenge 2.** Restructure a bloated system prompt to move volatile content out of the stable tier.
+
+### 24.13 Checklist
+
+- [ ] `api_mode: anthropic_messages` is set.
+- [ ] `prompt_caching.enabled: true` for long-running agents.
+- [ ] Stable tier holds only rarely-changing content.
+
+### 24.14 Best practices
+
+- Keep the stable tier truly stable; any churn invalidates the cache.
+- Pair caching with context compression to keep the middle tier lean.
+- Use Claude as the auxiliary model when careful, conservative summarization matters.
+
+### 24.15 Anti-patterns
+
+- Putting timestamps or per-turn data in the stable tier (defeats caching).
+- Enabling caching but rebuilding the system prompt every turn.
+- Using `chat_completions` mode against Anthropic endpoints.
+
+### 24.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| No cost reduction | Stable prefix changes each turn | Move volatile data out of the stable tier |
+| `400 invalid request` | Wrong `api_mode` | Set `anthropic_messages` |
+| Cache never hits | Caching disabled or prefix too small | Enable caching; ensure prefix exceeds minimum cacheable size |
+| `401` | Bad key | Verify `$ANTHROPIC_API_KEY` |
+
+### 24.17 Official references
+
+- Anthropic integration: https://hermes-agent.nousresearch.com/docs/integrations/anthropic
+- Prompt caching & tiers: https://hermes-agent.nousresearch.com/docs/developer-guide/architecture
+- Providers: https://hermes-agent.nousresearch.com/docs/integrations/providers
+
+---
+
+## Chapter 25 — Gemini
+
+### 25.1 Introduction
+
+Google's **Gemini** family joins Hermes through the provider resolver, giving access to long-context, multimodal models. Gemini is exposed via an OpenAI-compatible surface, so in Hermes it resolves to `chat_completions` against Google's `base_url`. This chapter covers configuration, the practical strengths of Gemini (very long context windows, native multimodality) that make it a strong **auxiliary** model for vision and summarization, and the integration's quirks.
+
+### 25.2 Chapter objectives
+
+(1) Configure the Google/Gemini provider; (2) understand its OpenAI-compatible `chat_completions` resolution; (3) leverage Gemini's long context and multimodality; (4) set it as auxiliary or primary; (5) troubleshoot Google-specific auth.
+
+### 25.3 Business context
+
+Organizations on Google Cloud often prefer to keep AI spend and data within Google's ecosystem for procurement, residency, and consolidated billing. Gemini's very large context windows make it attractive for whole-repository or whole-document reasoning, and its native vision makes it a cost-effective auxiliary model for image-heavy workloads.
+
+### 25.4 Theoretical foundations
+
+Gemini's OpenAI-compatibility layer means Hermes treats it like any `chat_completions` provider: same message shape, same tool-call contract, different `base_url` and key. The differentiators are at the model level — context length and multimodality — not the wire protocol. Because Hermes supports an **auxiliary model** for side tasks (vision, summarization) independent of the primary, Gemini fits naturally as that auxiliary even when the primary is local or another vendor.
+
+> **Java parallel.** Gemini-via-OpenAI-compat is like talking to a different database through the same JDBC driver: the SQL (protocol) is the same, only the connection string changes.
+
+### 25.5 Architecture
+
+```mermaid
+flowchart LR
+    agent[AIAgent] --> res[Resolver]
+    res -->|provider: google| cc[chat_completions]
+    cc --> g[(Gemini OpenAI-compatible endpoint)]
+    res --> key[api_key_env: GEMINI_API_KEY]
+    agent -.auxiliary model.-> g
+```
+
+### 25.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant A as AIAgent
+    participant R as Resolver
+    participant G as Gemini endpoint
+    A->>R: resolve(google, gemini-2.5-pro)
+    R-->>A: (chat_completions, GEMINI_API_KEY, base_url)
+    A->>G: POST /chat/completions (text + image parts)
+    G-->>A: response (long-context aware)
+```
+
+### 25.7 Complete example
+
+**Scenario.** A local-first team runs a Hermes-4 model on their own GPU for privacy but wants strong vision and long-document summarization without buying GPUs for it.
+
+**Problem.** Their local model is text-only and context-limited; vision/long-doc tasks need a different model.
+
+**Solution.** Keep the local model as primary and configure Gemini as the **auxiliary** model for vision and summarization.
+
+**Architecture.** Primary = local; Auxiliary = Gemini (`chat_completions`).
+
+**Implementation.**
+
+```bash
+export GEMINI_API_KEY="..."
+```
+
+```yaml
+# ~/.hermes/config.yaml
+provider: ollama            # primary stays local (Ch 29)
+model: hermes-4-14b
+auxiliary_model:
+  provider: google
+  model: gemini-2.5-pro
+  api_mode: chat_completions
+  api_key_env: GEMINI_API_KEY
+  base_url: https://generativelanguage.googleapis.com/v1beta/openai
+```
+
+**Tests.**
+
+```bash
+hermes doctor
+hermes run "Describe this screenshot and extract the error." --attach error.png
+hermes run "Summarize this 200-page PDF." --attach spec.pdf
+```
+
+**Result.** Private local reasoning for everyday work, with Gemini handling vision and long-document side tasks.
+
+**Future improvements.** Add an OpenRouter fallback for the auxiliary slot so vision tasks survive a Gemini outage.
+
+### 25.8 Source code
+
+```python
+def resolve_google(model, cfg, env):
+    return ResolvedProvider(
+        api_mode="chat_completions",
+        base_url=cfg.get("base_url",
+            "https://generativelanguage.googleapis.com/v1beta/openai"),
+        auth=BearerToken(env[cfg.get("api_key_env", "GEMINI_API_KEY")]),
+    )
+```
+
+### 25.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `provider` | `google` | |
+| `model` | `gemini-2.5-pro` | |
+| `api_mode` | `chat_completions` | OpenAI-compatible |
+| `api_key_env` | `GEMINI_API_KEY` | |
+| `base_url` | Google OpenAI-compat URL | |
+
+### 25.10 Real-world use cases
+
+Gemini as the vision/summarization auxiliary; whole-repository reasoning using its long context; Google-Cloud-aligned deployments consolidating AI spend.
+
+### 25.11 Exercises
+
+1. Why does Gemini resolve to `chat_completions` in Hermes?
+2. Configure Gemini as an auxiliary model behind a local primary.
+3. Name two model-level strengths that make Gemini a good auxiliary.
+
+### 25.12 Challenges
+
+- **Challenge 1.** Route only vision tasks to Gemini and keep text tasks local; verify the split.
+- **Challenge 2.** Compare summarization quality and cost between Gemini and a local model on the same document.
+
+### 25.13 Checklist
+
+- [ ] Gemini resolves via `chat_completions`.
+- [ ] `base_url` points at the OpenAI-compat endpoint.
+- [ ] Auxiliary-model slot is configured if used for side tasks.
+
+### 25.14 Best practices
+
+- Use Gemini for what it's best at — long context and vision — rather than as a generic default.
+- Keep the auxiliary model independent so you can swap it without touching the primary.
+- Consolidate billing under Google if your org is already Google-Cloud-aligned.
+
+### 25.15 Anti-patterns
+
+- Using a non-compatible base URL and hitting protocol errors.
+- Sending tiny prompts to a long-context model and overpaying for nothing.
+- Mixing up the Gemini key with a generic Google Cloud key.
+
+### 25.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `404`/protocol error | Wrong `base_url` | Use the OpenAI-compat endpoint path |
+| `403` | Key lacks API access | Enable the Generative Language API; check key scope |
+| Vision ignored | Auxiliary not wired | Ensure `auxiliary_model` block is set |
+| Truncated output | Output token cap | Raise max output tokens |
+
+### 25.17 Official references
+
+- Google/Gemini integration: https://hermes-agent.nousresearch.com/docs/integrations/google
+- Auxiliary model: https://hermes-agent.nousresearch.com/docs/user-guide/features/overview
+- Providers: https://hermes-agent.nousresearch.com/docs/integrations/providers
+
+---
+
+## Chapter 26 — OpenRouter
+
+### 26.1 Introduction
+
+**OpenRouter** is a meta-provider: a single API and key that fronts hundreds of models from dozens of vendors. In Hermes it is the pragmatic answer to "I want access to everything without managing ten keys." It resolves to `chat_completions`, exposes a vast catalog (surfaced through the model catalog and models.dev integration), and is the most convenient **fallback** target because one key reaches many backends.
+
+### 26.2 Chapter objectives
+
+(1) Configure OpenRouter with one key; (2) browse and select from its large catalog; (3) use it as a primary or, more commonly, a fallback; (4) understand routing and cost implications; (5) troubleshoot model-availability errors.
+
+### 26.3 Business context
+
+OpenRouter trades a small markup for enormous flexibility: try any model, switch vendors without procurement, and keep a single invoice. For teams that experiment frequently or want resilience against any one vendor's outage, it is the lowest-friction way to have many models behind one credential — and an ideal fallback so the agent never goes dark.
+
+### 26.4 Theoretical foundations
+
+OpenRouter speaks the OpenAI `chat_completions` contract, so Hermes resolves it uniformly. The richness is in the **catalog**: model identifiers are namespaced (`vendor/model`), and Hermes's model catalog plus models.dev integration surface metadata (context length, pricing, modality). Because the protocol is uniform, OpenRouter slots cleanly into Hermes's **fallback providers** and **provider routing** features — list it after your primary and the loop fails over automatically on error.
+
+> **Java parallel.** OpenRouter is a **service registry + load balancer** for models: one endpoint, many backends, selected by a logical name.
+
+### 26.5 Architecture
+
+```mermaid
+flowchart TB
+    agent[AIAgent] --> route[Provider routing / fallback]
+    route -->|primary| prim[(Primary provider)]
+    route -->|on error| orouter[(OpenRouter chat_completions)]
+    orouter --> m1[vendor-a/model]
+    orouter --> m2[vendor-b/model]
+    orouter --> m3[vendor-c/model]
+```
+
+### 26.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant A as AIAgent
+    participant RT as Routing/Fallback
+    participant P as Primary provider
+    participant OR as OpenRouter
+    A->>RT: request completion
+    RT->>P: try primary
+    P--xRT: error / rate limit
+    RT->>OR: fallback (same chat_completions call)
+    OR-->>RT: completion (vendor/model)
+    RT-->>A: result
+```
+
+### 26.7 Complete example
+
+**Scenario.** A team wants resilience: if their primary OpenAI key is rate-limited, the agent should keep working on an equivalent model without manual intervention.
+
+**Problem.** A single provider means a single point of failure for the agent.
+
+**Solution.** Configure OpenRouter as a fallback provider; one key reaches an equivalent model.
+
+**Architecture.** Primary = OpenAI; Fallback = OpenRouter (`chat_completions`).
+
+**Implementation.**
+
+```bash
+export OPENROUTER_API_KEY="sk-or-..."
+```
+
+```yaml
+# ~/.hermes/config.yaml
+provider: openai
+model: gpt-5.1
+api_key_env: OPENAI_API_KEY
+fallback_providers:
+  - provider: openrouter
+    model: anthropic/claude-sonnet-4-5
+    api_mode: chat_completions
+    api_key_env: OPENROUTER_API_KEY
+    base_url: https://openrouter.ai/api/v1
+```
+
+**Tests.**
+
+```bash
+hermes doctor
+hermes run "Generate a release summary."           # primary
+# Simulate a primary outage (e.g., bad key) and confirm fallback engages
+hermes models list --provider openrouter | head
+```
+
+**Result.** The agent transparently fails over to OpenRouter when the primary errors, with no human in the loop.
+
+**Future improvements.** Add a **credential pool** so even the fallback rotates across multiple keys under heavy load (Part XII).
+
+### 26.8 Source code
+
+```python
+def call_with_fallback(request, primary, fallbacks):
+    try:
+        return primary.complete(request)
+    except (RateLimitError, ProviderError):
+        for fb in fallbacks:           # ordered fallback_providers
+            try:
+                return fb.complete(request)
+            except ProviderError:
+                continue
+        raise
+```
+
+### 26.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `provider` | `openrouter` | |
+| `model` | `vendor/model` | Namespaced identifier |
+| `api_mode` | `chat_completions` | |
+| `api_key_env` | `OPENROUTER_API_KEY` | |
+| `base_url` | `https://openrouter.ai/api/v1` | |
+| `fallback_providers` | list | Ordered failover targets |
+
+### 26.10 Real-world use cases
+
+A universal fallback so the agent never goes dark; rapid model experimentation without new keys; cost arbitrage by routing to cheaper equivalents.
+
+### 26.11 Exercises
+
+1. Why is OpenRouter an ideal fallback target?
+2. Configure OpenRouter as a fallback behind a local primary.
+3. How are OpenRouter model identifiers namespaced?
+
+### 26.12 Challenges
+
+- **Challenge 1.** Build a three-tier fallback chain (primary → OpenRouter → Nous Portal) and test each hop.
+- **Challenge 2.** Use the model catalog to pick the cheapest model meeting a context-length requirement.
+
+### 26.13 Checklist
+
+- [ ] OpenRouter configured with one key.
+- [ ] Listed in `fallback_providers` for resilience.
+- [ ] Model identifiers use the `vendor/model` form.
+
+### 26.14 Best practices
+
+- Make OpenRouter your default fallback for resilience.
+- Use the catalog/models.dev metadata to choose by context and price, not habit.
+- Pin specific model versions for reproducibility in production.
+
+### 26.15 Anti-patterns
+
+- Relying on OpenRouter as the only provider with no awareness of per-hop markup at scale.
+- Using floating model aliases in production and getting silent behavior drift.
+- Ignoring rate limits on the fallback (it can be throttled too).
+
+### 26.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `Model not found` | Wrong namespaced id | Check exact `vendor/model` in the catalog |
+| Fallback never triggers | Misconfigured `fallback_providers` | Verify list order and keys |
+| Unexpected cost | Markup + premium model | Route to cheaper equivalents; monitor spend (Part XIII) |
+| `402`/quota | OpenRouter credit exhausted | Top up; add another fallback |
+
+### 26.17 Official references
+
+- OpenRouter integration: https://hermes-agent.nousresearch.com/docs/integrations/openrouter
+- Fallback providers & routing: https://hermes-agent.nousresearch.com/docs/integrations/providers
+- Model catalog / models.dev: https://hermes-agent.nousresearch.com/docs/integrations/providers
+
+---
+
+## Chapter 27 — Hugging Face
+
+### 27.1 Introduction
+
+**Hugging Face** brings the open-model ecosystem into Hermes. Through its Inference Providers / serverless endpoints (an OpenAI-compatible surface), you can drive Hermes with thousands of community and frontier open-weight models without standing up your own GPU. In Hermes it resolves to `chat_completions` against a Hugging Face `base_url`, authenticated with a HF token. This chapter shows how to pick a served model, configure the token, and treat Hugging Face as a flexible, open-weights-first provider.
+
+### 27.2 Chapter objectives
+
+(1) Configure Hugging Face with a token; (2) select a served model from the Hub; (3) understand the OpenAI-compatible resolution; (4) decide between HF-hosted inference and self-hosting (Ch 28); (5) troubleshoot model-not-served and rate issues.
+
+### 27.3 Business context
+
+Hugging Face is the center of gravity for open-weight models. For teams that want open models for licensing, transparency, or fine-tuning reasons — but not the burden of running GPUs — HF-hosted inference is the bridge. It also de-risks experimentation: try an open model via HF first, then graduate to self-hosting (Ch 28) once the choice is settled and volume justifies owned hardware.
+
+### 27.4 Theoretical foundations
+
+Hermes treats Hugging Face as a `chat_completions` provider with an HF-specific `base_url` and a token in `HF_TOKEN`. The catalog dimension matters: not every model on the Hub is served via the inference API, so model selection is constrained to available endpoints. The same uniformity that lets Gemini and OpenRouter resolve to `chat_completions` applies here — the protocol is shared; only authentication, base URL, and model availability differ.
+
+> **Java parallel.** Hugging Face Inference is like a **Maven Central for models**: a vast registry where some artifacts are pre-built and instantly consumable (served endpoints) and others you must build/host yourself.
+
+### 27.5 Architecture
+
+```mermaid
+flowchart LR
+    agent[AIAgent] --> res[Resolver]
+    res -->|provider: huggingface| cc[chat_completions]
+    cc --> hf[(HF Inference endpoint<br/>OpenAI-compatible)]
+    res --> key[api_key_env: HF_TOKEN]
+    hf --> hub[(Hugging Face Hub<br/>open-weight models)]
+```
+
+### 27.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant A as AIAgent
+    participant R as Resolver
+    participant HF as HF Inference
+    A->>R: resolve(huggingface, model-id)
+    R-->>A: (chat_completions, HF_TOKEN, base_url)
+    A->>HF: POST /chat/completions
+    alt model served
+        HF-->>A: completion
+    else not served / cold
+        HF-->>A: 503 (loading) or 404
+    end
+```
+
+### 27.7 Complete example
+
+**Scenario.** A team standardizing on open-weight models wants to trial a model on shared infrastructure before committing GPUs.
+
+**Problem.** Self-hosting up front is premature; they need a low-commitment way to run an open model.
+
+**Solution.** Configure the Hugging Face provider with a token and a served open-weight model.
+
+**Architecture.** AIAgent → resolver → `chat_completions` → HF Inference endpoint.
+
+**Implementation.**
+
+```bash
+export HF_TOKEN="hf_..."
+```
+
+```yaml
+# ~/.hermes/config.yaml
+provider: huggingface
+model: NousResearch/Hermes-4-70B          # an open-weight served model
+api_mode: chat_completions
+api_key_env: HF_TOKEN
+base_url: https://router.huggingface.co/v1
+```
+
+**Tests.**
+
+```bash
+hermes doctor
+hermes run "Explain the trade-offs of open-weight vs proprietary models."
+```
+
+**Result.** An open-weight model driving Hermes with no owned GPUs, ready to graduate to self-hosting later.
+
+**Future improvements.** Once the model choice is settled, move to a self-hosted backend (Ch 28) or Ollama (Ch 29) for cost and data control.
+
+### 27.8 Source code
+
+```python
+def resolve_huggingface(model, cfg, env):
+    return ResolvedProvider(
+        api_mode="chat_completions",
+        base_url=cfg.get("base_url", "https://router.huggingface.co/v1"),
+        auth=BearerToken(env[cfg.get("api_key_env", "HF_TOKEN")]),
+        model=model,  # must be a served/inference-available model id
+    )
+```
+
+### 27.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `provider` | `huggingface` | |
+| `model` | `org/model` Hub id | Must be inference-available |
+| `api_mode` | `chat_completions` | OpenAI-compatible router |
+| `api_key_env` | `HF_TOKEN` | |
+| `base_url` | HF router URL | |
+
+### 27.10 Real-world use cases
+
+Trialing open-weight models before self-hosting; running Nous's own Hermes models via HF; teams with open-source licensing requirements.
+
+### 27.11 Exercises
+
+1. Why can't every Hub model be used as a Hermes provider model?
+2. Configure Hermes to run a served open-weight model via HF.
+3. When would you graduate from HF inference to self-hosting?
+
+### 27.12 Challenges
+
+- **Challenge 1.** Compare latency and cost of the same open model on HF inference vs local Ollama.
+- **Challenge 2.** Set HF as a fallback behind a self-hosted primary.
+
+### 27.13 Checklist
+
+- [ ] `HF_TOKEN` set and referenced via `api_key_env`.
+- [ ] Chosen model is inference-available.
+- [ ] `base_url` points at the HF OpenAI-compatible router.
+
+### 27.14 Best practices
+
+- Use HF to de-risk open-model choices before buying hardware.
+- Confirm a model is served (not just present on the Hub) before configuring it.
+- Scope the HF token to inference only.
+
+### 27.15 Anti-patterns
+
+- Configuring an un-served Hub model and getting persistent 404s.
+- Treating cold-start 503s as hard failures instead of retrying.
+- Using a broadly-scoped HF token where an inference-only token suffices.
+
+### 27.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `404 model not found` | Model not inference-available | Pick a served model; or self-host (Ch 28) |
+| `503 loading` | Cold start | Retry with backoff; warm the endpoint |
+| `401` | Bad/expired token | Regenerate `HF_TOKEN` |
+| Slow first response | Cold model | Use a dedicated/warm endpoint for production |
+
+### 27.17 Official references
+
+- Hugging Face integration: https://hermes-agent.nousresearch.com/docs/integrations/huggingface
+- Providers: https://hermes-agent.nousresearch.com/docs/integrations/providers
+- Open models / Nous on HF: https://huggingface.co/NousResearch
+
+---
+
+## Chapter 28 — Local Models
+
+### 28.1 Introduction
+
+This chapter is about **sovereignty**: running the model on hardware you control, with no token ever leaving your network. Hermes's provider-agnostic core treats any **OpenAI-compatible endpoint** as a first-class provider — which is exactly what local inference servers like **llama.cpp**, **MLX**, and **vLLM** expose. Set `base_url` to `localhost`, point at a served model, and Hermes neither knows nor cares that the model is running three feet away. Ollama (Ch 29) and LM Studio (Ch 30) are friendly front-ends over this same idea; this chapter covers the general pattern and the server-grade options.
+
+### 28.2 Chapter objectives
+
+(1) Understand the OpenAI-compatible local pattern; (2) configure llama.cpp/MLX/vLLM as Hermes providers; (3) weigh data-sovereignty, cost, and latency trade-offs; (4) choose the right local runtime; (5) troubleshoot local-endpoint failures.
+
+### 28.3 Business context
+
+For regulated industries (healthcare, finance, defense) and privacy-sensitive products, **data egress is a non-starter**. Local models let Hermes operate entirely inside a controlled boundary: prompts, memory, and Skills never touch a third party. Beyond compliance, owned hardware turns per-token cost into a fixed infrastructure cost — attractive at high, steady volume. The trade-off is operational: you now run inference yourself.
+
+### 28.4 Theoretical foundations
+
+The enabling abstraction is the **OpenAI-compatible server**. llama.cpp's `server`, MLX, and vLLM all expose `/v1/chat/completions`. Hermes resolves them as `chat_completions` providers with a `localhost` (or internal) `base_url` and typically a dummy/empty key. vLLM is the throughput-oriented choice for serving many concurrent requests on GPUs; llama.cpp and MLX target single-machine and Apple-silicon efficiency. Because the wire protocol is identical to OpenAI's, **nothing else in Hermes changes** — memory, Skills, routing, and fallbacks all work unmodified.
+
+> **Java parallel.** Running a local model is like swapping a managed cloud database for a self-hosted PostgreSQL behind the same JDBC URL: identical client code, very different operational ownership.
+
+### 28.5 Architecture
+
+```mermaid
+flowchart TB
+    subgraph boundary["Your network boundary (no egress)"]
+        agent[AIAgent] --> res[Resolver: chat_completions]
+        res --> ep[(OpenAI-compatible server<br/>localhost:port)]
+        ep --> rt{Runtime}
+        rt --> vllm[vLLM - GPU throughput]
+        rt --> lcpp[llama.cpp - CPU/GPU]
+        rt --> mlx[MLX - Apple silicon]
+        agent --> mem[(Local memory + skills)]
+    end
+```
+
+### 28.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant A as AIAgent
+    participant S as Local server (vLLM/llama.cpp)
+    A->>S: POST http://localhost:8000/v1/chat/completions
+    Note over A,S: request never leaves the network
+    S-->>A: completion (tool calls supported if model does)
+    A->>A: persist to local SQLite memory
+```
+
+### 28.7 Complete example
+
+**Scenario.** A healthcare team must run an agent with zero data egress on an on-prem GPU server.
+
+**Problem.** Cloud providers are prohibited; prompts may contain PHI.
+
+**Solution.** Serve an open-weight model with vLLM on the GPU box and point Hermes at the local OpenAI-compatible endpoint.
+
+**Architecture.** AIAgent → `chat_completions` → vLLM @ `localhost:8000` → on-prem GPU. Memory/Skills stay local.
+
+**Implementation.**
+
+```bash
+# Serve an open-weight model with vLLM (OpenAI-compatible API)
+pip install vllm
+vllm serve NousResearch/Hermes-4-14B --host 0.0.0.0 --port 8000
+```
+
+```yaml
+# ~/.hermes/config.yaml
+provider: openai-compatible
+model: NousResearch/Hermes-4-14B
+api_mode: chat_completions
+base_url: http://localhost:8000/v1
+api_key_env: LOCAL_DUMMY_KEY        # many local servers ignore the key
+```
+
+```bash
+export LOCAL_DUMMY_KEY="not-needed"
+hermes doctor
+hermes run "Summarize this internal clinical note." --attach note.txt
+```
+
+**Tests.** Confirm with `curl http://localhost:8000/v1/models` that the model is served; run a prompt and verify (via network monitoring) that no external traffic occurs.
+
+**Result.** A fully sovereign agent: no prompt, memory, or Skill ever leaves the network.
+
+**Future improvements.** Add a second vLLM replica behind a load balancer for HA (Part XIV); use MLX on Apple-silicon laptops for offline field use.
+
+### 28.8 Source code
+
+```python
+def resolve_openai_compatible(model, cfg, env):
+    return ResolvedProvider(
+        api_mode="chat_completions",
+        base_url=cfg["base_url"],                 # e.g. http://localhost:8000/v1
+        auth=BearerToken(env.get(cfg.get("api_key_env", ""), "")),
+        model=model,
+    )
+```
+
+### 28.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `provider` | `openai-compatible` | Generic local/self-hosted |
+| `model` | served model id | Match what the server loaded |
+| `base_url` | `http://localhost:8000/v1` | Internal/local endpoint |
+| `api_key_env` | often a dummy | Many local servers ignore it |
+| runtime | vLLM / llama.cpp / MLX | Choose by hardware and concurrency |
+
+### 28.10 Real-world use cases
+
+PHI/financial workloads with zero egress; air-gapped environments; cost control at steady high volume; offline field deployments on laptops (MLX).
+
+### 28.11 Exercises
+
+1. Which local runtime would you pick for high-concurrency GPU serving, and why?
+2. Configure Hermes against a llama.cpp server on a non-default port.
+3. Explain why the API key is often a dummy value for local servers.
+
+### 28.12 Challenges
+
+- **Challenge 1.** Prove zero egress by serving locally and monitoring the network during a session.
+- **Challenge 2.** Benchmark vLLM throughput vs llama.cpp on the same model and hardware.
+
+### 28.13 Checklist
+
+- [ ] Local server exposes `/v1/chat/completions`.
+- [ ] `base_url` points at the local endpoint.
+- [ ] Verified no external traffic during a run.
+- [ ] Memory and Skills remain on local storage.
+
+### 28.14 Best practices
+
+- Pick vLLM for multi-user GPU serving; llama.cpp/MLX for single-machine.
+- Verify zero egress with network monitoring in regulated settings.
+- Keep a tested fallback path (another local replica) for HA.
+
+### 28.15 Anti-patterns
+
+- Exposing the local inference port to the public internet without auth.
+- Assuming a small local model matches a frontier model on hard tasks.
+- Forgetting that tool-calling quality depends on the served model's capabilities.
+
+### 28.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `Connection refused` | Server not running / wrong port | Start the server; fix `base_url` |
+| Empty/garbled tool calls | Model lacks tool-use training | Use a tool-capable model |
+| OOM at load | Model too large for VRAM | Use a smaller/quantized model |
+| Slow throughput | CPU-bound runtime | Switch to vLLM on GPU |
+
+### 28.17 Official references
+
+- Local models / OpenAI-compatible: https://hermes-agent.nousresearch.com/docs/integrations/local-models
+- Providers: https://hermes-agent.nousresearch.com/docs/integrations/providers
+- vLLM: https://docs.vllm.ai/
+
+---
+
+## Chapter 29 — Ollama
+
+### 29.1 Introduction
+
+**Ollama** is the most popular way to run local models with minimal friction: `ollama pull` a model, `ollama run` it, and an OpenAI-compatible server is already listening on `localhost:11434`. For Hermes, Ollama is the gentle on-ramp to local inference — all the sovereignty of Chapter 28 with a fraction of the setup. This chapter covers wiring Ollama into Hermes, model management, and the practical limits of laptop-class local inference.
+
+### 29.2 Chapter objectives
+
+(1) Install and run a model with Ollama; (2) configure Hermes against Ollama's OpenAI-compatible endpoint; (3) manage models with the Ollama CLI; (4) understand when laptop-class local inference suffices; (5) troubleshoot Ollama connectivity.
+
+### 29.3 Business context
+
+Ollama makes local inference accessible to individual developers and small teams without DevOps overhead. It is ideal for offline development, privacy-first prototypes, and zero-cost experimentation — you can build and demo a fully working Hermes agent on a laptop with no API spend and no data leaving the machine. For larger workloads, the same configuration pattern points at a shared Ollama or graduates to vLLM (Ch 28).
+
+### 29.4 Theoretical foundations
+
+Ollama bundles a model runtime and an OpenAI-compatible API. Hermes resolves it as a `chat_completions` provider with `base_url: http://localhost:11434/v1`. Ollama's value is **operational**: model download, quantization selection, and serving are one command each. The model-capability caveats from Chapter 28 still apply — tool-calling quality and context length depend on the chosen model, and laptop hardware caps how large a model you can run comfortably.
+
+> **Java parallel.** Ollama is the **Docker Desktop of local models**: it hides the plumbing of pulling, running, and serving, exposing a clean local endpoint.
+
+### 29.5 Architecture
+
+```mermaid
+flowchart LR
+    agent[AIAgent] --> res[Resolver: chat_completions]
+    res --> oll[(Ollama server<br/>localhost:11434/v1)]
+    oll --> store[(Local model store<br/>ollama pull)]
+    agent --> mem[(Local memory + skills)]
+```
+
+### 29.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant O as Ollama CLI
+    participant A as AIAgent
+    participant S as Ollama server
+    U->>O: ollama pull hermes
+    O->>S: model available locally
+    U->>A: hermes run "..."
+    A->>S: POST localhost:11434/v1/chat/completions
+    S-->>A: completion (local, offline-capable)
+```
+
+### 29.7 Complete example
+
+**Scenario.** A developer wants to build and demo a Hermes agent on a laptop while flying — fully offline, zero cost.
+
+**Problem.** No internet, no API budget, but the agent must still run.
+
+**Solution.** Run a model via Ollama and point Hermes at the local Ollama endpoint.
+
+**Architecture.** AIAgent → `chat_completions` → Ollama @ `localhost:11434`.
+
+**Implementation.**
+
+```bash
+# Install Ollama (see ollama.com), then:
+ollama pull hermes3:8b            # pull an open-weight model
+ollama serve                       # (usually already running)
+```
+
+```yaml
+# ~/.hermes/config.yaml
+provider: ollama
+model: hermes3:8b
+api_mode: chat_completions
+base_url: http://localhost:11434/v1
+```
+
+```bash
+hermes doctor
+hermes run "Draft a function to parse this log format."
+```
+
+**Result.** A working, offline, zero-cost Hermes agent on a laptop, with memory and Skills stored locally.
+
+**Future improvements.** Point the same config at a shared Ollama server for the team, or graduate to vLLM (Ch 28) for concurrency.
+
+### 29.8 Source code
+
+```python
+def resolve_ollama(model, cfg, env):
+    return ResolvedProvider(
+        api_mode="chat_completions",
+        base_url=cfg.get("base_url", "http://localhost:11434/v1"),
+        auth=NoAuth(),               # Ollama needs no key by default
+        model=model,                 # e.g. "hermes3:8b"
+    )
+```
+
+### 29.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `provider` | `ollama` | |
+| `model` | `hermes3:8b` | Ollama model tag |
+| `api_mode` | `chat_completions` | |
+| `base_url` | `http://localhost:11434/v1` | Default Ollama port |
+| key | none | No auth by default |
+
+### 29.10 Real-world use cases
+
+Offline development and demos; privacy-first prototypes; zero-cost experimentation; a shared team Ollama on an internal server.
+
+### 29.11 Exercises
+
+1. Pull a model with Ollama and run a Hermes prompt against it.
+2. Point Hermes at a remote Ollama server by changing only `base_url`.
+3. Explain why no API key is needed.
+
+### 29.12 Challenges
+
+- **Challenge 1.** Build a fully offline Hermes demo (no internet) and record the session.
+- **Challenge 2.** Compare two model sizes in Ollama for the same task on your laptop.
+
+### 29.13 Checklist
+
+- [ ] Ollama installed and a model pulled.
+- [ ] `base_url` points at `:11434/v1`.
+- [ ] Agent runs offline with local memory/Skills.
+
+### 29.14 Best practices
+
+- Use Ollama for development, demos, and privacy-first prototyping.
+- Choose a tool-capable model if your agent relies on tool calls.
+- Share one Ollama server for the team rather than per-laptop downloads.
+
+### 29.15 Anti-patterns
+
+- Expecting frontier-model quality from a small quantized laptop model.
+- Exposing Ollama to the internet without a reverse proxy and auth.
+- Running a model larger than your RAM/VRAM and hitting swaps.
+
+### 29.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `Connection refused :11434` | Ollama not running | `ollama serve`; check the port |
+| `model not found` | Not pulled | `ollama pull <model>` |
+| Very slow responses | Model too big for hardware | Use a smaller/quantized tag |
+| Tool calls ignored | Model lacks tool training | Pick a tool-capable model |
+
+### 29.17 Official references
+
+- Ollama integration: https://hermes-agent.nousresearch.com/docs/integrations/ollama
+- Providers: https://hermes-agent.nousresearch.com/docs/integrations/providers
+- Ollama: https://ollama.com/
+
+---
+
+## Chapter 30 — LM Studio
+
+### 30.1 Introduction
+
+**LM Studio** is the GUI-first local runtime. Where Ollama is CLI-centric, LM Studio gives non-terminal users a desktop app to browse, download, and serve models, then flip on an **OpenAI-compatible local server** with a checkbox. For Hermes — itself increasingly desktop-friendly since the v0.16 Surface Release — LM Studio is the natural pairing for users who want local inference without touching a command line. This chapter covers serving a model in LM Studio and wiring Hermes to it.
+
+### 30.2 Chapter objectives
+
+(1) Serve a model via LM Studio's local server; (2) configure Hermes against it; (3) understand the GUI-first workflow and its audience; (4) compare LM Studio with Ollama; (5) troubleshoot the LM Studio endpoint.
+
+### 30.3 Business context
+
+Not every user lives in a terminal. Analysts, researchers, and domain experts who want a private local agent benefit from LM Studio's point-and-click model management. Paired with Hermes's desktop app, it enables a fully local, GUI-driven AI agent stack — no API keys, no command line, no data egress — which lowers the barrier for privacy-conscious non-developers.
+
+### 30.4 Theoretical foundations
+
+LM Studio's local server exposes the familiar `/v1/chat/completions` contract (commonly on port `1234`). Hermes resolves it identically to any local OpenAI-compatible endpoint — only the `base_url` differs from Ollama. The distinction from Ollama is entirely in the **user experience**, not the integration: GUI model discovery and serving versus CLI commands. All Chapter 28 capability caveats (model-dependent tool use, hardware limits) apply.
+
+> **Java parallel.** LM Studio vs Ollama is like a database GUI client (e.g., DBeaver) vs a CLI (`psql`): same server protocol underneath, different ergonomics for different users.
+
+### 30.5 Architecture
+
+```mermaid
+flowchart LR
+    user[Non-CLI user] --> lms[LM Studio app<br/>browse + serve model]
+    lms --> srv[(Local server<br/>localhost:1234/v1)]
+    agent[Hermes AIAgent] --> res[Resolver: chat_completions]
+    res --> srv
+    agent --> mem[(Local memory + skills)]
+```
+
+### 30.6 Internal flows
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant L as LM Studio (GUI)
+    participant A as AIAgent
+    U->>L: download model, toggle "Start Server"
+    L-->>U: server listening on :1234
+    U->>A: hermes run "..."
+    A->>L: POST localhost:1234/v1/chat/completions
+    L-->>A: completion (local)
+```
+
+### 30.7 Complete example
+
+**Scenario.** A privacy-conscious research analyst with no terminal experience wants a local Hermes agent.
+
+**Problem.** CLI model management (Ollama) is a barrier; cloud providers are disallowed for the data.
+
+**Solution.** Use LM Studio's GUI to serve a model and point the Hermes desktop app at the local server.
+
+**Architecture.** Hermes desktop → `chat_completions` → LM Studio @ `localhost:1234`.
+
+**Implementation.**
+
+```text
+1. Open LM Studio, search and download an open-weight model.
+2. Go to the "Local Server" tab and click "Start Server" (port 1234).
+```
+
+```yaml
+# ~/.hermes/config.yaml
+provider: lmstudio
+model: hermes-3-8b          # model loaded in LM Studio
+api_mode: chat_completions
+base_url: http://localhost:1234/v1
+```
+
+```bash
+hermes doctor
+hermes run "Summarize these interview notes." --attach notes.txt
+```
+
+**Result.** A fully local, GUI-managed agent suitable for non-developers, with zero data egress.
+
+**Future improvements.** Distribute a pre-configured Hermes desktop + LM Studio setup to a non-technical team; add a fallback to Nous Portal for tasks beyond local-model capability.
+
+### 30.8 Source code
+
+```python
+def resolve_lmstudio(model, cfg, env):
+    return ResolvedProvider(
+        api_mode="chat_completions",
+        base_url=cfg.get("base_url", "http://localhost:1234/v1"),
+        auth=NoAuth(),               # LM Studio local server needs no key
+        model=model,
+    )
+```
+
+### 30.9 Configuration
+
+| Key | Example | Notes |
+|-----|---------|-------|
+| `provider` | `lmstudio` | |
+| `model` | model loaded in LM Studio | Match the GUI selection |
+| `api_mode` | `chat_completions` | |
+| `base_url` | `http://localhost:1234/v1` | Default LM Studio port |
+| key | none | No auth by default |
+
+### 30.10 Real-world use cases
+
+Local agents for non-developers; privacy-first research; pairing with the Hermes desktop app for a no-CLI local stack; offline analyst workflows.
+
+### 30.11 Exercises
+
+1. Serve a model in LM Studio and connect Hermes to it.
+2. Identify the single config difference between LM Studio and Ollama.
+3. Who is LM Studio's target user versus Ollama's?
+
+### 30.12 Challenges
+
+- **Challenge 1.** Assemble a no-CLI local stack (Hermes desktop + LM Studio) and document the steps for a non-technical user.
+- **Challenge 2.** Switch a running Hermes between LM Studio and Ollama by editing only `base_url`.
+
+### 30.13 Checklist
+
+- [ ] LM Studio server started on `:1234`.
+- [ ] `base_url` points at the LM Studio endpoint.
+- [ ] Agent runs locally with no egress.
+
+### 30.14 Best practices
+
+- Use LM Studio for non-CLI users and GUI-driven model management.
+- Pair with the Hermes desktop app for an end-to-end no-terminal local stack.
+- Keep a cloud fallback for tasks exceeding local-model capability.
+
+### 30.15 Anti-patterns
+
+- Forgetting to click "Start Server" and then debugging a connection refusal.
+- Loading a different model in the GUI than configured in Hermes.
+- Expecting LM Studio to outperform a server-grade vLLM deployment.
+
+### 30.16 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| `Connection refused :1234` | Server not started | Click "Start Server" in LM Studio |
+| Model mismatch errors | GUI model ≠ config model | Align `model` with what's loaded |
+| Slow/large model fails | Hardware limits | Load a smaller/quantized model |
+| Tool calls ignored | Non-tool-capable model | Choose a tool-capable model |
+
+### 30.17 Official references
+
+- LM Studio integration: https://hermes-agent.nousresearch.com/docs/integrations/lm-studio
+- Local models: https://hermes-agent.nousresearch.com/docs/integrations/local-models
+- LM Studio: https://lmstudio.ai/
+
+---
+
+> **End of Part IV.** You can now authenticate and configure every Hermes provider class — the zero-config Nous Portal, the direct cloud providers (OpenAI, Anthropic, Gemini), the meta-provider OpenRouter, the open-weights bridge Hugging Face, and fully sovereign local inference via llama.cpp/MLX/vLLM, Ollama, and LM Studio — and you can chain them with fallbacks and routing. **Part V — Persistent Memory** (Chapters 31–37) turns to what makes Hermes more than a model wrapper: memory that persists, retrieves, and curates itself across sessions.
+
 <!--APPEND-PARTE-II-->
