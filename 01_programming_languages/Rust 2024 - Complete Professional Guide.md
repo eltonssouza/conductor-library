@@ -88,7 +88,7 @@ This book is organized by **maturity level**. Each level maps to a Part of the t
 
 ---
 
-> **Status of this edition:** phased delivery. The book is published incrementally so that each Part is complete and accurate before the next is released. **Ready:** Parts I–II (Ch. 1–6). **In progress:** Parts III–VIII.
+> **Status of this edition:** phased delivery. The book is published incrementally so that each Part is complete and accurate before the next is released. **Ready:** Parts I–III (Ch. 1–9). **In progress:** Parts IV–VIII.
 
 ---
 
@@ -869,4 +869,327 @@ fn main() {
 
 > **End of Part II.** Rust's borrow model: **references** with the **aliasing-XOR-mutability** rule (many `&T` or one `&mut T`) eliminate data races and invalidation at compile time; **lifetimes** (mostly elided) prove references never dangle; and **slices**/`&str` give zero-copy views, with unsized `str`/`[T]` always behind a pointer (`Sized`). Part III covers Rust's **type system** — scalars, compounds, sum types (`enum`, `Option`, `Result`), and exhaustive pattern matching.
 
-<!--APPEND-PART-III-->
+---
+
+## Part III — The type system
+
+Part III covers how Rust models data: **scalar and compound** built-in types and **user-defined** structs, **enums as sum types** (with `Option` and `Result` as the canonical examples), and **exhaustive pattern matching** that makes handling every case mandatory.
+
+---
+
+## Chapter 7 — Scalar, compound, and user-defined types
+
+### 7.1 Introduction
+
+Rust is **statically and strongly typed** with full inference. **Scalar** types are single values: integers (`i32`, `u64`, …), floats (`f64`), `bool`, and `char` (a Unicode scalar). **Compound** types group values: **tuples** (`(i32, &str)`, fixed heterogeneous) and **arrays** (`[T; N]`, fixed homogeneous). **User-defined** types are **structs** — named-field (`struct Point { x: f64, y: f64 }`), tuple structs, and unit structs — on which you implement methods via `impl`. Types are explicit at boundaries but inferred locally, giving safety without verbosity.
+
+### 7.2 Business context
+
+A precise type system is documentation the compiler enforces: a function that takes a `Celsius` newtype can't be passed a raw `f64` meant for something else, eliminating unit-confusion bugs (the kind that crashed spacecraft). Choosing the right integer width and signedness prevents overflow surprises. Modeling domain concepts as structs (rather than loose tuples or primitives) makes code self-explanatory and refactor-safe. Strong typing front-loads error detection to compile time, where fixing a mistake is cheapest — a major reason Rust code is reliable.
+
+### 7.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    scalar["scalar: i32/u64/f64/bool/char"] --> single["one value"]
+    compound["compound: tuple (T, U) / array [T; N]"] --> group["fixed-size groupings"]
+    udt["struct { fields } + impl methods"] --> domain["model domain concepts"]
+```
+
+Integers have explicit width/signedness; overflow panics in debug and wraps in release (use `checked_/wrapping_/saturating_` for intent). **Tuples** group a fixed number of possibly-different types and destructure (`let (a, b) = pair`); **arrays** are fixed-length same-type (`[0; 5]`), distinct from the growable `Vec<T>`. **Structs** name their fields and gain behavior through `impl` blocks (associated functions like `new`, and methods taking `&self`). The **newtype** pattern (`struct Meters(f64)`) gives a primitive a distinct type for safety.
+
+### 7.4 Architecture: model with structs
+
+```mermaid
+flowchart LR
+    prim["primitives/tuples"] -->|"name the concept"| strct["struct with methods (impl)"]
+    note["Domain types make invalid combinations harder and intent clearer"]
+```
+
+Promoting loose primitives/tuples into named structs with methods turns implicit conventions into compiler-checked types.
+
+### 7.5 Real example
+
+**Scenario.** Represent a 2-D point with a distance method.
+
+**Problem.** Passing bare `(f64, f64)` tuples loses meaning and invites mixing up coordinates.
+
+**Solution.** A **struct** with an `impl` block; a **newtype** keeps units distinct.
+
+**Implementation.**
+
+```rust
+struct Point { x: f64, y: f64 }
+
+impl Point {
+    fn new(x: f64, y: f64) -> Self { Point { x, y } }   // associated function
+    fn distance(&self, other: &Point) -> f64 {           // method borrows self
+        ((self.x - other.x).powi(2) + (self.y - other.y).powi(2)).sqrt()
+    }
+}
+
+fn main() {
+    let a = Point::new(0.0, 0.0);
+    let b = Point::new(3.0, 4.0);
+    println!("{}", a.distance(&b));   // 5.0
+}
+```
+
+**Result.** `Point` names its fields and carries its own behavior; `distance` borrows both points (no copies) and the type makes "a point" explicit instead of an anonymous tuple. The compiler now prevents passing a `Point` where some other 2-tuple is expected. Methods and the `new` constructor keep usage clean.
+
+**Future improvements.** Add `#[derive(Clone, Copy, Debug, PartialEq)]` for ergonomics; use newtypes (`struct Meters(f64)`) where unit safety matters.
+
+### 7.6 Exercises
+
+1. What is the difference between a tuple and an array?
+2. What does an `impl` block add to a struct?
+3. What problem does the newtype pattern solve?
+
+### 7.7 Challenges
+
+- **Challenge.** Define a `Rectangle` struct with `width`/`height`, methods `area()` and `can_hold(&Rectangle) -> bool`, and an associated `square(size)` constructor.
+
+### 7.8 Checklist
+
+- [ ] I choose integer width/signedness deliberately.
+- [ ] I model domain concepts as structs, not loose tuples/primitives.
+- [ ] I add behavior via `impl` methods/associated functions.
+- [ ] I use newtypes where type distinction prevents bugs.
+
+### 7.9 Best practices
+
+- Name concepts with structs; give them methods.
+- Derive common traits (`Debug`, `Clone`, `PartialEq`) where useful.
+- Use newtypes for units/IDs to avoid mix-ups.
+
+### 7.10 Anti-patterns
+
+- Passing anonymous tuples where a named struct would clarify.
+- Ignoring integer overflow semantics.
+- Primitive obsession — raw `f64`/`String` for distinct domain values.
+
+### 7.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Mixed-up arguments of the same primitive type | Primitive obsession | Introduce newtypes/structs |
+| Overflow panic in debug | Unchecked arithmetic | Use `checked_`/`wrapping_`/`saturating_` |
+| Verbose tuple access (`.0`, `.1`) | Anonymous tuple | Use a named-field struct |
+
+### 7.12 References
+
+- *The Rust Programming Language*, ch. 3 (data types) & ch. 5 (structs) — https://doc.rust-lang.org/book/ch05-00-structs.html.
+- J. Blandy et al., *Programming Rust*, 2nd ed. (O'Reilly, 2021) — ISBN 978-1492052593.
+
+---
+
+## Chapter 8 — Enums as sum types; `Option` and `Result` as data
+
+### 8.1 Introduction
+
+A Rust **enum** is a **sum type**: a value that is **exactly one** of several variants, and each variant can **carry data** (`enum Shape { Circle(f64), Rect { w: f64, h: f64 } }`). This is far more powerful than C-style enums. Two enums are so important they're built in: **`Option<T>`** (`Some(T)` or `None`) replaces null, and **`Result<T, E>`** (`Ok(T)` or `Err(E)`) models recoverable errors as **values**. Because the type forces you to handle every variant, "forgot to check for null/error" bugs are impossible.
+
+### 8.2 Business context
+
+The null reference ("billion-dollar mistake") and unchecked error codes cause a huge share of crashes and security holes. Rust replaces both with enums the type system forces you to handle: a `Option<User>` cannot be used as a `User` until you deal with the `None` case, and a `Result` must be inspected before you get the value. This moves "did you handle the missing/failed case?" from a runtime hope to a compile-time guarantee — eliminating null-pointer and ignored-error defects entirely, which is decisive for reliability-critical software.
+
+### 8.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    enum["enum: exactly ONE variant, each may carry data"] --> sum["sum type"]
+    opt["Option<T> = Some(T) | None"] --> nonull["no null; absence is explicit"]
+    res["Result<T, E> = Ok(T) | Err(E)"] --> errs["errors as values, must be handled"]
+```
+
+An enum variant can hold values, structs, or nothing; the whole value is tagged with which variant it is. **`Option<T>`** makes absence a distinct value you must unwrap (via `match`, `if let`, `?`, or combinators like `map`/`unwrap_or`). **`Result<T, E>`** makes failure a value carrying an error; the **`?`** operator propagates an `Err` early, making error handling concise yet explicit. There are no exceptions for recoverable errors — they flow as `Result`.
+
+### 8.4 Architecture: make states and failures data
+
+```mermaid
+flowchart LR
+    state["a value that varies in kind"] --> enumt["model as an enum (each variant typed)"]
+    missing["a value that may be absent"] --> option["Option<T>"]
+    failable["an operation that may fail"] --> result["Result<T, E> + ?"]
+```
+
+Encoding "one of several kinds", "maybe absent", and "might fail" as enums makes the compiler enforce that every possibility is addressed.
+
+### 8.5 Real example
+
+**Scenario.** Parse a config value that may be missing or invalid.
+
+**Problem.** In many languages a missing key returns null and a parse error throws — both easy to forget.
+
+**Solution.** Return **`Result<T, E>`**, use **`Option`** for the lookup, and propagate with **`?`**.
+
+**Implementation.**
+
+```rust
+use std::collections::HashMap;
+
+fn read_port(cfg: &HashMap<String, String>) -> Result<u16, String> {
+    let raw = cfg.get("port")                       // Option<&String>
+        .ok_or_else(|| "missing 'port'".to_string())?;   // None -> Err, propagate
+    let port = raw.parse::<u16>()                   // Result<u16, ParseIntError>
+        .map_err(|e| format!("bad port: {e}"))?;    // convert + propagate the error
+    Ok(port)
+}
+```
+
+**Result.** Absence (`get` → `Option`) and parse failure (`parse` → `Result`) are both **values** the compiler forces the code to handle; `?` propagates either as an `Err` without verbose branching. A caller of `read_port` must inspect the `Result` before using the port — there's no way to accidentally use a missing or invalid value. Null and ignored-error bugs are structurally impossible.
+
+**Future improvements.** Use a typed error enum (Ch. 18) instead of `String`; provide defaults with `unwrap_or`/`unwrap_or_else` where a missing value is acceptable.
+
+### 8.6 Exercises
+
+1. What makes an enum a "sum type", and how is it more than a C enum?
+2. How does `Option<T>` eliminate null-pointer bugs?
+3. What does the `?` operator do with a `Result`?
+
+### 8.7 Challenges
+
+- **Challenge.** Model a `Command` enum with variants carrying data (`Move { x, y }`, `Write(String)`, `Quit`), and write a function returning `Result<Command, String>` that parses a line, propagating errors with `?`.
+
+### 8.8 Checklist
+
+- [ ] I model "one of several kinds" as a data-carrying enum.
+- [ ] I use `Option<T>` for possibly-absent values (no null).
+- [ ] I use `Result<T, E>` for fallible operations.
+- [ ] I propagate errors with `?` rather than ignoring them.
+
+### 8.9 Best practices
+
+- Encode states/absence/failure as enums (`Option`/`Result`).
+- Propagate with `?`; convert errors with `map_err`.
+- Reserve `unwrap`/`expect` for cases that genuinely can't fail (and document why).
+
+### 8.10 Anti-patterns
+
+- `unwrap()`/`expect()` everywhere, turning recoverable errors into panics.
+- Sentinel values (`-1`, empty string) instead of `Option`/`Result`.
+- Stringly-typed errors where a typed enum belongs.
+
+### 8.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Panic on `None`/`Err` | Careless `unwrap()` | Handle with `match`/`?`/`unwrap_or` |
+| "cannot use Option<T> as T" | Used without unwrapping | Match/`if let`/`?` to extract |
+| `?` won't compile | Error types don't convert | Implement `From`/use `map_err` |
+
+### 8.12 References
+
+- *The Rust Programming Language*, ch. 6 (enums & `Option`) & ch. 9 (`Result`) — https://doc.rust-lang.org/book/ch06-00-enums.html.
+- J. Blandy et al., *Programming Rust*, 2nd ed. (O'Reilly, 2021) — ISBN 978-1492052593.
+
+---
+
+## Chapter 9 — Exhaustive pattern matching and guards
+
+### 9.1 Introduction
+
+**`match`** is Rust's primary control-flow tool over enums and values: it compares a value against **patterns** and runs the first arm that fits, **binding** the data inside. Its defining property is **exhaustiveness** — the compiler requires every possible case to be handled (or a `_` wildcard), so you can't forget a variant. Patterns can **destructure** structs/tuples/enums, include **guards** (`if` conditions on an arm), and match ranges and literals. **`if let`**/**`while let`** are concise forms for matching a single pattern.
+
+### 9.2 Business context
+
+Exhaustive matching is a powerful safety net for evolving software: add a new variant to an enum (a new order status, a new event), and the compiler flags **every** `match` that doesn't handle it — turning "we forgot to update one place" from a production incident into a build error. Combined with `Option`/`Result`, it guarantees missing and error cases are addressed. Guards and destructuring let complex business rules be expressed as a readable table of cases. This is a large part of why large Rust codebases refactor safely.
+
+### 9.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    val["a value (often an enum)"] --> m["match: try patterns top to bottom"]
+    m --> arm["first matching arm binds inner data + runs"]
+    m --> exh["compiler enforces ALL cases handled (or _)"]
+    guard["pattern if condition (guard)"] --> refine["refine a match arm"]
+```
+
+A `match` arm is `pattern => expression`; patterns **destructure** and bind (`Some(x)`, `Shape::Rect { w, h }`, `(a, b)`). **Exhaustiveness** means uncovered cases are a compile error — add `_` only when you truly want a catch-all. **Guards** (`Some(n) if n > 0 =>`) add a boolean condition. `match` is an **expression** (returns a value). **`if let`** handles one pattern concisely when you don't need exhaustiveness for the rest.
+
+### 9.4 Architecture: handle every case, by construction
+
+```mermaid
+flowchart LR
+    enumt["enum with N variants"] --> match["match handles all N (compiler-checked)"]
+    addvar["add a new variant later"] --> error["every non-exhaustive match -> compile error"]
+    note["The compiler finds the places to update"]
+```
+
+Exhaustive matching makes adding a variant a guided, compiler-driven refactor instead of a hunt for missed cases.
+
+### 9.5 Real example
+
+**Scenario.** Compute the area of different shapes.
+
+**Problem.** A `switch` that silently ignores an unhandled shape (or a forgotten new one) returns wrong results.
+
+**Solution.** A **`match`** over the enum — exhaustive, with **destructuring** and a **guard**.
+
+**Implementation.**
+
+```rust
+enum Shape { Circle(f64), Rect { w: f64, h: f64 }, Triangle { base: f64, height: f64 } }
+
+fn area(s: &Shape) -> f64 {
+    match s {
+        Shape::Circle(r) => std::f64::consts::PI * r * r,         // bind r
+        Shape::Rect { w, h } if w == h => w * w,                   // guard: square case
+        Shape::Rect { w, h } => w * h,                             // destructure fields
+        Shape::Triangle { base, height } => 0.5 * base * height,
+        // no `_` needed: every variant is handled — exhaustive
+    }
+}
+```
+
+**Result.** Every `Shape` variant is handled, destructured to its data, with a guard distinguishing the square case — and the compiler **guarantees** completeness, so no shape is silently mishandled. If a `Pentagon` variant were added later, this `match` would fail to compile until updated, pointing exactly here. The logic reads as a clear table of cases.
+
+**Future improvements.** Use `if let Some(x) = opt` for single-case matches; avoid `_` catch-alls on domain enums so the compiler keeps guiding future changes.
+
+### 9.6 Exercises
+
+1. What does "exhaustive" mean for a `match`, and why is it valuable?
+2. How does a guard refine a match arm?
+3. When is `if let` preferable to a full `match`?
+
+### 9.7 Challenges
+
+- **Challenge.** Write a `match` over a `Result<i32, String>` that returns a message for `Ok` (with a guard for zero vs. positive vs. negative) and for `Err`, with no `_` arm.
+
+### 9.8 Checklist
+
+- [ ] I use `match` to handle every variant (exhaustive).
+- [ ] I destructure to bind inner data directly.
+- [ ] I use guards for conditional arms.
+- [ ] I avoid `_` on domain enums so new variants surface as errors.
+
+### 9.9 Best practices
+
+- Prefer exhaustive `match` without catch-alls on domain types.
+- Use `if let`/`while let` for single-pattern cases.
+- Express conditional rules with guards and destructuring.
+
+### 9.10 Anti-patterns
+
+- Overusing `_` catch-alls, hiding unhandled new variants.
+- Nested `if`/`else` where a `match` is clearer.
+- Unwrapping instead of matching on `Option`/`Result`.
+
+### 9.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| "non-exhaustive patterns" | A case isn't handled | Add the missing arm (or `_` deliberately) |
+| New variant silently ignored elsewhere | `_` catch-all used | Remove `_`; let the compiler flag matches |
+| Verbose conditional logic | `if`/`else` chains | Use `match` with guards/destructuring |
+
+### 9.12 References
+
+- *The Rust Programming Language*, ch. 6.2 (`match`) & ch. 18 (patterns) — https://doc.rust-lang.org/book/ch06-02-match.html.
+- J. Blandy et al., *Programming Rust*, 2nd ed. (O'Reilly, 2021) — ISBN 978-1492052593.
+
+---
+
+> **End of Part III.** Rust models data precisely: **scalar/compound** types and **structs** with methods; **enums as sum types** with `Option` (no null) and `Result` (errors as values, propagated with `?`); and **exhaustive `match`** with destructuring and guards that forces every case to be handled. Part IV covers **traits and generics** — Rust's tools for polymorphism and reuse.
+
+<!--APPEND-PART-IV-->
