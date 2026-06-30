@@ -154,7 +154,7 @@ Region B (active) ─┘
 
 ### 1.12 References
 
-- L. Bass, P. Clements, R. Kazman, *Software Architecture in Practice*, 4th ed. (Addison-Wesley, 2021) — ISBN 978-0136886099.
+- L. Bass, P. Clements, R. Kazman, *Software Architecture in Practice*, 4th ed. (Addison-Wesley, 2021), the "What Is Software Architecture?" chapter — ISBN 978-0136886099.
 - ISO/IEC 25010 (product quality model): https://iso25000.com/index.php/en/iso-25000-standards/iso-25010.
 
 ---
@@ -253,7 +253,7 @@ Response measure: 99.95% success; added latency < 100 ms
 
 ### 2.12 References
 
-- L. Bass, P. Clements, R. Kazman, *Software Architecture in Practice*, 4th ed. (Addison-Wesley, 2021) — ISBN 978-0136886099.
+- L. Bass, P. Clements, R. Kazman, *Software Architecture in Practice*, 4th ed. (Addison-Wesley, 2021), the "Understanding Quality Attributes" chapter (quality-attribute scenarios) — ISBN 978-0136886099.
 - SEI, Architecture Tradeoff Analysis Method (ATAM): https://www.sei.cmu.edu/.
 
 ---
