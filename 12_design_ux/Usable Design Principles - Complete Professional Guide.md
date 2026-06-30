@@ -48,7 +48,10 @@ software_dev: supporting
 5. Knowledge in the head and in the world
 6. Constraints, forcing functions, and discoverability
 
-> **Status of this guide:** phased delivery. **Ready:** Parts I–IV (Ch. 1–6). **In progress:** Part V onward (human error and the design process).
+**Part V – Designing for error**
+7. Human error: slips, mistakes, and error-tolerant design
+
+> **Status of this guide:** phased delivery. **Ready:** Parts I–V (Ch. 1–7). **In progress:** Part VI (the design process).
 
 ---
 
@@ -652,5 +655,109 @@ Guard the final click: type the exact DB name to proceed (lock-in confirmation)
 
 - D. Norman, *The Design of Everyday Things*, revised ed. (Basic Books, 2013) — ISBN 978-0465050659. See Chapter 4 ("Knowing What to Do: Constraints, Discoverability, and Feedback"): physical / cultural / semantic / logical constraints and forcing functions (interlocks, lock-ins, lock-outs).
 - NN/g, "Preventing User Errors: Avoiding Conscious Mistakes": https://www.nngroup.com/articles/slips/.
+
+---
+
+## Part V – Designing for error
+
+People will make errors. Not because they're careless, but because that's how human cognition works — attention wanders, automatic actions misfire, and reasonable assumptions turn out wrong. The unproductive response is to blame the user; the design response is to **assume error and design for it**. This part separates the two fundamentally different kinds of error, then turns each into a design strategy: prevent what you can with constraints, and make the rest cheap to notice and undo.
+
+---
+
+## Chapter 7 — Human error: slips, mistakes, and error-tolerant design
+
+### 7.1 Introduction
+
+Norman splits human error into **slips** and **mistakes**, and the distinction is not pedantic — it changes the fix. A **slip** happens when you have the *right* goal but the *wrong* action slips out: you meant to click Save and clicked Close; the intention was correct, the execution failed. Slips come from **automatic, subconscious behavior** and include familiar types — **capture errors** (a more frequent action hijacks a similar one), **description errors** (the right action on the wrong object — flipping the switch next to the one you meant), **mode errors** (a correct action that means something different in the current mode), and **data-driven errors** (an external stimulus triggers the wrong action). A **mistake** is deeper: the goal or plan itself was wrong, usually because the user's **conceptual model** was wrong. Slips are errors of *action*; mistakes are errors of *intention*. The design takeaway: **assume people will err, and design so errors are prevented, visible, and recoverable** — blame the design, not the user.
+
+### 7.2 Business context
+
+Treating error as user failure is a business mistake. A product that punishes slips — losing work, committing destructive actions, offering no undo — generates churn, data loss, support escalations, and in safety-critical contexts real harm. A product that *expects* error — confirms the costly stuff, makes the common path the safe path, and makes almost everything reversible — feels trustworthy and forgiving, which raises retention and lowers support cost. The framing matters internally too: a **blame culture** hides the design flaws that caused the error, so they recur; treating "human error" as a **design signal** (the Swiss-cheese view — incidents happen when several latent design holes line up) turns each incident into a fix instead of a scapegoat.
+
+### 7.3 Theoretical concepts: two kinds of error, two strategies
+
+```mermaid
+flowchart TB
+    err["A user error"] --> q{"Was the goal/plan right?"}
+    q -- "yes, action misfired" --> slip["Slip (action error)<br/>capture / description / mode / data-driven"]
+    q -- "no, plan was wrong" --> mistake["Mistake (intention error)<br/>wrong conceptual model"]
+    slip --> fix1["Fix: constraints, confirmations, undo, clear modes"]
+    mistake --> fix2["Fix: better system image &amp; feedback so the right plan forms"]
+```
+
+Because slips come from correct intentions, you fight them with **constraints, mode visibility, sensible defaults, and undo** — make the wrong action hard and the right one easy, and make any slip cheap to reverse. Because mistakes come from a wrong model, you fight them upstream with a **clear system image and good feedback** (Chapters 3–4) so the user forms the right plan in the first place, plus **confirmation and reversibility** for high-stakes decisions. A single design often needs both: prevent the slip *and* help the user not form the mistake.
+
+### 7.4 Architecture: prevent, reveal, recover
+
+```mermaid
+flowchart LR
+    design["Error-tolerant design"] --> prevent["Prevent: constraints &amp; forcing functions"]
+    design --> reveal["Reveal: make errors visible immediately"]
+    design --> recover["Recover: undo &amp; non-destructive defaults"]
+```
+
+### 7.5 Real example
+
+**Scenario.** An email client sends immediately on "Send," and a bulk-action screen deletes selected items with no recovery.
+
+**Problem.** *Slips* are unforgiving: a mis-aimed click (description error) or a wrong-mode action sends an unfinished email or deletes the wrong records, with no way back — a small action error becomes a large, irreversible loss.
+
+**Solution.** Design for error: add a short **undo window** on Send ("Undo" for a few seconds), make deletes **reversible** (soft-delete + restore), show the **current mode/selection** clearly, and confirm only the genuinely irreversible cases.
+
+**Implementation (prevent, reveal, recover).**
+
+```text
+Send:   queue for a few seconds with a visible "Undo" -> a slip is recoverable
+Delete: soft-delete to a recoverable area, not immediate destruction
+Mode:   show the active mode/selection so a mode/description error is visible
+Confirm: reserve hard confirmation for the truly irreversible (Chapter 6)
+```
+
+**Result.** Slips stop turning into disasters — users recover from the mis-click instead of losing work, and trust rises. The errors didn't vanish (they never will); the design absorbed them.
+
+**Future improvements.** Log where slips cluster (which control, which mode) and treat each cluster as a Swiss-cheese hole to close — feeding real incidents back into prevention rather than blaming users.
+
+### 7.6 Exercises
+
+1. Distinguish a slip from a mistake, and give the design implication of each.
+2. Identify the slip type: a user flips the wrong one of two identical switches. Now: a user does the right thing but the app was in a different mode.
+3. Why is "human error" often better read as a design signal than a user failure?
+
+### 7.7 Challenges
+
+- **Challenge.** Pick a destructive or error-prone flow. Classify the likely errors as slips or mistakes, then apply the matching strategy (constraints/undo for slips; clearer model/feedback for mistakes). Make at least one previously irreversible action recoverable.
+
+### 7.8 Checklist
+
+- [ ] Costly actions are reversible (undo / soft-delete) wherever possible.
+- [ ] The active mode and current selection are always visible (mode/description errors prevented).
+- [ ] Confirmation is reserved for the genuinely irreversible — not used as a catch-all.
+- [ ] Errors are treated as design signals and fed back into prevention, not blamed on users.
+
+### 7.9 Best practices
+
+- Assume people will err; design so errors are prevented, visible, and recoverable.
+- Match the fix to the error: constraints/undo for slips, clearer model/feedback for mistakes.
+- Make the safe path the easy path; reserve friction for the truly dangerous.
+
+### 7.10 Anti-patterns
+
+- Irreversible actions with no undo and no recovery.
+- Blaming the user ("operator error") instead of fixing the design hole that allowed it.
+- Confirmation dialogs on everything — users learn to click through them, so they stop protecting.
+
+### 7.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Users lose work from a mis-click | Unforgiving slip handling | Add undo / make the action reversible |
+| Right action, wrong result | Mode or description error | Show the active mode/selection clearly |
+| Same incident keeps recurring | Blame culture hides the design cause | Treat error as a design signal; close the hole |
+| Confirmations ignored | Over-confirmation trained users to click through | Reserve confirmation for the irreversible; prevent the rest by design |
+
+### 7.12 References
+
+- D. Norman, *The Design of Everyday Things*, revised ed. (Basic Books, 2013) — ISBN 978-0465050659. See Chapter 5 ("Human Error? No, Bad Design"): slips vs mistakes, the categories of slip (capture, description, mode, data-driven), designing for error, and the Swiss-cheese model. (In the original 1988 edition this material is Chapter 5, "To Err Is Human.")
+- NN/g, "Slips vs. Mistakes" / error-prevention guidelines: https://www.nngroup.com/articles/slips/.
 
 <!--APPEND-PART-II-->
