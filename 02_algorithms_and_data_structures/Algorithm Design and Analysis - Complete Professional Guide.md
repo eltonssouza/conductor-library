@@ -62,7 +62,11 @@ software_dev: foundational
 12. Graph search and minimum spanning trees
 13. Shortest paths and network flow
 
-> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–VII (Ch. 1–13).
+**Part VIII – Selected advanced topics**
+14. Strings, number theory, and the FFT
+15. Intractability: NP-completeness and approximation
+
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–VIII (Ch. 1–15).
 
 ---
 
@@ -1587,3 +1591,243 @@ dijkstra(G, source):
 ---
 
 > **End of Part VII.** Graphs model networks, and their algorithms tie the whole curriculum together. **BFS** (queue) and **DFS** (stack) traverse in `O(V + E)`, with DFS yielding **topological sort** and **strongly connected components**; **MST** algorithms (**Kruskal** with union-find, **Prim** with a heap) connect everything at minimum cost. With weights, **relaxation** drives **Dijkstra** (non-negative, `O(E log V)`), **Bellman–Ford** (negative weights / cycle detection), and **Floyd–Warshall** (all-pairs); and **max-flow / min-cut** solves throughput and **bipartite matching**. Every one of these leans on the data structures of Part VI. **Part VIII — Selected advanced topics** surveys the frontier: strings, number theory and cryptography, the FFT, and the theory of intractability.
+
+---
+
+## Part VIII – Selected advanced topics
+
+The final part surveys specialized algorithms that power real infrastructure and frames the field's deepest practical question: **which problems are efficiently solvable at all?** Chapter 14 covers three high-impact domains — **string matching** (the engine of search and `grep`), **number-theoretic algorithms** (the basis of RSA cryptography), and the **Fast Fourier Transform** (which multiplies polynomials and large numbers in `O(n log n)` and underlies all digital signal processing). Chapter 15 confronts **intractability**: the theory of **NP-completeness** — strong evidence that thousands of important problems have no efficient exact algorithm — and the **approximation algorithms** that deliver provably-near-optimal answers anyway, with a closing survey of **parallel**, **online**, and **machine-learning** algorithms.
+
+---
+
+## Chapter 14 — Strings, number theory, and the FFT
+
+### 14.1 Introduction
+
+Three classic domains show algorithm design at its most powerful. **String matching** finds a pattern of length `m` inside a text of length `n`: the naive scan is `O(nm)`, but **Knuth–Morris–Pratt (KMP)** preprocesses the pattern to achieve `O(n + m)`, and **Rabin–Karp** uses a rolling hash for efficient multi-pattern search. **Number-theoretic algorithms** operate on integers: **Euclid's algorithm** for the greatest common divisor, **modular exponentiation**, and **primality testing** combine into the **RSA** public-key cryptosystem that secures the internet. The **Fast Fourier Transform (FFT)** evaluates and interpolates polynomials in `O(n log n)` via divide and conquer, enabling fast polynomial and big-integer multiplication and all of digital signal processing.
+
+### 14.2 Business context
+
+These algorithms are infrastructure. **String matching** is `grep`, `Ctrl-F`, log scanning, intrusion-detection signature matching, and DNA sequence search — KMP's linear bound is what makes searching gigabyte texts instant. **Number-theoretic algorithms** are **cryptography**: RSA and Diffie–Hellman rely on modular exponentiation being fast while factoring is believed hard, so every HTTPS handshake, signed software update, and encrypted message runs these algorithms; an `O(log n)` modular exponentiation (square-and-multiply) versus a naive `O(n)` one is the difference between practical and impossible. The **FFT** is the most-used algorithm in signal processing — audio/video compression (MP3, JPEG), radar, telecommunications, and fast multiplication of the huge integers in cryptography. Each turns an `O(n²)` (or exponential) naive approach into something fast enough to deploy.
+
+### 14.3 Theoretical concepts: preprocessing, modular arithmetic, divide-and-conquer transforms
+
+```mermaid
+flowchart TB
+    naive["Naive string match: re-check from scratch on mismatch, O(nm)"] --> kmp["KMP: precompute failure function -> never re-scan text, O(n+m)"]
+    euclid["Euclid: gcd(a,b)=gcd(b, a mod b) -> O(log) steps"] --> modexp["Modular exponentiation by squaring -> O(log e)"]
+    modexp --> rsa["RSA: easy to encrypt/decrypt, hard to factor"]
+    fft["FFT: evaluate polynomial at roots of unity, divide & conquer -> O(n log n)"]
+```
+
+Each domain has one key idea. **KMP** precomputes a **failure function** that says, on a mismatch, how far the pattern can shift without missing a match — so the text pointer never moves backward, giving `O(n + m)`. **Number theory** rests on **modular arithmetic**: Euclid's `gcd(a, b) = gcd(b, a mod b)` terminates in `O(log)` steps, and **modular exponentiation by repeated squaring** computes `aᵉ mod n` in `O(log e)` multiplications — the operation that makes RSA practical while its inverse (factoring) stays hard. The **FFT** applies divide and conquer (Part II): it evaluates a degree-`n` polynomial at the `n` complex **roots of unity**, exploiting their symmetry so the recurrence `T(n) = 2T(n/2) + O(n)` gives `O(n log n)` instead of the naive `O(n²)`; multiplying two polynomials (or big integers) becomes pointwise multiplication in the transformed domain.
+
+### 14.4 Architecture: matching the algorithm to the domain
+
+```mermaid
+flowchart TB
+    kmp["Single pattern, large text -> KMP, O(n+m)"]
+    rk["Multiple / streaming patterns -> Rabin-Karp rolling hash"]
+    crypto["Public-key crypto -> modular exponentiation + primality (RSA)"]
+    fft["Convolution / polynomial or big-integer multiply / DSP -> FFT, O(n log n)"]
+```
+
+Use **KMP** (or the library regex/substring engine built on similar ideas) for single-pattern search in large texts; **Rabin–Karp** when scanning for many patterns or a streaming hash fits. Reach for **modular exponentiation, Euclid, and primality testing** whenever cryptography is involved — but in practice call a vetted crypto library, never hand-roll RSA. Use the **FFT** for any **convolution**: multiplying large polynomials or integers, filtering signals, or fast correlation. The unifying lesson of this chapter is that clever preprocessing (KMP), the right algebraic structure (modular arithmetic, roots of unity), or a divide-and-conquer reformulation (FFT) collapses a quadratic or exponential cost to near-linear.
+
+### 14.5 Real example
+
+**Scenario.** A log-monitoring tool must find every occurrence of a fixed alert pattern inside a continuously growing, multi-gigabyte log.
+
+**Problem.** The naive matcher re-compares the pattern from scratch after every mismatch — `O(nm)` — which is far too slow at gigabyte scale.
+
+**Solution.** Use **KMP**: precompute the pattern's failure function once, then scan the text once without ever backing up the text pointer — `O(n + m)`.
+
+**Implementation.**
+
+```text
+build_failure(P[1..m]):                      # longest proper prefix that is also a suffix
+    fail = array of m zeros;  k = 0
+    for i in 2..m:
+        while k > 0 and P[k+1] != P[i]: k = fail[k]
+        if P[k+1] == P[i]: k += 1
+        fail[i] = k
+    return fail
+
+kmp_search(T[1..n], P[1..m]):
+    fail = build_failure(P);  k = 0
+    for i in 1..n:                            # text pointer i NEVER moves backward
+        while k > 0 and P[k+1] != T[i]: k = fail[k]
+        if P[k+1] == T[i]: k += 1
+        if k == m:                            # full match ending at i
+            report match at i - m + 1
+            k = fail[k]                       # keep searching for overlaps
+
+# O(n + m): the failure function lets a mismatch shift the pattern instead of
+# re-scanning the text. Naive matching is O(nm).
+```
+
+**Result.** The tool scans gigabyte logs in a single linear pass, finding all matches in `O(n + m)`; the one-time `O(m)` preprocessing is negligible. The failure function is what guarantees the text is never re-read.
+
+**Future improvements.** For many patterns at once, use the **Aho–Corasick** automaton (KMP generalized to a trie of patterns); for approximate/fuzzy matching, combine with the edit-distance DP (Part V); for indexed search over a fixed corpus, build a **suffix array/automaton** so repeated queries are sublinear.
+
+### 14.6 Exercises
+
+1. How does KMP's failure function avoid re-scanning the text after a mismatch?
+2. Why is modular exponentiation by repeated squaring `O(log e)` and why does RSA need it?
+3. What property of the roots of unity lets the FFT reach `O(n log n)`?
+4. When would you choose Rabin–Karp over KMP?
+
+### 14.7 Challenges
+
+- **Challenge.** Implement naive matching and KMP, then benchmark both searching a 100 MB text — show KMP's linear scan winning, especially on adversarial patterns like `aaaa…ab`. Separately, implement modular exponentiation by squaring and confirm it computes `a^e mod n` for cryptographically large `e` in milliseconds where the naive loop would never finish.
+
+### 14.8 Checklist
+
+- [ ] I use a linear-time matcher (KMP / library) instead of naive `O(nm)` search.
+- [ ] I use Rabin–Karp / Aho–Corasick for multi-pattern or streaming search.
+- [ ] I use modular exponentiation by squaring for any large-exponent modular math.
+- [ ] I rely on vetted crypto libraries rather than hand-rolling RSA.
+- [ ] I reach for the FFT when a problem is really a convolution.
+
+### 14.9 Best practices
+
+- Prefer the standard library's substring/regex engine; understand KMP to know its bounds.
+- Use rolling hashes (Rabin–Karp) for multiple or streaming patterns.
+- Compute `aᵉ mod n` by repeated squaring, never by iterated multiplication.
+- Recognize convolutions (polynomial/integer multiply, filtering) and apply the FFT.
+
+### 14.10 Anti-patterns
+
+- Naive `O(nm)` substring search on large texts.
+- Naive `O(n²)` polynomial or big-integer multiplication where the FFT gives `O(n log n)`.
+- Hand-rolling cryptographic primitives (RSA, primality) instead of using audited libraries.
+- Iterated modular multiplication (`O(e)`) instead of square-and-multiply (`O(log e)`).
+
+### 14.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Substring search slow on big text | Naive `O(nm)` matcher | Use KMP / the library matcher (`O(n+m)`) |
+| Multi-pattern scan slow | One KMP pass per pattern | Use Aho–Corasick or Rabin–Karp |
+| Crypto operation infeasibly slow | Naive modular exponentiation | Use repeated squaring (`O(log e)`) |
+| Large polynomial/integer multiply too slow | Schoolbook `O(n²)` | Use FFT-based multiplication |
+
+### 14.12 References
+
+- T. Cormen, C. Leiserson, R. Rivest, C. Stein, *Introduction to Algorithms*, 4th ed. (MIT Press, 2022), ch. 30 "Polynomials and the FFT" (§30.2 the DFT and FFT), ch. 31 "Number-Theoretic Algorithms" (§31.2 GCD, §31.6 powers of an element, §31.7 RSA), and ch. 32 "String Matching" (§32.2 Rabin–Karp, §32.4 Knuth–Morris–Pratt) — ISBN 978-0262046305.
+- D. Gusfield, *Algorithms on Strings, Trees, and Sequences* (Cambridge University Press, 1997) — ISBN 978-0521585194.
+
+---
+
+## Chapter 15 — Intractability: NP-completeness and approximation
+
+### 15.1 Introduction
+
+Not every problem has an efficient (polynomial-time) algorithm — and for a large, important class, we have strong evidence that none exists. A problem is in **P** if it is solvable in polynomial time, and in **NP** if a proposed solution can be *verified* in polynomial time. The famous open question **P vs NP** asks whether these are the same. **NP-complete** problems are the hardest in NP: if any one had a polynomial algorithm, *all* of NP would — and thousands of practical problems (SAT, the traveling salesperson, graph coloring, knapsack, set cover) are NP-complete. We show a problem is NP-complete by **reduction** from a known one. When a problem is intractable, we do not give up — we use **approximation algorithms** that run in polynomial time and provably come within a guaranteed factor of optimal.
+
+### 15.2 Business context
+
+Recognizing NP-completeness is one of the most valuable practical skills an engineer can have: it tells you to **stop hunting for an exact efficient algorithm** that almost certainly does not exist, and to pivot to approximation, heuristics, or constraints. A huge number of real problems are NP-complete — **vehicle routing** and logistics (TSP), **scheduling** and timetabling, **bin packing** and resource allocation, **register allocation** in compilers (graph coloring), and circuit/SAT-based verification. The response is not despair but engineering: **approximation algorithms** with proven bounds (a 2-approximation for vertex cover; a `(1+ε)` scheme for subset-sum), **heuristics** (simulated annealing, genetic algorithms) that work well in practice, **exact solvers** (modern SAT/ILP solvers) that handle real instances despite worst-case exponential bounds, and **fixed-parameter** algorithms when a key parameter is small. Knowing the boundary turns a hopeless "make it fast" task into a tractable "make it good enough, provably."
+
+### 15.3 Theoretical concepts: P, NP, completeness, and reduction
+
+```mermaid
+flowchart TB
+    p["P: solvable in polynomial time"] --> np["NP: a solution is VERIFIABLE in polynomial time"]
+    np --> npc["NP-complete: hardest in NP; all NP reduces to it"]
+    npc --> red["Prove NP-completeness by REDUCTION from a known NP-complete problem"]
+    npc --> resp["Intractable in practice -> approximate / heuristic / restrict"]
+    resp --> apx["Approximation: polynomial time, provably within a factor of OPT"]
+```
+
+The key relationships: **P ⊆ NP** (solving implies verifying), and **NP-complete** problems are those in NP to which *every* NP problem reduces in polynomial time. To prove a new problem `X` is NP-complete, you (1) show `X ∈ NP` (a solution is checkable quickly) and (2) **reduce** a known NP-complete problem to `X` — transform its instances into `X`'s such that the answers agree — proving `X` is at least as hard. The Cook–Levin theorem gives the first NP-complete problem (SAT) to bootstrap from. Since no polynomial algorithm is known for any NP-complete problem (and one would collapse them all), the engineering response is **approximation**: a polynomial algorithm whose output is guaranteed within a factor `ρ` of optimal (e.g. ≤ 2× for vertex cover), trading exactness for tractability with a *proven* quality bound.
+
+### 15.4 Architecture: responding to an intractable problem
+
+```mermaid
+flowchart TB
+    detect["Suspect intractability? Try to reduce a known NP-complete problem to yours"] --> conf["Confirmed NP-complete"]
+    conf --> approx["Approximation algorithm with a proven ratio"]
+    conf --> heur["Heuristic / metaheuristic (annealing, genetic) — no guarantee, good in practice"]
+    conf --> exact["Exact solver (SAT/ILP) or fixed-parameter algorithm when an input parameter is small"]
+    conf --> restrict["Restrict the input (special graph classes, small dimensions)"]
+```
+
+Once a problem is identified as NP-complete, you choose a coping strategy by what the application tolerates. If you need a **provable quality guarantee**, use an **approximation algorithm**. If you only need good answers in practice, use a **heuristic/metaheuristic**. If instances are moderate and you need *exact* answers, modern **SAT/ILP/CP solvers** routinely crack NP-complete instances with thousands of variables despite the worst-case bound. If a key parameter is small (treewidth, solution size), a **fixed-parameter tractable** algorithm may be exact and fast. And often the real instances belong to a **restricted class** (interval graphs, planar graphs, low dimension) where a polynomial algorithm *does* exist. The skill is matching the coping strategy to the constraints, not insisting on an impossible exact-and-fast solution.
+
+### 15.5 Real example
+
+**Scenario.** A delivery company must route a driver through a set of stops with minimum total distance — the **traveling salesperson problem (TSP)**.
+
+**Problem.** TSP is **NP-complete** (its optimization form NP-hard); the exact optimum needs, in the worst case, time exponential in the number of stops, so it is infeasible to solve exactly for hundreds of stops.
+
+**Solution.** Stop seeking the exact optimum. For metric TSP (distances obey the triangle inequality), use a **2-approximation**: build a minimum spanning tree (Part VII), do a preorder walk, and shortcut repeats — the resulting tour is provably at most twice the optimal length, in polynomial time.
+
+**Implementation.**
+
+```text
+tsp_2_approx(cities):                         # metric TSP (triangle inequality)
+    T = minimum_spanning_tree(cities)          # Prim/Kruskal — Part VII
+    tour = preorder_walk(T, root=cities[0])    # DFS visit order of the MST
+    tour = remove_duplicates(tour)             # "shortcut" repeated visits
+    return tour + [tour[0]]                     # return to start
+
+# Guarantee: cost(tour) <= 2 * cost(OPT).  Why: MST cost <= OPT (dropping an
+# edge of the optimal tour leaves a spanning tree), a full walk costs 2*MST,
+# and shortcutting only helps under the triangle inequality.  Polynomial time.
+```
+
+**Result.** The company gets routes provably within 2× of optimal in polynomial time, where computing the exact optimum was infeasible — and in practice the tours are far better than the worst-case bound. The approximation reuses the MST algorithm from Part VII, showing how the curriculum composes.
+
+**Future improvements.** **Christofides' algorithm** improves the metric-TSP bound to **1.5×** (MST + minimum-weight matching on odd-degree vertices); for real fleets, industrial solvers (LKH heuristic, Google OR-Tools, ILP with cutting planes) get within a fraction of a percent of optimal on thousands of stops despite the NP-hardness.
+
+### 15.6 Exercises
+
+1. Define P, NP, and NP-complete, and state what P = NP would mean.
+2. What two things must you show to prove a problem NP-complete?
+3. What does a "2-approximation" guarantee, and why is the MST-based TSP tour one?
+4. List four engineering responses to an NP-complete problem and when each fits.
+
+### 15.7 Challenges
+
+- **Challenge.** Implement the MST-based 2-approximation for metric TSP and compare its tour length to the exact optimum (brute force) on small instances (≤ 10 cities) to confirm it stays within 2×. Then scale to hundreds of cities where brute force is impossible and observe the approximation still running in polynomial time. Optionally add Christofides and compare the 1.5× bound.
+
+### 15.8 Checklist
+
+- [ ] I try to recognize NP-completeness (via reduction) before chasing an exact efficient algorithm.
+- [ ] I distinguish "verifiable in polynomial time" (NP) from "solvable in polynomial time" (P).
+- [ ] I choose an approximation with a proven ratio when I need a quality guarantee.
+- [ ] I consider exact solvers (SAT/ILP) or FPT algorithms for moderate or low-parameter instances.
+- [ ] I check whether my real inputs fall in a tractable restricted class.
+
+### 15.9 Best practices
+
+- Reduce from a known NP-complete problem to confirm intractability before pivoting.
+- Prefer approximation algorithms with proven bounds when correctness-quality must be guaranteed.
+- Use mature SAT/ILP/CP solvers for exact answers on real-world-sized instances.
+- Exploit structure: restricted input classes often admit polynomial exact algorithms.
+
+### 15.10 Anti-patterns
+
+- Searching indefinitely for an efficient *exact* algorithm for an NP-complete problem.
+- Deploying an unbounded heuristic where a provable approximation ratio was required.
+- Assuming worst-case exponential means "unsolvable in practice" (modern solvers often succeed).
+- Ignoring that the real instances may be a special, tractable case.
+
+### 15.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| No efficient exact algorithm found | Problem is (likely) NP-complete | Prove it by reduction; switch to approximation/heuristic |
+| Heuristic results vary wildly in quality | No approximation guarantee | Use an algorithm with a proven ratio |
+| Exact solver too slow on big instances | Worst-case exponential blow-up | Try ILP/SAT tuning, decomposition, or approximation |
+| Approximation "too loose" for the use case | Generic bound on general inputs | Exploit input structure or use a tighter scheme (e.g. Christofides, PTAS) |
+
+### 15.12 References
+
+- T. Cormen, C. Leiserson, R. Rivest, C. Stein, *Introduction to Algorithms*, 4th ed. (MIT Press, 2022), ch. 34 "NP-Completeness" (§34.1 polynomial time, §34.2 polynomial-time verification, §34.3 reducibility, §34.5 NP-complete problems) and ch. 35 "Approximation Algorithms" (§35.1 vertex cover, §35.2 the traveling-salesperson problem); survey: ch. 26 "Parallel Algorithms", ch. 27 "Online Algorithms", ch. 33 "Machine-Learning Algorithms" — ISBN 978-0262046305.
+- M. Garey, D. Johnson, *Computers and Intractability: A Guide to the Theory of NP-Completeness* (W. H. Freeman, 1979) — ISBN 978-0716710455.
+
+---
+
+> **End of Part VIII.** The frontier rewards the same instincts as the rest of the field. **String matching** (KMP, `O(n+m)`), **number-theoretic algorithms** (Euclid, modular exponentiation, RSA), and the **FFT** (`O(n log n)` convolution) each collapse a naive quadratic or exponential cost through preprocessing, algebraic structure, or divide and conquer — and they run the search, cryptography, and signal processing of modern infrastructure. The theory of **NP-completeness** marks the boundary of efficient solvability: thousands of problems are NP-complete (proved by **reduction**), and the professional response is not to chase the impossible but to **approximate** with proven bounds, use exact solvers on real instances, or exploit input structure. With this, the guide spans the full curriculum — from asymptotic analysis to the limits of computation itself.
