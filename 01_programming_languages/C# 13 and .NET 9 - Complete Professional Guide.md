@@ -79,7 +79,7 @@ Progressive depth across five maturity levels:
 19. ASP.NET Core minimal APIs — overview
 20. EF Core overview, testing (xUnit), performance, and publishing/AOT
 
-> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Parts I–V (Ch. 1–12). **In progress:** Parts VI–VIII.
+> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Parts I–VI (Ch. 1–14). **In progress:** Parts VII–VIII.
 
 ---
 
@@ -1508,4 +1508,224 @@ var lengths = p.Run(["a", "bb", "ccc"], s => s.Length).ToList();  // pass a Func
 
 > **End of Part V.** **LINQ** queries any sequence declaratively with deferred execution, built on C#'s functional core: **delegates** (`Func`/`Action`) and **lambdas** treat behavior as a value, **events** provide publish/subscribe, and **expression trees** represent code as data for providers to translate. Part VI covers **asynchronous programming** — `async`/`await`, `Task`, cancellation, and parallelism.
 
-<!--APPEND-PART-VI-->
+---
+
+## Part VI – Asynchronous Programming
+
+Part VI covers how C# stays responsive and scalable under I/O: the **`async`/`await`** model over **`Task`**, and the tools around it — **cancellation**, **`IAsyncEnumerable`**, and **parallelism**.
+
+---
+
+## Chapter 13 — `async`/`await`, `Task`, and `ValueTask`
+
+### 13.1 Introduction
+
+A **`Task`** represents an operation that completes in the future; a **`Task<T>`** also yields a value. The **`async`/`await`** keywords let you write asynchronous code that *reads* like synchronous code: `await` suspends the method until the awaited task completes, then resumes — **without blocking the thread** while waiting. This is what keeps a server free to handle other requests during I/O. **`ValueTask`/`ValueTask<T>`** is a lighter-weight alternative for hot paths that often complete synchronously, avoiding a `Task` allocation.
+
+### 13.2 Business context
+
+Most server work is I/O-bound — database calls, HTTP requests — where the thread would otherwise sit idle. Blocking a thread per in-flight request caps throughput and wastes memory; `async`/`await` releases the thread during the wait, so a small thread pool serves far more concurrent requests. The payoff is **scalability** (more load on the same hardware) and **responsiveness** (UIs and services don't freeze). Getting the model right — and avoiding its classic deadlocks — directly affects how much traffic a service can carry.
+
+### 13.3 Theoretical concepts
+
+```mermaid
+flowchart LR
+    call["await DoIoAsync()"] --> suspend["method suspends, thread released"]
+    suspend --> io["I/O runs (no thread held)"]
+    io --> resume["task completes -> method resumes"]
+    note["async/await frees the thread during the wait; it is NOT a new thread"]
+```
+
+`async` marks a method that may `await`; `await` unwraps a `Task<T>` to its `T` once ready, releasing the thread meanwhile. Go **async all the way** — an async method should be awaited by an async caller; do **not** call `.Result` or `.Wait()` on a task, which blocks the thread and can **deadlock**. Return `Task`/`Task<T>` from async methods (and `ValueTask<T>` for frequently-synchronous hot paths). `async` is about freeing threads during I/O, not about creating threads.
+
+### 13.4 Architecture: don't block on async
+
+```mermaid
+flowchart TB
+    good["async caller -> await -> async callee"] --> ok["thread freed, scales"]
+    bad[".Result / .Wait() on a Task"] --> risk["blocked thread, possible deadlock"]
+    note["Async all the way; never block on async code"]
+```
+
+The rule that prevents most async pain: await async calls all the way up the stack; never bridge async-to-sync with `.Result`/`.Wait()`.
+
+### 13.5 Real example
+
+**Scenario.** A request handler must call two downstream services and combine results.
+
+**Problem.** Calling them synchronously blocks a thread per request, capping throughput; blocking on `.Result` risks deadlock.
+
+**Solution.** `await` the calls (concurrently where independent), keeping the thread free.
+
+**Implementation.**
+
+```csharp
+public async Task<Profile> GetProfileAsync(int userId, CancellationToken ct = default)
+{
+    Task<Orders> orders = _orderClient.GetAsync(userId, ct);     // start both...
+    Task<Credit> credit = _creditClient.GetAsync(userId, ct);    // ...concurrently
+    await Task.WhenAll(orders, credit);                          // await both, thread free meanwhile
+    return new Profile(orders.Result, credit.Result);            // .Result is safe AFTER completion
+}
+// caller awaits: var p = await GetProfileAsync(id);  — async all the way
+```
+
+**Result.** Both downstream calls run concurrently and the handling thread is released during the I/O, so a small thread pool serves many concurrent requests. No thread is blocked waiting, and there's no `.Result` on an incomplete task (using it after `WhenAll` is safe). Throughput scales with load instead of with thread count.
+
+**Future improvements.** Use `ValueTask<T>` on hot paths that frequently complete synchronously; flow the `CancellationToken` (Ch. 14) through every async call.
+
+### 13.6 Exercises
+
+1. Does `await` create a new thread? What does it actually do?
+2. Why are `.Result`/`.Wait()` on a `Task` dangerous?
+3. When is `ValueTask<T>` preferable to `Task<T>`?
+
+### 13.7 Challenges
+
+- **Challenge.** Write an async method that fetches three independent resources concurrently with `Task.WhenAll` and returns a combined result; ensure callers await it rather than blocking.
+
+### 13.8 Checklist
+
+- [ ] My async methods are awaited all the way up (no `.Result`/`.Wait()`).
+- [ ] I return `Task`/`Task<T>` (or `ValueTask<T>` on hot paths).
+- [ ] I run independent async work concurrently (`Task.WhenAll`).
+- [ ] I understand `await` frees the thread rather than spawning one.
+
+### 13.9 Best practices
+
+- Go async all the way; never block on async code.
+- Run independent awaits concurrently with `Task.WhenAll`.
+- Use `ValueTask<T>` for frequently-synchronous hot paths.
+
+### 13.10 Anti-patterns
+
+- `.Result`/`.Wait()` bridging async to sync (deadlocks, blocked threads).
+- `async void` (except event handlers) — unobservable exceptions.
+- Awaiting sequentially when calls are independent.
+
+### 13.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| App deadlocks under load | Blocking on a Task (`.Result`/`.Wait()`) | Make the path async all the way |
+| Low throughput, threads exhausted | Synchronous blocking I/O | Use `async`/`await` for I/O |
+| Unhandled exception lost | `async void` | Return `Task` and await it |
+
+### 13.12 References
+
+- Microsoft, "Asynchronous programming with async and await": https://learn.microsoft.com/dotnet/csharp/asynchronous-programming/.
+- S. Cleary, *Concurrency in C# Cookbook*, 2nd ed. (O'Reilly, 2019) — ISBN 978-1492054504.
+
+---
+
+## Chapter 14 — Cancellation, `IAsyncEnumerable`, and parallelism
+
+### 14.1 Introduction
+
+Real async code must be **cancellable**, **streamable**, and sometimes **parallel**. A **`CancellationToken`** is passed through async calls so a slow or abandoned operation can be stopped cooperatively. **`IAsyncEnumerable<T>`** with **`await foreach`** streams items asynchronously — ideal for paging or reading a feed without buffering everything. For CPU-bound work, **parallelism** (`Parallel.ForEachAsync`, PLINQ) uses multiple cores — distinct from `async` (which is about I/O, not cores).
+
+### 14.2 Business context
+
+Without cancellation, a user who navigates away or a request that times out leaves work running and resources held — wasted compute and potential overload. Streaming large results with `IAsyncEnumerable` keeps memory flat instead of loading millions of rows at once. Parallelism turns multi-core hardware into faster CPU-bound processing. Each addresses a concrete cost: wasted work, memory pressure, and underused cores. Using the right one keeps services efficient and resilient under real-world conditions.
+
+### 14.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    ct["CancellationToken flows through calls"] --> stop["ct.ThrowIfCancellationRequested / honored by APIs"]
+    stream["IAsyncEnumerable<T> + await foreach"] --> lazy["items produced/consumed one at a time"]
+    par["Parallel.ForEachAsync / PLINQ"] --> cores["CPU-bound work across cores"]
+```
+
+**Cancellation** is cooperative: you pass a `CancellationToken` and APIs (or your loops via `ThrowIfCancellationRequested`) observe it, throwing `OperationCanceledException` when signaled. **`IAsyncEnumerable<T>`** yields items with `await foreach`, so producer and consumer stream without buffering. **Parallelism** is for **CPU-bound** work — distributing iterations across cores — and is orthogonal to `async`/`await`, which is for **I/O-bound** waiting. Don't reach for parallelism on I/O-bound work; use concurrent awaits instead.
+
+### 14.4 Architecture: cancel, stream, parallelize as needed
+
+```mermaid
+flowchart LR
+    io["I/O-bound + cancellable"] --> await["async/await + CancellationToken"]
+    big["large result set"] --> stream["IAsyncEnumerable / await foreach"]
+    cpu["CPU-bound batch"] --> parallel["Parallel.ForEachAsync / PLINQ"]
+```
+
+Match the tool to the problem: tokens for cancellation, async streams for large/continuous data, parallelism only for CPU-bound work.
+
+### 14.5 Real example
+
+**Scenario.** Stream and process a large, paged feed, stoppable on request.
+
+**Problem.** Loading all pages into memory is wasteful, and an abandoned request should stop work.
+
+**Solution.** Expose the feed as **`IAsyncEnumerable`** and thread a **`CancellationToken`** through.
+
+**Implementation.**
+
+```csharp
+public async IAsyncEnumerable<Item> StreamFeedAsync(
+    [EnumeratorCancellation] CancellationToken ct = default)
+{
+    int page = 0;
+    while (true)
+    {
+        var batch = await _client.GetPageAsync(page++, ct);   // honors cancellation
+        if (batch.Count == 0) yield break;
+        foreach (var item in batch) yield return item;        // stream, no full buffering
+    }
+}
+
+// consumer:
+await foreach (var item in StreamFeedAsync(ct))               // cancellable, streaming
+    Process(item);
+```
+
+**Result.** Items flow one page at a time with flat memory, and signaling the token stops the fetch promptly (no wasted downstream work). The consumer reads with `await foreach`, never holding the whole feed. If processing were CPU-bound and independent, the batch could instead be handed to `Parallel.ForEachAsync` to use all cores.
+
+**Future improvements.** Set timeouts via `CancellationTokenSource(TimeSpan)`; for CPU-bound post-processing, batch into `Parallel.ForEachAsync` with a bounded degree of parallelism.
+
+### 14.6 Exercises
+
+1. How is cancellation cooperative, and how does an operation observe a token?
+2. What does `IAsyncEnumerable<T>` + `await foreach` give you over returning a full list?
+3. Why is parallelism the wrong tool for I/O-bound work?
+
+### 14.7 Challenges
+
+- **Challenge.** Write a cancellable `IAsyncEnumerable<int>` that yields numbers with a delay; consume it with `await foreach`, cancelling after a timeout via a `CancellationTokenSource`.
+
+### 14.8 Checklist
+
+- [ ] I flow a `CancellationToken` through async calls.
+- [ ] I stream large/continuous data with `IAsyncEnumerable`/`await foreach`.
+- [ ] I use parallelism only for CPU-bound work.
+- [ ] I use concurrent awaits (not parallelism) for I/O-bound concurrency.
+
+### 14.9 Best practices
+
+- Accept and pass a `CancellationToken` in async APIs.
+- Stream large results instead of buffering them.
+- Reserve `Parallel`/PLINQ for CPU-bound, independent work.
+
+### 14.10 Anti-patterns
+
+- Ignoring cancellation tokens (work that can't be stopped).
+- Buffering huge result sets instead of streaming.
+- Using parallelism for I/O-bound work (use concurrent awaits).
+
+### 14.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Abandoned work keeps running | No cancellation token observed | Flow and honor a `CancellationToken` |
+| High memory on large queries | Buffering the whole result | Stream with `IAsyncEnumerable` |
+| No speedup from `Parallel` on I/O | Wrong tool for I/O-bound work | Use concurrent `async` awaits instead |
+
+### 14.12 References
+
+- Microsoft, "Cancellation", "Async streams (`IAsyncEnumerable`)", "Parallel programming": https://learn.microsoft.com/dotnet/standard/parallel-programming/.
+- S. Cleary, *Concurrency in C# Cookbook*, 2nd ed. (O'Reilly, 2019) — ISBN 978-1492054504.
+
+---
+
+> **End of Part VI.** C# scales under I/O with **`async`/`await`** over **`Task`** (freeing threads during waits, async all the way, no `.Result`), made production-ready with **cancellation tokens**, **`IAsyncEnumerable`** streaming, and **parallelism** for CPU-bound work. Part VII covers **robust code** — exceptions and error strategy, nullable analysis, and `Span<T>`/`Memory<T>`.
+
+<!--APPEND-PART-VII-->
