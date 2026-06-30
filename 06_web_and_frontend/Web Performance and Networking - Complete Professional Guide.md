@@ -142,7 +142,7 @@ Result: per-request latency cut ~15x; page feels far faster, same bandwidth.
 
 ### 1.12 References
 
-- I. Grigorik, *High Performance Browser Networking* (O'Reilly, 2013) — ISBN 978-1449344764; also https://hpbn.co.
+- I. Grigorik, *High Performance Browser Networking* (O'Reilly, 2013) — Ch. 1 (Primer on Latency and Bandwidth). ISBN 978-1449344764; also https://hpbn.co.
 - web.dev, "Core Web Vitals": https://web.dev/vitals/.
 
 ---
@@ -242,7 +242,7 @@ HTTP/2-3:      smaller cacheable chunks over ONE multiplexed connection
 
 ### 2.12 References
 
-- I. Grigorik, *High Performance Browser Networking* (O'Reilly, 2013) — ISBN 978-1449344764; also https://hpbn.co.
+- I. Grigorik, *High Performance Browser Networking* (O'Reilly, 2013) — Ch. 9 (Brief History of HTTP), Ch. 11 (HTTP/1.x), Ch. 12 (HTTP/2). HTTP/3 postdates the book — see MDN below. ISBN 978-1449344764; also https://hpbn.co.
 - MDN, "Evolution of HTTP": https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Evolution_of_HTTP.
 
 ---

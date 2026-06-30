@@ -153,7 +153,7 @@ flowchart LR
 
 ### 1.12 References
 
-- L. Wroblewski, *Web Form Design* (Rosenfeld Media, 2008) — ISBN 978-1933820248.
+- L. Wroblewski, *Web Form Design* (Rosenfeld Media, 2008) — Ch. 4 (Labels — alignment and top-aligned labels), and Section One (Form Structure) on single-column layout. ISBN 978-1933820248.
 - Baymard Institute, form usability research: https://baymard.com/blog.
 
 ---
@@ -246,7 +246,7 @@ After:  email, password                              (2 fields)
 
 ### 2.12 References
 
-- L. Wroblewski, *Web Form Design* (Rosenfeld Media, 2008) — ISBN 978-1933820248.
+- L. Wroblewski, *Web Form Design* (Rosenfeld Media, 2008) — Ch. 10 (Unnecessary Inputs), Ch. 13 (Gradual Engagement). ISBN 978-1933820248.
 - Baymard Institute checkout research: https://baymard.com/checkout-usability.
 
 ---
