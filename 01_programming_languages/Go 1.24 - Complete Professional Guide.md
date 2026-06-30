@@ -151,7 +151,7 @@ func fetchAll(urls []string) []string {
 
 ### 1.12 References
 
-- A. Donovan, B. Kernighan, *The Go Programming Language* (Addison-Wesley, 2015) — ISBN 978-0134190440.
+- A. Donovan, B. Kernighan, *The Go Programming Language* (Addison-Wesley, 2015), ch. 8 "Goroutines and Channels" — ISBN 978-0134190440.
 - Go docs, "Effective Go" & concurrency: https://go.dev/doc/effective_go.
 
 ---
@@ -253,7 +253,7 @@ func loadConfig(path string) (*Config, error) {
 
 ### 2.12 References
 
-- A. Donovan, B. Kernighan, *The Go Programming Language* (Addison-Wesley, 2015) — ISBN 978-0134190440.
+- A. Donovan, B. Kernighan, *The Go Programming Language* (Addison-Wesley, 2015), §5.4 "Errors" — ISBN 978-0134190440.
 - Go blog, "Error handling and Go" / "Working with Errors": https://go.dev/blog/.
 
 ---

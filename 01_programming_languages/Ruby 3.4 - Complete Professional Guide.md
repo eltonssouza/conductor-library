@@ -143,7 +143,7 @@ true.class    # TrueClass
 
 ### 1.12 References
 
-- N. Rappin, D. Thomas, *Programming Ruby 3.3* (Pragmatic Bookshelf, 2024) — ISBN 978-1680509878.
+- N. Rappin, D. Thomas, *Programming Ruby 3.3* (Pragmatic Bookshelf, 2024), ch. 3 "Classes, Objects, and Variables" — ISBN 978-1680509878.
 - Ruby docs: https://ruby-doc.org; https://www.ruby-lang.org.
 
 ---
@@ -240,7 +240,7 @@ File.open("out.txt", "w") { |f| f.puts(result) }
 
 ### 2.12 References
 
-- N. Rappin, D. Thomas, *Programming Ruby 3.3* (Pragmatic Bookshelf, 2024) — ISBN 978-1680509878.
+- N. Rappin, D. Thomas, *Programming Ruby 3.3* (Pragmatic Bookshelf, 2024), ch. 4 "Collections, Blocks, and Iterators" — ISBN 978-1680509878.
 - Ruby `Enumerable` docs: https://ruby-doc.org/core/Enumerable.html.
 
 ---

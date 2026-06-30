@@ -147,7 +147,7 @@ b();        // 1     (b's independent count)
 
 ### 1.12 References
 
-- M. Haverbeke, *Eloquent JavaScript*, 4th ed. (No Starch Press, 2024) — ISBN 978-1718503069; https://eloquentjavascript.net.
+- M. Haverbeke, *Eloquent JavaScript*, 4th ed. (No Starch Press, 2024), ch. 3 "Functions" — ISBN 978-1718503069; https://eloquentjavascript.net.
 - MDN, "Closures": https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures.
 
 ---
@@ -243,8 +243,8 @@ else if (n === 0) { /* exact, predictable match */ }
 
 ### 2.12 References
 
-- M. Haverbeke, *Eloquent JavaScript*, 4th ed. (No Starch Press, 2024) — ISBN 978-1718503069.
-- D. Crockford, *JavaScript: The Good Parts* (O'Reilly, 2008) — ISBN 978-0596517748; MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript.
+- M. Haverbeke, *Eloquent JavaScript*, 4th ed. (No Starch Press, 2024), ch. 1 "Values, Types, and Operators" — ISBN 978-1718503069.
+- D. Crockford, *JavaScript: The Good Parts* (O'Reilly, 2008), ch. 3–4 (objects, functions) — ISBN 978-0596517748; MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript.
 
 ---
 

@@ -147,7 +147,7 @@ Money m = new Money(500, "BRL");
 
 ### 1.12 References
 
-- C. Horstmann, *Core Java*, Vol. I & II, 12th ed. (Oracle Press / Pearson, 2021–2022) — ISBN 978-0137673629.
+- C. Horstmann, *Core Java*, Vol. I & II, 12th ed. (Oracle Press / Pearson, 2021–2022), Vol. I ch. 1–3 (language fundamentals on the JVM) — ISBN 978-0137673629.
 - Java SE documentation: https://docs.oracle.com/en/java/.
 
 ---
@@ -242,7 +242,7 @@ for (String w : text.split("\\s+")) {
 
 ### 2.12 References
 
-- C. Horstmann, *Core Java*, Vol. I, 12th ed. — ISBN 978-0137673629.
+- C. Horstmann, *Core Java*, Vol. I, 12th ed., ch. 8 "Generics" & ch. 9 "Collections" — ISBN 978-0137673629.
 - Java Collections tutorial: https://docs.oracle.com/javase/tutorial/collections/.
 
 ---

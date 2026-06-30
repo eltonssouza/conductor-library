@@ -162,7 +162,7 @@ print(counts.most_common(2))       # [('the', 3), ('cat', 2)]
 
 ### 1.12 References
 
-- E. Matthes, *Python Crash Course*, 3rd ed. (No Starch Press, 2023) — ISBN 978-1718502703.
+- E. Matthes, *Python Crash Course*, 3rd ed. (No Starch Press, 2023), ch. 3–6 (lists, dictionaries) — ISBN 978-1718502703.
 - Python docs, "Data Structures": https://docs.python.org/3/tutorial/datastructures.html.
 
 ---
@@ -260,7 +260,7 @@ result = [n ** 2 for n in nums if n % 2 == 0]   # [4, 16, 36]
 
 ### 2.12 References
 
-- E. Matthes, *Python Crash Course*, 3rd ed. (No Starch Press, 2023) — ISBN 978-1718502703.
+- E. Matthes, *Python Crash Course*, 3rd ed. (No Starch Press, 2023), ch. 4 "Working with Lists" (list comprehensions) — ISBN 978-1718502703.
 - "PEP 8 – Style Guide for Python Code": https://peps.python.org/pep-0008/.
 
 ---
