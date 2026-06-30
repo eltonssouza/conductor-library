@@ -60,7 +60,7 @@ software_dev: core
 10. Batch and stream processing
 11. Designing systems of integration (the "unbundled database")
 
-> **Status of this guide:** phased delivery. **Ready:** Parts I–V (Ch. 1–9). **In progress:** Parts VI–VII.
+> **Status of this guide:** complete. **Ready:** Parts I–VI (Ch. 1–11).
 
 ---
 
@@ -1075,4 +1075,217 @@ etcd/ZooKeeper:
 
 > **End of Part V.** You can now reason about agreement despite failure: the **consistency spectrum** from eventual through causal to linearizable (stronger = easier to use, costlier in latency and availability), and **consensus** — majority-quorum protocols (Raft/Paxos/ZAB) that underpin leader election, uniqueness, and atomic commit, and that correctly pause rather than split-brain when quorum is lost. The pragmatic rule: pick the weakest model each dataset tolerates and delegate the rest to a proven coordinator. **Part VI — Derived & Streaming Data** (Chapters 10–11) turns from storing truth to *deriving* value from it: batch and stream processing, and composing whole systems as flows of data.
 
-<!--APPEND-PART-VI-->
+---
+
+## Part VI – Derived & Streaming Data
+
+A mature data system has one source of truth and many **derived** views built from it — search indexes, caches, aggregates, recommendation graphs. Part VI is about *deriving* value: processing data in **batches** (bounded, historical) and as **streams** (unbounded, continuous), and then composing whole systems as **flows of data** between specialized stores — the "unbundled database." This is where everything earlier (storage, replication, encoding, consistency) comes together into an architecture.
+
+---
+
+## Chapter 10 — Batch and stream processing
+
+### 10.1 Introduction
+
+There are two ways to process data at scale, distinguished by the *boundedness* of their input. **Batch processing** consumes a fixed, finite dataset (yesterday's logs, the full table) and produces an output — high throughput, not latency-sensitive, easy to re-run. **Stream processing** consumes an **unbounded**, continuous input (events as they happen) and produces continuously updated output — low latency, but it must reason about time and completeness because the input never ends. Modern systems use both, and the deep insight is that they are two points on one continuum, not opposites.
+
+### 10.2 Business context
+
+Batch and stream are how raw data becomes the things a business actually uses: reports, search indexes, fraud signals, live dashboards, recommendations. Batch gives correct, reproducible answers over complete data (the nightly financial roll-up); streaming gives timely answers that update as events arrive (the live fraud alert). Choosing the right one — and increasingly, combining them — directly sets the **latency vs. completeness** of every derived product. Picking streaming for a job that needs exactness, or batch for one that needs immediacy, is a costly mismatch.
+
+### 10.3 Theoretical concepts: bounded vs unbounded
+
+```mermaid
+flowchart TB
+    batch["Batch: bounded input -> run to completion -> output<br/>high throughput, reproducible, re-runnable (MapReduce/Spark)"]
+    stream["Stream: unbounded input -> continuous output<br/>low latency; must handle event time, windows, watermarks (Kafka/Flink)"]
+    log["The event log unifies them: a stream is an unbounded log; a batch is a bounded slice of it"]
+```
+
+- **Batch** processing (MapReduce, Spark) reads complete input and is **deterministic and replayable** — a failed job just re-runs, and the same input yields the same output. Its functional, immutable-input style is why it's so robust.
+- **Stream** processing (Kafka Streams, Flink) handles events one at a time over an endless input, so it must answer "when is a window's result complete?" using **event time**, **windows**, and **watermarks** (see the sibling *Stream Processing* guide).
+- The unifying idea: an **append-only event log** is the common substrate. A stream is the log read as it grows; a batch is a bounded slice of the same log. This is why "batch vs stream" is converging.
+
+### 10.4 Architecture: derived state from an event log
+
+```mermaid
+flowchart LR
+    source["Source of truth: append-only event log (e.g. Kafka topic)"] --> sp["Stream processor"]
+    sp --> idx["Search index"]
+    sp --> cache["Cache / read model"]
+    sp --> agg["Aggregates / dashboard"]
+    source --> reprocess["Re-run from the log -> rebuild any derived view"]
+```
+
+Treat the **log as the source of truth** and every search index, cache, and aggregate as a **derived view** computed from it. This makes derived state **reproducible**: to fix a bug in a projection or add a new index, you don't migrate in place — you **reprocess the log from the start** and rebuild the view. Batch reprocesses the historical log; streaming keeps the view current as new events arrive. The same code path (or the *kappa architecture*'s single streaming path) can do both, which is why log-centric design has become the backbone of large data systems.
+
+### 10.5 Real example
+
+**Scenario.** A product needs a search index over orders, and the indexing logic has a bug that mis-tokenizes some fields.
+
+**Problem.** With state mutated in place, fixing the index means a risky, hard-to-verify in-place migration — and there's no clean way to rebuild from scratch.
+
+**Solution.** Make the **order event log** the source of truth and the search index a **derived view**. Fix the indexing code and **reprocess the log** to rebuild the index from a known-good input; keep it current with the streaming path going forward.
+
+**Implementation (log-as-truth, rebuildable view).**
+
+```text
+source of truth: orders.events  (append-only log, immutable)
+
+# fix the bug, then rebuild deterministically:
+batch job: read orders.events from offset 0 -> apply FIXED indexing -> write search_index_v2
+switch reads to search_index_v2 (atomic), drop v1
+stream job: continue applying new events to search_index_v2 to keep it current
+```
+
+**Result.** The index is rebuilt correctly from immutable history with no risky in-place migration; old and new indexes coexist during cutover; the streaming path keeps it live. Derived state became reproducible.
+
+**Future improvements.** Keep the log retention long enough to rebuild any view; add a contract test asserting the derived view matches a recomputation from the log.
+
+### 10.6 Exercises
+
+1. What distinguishes batch from stream processing, and why is batch easy to re-run?
+2. How does an append-only event log unify batch and streaming?
+3. Why does treating the log as source of truth make derived views reproducible?
+
+### 10.7 Challenges
+
+- **Challenge.** Pick a derived dataset you maintain (an index, a cache, an aggregate). Describe how you'd rebuild it from an event log after a logic fix, with zero in-place migration, and how the streaming path keeps it current.
+
+### 10.8 Checklist
+
+- [ ] I distinguish bounded (batch) from unbounded (stream) processing.
+- [ ] I treat an append-only log as the unifying substrate for both.
+- [ ] I model search indexes/caches/aggregates as derived, rebuildable views.
+- [ ] I can rebuild a derived view by reprocessing the log instead of migrating in place.
+
+### 10.9 Best practices
+
+- Keep one source of truth (ideally an event log) and derive everything else from it.
+- Make derived views rebuildable by reprocessing; retain the log long enough to do so.
+- Use batch for completeness/reproducibility, streaming for timeliness — over the same log.
+
+### 10.10 Anti-patterns
+
+- Mutating derived state in place, with no way to rebuild it cleanly.
+- Multiple independent sources of truth that drift apart.
+- Choosing streaming for a job that needs exact, reproducible batch results (or vice versa).
+
+### 10.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Derived view is wrong, scary to fix | State mutated in place, not derived | Make it a view; rebuild by reprocessing the log |
+| Reports disagree across systems | Multiple sources of truth | Designate one log/source; derive the rest |
+| Can't rebuild a view after a bug | Log retention too short | Increase retention; snapshot + log |
+
+### 10.12 References
+
+- M. Kleppmann, *Designing Data-Intensive Applications* (O'Reilly, 2017), Chapter 10 "Batch Processing" and Chapter 11 "Stream Processing" — ISBN 978-1449373320.
+- See also the sibling guide *Stream Processing* for event time, windows, and watermarks.
+
+---
+
+## Chapter 11 — Designing systems of integration (the "unbundled database")
+
+### 11.1 Introduction
+
+No single tool does everything well, so a real system is several specialized stores wired together: a relational system of record, a search index, a cache, a stream processor, an analytics warehouse. Viewed as a whole, these compose an **"unbundled database"** — the components a monolithic database hides internally (storage, indexes, replication, materialized views) are pulled apart into separate systems and **reconnected by streams of data**. This final chapter is about designing those seams deliberately so the assembled system stays consistent and evolvable.
+
+### 11.2 Business context
+
+The integration *between* systems — not any single store — is where large architectures succeed or fail. Done well, each tool does what it's best at and data flows reliably between them, so new capabilities (a new index, a new analytic) are added without re-platforming. Done badly, brittle point-to-point syncs and dual writes leave stores silently disagreeing, producing the worst class of bug: data that's wrong in one system and right in another, with no clear owner. Designing the dataflow is therefore the architect's highest-leverage job in a data-intensive system.
+
+### 11.3 Theoretical concepts: dataflow over dual writes
+
+```mermaid
+flowchart TB
+    dual["Dual writes: app writes to DB and to index/cache separately<br/>-> they diverge on partial failure (anti-pattern)"]
+    cdc["Change Data Capture: DB change log -> stream -> derived stores<br/>one ordered source of truth feeds all views"]
+    dual -. avoid .-> cdc
+```
+
+The naive way to keep two stores in sync is **dual writes** — the application writes to the database *and* the search index itself. This is fragile: any partial failure (one write succeeds, the other doesn't) leaves them permanently inconsistent, and concurrent dual writes can apply in different orders to each store. The robust alternative is **dataflow**: designate one **ordered source of truth** (a database with **Change Data Capture**, or an event log) and derive every other store from its change stream. Now there is a single ordering, failures are just "the consumer is behind" (it catches up), and adding a new derived store means replaying the stream.
+
+### 11.4 Architecture: CDC feeding derived stores
+
+```mermaid
+flowchart LR
+    db["System of record (DB)"] -->|change data capture| log["Ordered change stream / log"]
+    log --> search["Search index"]
+    log --> cache["Cache / read model"]
+    log --> warehouse["Analytics warehouse"]
+    log --> new["New derived store (replay the stream to backfill)"]
+```
+
+**Change Data Capture (CDC)** turns a database's own write log into an event stream other systems consume — the source of truth stays the database, but its changes propagate to every derived store **in order**. This is the unbundled database made concrete: the "materialized view maintenance" a monolithic DB does internally becomes an explicit stream pipeline you can observe, test, and extend. Adding a new index or warehouse is a matter of attaching a new consumer and replaying history to backfill — no dual writes, no drift. The design discipline is to keep these seams **idempotent** and **replayable** (Chapter 8) so a consumer can always rebuild from the log.
+
+### 11.5 Real example
+
+**Scenario.** An app keeps a PostgreSQL system of record and an Elasticsearch index; today the app writes to both directly.
+
+**Problem.** Under partial failures and concurrency, the two diverge — search shows products that no longer exist, or misses new ones — with no single owner of truth and no clean way to reconcile.
+
+**Solution.** Stop dual-writing. Make PostgreSQL the source of truth, capture its changes with **CDC** (e.g. Debezium → Kafka), and have a consumer keep Elasticsearch updated from that ordered stream. Backfill by replaying history.
+
+**Implementation (CDC pipeline replaces dual writes).**
+
+```text
+# before (fragile): app -> write PostgreSQL; app -> write Elasticsearch  (can diverge)
+
+# after (dataflow):
+PostgreSQL (source of truth)
+  -> CDC (Debezium) captures the WAL as an ordered change stream -> Kafka topic
+  -> consumer applies changes idempotently to Elasticsearch (keyed by primary key)
+# new index or warehouse later: attach a new consumer, replay the topic to backfill
+```
+
+**Result.** Search can no longer silently disagree with the database: every change flows from one ordered source, partial failures become "consumer lag" that self-heals, and adding derived stores is replay, not rework. The architecture is now an unbundled database with explicit, observable seams.
+
+**Future improvements.** Monitor consumer lag as an SLI; make every consumer idempotent (keyed upserts); add a periodic reconciliation that recomputes a derived store from the log and diffs it against the live one.
+
+### 11.6 Exercises
+
+1. Why are dual writes fragile, and what two failure modes do they cause?
+2. How does Change Data Capture provide a single ordering for all derived stores?
+3. Why does log-centric dataflow make adding a new derived store easy?
+
+### 11.7 Challenges
+
+- **Challenge.** Find a place where your app dual-writes to two stores. Redesign it as a CDC/event-log dataflow: name the source of truth, the change stream, the idempotent consumer, and how you'd backfill a brand-new derived store.
+
+### 11.8 Checklist
+
+- [ ] I designate one ordered source of truth per dataset.
+- [ ] I derive other stores from a change stream, not dual writes.
+- [ ] My stream consumers are idempotent and replayable.
+- [ ] I can add a derived store by attaching a consumer and replaying history.
+
+### 11.9 Best practices
+
+- Replace dual writes with CDC / event-log dataflow from a single source of truth.
+- Keep every seam idempotent and replayable; monitor consumer lag.
+- Add periodic reconciliation to detect and heal any drift.
+
+### 11.10 Anti-patterns
+
+- Dual writes from the application to multiple stores.
+- Point-to-point sync spaghetti with no single source of truth.
+- Non-idempotent consumers that can't safely replay or recover.
+
+### 11.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Search/cache disagrees with the database | Dual writes diverged | Switch to CDC dataflow from one source of truth |
+| Derived store stuck/behind | Consumer lag or failure | Monitor lag; resume/replay the idempotent consumer |
+| Duplicates after a replay | Non-idempotent consumer | Make writes keyed upserts (idempotent) |
+
+### 11.12 References
+
+- M. Kleppmann, *Designing Data-Intensive Applications* (O'Reilly, 2017), Chapter 11 "Stream Processing" and Chapter 12 "The Future of Data Systems" (the unbundled database) — ISBN 978-1449373320.
+- Debezium documentation (Change Data Capture): https://debezium.io/documentation/.
+
+---
+
+> **End of guide.** You can now reason about data-intensive systems end to end. Start by naming the goals as measurable **reliability, scalability, and maintainability** and choosing a **data model** (Part I). Go one level down to **storage engines** and **schema-compatible encoding** (Part II), then **distribute** data with **replication** and **partitioning** (Part III). Keep it correct with **transactions** and honest assumptions about **unreliable networks, clocks, and pauses** (Part IV), and obtain strong guarantees through the **consistency spectrum** and **consensus** (Part V). Finally, **derive** value with **batch and stream processing** and compose the whole as an **unbundled database** of specialized stores wired by ordered dataflow (Part VI). The single thread through all of it: there is no best database, only the best fit for a stated load and a stated guarantee — and the architect's craft is making each trade-off deliberately, then deriving everything from one source of truth.
