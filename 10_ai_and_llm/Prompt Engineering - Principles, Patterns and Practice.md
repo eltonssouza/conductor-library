@@ -148,6 +148,23 @@ Output only a JSON object: {"category": "...", "confidence": "high" | "low"}
 
 Note what the skeleton does: it defines terms instead of assuming them, resolves the predictable ambiguity (bug + billing) *before* it occurs, demonstrates the degenerate input, and gives the model a legitimate exit ("other"/"low") so it never has to invent one. Most production prompt fixes consist of retrofitting one of these six components that the first draft skipped.
 
+```mermaid
+flowchart TB
+    role["1. Role / persona<br/>who is speaking"]
+    task["2. Task instruction<br/>verb-first directive"]
+    ctx["3. Context<br/>documents, data, definitions"]
+    ex["4. Examples<br/>input to ideal output, edge cases"]
+    out["5. Output specification<br/>format, schema, length, style"]
+    esc["6. Constraints and escape hatches<br/>boundaries plus failure behavior"]
+    role --> p["Assembled prompt"]
+    task --> p
+    ctx --> p
+    ex --> p
+    out --> p
+    esc --> p
+    p --> model["Model completes the document"]
+```
+
 ### 2.2 Instruction Hierarchy: System, User, Assistant
 
 Chat-tuned models receive messages tagged with roles, and the roles carry different authority. The **system prompt** establishes standing policy: identity, rules, tone, output contracts — things that should hold across every turn. The **user message** carries the immediate task and its data. **Assistant messages** are the model's own prior turns — which you can also write yourself, a powerful trick called prefilling (Chapter 6).
@@ -160,6 +177,16 @@ Models are explicitly trained to weight system instructions above user instructi
 Two common mistakes invert this. Stuffing per-request data into the system prompt destroys prompt caching (most providers cache the static prefix; a changing system prompt means you pay full price every call) and muddies the hierarchy. Conversely, putting standing policy in the user message makes it compete on equal footing with whatever else the user message contains, including injected text from retrieved documents. Keep policy in system, payload in user, and the seam between them clean.
 
 One more subtlety: the hierarchy is probabilistic, not cryptographic. A system rule is heavy evidence, not an access control. Models can and do violate system instructions under sufficient pressure from the rest of the context — which is why Chapter 9 insists that security-relevant guarantees live outside the model.
+
+```mermaid
+flowchart TB
+    sys["System prompt<br/>standing policy: identity, rules, output contract"]
+    usr["User message<br/>per-request task and data"]
+    asst["Assistant turns<br/>prior output, can be prefilled"]
+    sys -->|"outweighs"| usr
+    usr -->|"outweighs"| asst
+    note["Hierarchy is probabilistic, not cryptographic:<br/>heavy evidence, not an access control"]
+```
 
 ### 2.3 Ordering Effects: Where Things Go Matters
 
@@ -355,6 +382,18 @@ Few-shot is not free lunch, and modern models have shifted the trade-offs. Cases
 
 ### 4.7 Zero-Shot, Few-Shot, or Fine-Tune?
 
+```mermaid
+flowchart LR
+    z["Zero-shot<br/>engineered instructions, default"]
+    f["Few-shot<br/>2 to 8 examples"]
+    m["Many-shot<br/>tens to hundreds"]
+    ft["Fine-tuning<br/>for form, not knowledge"]
+    z -->|"evals show a gap"| f
+    f -->|"style resists description"| m
+    m -->|"plateau plus latency limits"| ft
+    ft -.->|"model upgrade demotes back down"| z
+```
+
 The escalation ladder, with the decision criteria practitioners actually use:
 
 1. **Zero-shot with engineered instructions.** Default. Cheapest to build, iterate, and maintain; no example set to keep in sync. Stay here while evals are green.
@@ -393,6 +432,15 @@ Three further consequences. CoT output is *also* an interpretability surface: yo
 > **Why:** bare step-by-step yields a free-form ramble that sometimes checks per-item limits, sometimes not, and routinely forgets cross-item rules (step 4) because nothing forced the pass. The scaffold converts "reason well" into "execute this procedure," which is checkable step by step — and the quoting requirement in step 2 grounds each judgment against the actual policy text, suppressing the model's tendency to apply a remembered generic expense policy instead of yours.
 
 Design rules for scaffolds: order steps so each depends only on previous ones; make steps *extractive* where possible (quote, list, count — verifiable operations) before *judgmental* ones (assess, decide); keep the final answer *after* all reasoning steps, never first (an answer emitted first turns the subsequent "reasoning" into post-hoc rationalization — the model defends its guess instead of deriving its answer); and separate reasoning from the machine-readable verdict with a clear marker or tags (`<thinking>` ... `<answer>` ...) so consumers can strip the reasoning without regex archaeology.
+
+```mermaid
+flowchart TB
+    s1["Extractive steps<br/>quote, list, count, verifiable"]
+    s2["Judgmental steps<br/>assess, decide, depend on extraction"]
+    s3["Verdict last<br/>machine-readable, never first"]
+    s1 --> s2 --> s3
+    sep["Separate reasoning from verdict<br/>thinking block, then answer block"]
+```
 
 ### 5.3 Decomposition Prompts: Solve the Pieces
 
@@ -597,6 +645,20 @@ Concreteness: invoices arrive as OCR'd text; you need structured records. The mo
 
 Notes on why this shape wins: the expensive model runs on 7% of volume; every stage's errors are *visible at its boundary* (the team's eval dashboard shows per-stage accuracy, so a regression points at a stage, not at "the pipeline"); and stage 4 being code embodies a rule worth promoting to principle: **never use a model to check what a deterministic function can check.** Models verify judgment; code verifies arithmetic, schemas, dates, and referential integrity, at zero cost and perfect reliability.
 
+```mermaid
+flowchart TB
+    in["OCR'd invoice text"] --> t["1. Triage, small model<br/>invoice? complete?"]
+    t -->|"not invoice or truncated"| out1["Route out or re-OCR"]
+    t --> seg["2. Block segmentation, small<br/>header, line items, totals, verbatim"]
+    seg --> ext["3. Field extraction, mid model<br/>one prompt per region, escape hatches"]
+    ext --> val{"4. Cross-field validation, code<br/>sums, dates, integrity"}
+    val -->|"pass, about 93 percent"| done["Structured record"]
+    val -->|"fail, about 7 percent"| rec["5. Reconciliation, large model<br/>text plus extraction plus violation"]
+    rec --> conf{"confidence"}
+    conf -->|"high"| done
+    conf -->|"low"| human["Human queue"]
+```
+
 ### 8.4 Draft–Critique–Revise
 
 For quality-sensitive generation, the strongest simple chain is three calls: **draft** (optimize for substance, explicitly deprioritize polish: "produce a complete draft; do not self-censor for length"), **critique** (a *separate* call, framed as reviewer, given the original requirements and the draft: "list specific, actionable problems — by severity, citing the requirement each violates; do not rewrite"), **revise** (given draft + critique: "apply each critique point or state in one line why you decline it; change nothing the critique doesn't touch").
@@ -667,6 +729,16 @@ The defenses with teeth live outside the prompt, and prompt engineers must know 
 - **Output validation as the last gate.** Allowlist URLs and recipients, schema-check structure, scan outputs for data that shouldn't leave (the exfiltration channel of most real indirect-injection attacks is the *output* — a markdown image URL with query-string payload, a "citation" link). Code checks what code can check (§8.3's principle, now as a security control).
 - **Detection and rate limits:** an injection classifier on inbound content catches the commodity attacks cheaply; monitoring for the §9.3 "embedded instructions detected" marker and for anomalous tool-call patterns catches some of the rest. Defense-in-depth means each layer leaks and the stack mostly doesn't.
 
+```mermaid
+flowchart LR
+    untrusted["Untrusted content<br/>web page, email, resume, PDF"] --> model["Model, the confused deputy<br/>wields your authority"]
+    sys["System plus user instructions<br/>your actual intent"] --> model
+    model --> gate{"Checkpoint<br/>least privilege plus confirm on consequence"}
+    gate -->|"safe, reversible"| act["Act: tools, output"]
+    gate -->|"irreversible, external"| confirm["Require user-visible confirmation"]
+    risk["injection risk = untrusted exposure times capability granted"]
+```
+
 ### 9.5 Graceful Degradation: Scripting the Failure Modes
 
 A robust prompt specifies behavior under *partial* failure, because "fail" is rarely binary in practice. The questions to answer in the prompt, with the answers most teams converge on:
@@ -712,6 +784,16 @@ The single practice separating teams that improve prompts from teams that churn 
 Building the eval set, practically. Start embarrassingly small — 20 cases beats zero by more than 500 beats 20 — and grow it from three sources: real production inputs (sampled across the distribution, not just interesting ones), every failure that reaches you (each bug becomes a case *before* it's fixed — test-first transfers intact), and the adversarial drill of §9.6. Each case carries input, expected output or grading criteria, and a tag taxonomy (which feature, which difficulty, which failure class) so results decompose. Grade with the cheapest mechanism that captures the criterion: exact match and schema checks for structured tasks; assertion functions for properties ("contains no URLs", "under 150 words", "cites only provided documents"); LLM-as-judge with a calibrated rubric (§8.5) only for genuinely judgment-shaped qualities. Most teams over-reach for judges; most criteria worth enforcing decompose substantially into string and schema assertions that cost nothing and never drift.
 
 Then the loop is mechanical: change prompt → run evals → read the *diff* of results, not the aggregate (a flat 85% hiding three fixed and three newly broken cases is a regression in disguise — new breakage on previously-passing cases is the highest-signal event in prompt development) → commit with the eval delta in the message. Aggregate score is for dashboards; the case-level diff is for engineering.
+
+```mermaid
+flowchart LR
+    change["Change prompt<br/>one thing at a time"] --> run["Run the fixed eval set"]
+    run --> diff["Read the result diff<br/>not the aggregate score"]
+    diff -->|"new breakage"| change
+    diff -->|"net improvement"| commit["Commit with the eval delta"]
+    commit --> grow["Grow the eval set<br/>prod inputs, every failure, adversarial drill"]
+    grow --> change
+```
 
 ### 10.3 Error Analysis: Taxonomy Before Remedy
 
@@ -814,6 +896,15 @@ intent is genuinely ambiguous on a choice that materially changes the outcome.
 ```
 
 Then tune against the two failure modes, which are asymmetric. **Over-asking** is friction: an agent that confirms every file read is a worse UI than a form. **Over-acting** is incidents: the agent that "helpfully" force-pushed, emailed the draft, or refactored the adjacent module. Since incident costs dominate friction costs, bias the boundary toward asking *for consequence* and toward acting *for information-gathering* — agents should be maximally autonomous at reading and minimally autonomous at writing-to-the-world. Two refinements that earn their keep: the **proposal pattern** (for consequential actions, produce the exact diff/email/command and present it for one-click approval — preserving momentum while keeping the human gate, and aligning with §9.4's confirmation defense), and **scope tripwires** ("if completing the task requires touching anything not named in the task, stop and confirm the expansion" — the cheap fix for the agent that turned a one-line fix into a repository-wide renaming).
+
+```mermaid
+flowchart TB
+    action["Proposed action"] --> q1{"Reversible and in task scope?"}
+    q1 -->|"yes, information gathering"| act["Act without asking<br/>read, search, draft, undoable edits"]
+    q1 -->|"notable choice"| tell["Act, then tell<br/>decisions among reasonable alternatives"]
+    q1 -->|"irreversible, external, out of scope, ambiguous"| ask["Ask before acting<br/>send, delete, deploy, pay"]
+    ask --> prop["Proposal pattern:<br/>show exact diff or command for one-click approval"]
+```
 
 ### 12.4 When to Stop: Done, Stuck, and Budget
 
