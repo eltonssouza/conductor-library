@@ -1122,3 +1122,73 @@ The principles, gathered for the road:
 - **Components must re-justify their rent.** Ablate, then delete the passengers.
 
 Context engineering will outlive the current model generation because it is not about models; it is about the permanent problem of deciding what a bounded reasoner should look at next. Windows will grow, prices will fall, and attention curves will flatten — and selection will still beat accumulation, structure will still beat soup, and the systems that work will still be the ones where somebody owned the question this book has asked in every chapter: *of everything we could show the model, what has earned its place?*
+
+---
+
+## References
+
+> Canonical, verifiable sources for the mechanisms and techniques this book draws on — pointers only. Specific context-window sizes, prices, and benchmark numbers in these works age quickly; the mechanisms (finite non-uniform attention, the economics of tokens) do not.
+
+### Attention, long context, and the context window (Ch. 1–2)
+
+- Liu, N. F. et al. (2023). *Lost in the Middle: How Language Models Use Long Contexts* — the U-shaped position curve.
+- Kamradt, G. (2023). *Needle In A Haystack* — long-context pressure test.
+- Hsieh, C.-P. et al. (2024). *RULER: What's the Real Context Size of Your Long-Context Language Models?*
+- Vaswani, A. et al. (2017). *Attention Is All You Need* — the architecture whose attention budget is finite.
+
+### Token economics and prompt caching (Ch. 3)
+
+- Anthropic and OpenAI product documentation on prompt caching and token pricing (prefix reuse, cache discounts).
+- Pope, R. et al. (2022). *Efficiently Scaling Transformer Inference* — prefill, KV cache, and the cost of input length.
+
+### Retrieval-augmented generation (Ch. 4)
+
+- Lewis, P. et al. (2020). *Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks* — the RAG formulation.
+- Karpukhin, V. et al. (2020). *Dense Passage Retrieval for Open-Domain Question Answering.*
+- Robertson, S. & Zaragoza, H. (2009). *The Probabilistic Relevance Framework: BM25 and Beyond* — lexical retrieval.
+- Cormack, G. et al. (2009). *Reciprocal Rank Fusion Outperforms Condorcet and Individual Rank Learning Methods* — RRF.
+- Nogueira, R. & Cho, K. (2019). *Passage Re-ranking with BERT* — cross-encoder reranking.
+- Khattab, O. & Zaharia, M. (2020). *ColBERT: Efficient and Effective Passage Search via Contextualized Late Interaction.*
+- Reimers, N. & Gurevych, I. (2019). *Sentence-BERT* — bi-encoder embeddings.
+- Gao, L. et al. (2022). *Precise Zero-Shot Dense Retrieval without Relevance Labels* (HyDE) — query expansion.
+- Kusupati, A. et al. (2022). *Matryoshka Representation Learning* — truncatable embedding dimensions.
+- Carbonell, J. & Goldstein, J. (1998). *The Use of MMR, Diversity-Based Reranking for Reordering Documents.*
+- Anthropic (2024). *Introducing Contextual Retrieval* — contextualized chunks.
+
+### Compression and long-document processing (Ch. 5)
+
+- Izacard, G. & Grave, E. (2021). *Leveraging Passage Retrieval with Generative Models for Open Domain QA* (Fusion-in-Decoder).
+- Borgeaud, S. et al. (2022). *Improving Language Models by Retrieving from Trillions of Tokens* (RETRO).
+
+### Memory architectures (Ch. 6)
+
+- Packer, C. et al. (2023). *MemGPT: Towards LLMs as Operating Systems* — paged context and long-term memory.
+- Park, J. S. et al. (2023). *Generative Agents: Interactive Simulacra of Human Behavior* — memory stream, reflection, retrieval.
+- Edge, D. et al. (2024). *From Local to Global: A Graph RAG Approach to Query-Focused Summarization* (Microsoft GraphRAG).
+
+### Multi-turn, agentic, and tool context (Ch. 7–8)
+
+- Anthropic (2025). *Effective Context Engineering for AI Agents* — compaction, sub-agents, just-in-time retrieval.
+- Anthropic (2024). *Building Effective Agents.*
+- Yao, S. et al. (2022). *ReAct: Synergizing Reasoning and Acting in Language Models.*
+- Schick, T. et al. (2023). *Toolformer: Language Models Can Teach Themselves to Use Tools.*
+
+### Structured context, instruction hierarchy, and injection (Ch. 9, 12)
+
+- Wallace, E. et al. (2024). *The Instruction Hierarchy: Training LLMs to Prioritize Privileged Instructions.*
+- Greshake, K. et al. (2023). *Not What You've Signed Up For: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection.*
+- OWASP (2023–2025). *OWASP Top 10 for Large Language Model Applications.*
+- Willison, S. *Prompt injection* essays (simonwillison.net), ongoing.
+
+### Grounding, freshness, and evaluation (Ch. 10–11)
+
+- Järvelin, K. & Kekäläinen, J. (2002). *Cumulated Gain-Based Evaluation of IR Techniques* — nDCG.
+- Es, S. et al. (2023). *RAGAS: Automated Evaluation of Retrieval Augmented Generation.*
+- Chen, J. et al. (2024). *Benchmarking Large Language Models in Retrieval-Augmented Generation.*
+- Asai, A. et al. (2023). *Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection.*
+- Zheng, L. et al. (2023). *Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena* — LLM judges and their biases.
+
+### Practitioner references
+
+- Anthropic. *Prompt Engineering* and *Agents* documentation (docs.anthropic.com).
+- OpenAI. *Retrieval* and *Prompt Engineering* guides (platform.openai.com).
