@@ -41,7 +41,10 @@ software_dev: supporting
 **Part II – The user's mind**
 3. Mental models and conceptual models
 
-> **Status of this guide:** phased delivery. **Ready:** Parts I–II (Ch. 1–3). **In progress:** Part III onward (the psychology of action, knowledge and constraints, human error, and the design process).
+**Part III – How people act**
+4. The seven stages of action and the two gulfs
+
+> **Status of this guide:** phased delivery. **Ready:** Parts I–III (Ch. 1–4). **In progress:** Part IV onward (knowledge and constraints, human error, and the design process).
 
 ---
 
@@ -340,5 +343,114 @@ After:  per-note status: "Saved 2s ago", "Offline — changes kept locally, will
 
 - D. Norman, *The Design of Everyday Things*, revised ed. (Basic Books, 2013) — ISBN 978-0465050659. See Chapter 1 ("The Psychopathology of Everyday Things"), the section on conceptual models, the design model / user's model / system image, and the *Gulfs* introduced there.
 - NN/g, "Mental Models": https://www.nngroup.com/articles/mental-models/.
+
+---
+
+## Part III – How people act
+
+A mental model explains what users *believe*; this part explains what they *do*. Every interaction, from flipping a switch to filing taxes, runs through the same loop: form a goal, figure out how to act, act, then check whether it worked. Norman names the seven steps of that loop and the two places designs most often fail it — the gap between intention and action, and the gap between result and understanding. Naming these gaps turns "the user is confused" into a diagnosis you can fix.
+
+---
+
+## Chapter 4 — The seven stages of action and the two gulfs
+
+### 4.1 Introduction
+
+Norman breaks any action into **seven stages**: one for the **goal**, three on the *doing* (execution) side, and three on the *checking* (evaluation) side. Execution: form an **intention/plan**, **specify** the action sequence, **perform** it. Evaluation: **perceive** the state of the world, **interpret** it, **compare** it against the goal. Two gaps decide whether the loop succeeds. The **Gulf of Execution** is the gap between the user's intention and the actions the system actually allows — *"I know what I want; how do I do it here?"* The **Gulf of Evaluation** is the gap between the system's state and the user's ability to perceive and understand it — *"Something happened; did it do what I wanted?"* The designer's whole job, in this frame, is to **bridge both gulfs**.
+
+### 4.2 Business context
+
+Most "the user couldn't figure it out" failures are really an unbridged gulf, and each gulf has a distinct cost. A wide Gulf of Execution shows up as drop-off and "I couldn't find how to…" — users abandon a task because the system offers no obvious action that matches their intention. A wide Gulf of Evaluation shows up as repeated actions, mistrust, and "did that work?" support tickets — users can't read the result, so they retry, give up, or call. Diagnosing which gulf is wide tells you *where* to spend: make actions discoverable (execution) versus make state perceivable (evaluation). It turns a vague usability complaint into a targeted, measurable fix.
+
+### 4.3 Theoretical concepts: the action loop and where it breaks
+
+```mermaid
+flowchart LR
+    goal["Goal"] --> plan["Plan / intention"]
+    plan --> specify["Specify actions"]
+    specify --> perform["Perform"]
+    perform --> world["The world changes"]
+    world --> perceive["Perceive"]
+    perceive --> interpret["Interpret"]
+    interpret --> compare["Compare with goal"]
+    compare --> goal
+```
+
+The seven stages are an **approximate model, not a literal sequence** — people skip stages, run them out of order, and loop tightly. Its value is diagnostic: when an interaction fails, you can ask *which stage broke*. Couldn't the user find a control matching their intention? That's a **specify/execution** failure. Did they act but couldn't tell if it worked? That's a **perceive/interpret/evaluation** failure. The two gulfs are simply the execution side and the evaluation side viewed as gaps to be bridged.
+
+### 4.4 Architecture: bridge both gulfs
+
+```mermaid
+flowchart TB
+    intention["User intention"] --> ge{"Gulf of Execution:<br/>is there an obvious action?"}
+    ge -- "no" --> stuck["User can't act -> abandons"]
+    ge -- "yes" --> acted["User acts"]
+    acted --> gv{"Gulf of Evaluation:<br/>is the result perceivable?"}
+    gv -- "no" --> unsure["User can't tell -> retries / distrusts"]
+    gv -- "yes" --> done["User confirms success"]
+```
+
+### 4.5 Real example
+
+**Scenario.** A user wants to export a report as PDF from a dashboard.
+
+**Problem.** *Execution gulf:* export is buried behind a non-obvious icon, so the user's intention ("get a PDF") has no visible matching action. *Evaluation gulf:* when they finally trigger it, the file generates in the background with no indication — they can't tell it worked, so they click again and get duplicate exports.
+
+**Solution.** Bridge both: surface an explicit **"Export ▸ PDF"** action where the intention arises (execution), and show **progress then a clear result** ("Preparing PDF… / Downloaded report.pdf") (evaluation).
+
+**Implementation (bridge execution, then evaluation).**
+
+```text
+Execution gulf -> add a labelled "Export" control next to the report,
+                  with "PDF" as a visible option (intention maps to an action)
+Evaluation gulf -> on click: "Preparing PDF…" -> "Downloaded report.pdf"
+                  (and disable re-click while running) -> result is perceivable
+```
+
+**Result.** Users complete the export on the first try and know it succeeded — drop-off and duplicate-export tickets both fall. The fix targeted the two specific gulfs instead of redesigning blindly.
+
+**Future improvements.** Instrument the loop: measure where users stall (no action taken = execution gulf; repeated triggers = evaluation gulf) so the next fix is aimed by data, not guesswork.
+
+### 4.6 Exercises
+
+1. List the seven stages of action and group them into the execution side and the evaluation side.
+2. Define the Gulf of Execution and the Gulf of Evaluation in one sentence each.
+3. A user clicks a button repeatedly because "nothing happened." Which gulf is wide, and which stage broke?
+
+### 4.7 Challenges
+
+- **Challenge.** Take one task in your product. Walk it through all seven stages and mark where a user could get stuck. Classify each stuck point as an execution-gulf or evaluation-gulf problem, then fix the widest one.
+
+### 4.8 Checklist
+
+- [ ] For each user goal, there is an obvious action that matches the intention (execution bridged).
+- [ ] After every action, the resulting state is perceivable and interpretable (evaluation bridged).
+- [ ] I can name which stage breaks when a task fails.
+- [ ] Progress and outcome are shown, so users never have to guess whether an action worked.
+
+### 4.9 Best practices
+
+- Design from the user's goal backward through the seven stages, not from the feature forward.
+- Bridge the Gulf of Execution: make the right action visible and matched to the intention.
+- Bridge the Gulf of Evaluation: make state and outcomes perceivable and easy to interpret.
+
+### 4.10 Anti-patterns
+
+- Hiding the action that fulfills a common intention (wide execution gulf).
+- Acting silently, leaving users to infer the result (wide evaluation gulf).
+- "Powerful but unusable": every feature present, none of them reachable through a user's actual goal.
+
+### 4.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Users abandon a task early | Wide Gulf of Execution — no obvious matching action | Surface a labelled action mapped to the intention |
+| Repeated clicks / duplicate results | Wide Gulf of Evaluation — result not perceivable | Show progress + a clear outcome; block re-trigger |
+| "I didn't know it could do that" | Capability not reachable from the user's goal | Place the action where the goal arises |
+
+### 4.12 References
+
+- D. Norman, *The Design of Everyday Things*, revised ed. (Basic Books, 2013) — ISBN 978-0465050659. See Chapter 2 ("The Psychology of Everyday Actions"): the seven stages of action and the Gulf of Execution / Gulf of Evaluation.
+- NN/g, "The Gulf of Evaluation and the Gulf of Execution": https://www.nngroup.com/articles/two-ux-gulfs/.
 
 <!--APPEND-PART-II-->
