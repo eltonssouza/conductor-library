@@ -155,7 +155,7 @@ final class Account {
 
 ### 1.12 References
 
-- M. Weisfeld, *The Object-Oriented Thought Process*, 5th ed. (Addison-Wesley, 2019) — ISBN 978-0135181966.
+- M. Weisfeld, *The Object-Oriented Thought Process*, 5th ed. (Addison-Wesley, 2019), ch. 1 "Introduction to Object-Oriented Concepts" (Object Data; Object Behaviors) — ISBN 978-0135181966.
 - D. West, *Object Thinking* (Microsoft Press, 2004) — ISBN 978-0735619654.
 
 ---
@@ -254,7 +254,7 @@ final class InMemoryCache implements Cache {        // implementation hidden beh
 
 ### 2.12 References
 
-- M. Weisfeld, *The Object-Oriented Thought Process*, 5th ed. (Addison-Wesley, 2019) — ISBN 978-0135181966.
+- M. Weisfeld, *The Object-Oriented Thought Process*, 5th ed. (Addison-Wesley, 2019), ch. 2 "How to Think in Terms of Objects" (Knowing the Difference Between the Interface and the Implementation) — ISBN 978-0135181966.
 - D. Parnas, "On the Criteria To Be Used in Decomposing Systems into Modules" (CACM, 1972).
 
 ---
