@@ -83,7 +83,7 @@ Progressive depth across five maturity levels:
 23. Security: input, output, secrets, and crypto
 24. Deployment: configuration, processes, and observability
 
-> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Parts I–VII (Ch. 1–22). **In progress:** Part VIII.
+> **Status of this edition:** complete for its declared scope. **Ready:** Parts I–VIII (Ch. 1–24).
 
 ---
 
@@ -2688,4 +2688,224 @@ Fix: replace the N+1 with one query (a JOIN / batched IN) -> page time drops ~80
 
 > **End of Part VII.** Professional PHP rests on a fast, trustworthy **PHPUnit** suite (isolated, behavior-focused, CI-gated) and on **performance** discipline: **OPcache** always on in production, the **JIT** for CPU-bound work only, and **profiling** before optimizing the real (usually I/O) bottleneck. Part VIII closes the guide with **security and deployment**.
 
-<!--APPEND-PART-VIII-->
+---
+
+## Part VIII – Security & Deployment
+
+The final part covers shipping PHP responsibly: **security** — validating input, escaping output, protecting secrets, and using cryptography correctly — and **deployment** — configuration, process management, and observability.
+
+---
+
+## Chapter 23 — Security: input, output, secrets, and crypto
+
+### 23.1 Introduction
+
+Web security in PHP rests on a few disciplines. **Validate and treat all input as untrusted** — never build SQL by concatenation (use prepared statements, Ch. 19) and validate types/ranges. **Escape output for its context** to prevent **XSS**: `htmlspecialchars()` for HTML. Protect **secrets** (DB passwords, API keys) by keeping them out of code and version control, in environment variables or a secrets manager. Use **cryptography** correctly: hash passwords with **`password_hash()`** (bcrypt/argon2), never with `md5`/`sha1`; and guard state-changing requests against **CSRF** with tokens.
+
+### 23.2 Business context
+
+Security failures are existential: a SQL injection or XSS can leak customer data, and leaked secrets or weak password hashing turn one breach into total compromise — with legal (LGPD/GDPR), financial, and reputational fallout. The PHP-specific footguns (string-built SQL, unescaped output, `md5` passwords, secrets in the repo) are well-known and entirely preventable with standard practices. Building these habits in from the start is far cheaper than incident response, and is a baseline expectation for any application handling user data.
+
+### 23.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    input["ALL input untrusted"] --> validate["validate + prepared statements (no concatenation)"]
+    output["output to HTML"] --> escape["htmlspecialchars (context-correct escaping) -> no XSS"]
+    secrets["secrets"] --> env["env vars / secrets manager (never in code/VCS)"]
+    crypto["passwords"] --> hash["password_hash / password_verify (bcrypt/argon2)"]
+```
+
+**Injection** is prevented by parameterized queries (SQL) and by escaping at the correct boundary (HTML/JS/URL). **XSS** is prevented by escaping output with `htmlspecialchars()` (and a Content-Security-Policy). **Secrets** belong in environment configuration, never committed; rotate them and scope them tightly. **Passwords** use `password_hash()` (and `password_verify()`), which applies a strong, salted algorithm — never a fast/general hash. Protect forms/state changes with **CSRF tokens** and set secure cookie flags.
+
+### 23.4 Architecture: untrusted in, escaped out, secrets external
+
+```mermaid
+flowchart LR
+    req["request (untrusted)"] --> v["validate + parameterize"] --> logic["app logic"] --> esc["escape per output context"] --> resp["safe response"]
+    cfg["secrets from env / vault"] --> logic
+    note["Defense in depth at every boundary"]
+```
+
+Security is applied at boundaries: validate/parameterize on the way in, escape on the way out, and keep secrets external.
+
+### 23.5 Real example
+
+**Scenario.** Render a user-submitted comment and store a new user's password.
+
+**Problem.** Echoing the comment raw enables XSS; storing the password with `md5` is trivially crackable.
+
+**Solution.** **Escape** output with `htmlspecialchars`; **hash** the password with `password_hash`; read DB credentials from the **environment**.
+
+**Implementation.**
+
+```php
+// Output escaping (prevents XSS)
+echo '<p>' . htmlspecialchars($comment, ENT_QUOTES, 'UTF-8') . '</p>';
+
+// Password storage (bcrypt/argon2, salted automatically)
+$hash = password_hash($plainPassword, PASSWORD_DEFAULT);   // store $hash
+$ok   = password_verify($attempt, $hash);                  // login check
+
+// Secrets from environment, never in code/VCS
+$dsn  = getenv('DATABASE_DSN');
+```
+
+**Result.** The comment is rendered with special characters escaped, so injected `<script>` is shown as text, not executed (no XSS). The password is stored as a strong salted hash and verified with a constant-time check — a breach of the hash table doesn't hand over passwords. Credentials come from the environment, so they're not in the repository. Standard APIs, serious protection.
+
+**Future improvements.** Add a Content-Security-Policy header; use prepared statements everywhere (Ch. 19); add CSRF tokens to state-changing forms; rotate secrets and use a managed vault.
+
+### 23.6 Exercises
+
+1. How do you prevent SQL injection and XSS, respectively?
+2. Why use `password_hash()` instead of `md5`/`sha1`?
+3. Where should secrets live, and where should they never be?
+
+### 23.7 Challenges
+
+- **Challenge.** Take a small form handler and harden it: validate input, use a prepared statement, escape the echoed output, hash the password with `password_hash`, and read the DB DSN from an environment variable.
+
+### 23.8 Checklist
+
+- [ ] All input is validated; queries are parameterized (no concatenation).
+- [ ] Output is escaped for its context (`htmlspecialchars` for HTML).
+- [ ] Passwords use `password_hash`/`password_verify`.
+- [ ] Secrets come from env/secrets manager, never code or VCS.
+
+### 23.9 Best practices
+
+- Treat all input as untrusted; validate and parameterize.
+- Escape output at the boundary; add a CSP.
+- Hash passwords with `password_hash`; keep secrets external and rotated.
+
+### 23.10 Anti-patterns
+
+- String-concatenated SQL; unescaped output (XSS).
+- `md5`/`sha1` for passwords; secrets committed to the repo.
+- Trusting client-side validation alone.
+
+### 23.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Script runs from user content | Unescaped output (XSS) | Escape with `htmlspecialchars` + CSP |
+| Passwords cracked after a leak | Weak/fast hashing | Use `password_hash` (bcrypt/argon2) |
+| Secret found in the repo | Hard-coded credentials | Move to env/vault; rotate the secret |
+
+### 23.12 References
+
+- OWASP Top 10 & Cheat Sheets (XSS, SQL Injection, Password Storage): https://owasp.org/www-project-top-ten/.
+- PHP Manual, "Password Hashing" & "Security": https://www.php.net/manual/en/book.password.php.
+
+---
+
+## Chapter 24 — Deployment: configuration, processes, and observability
+
+### 24.1 Introduction
+
+Running PHP in production means three things beyond the code. **Configuration** is environment-specific and externalized (the same artifact runs in dev/staging/prod via environment variables — the twelve-factor approach), with `display_errors` **off** and logging **on** in production. **Processes**: PHP typically runs as **PHP-FPM** behind a web server (Nginx), with OPcache enabled (Ch. 22) and a sensible worker count. **Observability** means structured **logs**, **metrics**, and **error tracking** so you can see what production is doing and diagnose incidents.
+
+### 24.2 Business context
+
+Deployment decisions determine reliability and operability. Configuration baked into the artifact or `display_errors` left on in production leaks secrets and stack traces to users — a security and professionalism failure. A misconfigured FPM (too few/many workers, no OPcache) caps throughput or exhausts memory. Without observability, incidents become guesswork and outages last longer. Getting deployment right is what turns working code into a dependable service customers trust and operators can run cheaply and calmly.
+
+### 24.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    cfg["config via env vars (12-factor); errors logged not displayed"] --> artifact["one artifact, many environments"]
+    proc["Nginx + PHP-FPM (workers) + OPcache"] --> serve["serve requests efficiently"]
+    obs["structured logs + metrics + error tracking"] --> diagnose["see and diagnose production"]
+```
+
+**Twelve-factor config**: read settings from the environment so one build is promoted across environments; in production set `display_errors=Off`, `log_errors=On`, and a real log target. **PHP-FPM** runs PHP worker processes behind the web server; tune `pm.max_children` to memory, keep **OPcache** on. **Observability**: emit structured (JSON) logs with correlation/request ids, expose metrics (latency, error rate, throughput — the kind SRE tracks), and wire an error tracker (Sentry) so exceptions are captured with context.
+
+### 24.4 Architecture: promote one artifact, observe it
+
+```mermaid
+flowchart LR
+    build["build once"] --> deploy["deploy same artifact to each env"]
+    deploy --> env["env vars configure it per environment"]
+    env --> run["Nginx + FPM + OPcache"] --> logs["structured logs/metrics/errors"]
+```
+
+A single artifact configured by environment and observed in production is the reliable, repeatable deployment model.
+
+### 24.5 Real example
+
+**Scenario.** Prepare a PHP app for production deployment.
+
+**Problem.** Errors shown to users, secrets in config files, and no visibility into failures.
+
+**Solution.** Externalize config, turn off `display_errors`, run under FPM with OPcache, and add structured logging + error tracking.
+
+**Implementation.**
+
+```ini
+; production php.ini
+display_errors = Off          ; never show stack traces to users
+log_errors = On
+error_log = /var/log/php/app.log
+opcache.enable = 1            ; mandatory (Ch. 22)
+```
+
+```php
+// config read from environment (12-factor) — same code everywhere
+$config = [
+    'db'    => getenv('DATABASE_DSN'),
+    'debug' => getenv('APP_ENV') !== 'production',
+];
+
+// structured logging (PSR-3) with context for observability
+$logger->error('payment failed', ['orderId' => $id, 'requestId' => $requestId]);
+```
+
+**Result.** Users never see stack traces (errors are logged server-side), the same artifact runs across environments configured by env vars, PHP-FPM with OPcache serves efficiently, and structured logs with request ids make incidents diagnosable. The app is secure-by-default in production and operable.
+
+**Future improvements.** Add metrics (Prometheus) and dashboards; integrate an error tracker (Sentry); containerize with a health-check endpoint and run readiness/liveness probes; automate deploys in CI/CD.
+
+### 24.6 Exercises
+
+1. Why externalize configuration via environment variables?
+2. Why must `display_errors` be off in production, with `log_errors` on?
+3. What three observability signals help you run and debug production?
+
+### 24.7 Challenges
+
+- **Challenge.** Write a production `php.ini` snippet and an environment-based config loader, plus one structured log call with a request id — describing how an incident would be diagnosed from the logs.
+
+### 24.8 Checklist
+
+- [ ] Configuration comes from environment variables (one artifact, many envs).
+- [ ] `display_errors` off, `log_errors` on, real log target in production.
+- [ ] PHP-FPM tuned with OPcache enabled.
+- [ ] Structured logs, metrics, and error tracking are in place.
+
+### 24.9 Best practices
+
+- Follow twelve-factor: externalize config; promote one artifact.
+- Log (don't display) errors in production; emit structured logs with ids.
+- Run under FPM with OPcache; add metrics and error tracking.
+
+### 24.10 Anti-patterns
+
+- `display_errors=On` / secrets in committed config files in production.
+- Untuned FPM (memory exhaustion or low throughput) and OPcache off.
+- No logs/metrics — incidents diagnosed by guesswork.
+
+### 24.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Stack traces shown to users | `display_errors` on | Turn it off; log errors instead |
+| Out-of-memory under load | FPM `pm.max_children` too high | Tune workers to available memory |
+| Incident with no signal | No structured logs/metrics | Add structured logging, metrics, error tracking |
+
+### 24.12 References
+
+- The Twelve-Factor App: https://12factor.net.
+- PHP Manual, "PHP-FPM" & "Error handling"; PSR-3 Logger: https://www.php-fig.org/psr/psr-3/.
+
+---
+
+> **End of Part VIII — and of the guide.** Shipping PHP responsibly means **security** (untrusted input + parameterized queries, context-escaped output, `password_hash`, externalized secrets) and **deployment** (twelve-factor config, errors logged not displayed, PHP-FPM + OPcache, and observability). From the **language** (types, functions, OOP, modern features) through the **standard library, data, and HTTP** to **testing, performance, security, and operations**, you now have a complete working model of professional PHP 8.4.
