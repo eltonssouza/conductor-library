@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Polymorphism & reuse**
 3. Polymorphism and composition over inheritance
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -261,4 +261,122 @@ final class InMemoryCache implements Cache {        // implementation hidden beh
 
 > **End of Part I.** You can now think in terms of responsible objects that bundle state with behavior and protect their own invariants, and apply encapsulation — minimal interfaces hiding free-to-change implementations — to keep systems substitutable and evolvable. **Part II — Polymorphism & reuse** (Chapter 3) covers polymorphism for open-ended extension and why composition usually beats inheritance for reuse.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Polymorphism & reuse
+
+Part I built objects that bundle data with behavior and protect their invariants behind small interfaces. Part II covers how objects **extend** and **reuse** behavior: **polymorphism** for open-ended extension, and why **composition** is usually the better tool for reuse than inheritance.
+
+---
+
+## Chapter 3 — Polymorphism and composition over inheritance
+
+### 3.1 Introduction
+
+**Polymorphism** lets one call site work with many types through a shared interface: send the same message (`area()`, `pay()`) and each object responds in its own way. It is what makes object-oriented code **open to extension** — add a new type that honors the interface and existing code uses it unchanged. **Inheritance** is one way to share behavior, but it is rigid and couples a subclass to its parent's implementation. **Composition** — building behavior by *holding* other objects — is more flexible, and the guideline "**favor composition over inheritance**" reflects decades of experience that deep inheritance hierarchies become brittle.
+
+### 3.2 Business context
+
+Software changes by adding new variants — a new payment method, a new report format, a new device. Polymorphism lets you add them without touching the code that consumes them, so features become additive rather than invasive. Inheritance promises reuse but delivers coupling: a change in a base class silently breaks subclasses (it "weakens encapsulation"), and an `is-a` chosen for convenience traps the design when the subtype later isn't truly a kind of its parent. Composition keeps parts swappable and testable, which is what lets a system absorb change without a rewrite.
+
+### 3.3 Theoretical concepts: one interface, many implementations
+
+```mermaid
+flowchart TB
+    client["client calls shape.area()"] --> i["interface Shape { area() }"]
+    i --> c["Circle.area()"]
+    i --> r["Rectangle.area()"]
+    i --> t["Triangle.area()"]
+    note["Add a new Shape without changing the client (open for extension)"]
+```
+
+Polymorphism rests on a shared **interface** (or abstract type) that many classes implement; the caller depends on the interface, not the concrete class, so new implementations slot in freely. **Inheritance** models an `is-a` relationship and inherits both interface *and* implementation — powerful but tightly coupled, and it leaks the parent's internals into the child. **Composition** models `has-a`: an object delegates to parts it holds. Prefer inheritance only for a genuine, stable `is-a`; reach for composition (and interfaces for the polymorphism) whenever you just need to reuse or vary behavior.
+
+### 3.4 Architecture: has-a, not is-a, for reuse
+
+```mermaid
+flowchart LR
+    car["Car"] -->|"has-a"| engine["Engine (swappable part)"]
+    car -->|"has-a"| gearbox["Transmission"]
+    note["Reuse by composing parts; vary a part without touching the whole"]
+```
+
+A composed design is a small graph of collaborating objects, each replaceable behind an interface. Where inheritance fixes behavior at compile time in a hierarchy, composition lets you assemble and swap behavior — the same flexibility that makes parts independently testable.
+
+### 3.5 Real example
+
+**Scenario.** An invoicing system must support several payment methods and keep adding more.
+
+**Problem.** Modeling `CreditCardPayment extends Payment`, `PixPayment extends Payment`, … couples each to the base class, and shared "logging/retry" behavior copied down the hierarchy duplicates logic.
+
+**Solution.** Use **polymorphism via an interface** for the varying step and **composition** to reuse the shared behavior.
+
+**Implementation.**
+
+```text
+interface PaymentMethod { pay(amount): Result }     # polymorphic boundary
+
+class CreditCard implements PaymentMethod { pay(a){ ... } }
+class Pix        implements PaymentMethod { pay(a){ ... } }
+
+# Reuse cross-cutting behavior by COMPOSITION, not a base class:
+class Retrying implements PaymentMethod {
+    Retrying(inner: PaymentMethod) { this.inner = inner }   # has-a
+    pay(a){ for attempt in 1..3: r = inner.pay(a); if r.ok: return r }
+}
+
+checkout(method: PaymentMethod, amount):   # depends on the interface only
+    return method.pay(amount)
+# new method => new class implementing PaymentMethod; checkout unchanged
+# add retry to any method => wrap it: Retrying(new Pix())
+```
+
+**Result.** `checkout` is polymorphic — it works with any `PaymentMethod`, including ones added later, with no change. Shared retry behavior is reused by **wrapping** (composition), so it applies to every method without an inheritance hierarchy and can be tested in isolation. The design extends by addition.
+
+**Future improvements.** Compose further cross-cutting concerns (logging, metrics) as wrappers; keep the interface small so new implementations stay cheap.
+
+### 3.6 Exercises
+
+1. What does polymorphism let you change without touching the calling code?
+2. How does inheritance "weaken encapsulation", and when is it still the right choice?
+3. Rewrite an `is-a` you've seen that should have been a `has-a`.
+
+### 3.7 Challenges
+
+- **Challenge.** Take an inheritance hierarchy used for reuse (not true `is-a`) and convert it to composition: an interface for the polymorphic part plus wrapper/part objects for shared behavior. Confirm new variants need no change to consumers.
+
+### 3.8 Checklist
+
+- [ ] Callers depend on an interface/abstract type, not concrete classes.
+- [ ] New variants are added without modifying existing consumers.
+- [ ] I use inheritance only for a genuine, stable `is-a`.
+- [ ] I reuse cross-cutting behavior by composition (wrapping), not base classes.
+
+### 3.9 Best practices
+
+- Program to interfaces so behavior is polymorphic and extensible.
+- Favor composition over inheritance for reuse and variation.
+- Keep any inheritance shallow and reserved for true specialization.
+
+### 3.10 Anti-patterns
+
+- Deep inheritance hierarchies created just to share code.
+- `is-a` chosen for convenience when the subtype isn't really the parent.
+- `instanceof`/type switches instead of a polymorphic call.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| A base-class change breaks subclasses | Inheritance leaking implementation | Replace reuse-inheritance with composition |
+| Adding a variant edits many `if/switch` | Missing polymorphism | Introduce an interface and dispatch on it |
+| Subclass overrides most of the parent | Wrong `is-a` | Model it as `has-a` (composition) |
+
+### 3.12 References
+
+- M. Weisfeld, *The Object-Oriented Thought Process*, 5th ed. (Addison-Wesley, 2019), ch. 7 "Mastering Inheritance and Composition" (incl. how inheritance weakens encapsulation; a detailed polymorphism example) — ISBN 978-0135181966.
+- E. Gamma et al., *Design Patterns* (Addison-Wesley, 1994) — "favor object composition over class inheritance", ISBN 978-0201633610.
+
+---
+
+> **End of Part II.** Objects extend and reuse behavior through **polymorphism** — one interface, many implementations, so code is open to new variants without change — and through **composition over inheritance**, reusing behavior by holding parts (`has-a`) rather than coupling to a base class (`is-a`). With Part I's responsible, encapsulated objects, you now have the OO thinking that keeps designs flexible as requirements grow.
