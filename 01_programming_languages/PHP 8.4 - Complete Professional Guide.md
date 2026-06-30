@@ -83,7 +83,7 @@ Progressive depth across five maturity levels:
 23. Security: input, output, secrets, and crypto
 24. Deployment: configuration, processes, and observability
 
-> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Parts I–III (Ch. 1–9). **In progress:** Parts IV–VIII.
+> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Parts I–IV (Ch. 1–13). **In progress:** Parts V–VIII.
 
 ---
 
@@ -1260,4 +1260,453 @@ echo $status->value;                                                     // 'pai
 
 > **End of Part III.** Modern PHP's object model is concise and safe: **classes** with constructor promotion and **`readonly`**; **interfaces**, **abstract classes**, and **traits** for contracts, shared bases, and cross-cutting reuse; and **enums** that turn fixed sets into checked types with behavior. Part IV covers PHP 8's **modern language features** — attributes, `match`, fibers, and 8.4's property hooks and asymmetric visibility.
 
-<!--APPEND-PART-IV-->
+---
+
+## Part IV – Modern Language Features
+
+Part IV covers the features that define PHP 8.x: **attributes** (structured metadata) and reflection, the **`match`** expression and other initializer conveniences, **fibers** for cooperative concurrency, and PHP 8.4's **property hooks** and **asymmetric visibility**.
+
+---
+
+## Chapter 10 — Attributes and reflection
+
+### 10.1 Introduction
+
+**Attributes** (PHP 8.0) attach structured, typed **metadata** to classes, methods, properties, and parameters using `#[...]` syntax — `#[Route('/users')]`, `#[Deprecated]`. Unlike doc-comment annotations, attributes are real classes the engine understands, read at runtime via **reflection**. **Reflection** is PHP's API for inspecting code structure (classes, methods, attributes) programmatically. Together they power frameworks: routing, validation, ORM mapping, and dependency injection all read attributes via reflection to wire behavior declaratively.
+
+### 10.2 Business context
+
+Frameworks need to associate metadata with code — which method handles which route, which property maps to which column, which argument to inject. Before attributes, this lived in fragile string doc-comments parsed by hand, or in separate config files that drift from the code. Attributes make the metadata **first-class and type-checked**, co-located with what it describes, so the configuration can't get out of sync and tooling can validate it. This is why modern PHP frameworks (Symfony, Laravel, Doctrine) have moved to attribute-based configuration — less boilerplate, fewer drift bugs.
+
+### 10.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    attr["#[Route('/x')] on a method"] --> cls["attribute is a real class instance"]
+    refl["Reflection reads the attribute at runtime"] --> wire["framework wires behavior (routing/DI/validation)"]
+```
+
+An attribute is declared as a class marked `#[Attribute]`; applying `#[Route('/x')]` records (lazily) the arguments. **Reflection** (`ReflectionClass`, `ReflectionMethod`, `->getAttributes()`) discovers them and `newInstance()` constructs the attribute object. The engine doesn't act on attributes itself — a framework reads them and decides what they mean. Reflection is also used for generic inspection (listing properties, parameter types), but it has a cost, so frameworks typically cache the results.
+
+### 10.4 Architecture: declarative metadata, read by tooling
+
+```mermaid
+flowchart LR
+    code["code annotated with #[...] attributes"] --> reflect["reflection scan (cached)"] --> behavior["framework applies behavior"]
+    note["Metadata lives with the code; tooling interprets it"]
+```
+
+Attributes keep configuration next to the code it configures; reflection is the bridge that lets a framework turn that metadata into behavior.
+
+### 10.5 Real example
+
+**Scenario.** A mini-router maps controller methods to routes.
+
+**Problem.** A separate routing config file drifts from the controllers it describes.
+
+**Solution.** Declare routes as **attributes** and discover them via **reflection**.
+
+**Implementation.**
+
+```php
+#[Attribute(Attribute::TARGET_METHOD)]
+final class Route {
+    public function __construct(public string $path) {}
+}
+
+final class UserController {
+    #[Route('/users')]
+    public function list(): string { return 'all users'; }
+}
+
+// framework side: read attributes via reflection
+$rc = new ReflectionClass(UserController::class);
+foreach ($rc->getMethods() as $m) {
+    foreach ($m->getAttributes(Route::class) as $attr) {
+        $route = $attr->newInstance();       // Route('/users')
+        register($route->path, [UserController::class, $m->getName()]);
+    }
+}
+```
+
+**Result.** The route lives directly on the `list` method, type-checked as a `Route` object, and the router discovers it via reflection — no separate, drift-prone config. Adding an endpoint means annotating a method; the wiring is automatic. This is exactly how real PHP frameworks route.
+
+**Future improvements.** Cache the reflection scan (it's not free) so routes are discovered once at build/boot; add attribute arguments (HTTP method, name) as typed constructor parameters.
+
+### 10.6 Exercises
+
+1. How do attributes differ from doc-comment annotations?
+2. What role does reflection play in using attributes?
+3. Why do frameworks cache attribute/reflection scans?
+
+### 10.7 Challenges
+
+- **Challenge.** Define a `#[Validate(max: int)]` attribute for properties and write reflection code that reads it and checks an object's values against the limits.
+
+### 10.8 Checklist
+
+- [ ] I use attributes for metadata that belongs with the code.
+- [ ] Attribute classes are typed (constructor parameters), not stringly-typed.
+- [ ] I read attributes via reflection and cache the scan.
+- [ ] I let a framework/tool interpret attributes, not the engine.
+
+### 10.9 Best practices
+
+- Prefer attributes over doc-comment annotations and external config.
+- Type attribute arguments via the constructor.
+- Cache reflection results in hot paths.
+
+### 10.10 Anti-patterns
+
+- Heavy uncached reflection on every request.
+- Stringly-typed metadata where a typed attribute fits.
+- Putting logic in attributes (they are data; tooling acts on them).
+
+### 10.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Slow boot/requests | Uncached reflection scans | Cache discovered attributes |
+| Attribute "ignored" | Nothing reads it via reflection | A framework/tool must interpret it |
+| Wrong attribute target | Missing `#[Attribute(TARGET_...)]` | Restrict the attribute's target |
+
+### 10.12 References
+
+- PHP Manual, "Attributes" & "Reflection": https://www.php.net/manual/en/language.attributes.php.
+- PHP RFC "Attributes v2" (8.0).
+
+---
+
+## Chapter 11 — `match`, named args, and `new` in initializers
+
+### 11.1 Introduction
+
+PHP 8 added expression-level conveniences that make code terser and safer. The **`match`** expression returns a value, uses **strict** (`===`) comparison, requires no `break`, and is **exhaustive** (throws `UnhandledMatchError` if no arm matches) — a safer cousin of `switch`. **Named arguments** (Ch. 4) also shine in constructors. And **`new` in initializers** lets you use `new Foo()` as a **default parameter value**, property default, or attribute argument, removing a common reason to write a constructor body.
+
+### 11.2 Business context
+
+These features remove small but frequent sources of bugs and boilerplate. `switch` statements notoriously leak through missing `break`s and silently fall through on unmatched values; `match` makes both impossible. Defaulting a dependency to `new DefaultThing()` directly in the signature avoids the null-check-and-construct dance in many constructors. Each is a minor change individually, but across a codebase they remove a recurring class of defects and clutter, improving readability and correctness at near-zero cost.
+
+### 11.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    m["match (x) { 1, 2 => 'a', default => 'b' }"] --> strict["strict ===, no break, returns a value"]
+    m --> exh["unhandled value -> UnhandledMatchError"]
+    init["function f($dep = new Default())"] --> newinit["new allowed in default values / property inits"]
+```
+
+**`match`** evaluates the subject once and compares each arm with `===`; arms can list multiple values; it yields a value (assignable). Omitting `default` and missing a case throws rather than silently returning null. **`new` in initializers** permits object expressions where only constant expressions were allowed before — default parameter values, property defaults, and attribute arguments — so a dependency can default to a concrete instance inline.
+
+### 11.4 Architecture: safer expressions, fewer constructor bodies
+
+```mermaid
+flowchart LR
+    decision["a value-producing decision"] --> match["match expression (exhaustive, strict)"]
+    dep["an optional dependency"] --> default["= new Default() in the signature"]
+```
+
+`match` turns branching into a checked expression; `new` in initializers turns "construct a default if none given" into a declaration.
+
+### 11.5 Real example
+
+**Scenario.** Map an HTTP status category to a message, with a default logger dependency.
+
+**Problem.** A `switch` risks fall-through and a missing case returning nothing; constructing a default logger needs a constructor body and a null check.
+
+**Solution.** Use **`match`** (exhaustive, strict) and **`new` in the initializer** for the default.
+
+**Implementation.**
+
+```php
+final class Responder
+{
+    public function __construct(private Logger $log = new NullLogger()) {}  // new in initializer
+
+    public function category(int $status): string
+    {
+        return match (true) {                       // strict, exhaustive, returns a value
+            $status >= 200 && $status < 300 => 'success',
+            $status >= 400 && $status < 500 => 'client error',
+            $status >= 500                  => 'server error',
+            default                          => 'other',
+        };
+    }
+}
+
+$r = new Responder();   // gets a NullLogger by default — no constructor body needed
+```
+
+**Result.** `category` is a single value-returning expression with strict comparisons and an explicit `default`, so no case falls through and no path returns null by accident. `Responder` defaults its `Logger` to a `NullLogger` right in the signature, eliminating a constructor body and a null check. Less code, fewer bugs.
+
+**Future improvements.** Use `match($this->status)` over enum cases (Ch. 9) for exhaustive handling the IDE can check; keep `match (true)` for range logic.
+
+### 11.6 Exercises
+
+1. Name three ways `match` is safer than `switch`.
+2. What happens when a `match` has no arm for the value and no `default`?
+3. What does `new` in initializers let you remove from many constructors?
+
+### 11.7 Challenges
+
+- **Challenge.** Rewrite a `switch` statement that maps a role string to permissions as a `match` expression, and give the class a dependency that defaults to a concrete implementation via `new` in the constructor signature.
+
+### 11.8 Checklist
+
+- [ ] I use `match` for value-producing, strict, exhaustive branching.
+- [ ] I rely on `match` exhaustiveness instead of remembering `break`.
+- [ ] I default optional dependencies with `new` in the signature where sensible.
+- [ ] I prefer `match` over `switch` for new code.
+
+### 11.9 Best practices
+
+- Use `match` for classification; provide `default` or rely on the error deliberately.
+- Default simple dependencies inline with `new`.
+- Pair `match` with enums for compiler/IDE-checked exhaustiveness.
+
+### 11.10 Anti-patterns
+
+- `switch` with implicit fall-through and missing `break`s.
+- Loose (`==`) comparisons where strict (`match`) is safer.
+- Constructor bodies that only null-check and construct a default.
+
+### 11.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| `UnhandledMatchError` | No arm matched, no `default` | Add the case or a `default` |
+| Unexpected fall-through | Used `switch` without `break` | Convert to `match` |
+| Boilerplate default-dependency code | Constructor null-checks | Default with `new` in the signature |
+
+### 11.12 References
+
+- PHP Manual, "match expression" & "new in initializers": https://www.php.net/manual/en/control-structures.match.php.
+- PHP RFCs "Match expression v2" (8.0), "New in initializers" (8.1).
+
+---
+
+## Chapter 12 — Fibers and cooperative concurrency
+
+### 12.1 Introduction
+
+**Fibers** (PHP 8.1) are a low-level mechanism for **cooperative** concurrency: a fiber is a block of code that can **suspend** itself (`Fiber::suspend()`) and be **resumed** later, preserving its stack. This lets a single thread interleave many tasks that voluntarily yield — the foundation for asynchronous runtimes (like ReactPHP, Amp) that turn blocking-looking code into non-blocking I/O. Fibers are rarely used directly by application code; they are the **plumbing** that async libraries build on, much like a coroutine primitive.
+
+### 12.2 Business context
+
+PHP's traditional model is one synchronous request per process; for high-concurrency I/O (many simultaneous slow API calls, websockets, long-polling) that's wasteful. Fibers enable async frameworks to handle thousands of concurrent I/O operations in one process by suspending a task while it waits and running another — without the callback spaghetti of older async PHP. For most teams the value is **indirect**: it's why modern async PHP libraries can offer ergonomic, sequential-looking concurrency. Knowing fibers exist clarifies how those libraries work and when reaching for them pays off.
+
+### 12.3 Theoretical concepts
+
+```mermaid
+flowchart LR
+    start["Fiber::start"] --> run["runs until Fiber::suspend(value)"]
+    run --> suspended["suspended: control returns to caller"]
+    suspended --> resume["fiber->resume(value) continues from the suspend point"]
+    note["Cooperative: a fiber yields control voluntarily"]
+```
+
+A `Fiber` wraps a callable; `start()` runs it until it calls `Fiber::suspend()`, which returns control (and a value) to the caller; `resume()` continues from that point. Scheduling is **cooperative** — nothing preempts a fiber; it must yield. This is exactly what an async **event loop** needs: when a task awaits I/O, the library suspends its fiber and resumes another, so one thread serves many concurrent operations. Application code typically uses the library's `async`/`await`-style API, not `Fiber` directly.
+
+### 12.4 Architecture: the primitive under async runtimes
+
+```mermaid
+flowchart TB
+    app["app code (sequential-looking)"] --> lib["async library API"]
+    lib --> loop["event loop schedules fibers"]
+    loop --> fibers["suspend on I/O wait, resume when ready"]
+```
+
+Fibers sit at the bottom: the event loop suspends and resumes them so the library above can offer readable, concurrent I/O.
+
+### 12.5 Real example
+
+**Scenario.** Illustrate suspend/resume — the mechanism an async loop relies on.
+
+**Problem.** Understanding why async PHP can interleave tasks requires seeing the primitive.
+
+**Solution.** A minimal fiber that suspends and is resumed with a value.
+
+**Implementation.**
+
+```php
+$fiber = new Fiber(function (): void {
+    echo "start\n";
+    $resumeValue = Fiber::suspend('paused');   // yields control, returns 'paused' to caller
+    echo "resumed with: $resumeValue\n";
+});
+
+$suspendValue = $fiber->start();   // prints "start"; returns 'paused'
+echo "fiber said: $suspendValue\n";
+$fiber->resume('go');              // prints "resumed with: go"
+// In a real runtime, the loop would resume the fiber when its awaited I/O completed.
+```
+
+**Result.** The fiber runs, **suspends** (handing control and a value back to the caller), and later **resumes** exactly where it left off with a new value. Multiply this across many fibers driven by an event loop, and one thread serves many concurrent I/O tasks — the essence of async PHP. Application code would use a library wrapping this, not raw fibers.
+
+**Future improvements.** For real concurrency, use an async runtime (Amp, ReactPHP) that provides an event loop and `async`/`await`-style helpers over fibers; reserve raw `Fiber` for building such tooling.
+
+### 12.6 Exercises
+
+1. What does "cooperative" concurrency mean for fibers?
+2. What do `Fiber::suspend()` and `->resume()` do to the fiber's execution?
+3. Why do application developers rarely use `Fiber` directly?
+
+### 12.7 Challenges
+
+- **Challenge.** Write two fibers and a tiny loop that alternately resumes each until both finish, printing interleaved output — a mini cooperative scheduler.
+
+### 12.8 Checklist
+
+- [ ] I understand fibers are a cooperative suspend/resume primitive.
+- [ ] I use an async library's API rather than raw fibers for app code.
+- [ ] I reserve fibers for high-concurrency I/O workloads.
+- [ ] I don't expect preemption — fibers yield voluntarily.
+
+### 12.9 Best practices
+
+- Use an established async runtime over hand-rolled fiber scheduling.
+- Reach for async/fibers only when I/O concurrency justifies it.
+- Keep blocking calls out of fibers meant to be non-blocking.
+
+### 12.10 Anti-patterns
+
+- Hand-building a scheduler with raw fibers in application code.
+- Using fibers for CPU-bound work (no benefit; they don't parallelize).
+- Blocking inside a fiber, stalling the whole loop.
+
+### 12.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Whole async app stalls | A blocking call inside a fiber | Use non-blocking I/O within fibers |
+| No concurrency gain | CPU-bound work in fibers | Fibers help I/O-bound, not CPU-bound |
+| Complex, fragile scheduling | Raw fibers in app code | Adopt an async runtime (Amp/ReactPHP) |
+
+### 12.12 References
+
+- PHP Manual, "Fibers": https://www.php.net/manual/en/language.fibers.php.
+- PHP RFC "Fibers" (8.1); the Amp/ReactPHP async ecosystems.
+
+---
+
+## Chapter 13 — Property hooks and asymmetric visibility (8.4)
+
+### 13.1 Introduction
+
+PHP 8.4 brings two property features long requested. **Property hooks** let a property define `get` and/or `set` **logic inline** — a computed or validated property without a separate getter/setter method or a backing field you manage by hand. **Asymmetric visibility** lets a property have **different visibility for reading and writing** — e.g., `public private(set)` means anyone can read it but only the class can write it. Together they make properties first-class: encapsulated, computed, and validated, while callers still use simple `$obj->prop` access.
+
+### 13.2 Business context
+
+For years PHP forced a choice: public properties (no encapsulation) or getter/setter methods everywhere (boilerplate and an awkward `$obj->getX()` style). Property hooks remove that trade-off — a property can validate on write or compute on read while staying a property. Asymmetric visibility expresses the extremely common "read-only to the outside, writable inside" pattern directly, replacing a private field plus a public getter. The payoff is encapsulated, intention-revealing data with far less code, and APIs that read naturally (`$user->email`) while remaining safe.
+
+### 13.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    hook["public string $name { get => ...; set { validate; ... } }"] --> inline["get/set logic on the property itself"]
+    asym["public private(set) int $id"] --> read["public read, private write"]
+    note["Encapsulation without getter/setter boilerplate"]
+```
+
+A **property hook** attaches `get`/`set` blocks to a property: `get` can compute a value (a *virtual* property needs no backing field), and `set` can validate or transform before storing. **Asymmetric visibility** writes two scopes: `public private(set)` (read public, write private), or `protected(set)`. Callers still use `$obj->prop`; the hook/visibility enforces the rules behind that simple syntax. This replaces most hand-written accessor methods.
+
+### 13.4 Architecture: properties that encapsulate themselves
+
+```mermaid
+flowchart LR
+    caller["caller: $u->email = '...' / echo $u->fullName"] --> prop["property with set-validation / get-compute"]
+    prop --> safe["invariants enforced; no getX/setX needed"]
+    note["Simple access syntax, real encapsulation"]
+```
+
+Hooks and asymmetric visibility move validation and computation onto the property itself, so encapsulation no longer costs a pair of methods.
+
+### 13.5 Real example
+
+**Scenario.** A `User` has a validated email (write-checked) and a computed full name, with an id that's read-only outside.
+
+**Problem.** Achieving this pre-8.4 means private fields plus `getEmail`/`setEmail`/`getFullName` methods — verbose and off-style.
+
+**Solution.** **Property hooks** for validation/computation and **asymmetric visibility** for the read-only id.
+
+**Implementation.**
+
+```php
+final class User
+{
+    public private(set) int $id;          // read public, write only inside the class
+
+    public string $email {
+        set {                              // validate on write
+            if (!str_contains($value, '@')) throw new InvalidArgumentException('bad email');
+            $this->email = $value;
+        }
+    }
+
+    public string $fullName {
+        get => trim("$this->first $this->last");   // computed, no backing field
+    }
+
+    public function __construct(int $id, public string $first, public string $last)
+    {
+        $this->id = $id;                   // allowed: write is private, we're inside
+    }
+}
+
+$u = new User(1, 'Ana', 'Lima');
+echo $u->fullName;        // 'Ana Lima' (computed via get hook)
+$u->email = 'a@x.com';    // validated via set hook
+// $u->id = 2;            // Error: id is private(set)
+```
+
+**Result.** `email` validates on assignment, `fullName` computes on read with no stored field, and `id` is readable everywhere but writable only inside `User` — all with plain `$obj->prop` syntax and no getter/setter methods. The class is encapsulated and concise, exactly what hooks and asymmetric visibility were added for.
+
+**Future improvements.** Combine with `readonly` where a property should be write-once; use hooks to normalize input (trim/lowercase) on set.
+
+### 13.6 Exercises
+
+1. What does a property hook let you do without a separate getter/setter?
+2. What does `public private(set)` mean?
+3. When is a `get`-only hook (virtual property) preferable to storing a value?
+
+### 13.7 Challenges
+
+- **Challenge.** Model a `Temperature` with a `celsius` property that validates (≥ −273.15 on set) and a computed `fahrenheit` get-hook, plus a `public protected(set)` `source` field.
+
+### 13.8 Checklist
+
+- [ ] I use property hooks for validated/computed properties instead of accessor methods.
+- [ ] I use asymmetric visibility for read-public/write-restricted data.
+- [ ] Callers use plain property access; rules live on the property.
+- [ ] I combine hooks with `readonly` where write-once is wanted.
+
+### 13.9 Best practices
+
+- Prefer property hooks over hand-written `getX`/`setX`.
+- Express read-only-outside data with `private(set)`/`protected(set)`.
+- Keep hook logic small (validation/computation), not heavy work.
+
+### 13.10 Anti-patterns
+
+- Verbose getter/setter pairs where a hook fits.
+- Public mutable properties that should be `private(set)`.
+- Expensive computation in a `get` hook called frequently.
+
+### 13.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Boilerplate accessor methods | Pre-hook style | Convert to property hooks |
+| External code mutates a field it shouldn't | Symmetric `public` visibility | Use `public private(set)` |
+| Slow repeated property reads | Heavy `get` hook | Cache or store the value |
+
+### 13.12 References
+
+- PHP Manual, "Property hooks" & "Asymmetric visibility" (8.4): https://www.php.net/manual/en/language.oop5.property-hooks.php.
+- PHP RFCs "Property hooks" and "Asymmetric visibility" (8.4).
+
+---
+
+> **End of Part IV.** PHP 8's modern features: **attributes** + **reflection** for declarative, type-checked metadata; the strict, exhaustive **`match`** expression and **`new` in initializers**; **fibers** as the cooperative-concurrency primitive under async runtimes; and 8.4's **property hooks** and **asymmetric visibility** that give real encapsulation with plain property syntax. Part V covers **errors, namespaces, and autoloading**.
+
+<!--APPEND-PART-V-->
