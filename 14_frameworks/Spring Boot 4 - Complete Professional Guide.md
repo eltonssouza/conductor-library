@@ -3425,7 +3425,7 @@ sequenceDiagram
     B-->>J: context ready
     J->>T: run test over real HTTP + real DB
     T-->>J: assertions
-    J->>TC: stop & discard container
+    J->>TC: stop and discard container
 ```
 
 The first diagram shows the wiring at a point in time: the container supplies a `ConnectionDetails` bean that the auto-configured `DataSource` consumes, while the HTTP client talks to the embedded server. The second shows the lifecycle: Testcontainers starts the container, `@ServiceConnection` translates it into Spring properties *before* the context builds, the test runs against the real stack, and everything is torn down afterward.
