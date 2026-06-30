@@ -44,7 +44,11 @@ software_dev: supporting
 **Part III – How people act**
 4. The seven stages of action and the two gulfs
 
-> **Status of this guide:** phased delivery. **Ready:** Parts I–III (Ch. 1–4). **In progress:** Part IV onward (knowledge and constraints, human error, and the design process).
+**Part IV – Knowledge and constraints**
+5. Knowledge in the head and in the world
+6. Constraints, forcing functions, and discoverability
+
+> **Status of this guide:** phased delivery. **Ready:** Parts I–IV (Ch. 1–6). **In progress:** Part V onward (human error and the design process).
 
 ---
 
@@ -452,5 +456,201 @@ Evaluation gulf -> on click: "Preparing PDF…" -> "Downloaded report.pdf"
 
 - D. Norman, *The Design of Everyday Things*, revised ed. (Basic Books, 2013) — ISBN 978-0465050659. See Chapter 2 ("The Psychology of Everyday Actions"): the seven stages of action and the Gulf of Execution / Gulf of Evaluation.
 - NN/g, "The Gulf of Evaluation and the Gulf of Execution": https://www.nngroup.com/articles/two-ux-gulfs/.
+
+---
+
+## Part IV – Knowledge and constraints
+
+Why can people operate a hundred-control device they barely studied, yet fumble a five-button one? Because behavior doesn't run on memory alone — it runs on the **combination of what's in your head and what's in the world**. The environment carries much of the information, and **constraints** quietly rule out the wrong actions so the right one stands out. This part covers the trade-off between internal and external knowledge, and the four kinds of constraint (plus forcing functions) you can design into a product so the correct action is the easy, discoverable one.
+
+---
+
+## Chapter 5 — Knowledge in the head and in the world
+
+### 5.1 Introduction
+
+Norman distinguishes **knowledge in the world** from **knowledge in the head**. Knowledge in the world is information sitting in the environment — labels, visible options, the shape of a control, the constraints of a situation — available to be *read* rather than remembered. Knowledge in the head is internal memory — fast and usable without looking anything up, but it must be learned, can be forgotten, and is error-prone. The striking observation is that people achieve **precise behavior from imprecise knowledge**: nobody remembers exactly what a coin looks like, yet everyone uses coins, because the world supplies the missing detail and constraints handle the rest. Good design exploits this: **put knowledge in the world** (or make it cheap to retrieve) instead of forcing users to carry it in their heads.
+
+### 5.2 Business context
+
+Every bit of knowledge you force into the user's head is a tax — on learning time, on error rate, on support. Interfaces that demand memorized codes, hidden steps, or "you just have to know" sequences raise the cost of every session and exclude anyone who uses the product occasionally. Moving that knowledge into the world — visible labels, options shown instead of recalled, sensible defaults, on-screen state — lowers training cost, cuts errors, and makes a product usable by newcomers and infrequent users, who are often the majority. The trade-off is deliberate: knowledge in the head is faster for experts, so the best designs offer both (visible guidance *and* shortcuts), rather than betting everything on memory.
+
+### 5.3 Theoretical concepts: the trade-off
+
+```mermaid
+flowchart LR
+    world["Knowledge in the world<br/>visible, read not recalled"] --> easy["Easy to use, low learning<br/>but needs the info present"]
+    head["Knowledge in the head<br/>memorized, internal"] --> fast["Fast, works anywhere<br/>but must be learned, forgettable"]
+```
+
+Knowledge in the world is **its own reminder** — it requires no learning and little memory, but it only works when the information is actually present and perceivable, and reading it is slower than recall. Knowledge in the head is efficient and portable but expensive to acquire and easy to lose. Neither wins outright; the design move is to **shift the burden toward the world** for anything users shouldn't have to memorize (so the interface is self-explaining), while still allowing learned shortcuts for speed. Recognition (seeing the choices) beats recall (remembering them) for most users most of the time.
+
+### 5.4 Architecture: where does the knowledge live?
+
+```mermaid
+flowchart TB
+    task["A step the user must take"] --> q{"Must they recall it from memory?"}
+    q -- "yes" --> head["In the head -> learning cost, errors, exclusion"]
+    q -- "no, it's shown" --> world["In the world -> self-explaining, low error"]
+```
+
+### 5.5 Real example
+
+**Scenario.** A CLI-style admin tool requires users to type exact command names and flags from memory.
+
+**Problem.** All the operating knowledge lives *in the head* — users memorize commands, mistype flags, and infrequent users are locked out, generating errors and support load.
+
+**Solution.** Move knowledge into the world: show available commands and options (menus, autocomplete, inline help, visible current state) so users **recognize** instead of **recall** — while keeping typed shortcuts for experts.
+
+**Implementation (shift knowledge to the world).**
+
+```text
+Before: user must remember `deploy --env=prod --strategy=canary` exactly
+After:  show the commands as a discoverable list; autocomplete flags with
+        descriptions; display current env/state on screen
+        -> recognition replaces recall; experts still type the shortcut
+```
+
+**Result.** New and occasional users succeed without memorizing anything; mistyped-flag errors drop; experts keep their speed. The knowledge required to operate the tool now lives in the world, with the head as an optional fast path.
+
+**Future improvements.** Add sensible defaults and constraints (Chapter 6) so even the visible options can't be combined into an invalid command — pushing more of the burden off the user entirely.
+
+### 5.6 Exercises
+
+1. Define knowledge in the world and knowledge in the head, with one example each.
+2. Why does "recognition over recall" follow from this distinction?
+3. Give a feature in a tool you use that forces knowledge into the head, and describe how to move it into the world.
+
+### 5.7 Challenges
+
+- **Challenge.** Audit one workflow for every piece of knowledge the user must supply from memory (codes, steps, exact names). Move as many as you can into the world (show them), and measure whether error rate or task time for infrequent users improves.
+
+### 5.8 Checklist
+
+- [ ] Users recognize choices on screen rather than recalling them from memory.
+- [ ] Critical state is visible, not something the user must remember.
+- [ ] Defaults and labels carry knowledge so users don't have to.
+- [ ] Experts still have fast paths (knowledge in the head is offered, not required).
+
+### 5.9 Best practices
+
+- Put knowledge in the world: show options, state, and labels instead of demanding recall.
+- Favor recognition over recall for anything users shouldn't have to memorize.
+- Offer both modes — visible guidance for everyone, shortcuts for experts.
+
+### 5.10 Anti-patterns
+
+- "You just have to know" — operating knowledge locked in the user's head.
+- Hidden state the user must track mentally across steps.
+- Memorized codes or sequences with no on-screen support.
+
+### 5.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Frequent mistyped/forgotten inputs | Knowledge forced into the head | Show options/state; use recognition over recall |
+| Infrequent users can't operate it | No knowledge in the world to lean on | Add visible labels, menus, inline help |
+| Long learning curve | Everything must be memorized first | Move guidance into the interface; keep shortcuts optional |
+
+### 5.12 References
+
+- D. Norman, *The Design of Everyday Things*, revised ed. (Basic Books, 2013) — ISBN 978-0465050659. See Chapter 3 ("Knowledge in the Head and in the World"): the trade-off, precise behavior from imprecise knowledge, and memory.
+- NN/g, "Recognition vs. Recall in User Interfaces": https://www.nngroup.com/articles/recognition-and-recall/.
+
+---
+
+## Chapter 6 — Constraints, forcing functions, and discoverability
+
+### 6.1 Introduction
+
+**Constraints** are limitations the design builds in so that the *wrong* actions are difficult or impossible and the right one stands out. Norman names four kinds. **Physical** constraints limit possible actions by the shape of things (a plug that only fits one way). **Cultural** constraints are learned conventions (red means stop; an X closes a window). **Semantic** constraints come from the meaning of the situation (a motorcycle rider faces forward, so the windshield goes in front). **Logical** constraints use reasoning and natural mapping (the only remaining screw goes in the only empty hole; the leftmost switch controls the leftmost light). A **forcing function** is a strong physical constraint that *stops* the user from proceeding until a required step is done — its three classic forms are **interlocks**, **lock-ins**, and **lock-outs**. Together, constraints plus signifiers plus feedback produce **discoverability**: the user can figure out what to do and confirm it worked.
+
+### 6.2 Business context
+
+Constraints are the cheapest error-prevention you can buy, because a mistake that's impossible costs nothing to handle. Every invalid state a design *allows* becomes validation code, error messaging, support tickets, and sometimes real damage (an accidental "delete everything," a payment in the wrong currency). Designing the wrong action out — disabling impossible options, ordering steps with an interlock, guarding destructive actions with a lock-in confirmation — prevents whole classes of error before they happen, which is far cheaper than detecting and recovering from them. Constraints also speed users up: fewer choices to reason about means faster, more confident action and lower abandonment.
+
+### 6.3 Theoretical concepts: four constraints, then forcing functions
+
+```mermaid
+flowchart TB
+    c["Constraints reduce the possible actions"] --> phys["Physical: shape limits what fits"]
+    c --> cult["Cultural: learned conventions"]
+    c --> sem["Semantic: meaning of the situation"]
+    c --> logic["Logical: natural mapping &amp; reasoning"]
+```
+
+Constraints work by **shrinking the space of possible actions** until the right one is nearly forced — that's why people assemble unfamiliar objects correctly: physical and semantic constraints rule out the wrong orderings. **Forcing functions** are the strongest version, used where an error would be costly: an **interlock** forces operations into the correct sequence (a microwave won't run with the door open); a **lock-in** keeps an operation going to prevent stopping prematurely ("Save changes before closing?"); a **lock-out** prevents entering a dangerous area (stairs blocked past the ground floor so people don't flee into the basement). Use forcing functions sparingly — they also block legitimate exceptions — but use them where the cost of the error is high.
+
+### 6.4 Architecture: constrain, then confirm
+
+```mermaid
+flowchart TB
+    action["A possible action"] --> q{"Is it valid / safe here?"}
+    q -- "no" --> block["Constrain it out: disable, reorder, or guard (forcing function)"]
+    q -- "yes" --> allow["Allow it -> give feedback it worked"]
+```
+
+### 6.5 Real example
+
+**Scenario.** A deployment console lets anyone trigger "Delete production database" with a single click, in any order, anytime.
+
+**Problem.** Nothing constrains the dangerous action — it can be hit accidentally or out of sequence, with catastrophic, irreversible cost.
+
+**Solution.** Apply constraints and a forcing function: disable the action unless a backup exists (**logical/physical** constraint), require steps in order (**interlock**), and guard the trigger with a typed-confirmation **lock-in** ("type the database name to proceed").
+
+**Implementation (constrain the dangerous path).**
+
+```text
+Disable "Delete" unless a recent backup is present      (constraint)
+Require: select target -> confirm scope -> then enable   (interlock: correct order)
+Guard the final click: type the exact DB name to proceed (lock-in confirmation)
+-> the accidental / out-of-order destructive action becomes impossible
+```
+
+**Result.** The catastrophic mistake can no longer happen by accident or in the wrong order; the valid path is still available to someone who genuinely intends it. Error prevention moved upstream, into the design, instead of relying on the user's care.
+
+**Future improvements.** Pair the constraints with clear feedback and an undo/recovery window where possible (Chapter 7) — prevent what you can, and make the rest recoverable.
+
+### 6.6 Exercises
+
+1. Name the four kinds of constraint and give an interface example of each.
+2. Define interlock, lock-in, and lock-out, with one example apiece.
+3. Why should forcing functions be used sparingly?
+
+### 6.7 Challenges
+
+- **Challenge.** Find a destructive or order-sensitive action in your product. Add the lightest constraint that prevents the bad case (disable, reorder via interlock, or guard via lock-in) without blocking legitimate use. Verify the error class is now impossible, not merely discouraged.
+
+### 6.8 Checklist
+
+- [ ] Invalid options are disabled or impossible, not just discouraged by a warning.
+- [ ] Order-sensitive steps are enforced with an interlock where it matters.
+- [ ] Destructive/irreversible actions are guarded by a forcing function (lock-in).
+- [ ] Constraints follow conventions (cultural/semantic) so they feel natural, not arbitrary.
+
+### 6.9 Best practices
+
+- Prevent errors by design: constrain the wrong action out instead of validating after the fact.
+- Use the four constraints (physical, cultural, semantic, logical) to make the right action obvious.
+- Reserve forcing functions for high-cost errors; don't block routine actions with friction.
+
+### 6.10 Anti-patterns
+
+- Leaving dangerous actions one careless click away.
+- Relying on warning text where a constraint would prevent the error outright.
+- Over-constraining: forcing functions on routine tasks that frustrate legitimate use.
+
+### 6.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Users perform an invalid action then see an error | No constraint — the wrong action was allowed | Disable/impossible-ify it; constrain by design |
+| Steps done out of order cause failures | Missing interlock | Enforce the required sequence |
+| Accidental destructive actions | No forcing function on a high-cost path | Guard with a lock-in (typed confirmation) |
+
+### 6.12 References
+
+- D. Norman, *The Design of Everyday Things*, revised ed. (Basic Books, 2013) — ISBN 978-0465050659. See Chapter 4 ("Knowing What to Do: Constraints, Discoverability, and Feedback"): physical / cultural / semantic / logical constraints and forcing functions (interlocks, lock-ins, lock-outs).
+- NN/g, "Preventing User Errors: Avoiding Conscious Mistakes": https://www.nngroup.com/articles/slips/.
 
 <!--APPEND-PART-II-->
