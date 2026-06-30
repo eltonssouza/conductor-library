@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Distribution**
 3. Replication and how nodes stay in sync
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete. **Ready:** Part I (Ch. 1–2), Part II (Ch. 3).
 
 ---
 
@@ -250,4 +250,131 @@ COMMIT payment:
 
 > **End of Part I.** You can now reason about database internals: how B-tree (in-place, read-optimized) and LSM-tree (append-and-compact, write-optimized) storage engines trade reads against writes, and how the write-ahead log delivers crash-survivable durability by logging changes before applying them. **Part II — Distribution** (Chapter 3) covers replication — how data is copied across nodes (leader-based and beyond) for availability and read scaling, building on the WAL that feeds it.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Distribution
+
+One node can be lost, overwhelmed, or far from its users. **Replication** keeps copies of the data on several nodes so the system survives a node failure, serves reads near its users, and scales read throughput. The hard part is not copying bytes — it is deciding what consistency the copies promise while the network drops, delays, and reorders messages.
+
+---
+
+## Chapter 3 — Replication and how nodes stay in sync
+
+### 3.1 Introduction
+
+**Replication** means keeping a copy of the same data on multiple nodes. It buys three things at once: **availability** (a surviving replica answers when one node dies), **read scaling** (reads spread across replicas), and **locality** (a replica near the user cuts latency). The engine that feeds replication is the one from Chapter 2: most databases replicate by **shipping the write-ahead log** to followers, which replay it to reach the same state. The design question is never *whether* to copy, but *when a write counts as replicated* — and that single choice sets the system's durability, latency, and consistency.
+
+### 3.2 Business context
+
+A single database node is a single point of failure: lose it and the business stops. Replication is how a system promises to keep serving through a node loss and to place data near customers in other regions. But the convenient default — copy in the background — silently trades correctness for speed: a user can write data, immediately read from a lagging replica, and not see their own change. Knowing the replication mode behind a system tells you exactly which failures it survives and which anomalies your users will hit.
+
+### 3.3 Theoretical concepts: leader-based replication
+
+```mermaid
+flowchart LR
+    client["Client write"] --> leader["Leader<br/>accepts writes, appends WAL"]
+    leader -->|ship log| f1["Follower 1<br/>replays WAL"]
+    leader -->|ship log| f2["Follower 2<br/>replays WAL"]
+    reader["Client read"] --> f1
+    reader --> f2
+```
+
+The dominant design is **single-leader** (primary/replica): one node accepts all writes and streams its change log to **followers**, which replay it and serve reads. The decisive sub-choice is **when the leader acknowledges a commit**:
+
+- **Synchronous** — the leader waits for at least one follower to confirm before acking. No data loss on leader failure, but a slow or down follower stalls writes.
+- **Asynchronous** — the leader acks immediately and ships the log in the background. Fast and available, but a leader crash can lose the not-yet-shipped tail of writes.
+
+Real systems use **semi-synchronous**: one synchronous follower for durability, the rest asynchronous for throughput.
+
+### 3.4 Architecture: replication lag and failover
+
+```mermaid
+flowchart TB
+    fail["Leader fails"] --> detect["Failure detector notices<br/>(missed heartbeats)"]
+    detect --> elect["Promote the most up-to-date follower"]
+    elect --> reroute["Route writes to the new leader"]
+    reroute --> risk["Risk: un-shipped async writes are lost"]
+```
+
+Asynchronous followers run behind the leader — **replication lag**. Under lag, a client that just wrote may read a stale value from a follower (an eventual-consistency anomaly). Two common guarantees patch the worst cases: **read-your-own-writes** (route a user's reads to the leader, or to a replica known to be caught up for a short window after their write) and **monotonic reads** (a user never sees time go backwards). When the leader itself dies, **failover** promotes a follower — and with async replication, any writes the old leader had not yet shipped are gone. That is the durability cost of choosing speed.
+
+### 3.5 Real example
+
+**Scenario.** A read-heavy app adds two async read replicas to take load off the primary. Right after a user updates their profile, the app reads it back from a replica.
+
+**Problem.** The replica lags by a few hundred milliseconds; the user sees their *old* profile and thinks the save failed.
+
+**Solution.** Keep replicas for general reads, but apply **read-your-own-writes**: for a short window after a user writes, route *that user's* reads to the leader (or a verified caught-up replica).
+
+**Implementation (routing rule).**
+
+```text
+on write(user):           route to LEADER, record write timestamp T for user
+on read(user):
+  if now - T(user) < lag_window:  read from LEADER     -- they must see their own write
+  else:                           read from a FOLLOWER  -- safe to serve possibly-stale data
+```
+
+**Result.** Users always see their own latest change; the bulk of reads still scale out across followers. The anomaly is gone without giving up read scaling.
+
+**Future improvements.** Track each replica's applied log position and route to the *least-lagged* caught-up replica instead of always hitting the leader; alert when lag crosses a threshold.
+
+### 3.6 Beyond one leader
+
+When a single leader is too restrictive, two families relax it:
+
+- **Multi-leader** — more than one node accepts writes (e.g. one leader per region). Great for write locality and offline tolerance, but concurrent writes to the same key on different leaders **conflict**, and conflict resolution (last-write-wins, version vectors, application merge) becomes the system's hardest problem.
+- **Leaderless (Dynamo-style)** — any replica accepts reads and writes; the client writes to several and reads from several. With **quorums** (`W + R > N`), enough overlap guarantees a read sees the latest write. Anti-entropy (read repair, background sync) heals divergent replicas over time.
+
+There is no free lunch: every mode trades some consistency for some availability or latency. The art is choosing the weakest guarantee your use case can tolerate.
+
+### 3.7 Exercises
+
+1. Why does asynchronous replication risk data loss on failover, and synchronous risk write stalls?
+2. What is replication lag, and which anomaly does **read-your-own-writes** prevent?
+3. In a leaderless store with `N = 3`, what `W` and `R` give you a read that always sees the latest write?
+
+### 3.8 Challenges
+
+- **Challenge.** For a database you operate, find its replication mode (sync/async, single/multi-leader). What exact writes would you lose if the leader's disk died right now? Write down the answer and verify it against the docs.
+
+### 3.9 Checklist
+
+- [ ] I know replication serves availability, read scaling, and locality.
+- [ ] I can state the sync vs async trade-off (durability vs write latency).
+- [ ] I understand replication lag and the read-your-own-writes / monotonic-reads fixes.
+- [ ] I know failover can lose un-shipped async writes.
+- [ ] I can place multi-leader and leaderless on the consistency/availability spectrum.
+
+### 3.10 Best practices
+
+- Keep at least one synchronous follower for data you cannot afford to lose.
+- Monitor replication lag and alert before it breaks user-facing guarantees.
+- Apply read-your-own-writes for any flow where a user reads back what they just wrote.
+- Choose multi-leader/leaderless only when you have a concrete conflict-resolution plan.
+
+### 3.11 Anti-patterns
+
+- Serving all reads from async replicas with no caught-up routing — users miss their own writes.
+- Pure async replication for critical data, then discovering failover lost the write tail.
+- Adopting multi-leader without a defined conflict-resolution strategy.
+- Ignoring lag metrics until a stale read becomes a customer incident.
+
+### 3.12 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| User can't see data they just saved | Stale read from a lagging async replica | Route their reads to leader/caught-up replica (read-your-own-writes) |
+| Writes lost after a failover | Async replication; un-shipped tail dropped | Add a synchronous follower; tune failover to wait for catch-up |
+| Replica falling further behind | Follower under-provisioned or long-running queries | Scale the replica; isolate heavy analytical reads |
+| Conflicting values on the same key | Concurrent writes under multi-leader/leaderless | Apply a deterministic conflict-resolution policy (version vectors / merge) |
+
+### 3.13 References
+
+- A. Petrov, *Database Internals* (O'Reilly, 2019), Chapter 11 "Replication and Consistency" — ISBN 978-1492040347.
+- A. Silberschatz, H. Korth, S. Sudarshan, *Database System Concepts*, 7th ed. (McGraw-Hill, 2019), Chapter 23 "Parallel and Distributed Storage" — ISBN 978-0078022159.
+- PostgreSQL docs, "High Availability, Load Balancing, and Replication": https://www.postgresql.org/docs/current/high-availability.html.
+
+---
+
+> **End of guide.** You can now reason about database internals end to end: how **storage engines** (B-tree in-place vs LSM-tree append-and-compact) trade reads against writes, how the **write-ahead log** turns a crash into a replay rather than corruption, and how **replication** ships that same log to other nodes for availability, read scaling, and locality — paying for speed in replication lag and for availability in consistency. The recurring lesson is that every internal mechanism is a deliberate trade-off; knowing which one your database made explains its behavior under load and failure.
