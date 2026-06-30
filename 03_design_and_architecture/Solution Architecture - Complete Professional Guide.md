@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Designing**
 3. Cloud, cost, and integration trade-offs
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -261,4 +261,109 @@ Constraints:    must integrate with existing identity provider
 
 > **End of Part I.** You can now frame solution architecture as the end-to-end design that solves a business problem across systems, owning the integration seams, data ownership, and infrastructure — driven by both functional and (especially) measurable non-functional requirements and constraints. **Part II — Designing** (Chapter 3) covers cloud and cost trade-offs, total cost of ownership, and choosing between integration approaches.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Designing
+
+Part I framed the solution architect's role: turning a business problem into an end-to-end solution across systems. Part II is where the hardest trade-offs live — **cloud** service models, **cost** (TCO), and **integration** — the decisions that determine whether a solution is viable, affordable, and maintainable.
+
+---
+
+## Chapter 3 — Cloud, cost, and integration trade-offs
+
+### 3.1 Introduction
+
+A solution architecture is a web of trade-offs across three axes. **Cloud**: how much to offload to the provider — IaaS (you manage most), PaaS, containers, or serverless (the provider manages most) — trading control for operational burden. **Cost**: the **total cost of ownership** (TCO), not the sticker price — compute, storage, egress, licenses, and the people to run it, weighed over time and against build-vs-buy. **Integration**: how systems talk — synchronous APIs vs. asynchronous messaging, point-to-point vs. a broker — trading coupling, latency, and complexity. The architect's job is to make these trade-offs explicit and aligned with business priorities.
+
+### 3.2 Business context
+
+These choices have direct financial and strategic consequences. Picking serverless can slash ops cost for spiky workloads but surprise a team with egress bills or cold-start latency; a managed PaaS speeds delivery but risks vendor lock-in; tight point-to-point integrations are quick to build but become a brittle web that resists change. A solution architect who reasons about **TCO and time-to-market**, not just technical elegance, is the one who keeps a project within budget and able to evolve. Naming the trade-offs lets the business make an informed bet rather than discovering the cost later.
+
+### 3.3 Theoretical concepts: control vs. burden, price vs. TCO
+
+```mermaid
+flowchart LR
+    iaas["IaaS (most control, most ops)"] --> paas["PaaS / containers"] --> serverless["Serverless (least ops, least control)"]
+    note["Move right to offload operations; weigh lock-in, latency, and cost model"]
+```
+
+The cloud spectrum trades **control for operational burden**: serverless removes most ops and scales to zero (great for spiky/low-baseline workloads) but constrains runtime and can cost more at steady high load; IaaS maximizes control at maximum operational cost. **Cost** must be reasoned as **TCO over time** — including egress, licenses, and staffing — and against **build vs. buy** (a SaaS component you don't operate may beat a cheaper-looking custom build). **Integration** choices trade coupling and latency: synchronous APIs are simple but couple availability; asynchronous messaging decouples but adds eventual consistency and a broker to run.
+
+### 3.4 Architecture: align trade-offs to priorities, record them
+
+```mermaid
+flowchart TB
+    drivers["business priorities: time-to-market, cost ceiling, scale profile, compliance"] --> choose["choose cloud model + integration style"]
+    choose --> tco["estimate TCO + lock-in; compare build vs buy"]
+    tco --> adr["record the decision and trade-offs"]
+```
+
+As with architecture styles, the solution is derived from prioritized drivers (cost ceiling, scale profile, time-to-market, compliance) and the chosen trade-offs are recorded so they can be revisited as priorities or pricing change.
+
+### 3.5 Real example
+
+**Scenario.** A startup needs an image-processing pipeline with spiky, unpredictable traffic and a tight budget.
+
+**Problem.** Always-on servers (IaaS) cost money while idle; a hand-built queue+workers system is more to operate than the team can afford.
+
+**Solution.** Use **serverless** for the spiky compute and **managed messaging** for integration, with a TCO check and a noted lock-in trade-off.
+
+**Implementation.**
+
+```text
+Priorities: low baseline cost, fast to ship, scale with bursts; small team
+Cloud:       serverless functions for image processing (scale to zero, pay per use)
+Integration: managed queue (async) between upload and processing (decoupled, buffers bursts)
+TCO check:   pay-per-use < always-on for spiky load; watch egress + per-invocation cost
+Trade-off recorded: provider lock-in accepted for speed/cost now; abstraction at the seam for later portability
+```
+
+**Result.** The pipeline costs near zero when idle, absorbs traffic bursts via the queue, and ships fast with a small team operating almost no infrastructure. The TCO reasoning (pay-per-use beats always-on for this profile) and the lock-in trade-off are explicit, so the bet is informed and revisitable if steady load later makes reserved capacity cheaper.
+
+**Future improvements.** Re-estimate TCO as load stabilizes (steady high load may favor containers/reserved instances); keep an abstraction at the provider seam to reduce lock-in if portability becomes a priority.
+
+### 3.6 Exercises
+
+1. What does moving from IaaS toward serverless trade away, and what does it gain?
+2. Why is TCO a better basis than sticker price for a cloud decision?
+3. What does synchronous vs. asynchronous integration trade off?
+
+### 3.7 Challenges
+
+- **Challenge.** For a solution you know, pick a cloud model and an integration style from its priorities, estimate its TCO drivers (compute, storage, egress, people), and note the biggest lock-in or cost risk.
+
+### 3.8 Checklist
+
+- [ ] The cloud model matches the workload profile (spiky vs. steady) and ops capacity.
+- [ ] Decisions are based on TCO over time, not sticker price.
+- [ ] Integration style (sync vs. async) is chosen for the coupling/latency needed.
+- [ ] Trade-offs (lock-in, egress, eventual consistency) are recorded.
+
+### 3.9 Best practices
+
+- Match the cloud service model to workload and team operational capacity.
+- Decide on TCO and build-vs-buy, not headline price.
+- Choose integration style by the coupling and latency the solution needs.
+
+### 3.10 Anti-patterns
+
+- Choosing a cloud model by trend without a TCO or lock-in analysis.
+- Point-to-point integrations everywhere (a brittle, tightly coupled web).
+- Ignoring egress and per-invocation costs until the bill arrives.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Cloud bill far above estimate | Ignored egress / per-use costs | Re-estimate TCO; adjust model or data flow |
+| Idle servers wasting money | Always-on for spiky load | Move to serverless / scale-to-zero |
+| Brittle, change-resistant integrations | Point-to-point coupling | Introduce async messaging / a broker |
+
+### 3.12 References
+
+- A. Shrivastava, *Solution Architect's Handbook*, 3rd ed. (Packt, 2024), cloud, cost optimization & integration — ISBN 978-1835084236.
+- AWS Well-Architected Framework (cost optimization & operational pillars): https://aws.amazon.com/architecture/well-architected/.
+
+---
+
+> **End of Part II.** A solution architecture balances three trade-offs: **cloud** (control vs. operational burden across IaaS→serverless), **cost** (TCO and build-vs-buy, not sticker price), and **integration** (sync vs. async coupling and latency) — all derived from business priorities and recorded so they can be revisited. With Part I's end-to-end framing, you can now design solutions that are viable, affordable, and able to evolve.

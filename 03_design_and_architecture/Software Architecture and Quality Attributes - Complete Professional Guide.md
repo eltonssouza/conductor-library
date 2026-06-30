@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Deciding**
 3. Tactics, trade-offs, and lightweight evaluation
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -260,4 +260,115 @@ Response measure: 99.95% success; added latency < 100 ms
 
 > **End of Part I.** You can now treat architecture as the hard-to-reverse decisions that determine a system's quality attributes, reason in distinct module/runtime/allocation views, and turn vague -ilities into measurable quality attribute scenarios that drive tactics and serve as acceptance tests. **Part II — Deciding** (Chapter 3) covers the tactic catalog, making trade-offs explicit, and lightweight ATAM-style evaluation before you commit.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Deciding
+
+Part I framed architecture as structures chosen to meet **quality attributes**, made testable with **scenarios**. Part II is how you actually move the needle: applying **tactics** that influence one attribute, weighing the **trade-offs** they impose on others, and checking the design with a **lightweight evaluation**.
+
+---
+
+## Chapter 3 — Tactics, trade-offs, and lightweight evaluation
+
+### 3.1 Introduction
+
+A **tactic** is a single design decision that influences the response of **one** quality attribute — add **redundancy** and a **heartbeat** to improve availability; add a **cache** to improve performance; add an **authorization** check to improve security. Architecture is built by composing tactics, but every tactic has a **trade-off**: a cache improves latency but hurts consistency and adds memory; redundancy improves availability but raises cost and complexity. A **lightweight evaluation** (a scaled-down ATAM) checks, against concrete scenarios, that the chosen tactics meet the prioritized attributes and that you understand what each costs.
+
+### 3.2 Business context
+
+Quality attributes are where architecture meets the business: availability targets, response-time budgets, and security requirements are commitments to customers. Tactics are the concrete levers to meet them, but applying them blindly trades away something that matters — caching everything until data goes stale, or replicating everything until the bill explodes. Naming the trade-off makes it a **decision** rather than an accident, and a cheap evaluation catches a design that won't meet its scenarios *before* it's built, when changing it costs a meeting instead of a re-platforming.
+
+### 3.3 Theoretical concepts: tactics influence one attribute, at a cost
+
+```mermaid
+flowchart TB
+    qa["prioritized quality attribute (e.g., availability)"] --> tac["tactic (redundancy + heartbeat)"]
+    tac --> resp["improves that attribute's response"]
+    tac --> cost["trade-off: cost, complexity, another attribute"]
+    note["Every tactic helps one '-ility' and charges another"]
+```
+
+Tactics are catalogued per attribute: availability (redundancy, failover, health monitoring), performance (caching, concurrency, load balancing), modifiability (encapsulation, intermediaries), security (authenticate, authorize, audit). A **sensitivity point** is a decision that strongly affects one attribute; a **trade-off point** is one that affects several in opposite directions (a thread pool size that trades throughput against memory). Good architecture makes these points explicit and chooses deliberately.
+
+### 3.4 Architecture: evaluate against scenarios, cheaply
+
+```mermaid
+flowchart LR
+    tree["utility tree: prioritized QA scenarios"] --> analyze["walk the design vs each scenario"]
+    analyze --> points["find sensitivity & trade-off points + risks"]
+    note["Lightweight ATAM: a half-day review, not a months-long audit"]
+```
+
+A lightweight evaluation builds a **utility tree** (the prioritized, concrete quality-attribute scenarios), then walks the architecture against each, recording where it's sensitive, where attributes trade off, and what the **risks** are. It's a few hours with the right people — cheap insurance that the tactics actually meet the priorities.
+
+### 3.5 Real example
+
+**Scenario.** A checkout service must meet "99.95% availability" and "p99 latency < 300 ms".
+
+**Problem.** Adding an in-memory cache for product data improves latency but risks serving stale prices; adding replicas improves availability but raises cost — the two goals pull on each other.
+
+**Solution.** Apply tactics deliberately, name the trade-off, and check against the two scenarios in a lightweight review.
+
+**Implementation.**
+
+```text
+Quality-attribute scenarios (utility tree, prioritized):
+  - Availability: node failure -> requests still served within 5s, 99.95%
+  - Performance:  p99 read latency < 300ms under peak load
+
+Tactics chosen + trade-offs (recorded):
+  - Redundancy + health check  -> availability;   trade-off: +cost, +ops complexity
+  - Cache product reads (short TTL) -> latency;    trade-off: staleness window (bounded by TTL)
+Trade-off point: cache TTL  (lower = fresher but slower/costlier; higher = faster but staler)
+Lightweight eval: walk both scenarios -> risk: price staleness; mitigate with event-based cache invalidation
+```
+
+**Result.** Each tactic is tied to the scenario it serves and the cost it imposes; the cache TTL is identified as a **trade-off point** and given a mitigation. The half-day evaluation surfaced the staleness risk before launch, when it was cheap to address. The "-ilities" became concrete, decided, and checked.
+
+**Future improvements.** Add event-based cache invalidation to shrink the staleness window; re-run the lightweight evaluation whenever a prioritized scenario changes.
+
+### 3.6 Exercises
+
+1. What is a tactic, and why does every tactic carry a trade-off?
+2. Distinguish a sensitivity point from a trade-off point.
+3. What does a lightweight (ATAM-style) evaluation produce, and roughly what does it cost?
+
+### 3.7 Challenges
+
+- **Challenge.** For a system you know, write two prioritized quality-attribute scenarios, list the tactics you'd apply, and name the trade-off each imposes. Identify one trade-off point and a mitigation.
+
+### 3.8 Checklist
+
+- [ ] I tie each tactic to the quality attribute it serves.
+- [ ] I name the trade-off (cost or another attribute) each tactic imposes.
+- [ ] I express requirements as concrete quality-attribute scenarios.
+- [ ] I run a lightweight evaluation against those scenarios before building.
+
+### 3.9 Best practices
+
+- Choose tactics from prioritized quality-attribute scenarios, not habit.
+- Make sensitivity and trade-off points explicit.
+- Evaluate early and cheaply (utility tree + scenario walkthrough).
+
+### 3.10 Anti-patterns
+
+- Applying tactics (cache everything, replicate everything) without naming the cost.
+- "-ilities" stated as vague goals instead of testable scenarios.
+- Skipping evaluation until the architecture is built and expensive to change.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Meets latency but data is stale | Cache tactic with no invalidation | Treat TTL as a trade-off point; add invalidation |
+| Costs ballooned for availability | Redundancy applied beyond the scenario | Right-size to the availability scenario |
+| Discovered a design flaw late | No early evaluation | Run a lightweight ATAM against the utility tree |
+
+### 3.12 References
+
+- L. Bass, P. Clements, R. Kazman, *Software Architecture in Practice*, 4th ed. (Addison-Wesley, 2021), quality-attribute tactics & the ATAM — ISBN 978-0136886099.
+- R. Kazman et al., "The Architecture Tradeoff Analysis Method (ATAM)" (SEI).
+
+---
+
+> **End of Part II.** Architecture meets its quality attributes by composing **tactics** — each improving one attribute at a cost to another — with **sensitivity** and **trade-off points** made explicit, then checking the design against prioritized **scenarios** in a cheap **lightweight evaluation**. With Part I's structures and quality-attribute scenarios, you can now decide deliberately and verify before building.

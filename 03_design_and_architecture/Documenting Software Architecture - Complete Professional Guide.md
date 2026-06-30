@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Keeping it true**
 3. Architecture Decision Records and diagrams-as-code
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -263,4 +263,118 @@ flowchart TB
 
 > **End of Part I.** You can now document architecture as a small set of stakeholder-driven views across module/runtime/deployment perspectives, and use a leveled context→container→component model to zoom only as deep as real questions require. **Part II — Keeping it true** (Chapter 3) covers Architecture Decision Records for capturing rationale and diagrams-as-code so documentation stays synchronized with the system.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Keeping it true
+
+Part I covered which **views** to document and for whom. Part II is about documentation that stays **true** as the system changes: capturing the *why* in **Architecture Decision Records** and generating diagrams from text (**diagrams-as-code**) so they don't rot.
+
+---
+
+## Chapter 3 — Architecture Decision Records and diagrams-as-code
+
+### 3.1 Introduction
+
+Most architecture documentation rots because it's prose and pictures maintained by hand, separate from the code. Two practices fix that. An **Architecture Decision Record (ADR)** is a small, immutable, numbered file capturing **one** significant decision — its **context**, the **decision**, and its **consequences** — so the *why* survives even when people leave. **Diagrams-as-code** (PlantUML, Mermaid, Structurizr/C4) describe diagrams in **text** kept in the repo, so they're versioned, reviewed in pull requests, and regenerated rather than redrawn. Together they keep documentation cheap to maintain and therefore actually maintained.
+
+### 3.2 Business context
+
+The most expensive question on any mature system is "why was it built this way?" — and the answer usually left with someone who quit. ADRs preserve that reasoning so teams stop re-litigating settled decisions and stop accidentally reversing ones made for good reasons. Hand-drawn diagrams that disagree with reality are worse than none: they mislead newcomers and reviewers. Text-based diagrams live next to the code, change in the same pull request, and so stay trustworthy — turning documentation from a stale liability into a living asset that speeds onboarding and change.
+
+### 3.3 Theoretical concepts: capture decisions, generate pictures
+
+```mermaid
+flowchart LR
+    decision["a significant architectural decision"] --> adr["ADR: context / decision / consequences (immutable, numbered)"]
+    superseded["change your mind later?"] --> newadr["write a NEW ADR that supersedes the old one"]
+    note["Decisions are append-only history, not edited in place"]
+```
+
+An ADR is short and **append-only**: you don't edit a past decision, you write a new ADR that **supersedes** it, preserving the trail of how thinking evolved. Diagrams-as-code follow the same spirit — a Mermaid or PlantUML/C4 source file is the single source of truth, rendered on demand, diffed like code, and impossible to leave silently out of date because it's reviewed alongside the change it documents.
+
+### 3.4 Architecture: docs in the repo, reviewed with the code
+
+```mermaid
+flowchart TB
+    repo["repository"] --> adrs["/docs/adr/*.md (decisions)"]
+    repo --> diags["/docs/*.mmd or *.puml (C4 views as text)"]
+    pr["pull request"] --> review["docs change reviewed WITH the code change"]
+    note["Documentation lives where the code lives and changes with it"]
+```
+
+Keeping ADRs and diagram sources in the repository means documentation is versioned, searchable, and updated in the same pull request as the code — the only reliable way to keep it true.
+
+### 3.5 Real example
+
+**Scenario.** A team picks a message broker over synchronous calls and needs both the decision and a current context diagram to survive.
+
+**Problem.** The rationale lives in a chat thread, and the architecture diagram is a slide nobody updates.
+
+**Solution.** Write an **ADR** for the decision and a **diagram-as-code** for the view, both in the repo.
+
+**Implementation.**
+
+```text
+# docs/adr/0007-async-messaging.md  (immutable, numbered)
+# 7. Use a message broker for order events
+## Status: Accepted (supersedes none)
+## Context: services must react to orders without tight coupling; sync calls cascade failures
+## Decision: publish order events to a broker; consumers subscribe
+## Consequences: + decoupling, resilience;  - eventual consistency, broker to operate
+
+# docs/c4-context.mmd  (diagram-as-code, rendered in CI)
+flowchart LR
+  Order --> Broker
+  Broker --> Inventory
+  Broker --> Billing
+```
+
+**Result.** The *why* is captured once in ADR-0007 and never re-argued; if the team later moves off the broker, ADR-0008 supersedes it, leaving the history intact. The context diagram is text in the repo, reviewed with the code and regenerated, so it can't silently drift. Documentation stays true at near-zero maintenance cost.
+
+**Future improvements.** Render diagrams in CI and fail the build if sources don't compile; adopt the C4 model for consistent levels (context, container, component).
+
+### 3.6 Exercises
+
+1. What three things does an ADR capture, and why is it immutable?
+2. How do you record a change of mind without editing a past ADR?
+3. Why do diagrams-as-code stay accurate when hand-drawn diagrams rot?
+
+### 3.7 Challenges
+
+- **Challenge.** Write an ADR for a real decision in your project (context/decision/consequences) and replace one hand-drawn diagram with a Mermaid or PlantUML/C4 source committed to the repo.
+
+### 3.8 Checklist
+
+- [ ] Significant decisions are captured as numbered, immutable ADRs.
+- [ ] Reversals are new ADRs that supersede old ones (append-only history).
+- [ ] Diagrams are text (Mermaid/PlantUML/C4) in the repo.
+- [ ] Docs change in the same pull request as the code.
+
+### 3.9 Best practices
+
+- Keep ADRs short: context, decision, consequences.
+- Supersede rather than edit; preserve the decision trail.
+- Generate diagrams from versioned text reviewed with the code.
+
+### 3.10 Anti-patterns
+
+- Decisions buried in chat threads or someone's memory.
+- Editing past ADRs (losing the history of why).
+- Binary diagrams in a wiki that no one updates.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| "Why is it built this way?" has no answer | No ADRs | Start an ADR log; record decisions going forward |
+| Diagram contradicts the system | Hand-drawn, never updated | Move to diagrams-as-code reviewed with changes |
+| Old decision keeps getting reversed | No superseding trail | Write a new ADR that supersedes the prior one |
+
+### 3.12 References
+
+- P. Clements et al., *Documenting Software Architectures: Views and Beyond*, 2nd ed. (Addison-Wesley, 2010) — ISBN 978-0321552686.
+- M. Nygard, "Documenting Architecture Decisions" (ADRs); S. Brown, the C4 model — https://c4model.com.
+
+---
+
+> **End of Part II.** Documentation stays true when the **why** is captured in immutable, superseding **ADRs** and the **diagrams are code** (Mermaid/PlantUML/C4) versioned in the repo and reviewed with each change. With Part I's choice of views and audiences, you can now keep architecture documentation a living asset instead of a stale liability.

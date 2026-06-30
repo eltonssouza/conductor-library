@@ -46,7 +46,7 @@ software_dev: core
 **Part III – At scale**
 5. Refactoring legacy code and large structures
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Parts II–III.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–III (Ch. 1–5).
 
 ---
 
@@ -264,4 +264,325 @@ void characterize(double base, double rate, double expected) {
 
 > **End of Part I.** You can now define refactoring as small, behavior-preserving change, separate it cleanly from feature work, and stand up the test net that makes it safe — including characterization tests for legacy code. **Part II — The practice** (Chapters 3–4) catalogs the code smells that prompt a refactor and the core moves (Extract, Inline, Move, Rename) with the safe steps to apply each.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – The practice
+
+Part I defined refactoring as small, behavior-preserving change protected by tests. Part II is the day-to-day practice: recognizing the **code smells** that prompt a refactor, and applying the **core moves** in safe, tiny steps.
+
+---
+
+## Chapter 3 — Code smells: the prompts to refactor
+
+### 3.1 Introduction
+
+A **code smell** is a surface symptom that *suggests* a deeper problem — not a rule violation, but a prompt to look closer. Fowler's catalog gives the symptoms names so a team can talk about them: **Duplicated Code**, **Long Function**, **Long Parameter List**, **Mysterious Name**, **Divergent Change** (one module changed for many reasons), **Shotgun Surgery** (one change touches many modules), **Feature Envy**, **Data Clumps**, and **Primitive Obsession**. A smell is the *prompt*; whether to refactor — and which move to use — is a judgment.
+
+### 3.2 Business context
+
+Smells are early warnings that change is getting expensive. Duplicated code means a fix must be made in several places (and one will be missed); Shotgun Surgery means a single requirement scatters across the codebase; a Long Function hides bugs. Naming these patterns turns vague unease ("this code is messy") into specific, actionable items a team can prioritize against the cost of the next feature. Catching smells early keeps refactoring small and continuous instead of a risky big-bang rewrite later.
+
+### 3.3 Theoretical concepts: a shared vocabulary of symptoms
+
+```mermaid
+flowchart TB
+    smell["a smell (Duplicated Code, Long Function, Feature Envy...)"] --> ask["prompt: is the design making change hard here?"]
+    ask -->|yes| move["pick a refactoring move (Ch. 4)"]
+    ask -->|no| leave["leave it — a smell is not a defect"]
+```
+
+Smells cluster around the things that make code hard to change. **Duplicated Code** → unify with Extract Function. **Long Function** / **Long Parameter List** → Extract Function, Introduce Parameter Object. **Divergent Change** → split a module that has too many reasons to change; **Shotgun Surgery** → the opposite, gather scattered logic together. **Feature Envy** (a method more interested in another object's data) → Move Function. The point is recognition: once you can name the smell, the catalog of moves tells you the fix.
+
+### 3.4 Architecture: from smell to move
+
+```mermaid
+flowchart LR
+    dup["Duplicated Code"] --> ef["Extract Function / pull up"]
+    longfn["Long Function"] --> ef2["Extract Function"]
+    envy["Feature Envy"] --> mv["Move Function"]
+    clump["Data Clumps"] --> po["Introduce Parameter Object"]
+```
+
+The catalog pairs each smell with proven moves, so refactoring is diagnosis-then-treatment rather than guesswork.
+
+### 3.5 Real example
+
+**Scenario.** Three call sites format a customer's address with the same five lines of code.
+
+**Problem.** This is **Duplicated Code**: a change to the format must be made in three places, and the third will eventually be forgotten.
+
+**Solution.** Name the smell, then apply **Extract Function** to unify it.
+
+**Implementation.**
+
+```text
+# Smell: Duplicated Code (same 5 lines in 3 places)
+# at each site:
+line = street + ", " + number + " - " + city + "/" + state
+
+# After Extract Function: one definition, three callers
+formatAddress(a): return a.street + ", " + a.number + " - " + a.city + "/" + a.state
+# every site now calls formatAddress(a)
+```
+
+**Result.** The format lives in one place; a change is made once and can't be partially applied. Naming the smell ("Duplicated Code") pointed directly to the move ("Extract Function") — the whole purpose of the catalog.
+
+**Future improvements.** Watch for the next smells the change reveals (a Long Parameter List or Data Clump often hides behind duplication) and address them in separate, tiny steps.
+
+### 3.6 Exercises
+
+1. What is a code smell, and why is it a prompt rather than a defect?
+2. Contrast Divergent Change and Shotgun Surgery.
+3. Which smell does Feature Envy describe, and which move typically fixes it?
+
+### 3.7 Challenges
+
+- **Challenge.** Scan a file and list every smell you can name from the catalog. For each, write the move you'd apply — without yet applying it. Notice how naming sharpens the diagnosis.
+
+### 3.8 Checklist
+
+- [ ] I can name the smell before reaching for a fix.
+- [ ] I treat a smell as a prompt to evaluate, not an automatic change.
+- [ ] I map each smell to a specific refactoring move.
+- [ ] I address smells in small, separate steps.
+
+### 3.9 Best practices
+
+- Learn the catalog so unease becomes a named, shared diagnosis.
+- Pair each smell with the move that resolves it.
+- Refactor smells when they make an imminent change harder, not for their own sake.
+
+### 3.10 Anti-patterns
+
+- "Cleaning up" code with no smell and no upcoming change (churn for its own sake).
+- Treating every smell as a defect that must be fixed now.
+- Fixing many smells in one giant commit instead of small steps.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely smell | Action |
+|---------|--------------|--------|
+| A fix must be made in several places | Duplicated Code | Extract Function and unify |
+| One requirement touches many files | Shotgun Surgery | Gather the scattered logic together |
+| A method uses another object's data a lot | Feature Envy | Move Function to that object |
+
+### 3.12 References
+
+- M. Fowler, *Refactoring: Improving the Design of Existing Code*, 2nd ed. (Addison-Wesley, 2018), ch. 3 "Bad Smells in Code" — ISBN 978-0134757599.
+- K. Beck, M. Fowler, "Bad Smells in Code" (catalog of smells and their refactorings).
+
+---
+
+## Chapter 4 — Core moves and how to apply them safely
+
+### 4.1 Introduction
+
+Most refactoring is a handful of **core moves** applied in tiny, reversible steps: **Extract Function**, **Inline Function**, **Extract Variable**, **Rename** (variable/function), **Move Function**, and **Change Function Declaration**. The safety comes not from the move but from the **discipline**: make one small change, run the tests, commit; repeat. Modern IDEs automate several of these moves correctly, which is safer than editing by hand.
+
+### 4.2 Business context
+
+A refactor that takes a system down for a day is a refactor a team stops doing. The small-steps discipline keeps the code **green and shippable at every moment**, so refactoring fits between features instead of becoming a scary project. Automated IDE refactorings (Rename, Extract) remove a whole class of human error — a rename that updates every reference can't leave a dangling one. The result is that improving the design becomes a routine, low-risk activity rather than a gamble.
+
+### 4.3 Theoretical concepts: tiny steps, green after each
+
+```mermaid
+flowchart LR
+    s1["make ONE small move"] --> t["run tests"]
+    t -->|green| commit["commit"] --> s1
+    t -->|red| revert["undo the last step"]
+```
+
+Each move has mechanics designed to keep behavior identical: **Extract Function** (pull a fragment into a named function, pass what it needs), **Inline** (the reverse), **Extract Variable** (name a sub-expression), **Rename** (improve a name everywhere it's used), **Move Function** (relocate to the class that owns the data — fixes Feature Envy), **Change Function Declaration** (add/rename/reorder parameters safely). The constant is the loop: one step, tests green, commit — so any breakage is isolated to the last tiny change and trivially reverted.
+
+### 4.4 Architecture: prefer automated, reversible moves
+
+```mermaid
+flowchart TB
+    ide["IDE automated refactoring (Rename, Extract)"] --> safe["updates all references atomically"]
+    manual["manual edit"] --> risk["risk of a missed reference — rely on tests"]
+    note["Automate where possible; verify with the test net every step"]
+```
+
+Lean on the IDE for the mechanical moves and on the test suite for the rest. A fast suite (Part I) is what makes the one-step-then-test loop practical dozens of times an hour.
+
+### 4.5 Real example
+
+**Scenario.** A long `printOwing` function computes totals and prints a banner, details, and footer.
+
+**Problem.** It's a **Long Function** mixing levels; you want to restructure it without changing output.
+
+**Solution.** Apply **Extract Function** repeatedly, running tests after each extraction.
+
+**Implementation.**
+
+```text
+# Step 1: extract the banner — run tests (green) — commit
+printBanner()
+# Step 2: extract the details calculation, name the variable — tests — commit
+outstanding = calculateOutstanding(invoice)
+# Step 3: extract the footer — tests — commit
+printDetails(invoice, outstanding)
+
+printOwing(invoice):     # now reads as named steps, behavior identical
+    printBanner()
+    outstanding = calculateOutstanding(invoice)
+    printDetails(invoice, outstanding)
+```
+
+**Result.** The function became a readable sequence of named steps with **no behavior change** — verified by green tests after every extraction. Because each step was committed, any mistake would have been a one-step revert. This is the whole method: small moves, continuously verified.
+
+**Future improvements.** Once extracted, apply Move Function to relocate any piece that belongs on another object; use the IDE's Rename to sharpen the new names.
+
+### 4.6 Exercises
+
+1. What is the core loop that makes each move safe?
+2. Which move fixes Feature Envy, and why?
+3. Why are IDE-automated Rename/Extract safer than hand edits?
+
+### 4.7 Challenges
+
+- **Challenge.** Take a long function and reduce it to a sequence of named steps using only Extract Function and Extract Variable, committing after each step with tests green. Do not change any output.
+
+### 4.8 Checklist
+
+- [ ] I make one small move at a time and run tests after each.
+- [ ] I commit on green so any breakage is a one-step revert.
+- [ ] I use IDE-automated refactorings where available.
+- [ ] I never mix a refactoring step with a behavior change (Part I).
+
+### 4.9 Best practices
+
+- Work in tiny, reversible steps verified by a fast test suite.
+- Prefer automated refactorings for mechanical moves.
+- Commit frequently on green to keep the system shippable.
+
+### 4.10 Anti-patterns
+
+- Large, multi-move refactors with no intermediate test runs.
+- Hand-editing a rename and missing a reference.
+- Refactoring on a red build, so you can't tell new breakage from old.
+
+### 4.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Refactor introduced a bug | Steps too large to localize | Smaller moves; test and commit each |
+| Rename left a dangling reference | Manual edit | Use the IDE's Rename refactoring |
+| Can't tell what broke | Many moves before testing | Revert to last green; redo one step at a time |
+
+### 4.12 References
+
+- M. Fowler, *Refactoring: Improving the Design of Existing Code*, 2nd ed. (Addison-Wesley, 2018), ch. 6–7 (Extract/Inline/Move/Rename; the mechanics) — ISBN 978-0134757599.
+- K. Beck, *Test-Driven Development by Example* (Addison-Wesley, 2002), on the small-step rhythm — ISBN 978-0321146533.
+
+---
+
+## Part III – At scale
+
+The moves of Part II assume tests already exist. Part III handles the hard cases: **legacy code** without tests, and **large structural** changes that can't be done in a single step.
+
+---
+
+## Chapter 5 — Refactoring legacy code and large structures
+
+### 5.1 Introduction
+
+Feathers defines **legacy code** simply as **code without tests** — you can't refactor it safely because you can't tell if you changed behavior. The way in is to find a **seam** (a place where you can substitute behavior without editing in place), write **characterization tests** that pin down what the code *currently* does (bugs included), and only then refactor. **Large** restructurings are done **incrementally** — Branch by Abstraction, or the Strangler pattern around the edges — never as a big-bang rewrite.
+
+### 5.2 Business context
+
+The riskiest, highest-value code is often the oldest and least-tested. A big-bang rewrite of it is the classic way to halt delivery for months and reintroduce old bugs. Characterization tests plus incremental restructuring let a team improve critical legacy systems **while keeping them running and shippable**, turning a feared rewrite into steady, low-risk progress. This is what keeps a business moving on top of code it can't afford to freeze.
+
+### 5.3 Theoretical concepts: seams and characterization tests
+
+```mermaid
+flowchart LR
+    legacy["legacy code (no tests)"] --> seam["find a seam (inject/substitute behavior)"]
+    seam --> char["write characterization tests (pin current behavior)"]
+    char --> refac["now refactor in small steps (Part II)"]
+```
+
+A **characterization test** asserts the code's *actual* current output — not what it *should* do — so it becomes a safety net even for code whose intended behavior is unclear. A **seam** lets you get the code under test without first changing it (e.g., inject a dependency, subclass-and-override). Once the net exists, the Part II moves apply.
+
+### 5.4 Architecture: change large structures incrementally
+
+```mermaid
+flowchart TB
+    old["old structure"] --> abs["introduce an abstraction over it (Branch by Abstraction)"]
+    abs --> newimpl["build the new implementation behind it"]
+    newimpl --> swap["switch callers over gradually, then remove the old"]
+    note["Strangler: grow the new around the old until the old can be deleted"]
+```
+
+Large refactorings are sequenced as many safe small steps behind a stable interface, so the system stays releasable throughout and the change can be paused or reversed at any point.
+
+### 5.5 Real example
+
+**Scenario.** A critical pricing module has no tests and must be restructured.
+
+**Problem.** Any edit risks silently changing prices; there's no net to catch it.
+
+**Solution.** Pin current behavior with **characterization tests** through a **seam**, then refactor in small steps.
+
+**Implementation.**
+
+```text
+# 1. Find a seam: feed inputs, capture current outputs (even if "wrong")
+test: assert price(cart=A) == 19.90      # whatever it currently returns
+test: assert price(cart=B) == 0.00       # captures existing behavior, bug and all
+
+# 2. With the net green, apply Part II moves (Extract Function, Rename) in tiny steps
+# 3. For the big change, Branch by Abstraction:
+interface Pricing { price(cart) }        # abstraction over old + new
+# build NewPricing behind it; switch callers gradually; delete the old
+```
+
+**Result.** The characterization tests catch any accidental change to prices during refactoring, so the legacy module can be cleaned up safely. The large restructuring proceeds behind an abstraction, keeping the system shippable at every step rather than betting on a rewrite.
+
+**Future improvements.** As behavior is understood, upgrade characterization tests into intention-revealing tests; once callers are migrated, delete the old implementation and the abstraction if no longer needed.
+
+### 5.6 Exercises
+
+1. What is Feathers' definition of legacy code, and why does it block safe refactoring?
+2. What does a characterization test assert, and how is that different from a normal unit test?
+3. How does Branch by Abstraction keep a large change shippable?
+
+### 5.7 Challenges
+
+- **Challenge.** Pick an untested function, write characterization tests that capture its current output for several inputs, then refactor it in small steps keeping those tests green. Resist "fixing" behavior until the net exists.
+
+### 5.8 Checklist
+
+- [ ] I add characterization tests before refactoring untested code.
+- [ ] I find a seam to get code under test without editing it first.
+- [ ] I sequence large changes behind a stable abstraction.
+- [ ] I keep the system shippable at every step (no big-bang rewrite).
+
+### 5.9 Best practices
+
+- Pin current behavior with characterization tests, then refactor.
+- Use seams (dependency injection, subclass-and-override) to insert tests.
+- Restructure large code incrementally (Branch by Abstraction / Strangler).
+
+### 5.10 Anti-patterns
+
+- Refactoring untested legacy code "carefully" without a net.
+- Big-bang rewrites of critical systems.
+- Fixing perceived bugs while characterizing (changing behavior before it's pinned).
+
+### 5.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Afraid to touch a module | No tests (legacy) | Add characterization tests via a seam |
+| Can't insert a test | No seam | Introduce one (inject dependency, subclass-and-override) |
+| Big restructure stalled/unshippable | Big-bang approach | Switch to Branch by Abstraction / Strangler |
+
+### 5.12 References
+
+- M. Feathers, *Working Effectively with Legacy Code* (Prentice Hall, 2004) — seams, characterization tests — ISBN 978-0131177055.
+- M. Fowler, *Refactoring*, 2nd ed. (Addison-Wesley, 2018), ch. 12 (big refactorings) & Branch by Abstraction — ISBN 978-0134757599.
+
+---
+
+> **End of Part III.** Refactoring scales by getting **legacy code** under **characterization tests** through a **seam** before changing it, and by restructuring **large** code **incrementally** behind a stable abstraction rather than rewriting. With Part I's discipline (behavior-preserving, test-backed) and Part II's smells-and-moves, you can now improve any codebase — even untested, critical, or large — safely and continuously.

@@ -42,7 +42,7 @@ software_dev: core
 3. Functions that do one thing
 4. Errors, comments, and the cost of cleverness
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–4).
 
 ---
 
@@ -270,4 +270,224 @@ double grossLineTotal(double unitPrice, int quantity) {
 
 > **End of Part I.** You now treat code as something written primarily to be read and changed, enforce style automatically so review focuses on intent, and use naming as the cheapest, highest-leverage documentation you have. **Part II — Building blocks** (Chapters 3–4) covers functions that do one thing at one level of abstraction, and disciplined error handling over clever control flow.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Building blocks
+
+Part I set the mindset: code is read more than written, and names are the cheapest documentation. Part II is about the two building blocks where that mindset is won or lost — **functions** that do one thing at one level of abstraction, and **error handling, comments, and clever code**, where discipline beats ingenuity.
+
+---
+
+## Chapter 3 — Functions that do one thing
+
+### 3.1 Introduction
+
+The first rule of functions is that they should be **small**; the second is that they should do **one thing**. "One thing" has a precise test: every statement in the function is **one level of abstraction below** the function's name. If a function mixes high-level policy ("process the order") with low-level mechanics (string formatting, loop indices), it is doing several things and should be split. Small, single-purpose functions are easy to name, read, test, and reuse — the foundation of maintainable code.
+
+### 3.2 Business context
+
+A 200-line function that does everything is where bugs hide and changes stall: to fix one behavior you must understand all of them, and you can't test a part in isolation. Breaking it into small functions that each do one thing turns that wall of code into named, testable steps a reader can scan top-to-bottom. Teams move faster because changes become local, reviews become focused, and the same small functions get reused instead of re-implemented. Function design is where readability is most cheaply bought.
+
+### 3.3 Theoretical concepts: one level of abstraction per function
+
+```mermaid
+flowchart TB
+    f["placeOrder() — high-level policy"] --> a["validate() (one level down)"]
+    f --> b["reserveStock() (one level down)"]
+    f --> c["charge() (one level down)"]
+    note["Each function's body sits ONE level below its name (the stepdown rule)"]
+```
+
+Keep one level of abstraction per function: a high-level function reads as a sequence of named steps, each of which is itself a function one level lower — the **stepdown rule**, so code reads like a top-down narrative. Extract until you cannot meaningfully extract more; a good name for the extracted piece is the signal that it was indeed "one thing". Long functions almost always mix levels; the cure is **Extract Function** until each does one job.
+
+### 3.4 Architecture: compose small functions
+
+```mermaid
+flowchart LR
+    policy["policy functions (what)"] --> mechanics["mechanism functions (how)"]
+    note["Read top-down: each layer calls the next level of detail"]
+```
+
+A maintainable module is a shallow tree of small functions: policy at the top calling mechanism below, never the reverse mixed together. The shape makes the *what* visible at a glance and hides the *how* until you need it.
+
+### 3.5 Real example
+
+**Scenario.** A `handleOrder` function validates input, talks to the database, formats a receipt, and logs — all in one body.
+
+**Problem.** It mixes levels (business rules next to string formatting), so it's hard to name, impossible to unit-test a part, and risky to change.
+
+**Solution.** Extract each "thing" into its own well-named function; let `handleOrder` read as a list of steps.
+
+**Implementation.**
+
+```text
+# Before: one function doing many things at many levels
+handleOrder(req):
+    if req.qty <= 0 or req.sku == "": ...     # validation
+    row = db.query("SELECT ...")              # persistence mechanics
+    total = 0; for i in items: total += ...   # calculation mechanics
+    receipt = "Order " + id + ": $" + total   # formatting
+    log.write(...)                            # logging
+
+# After: each function does ONE thing at ONE level
+handleOrder(req):
+    validate(req)
+    order = saveOrder(req)
+    return formatReceipt(order)               # reads as a top-down narrative
+```
+
+**Result.** `handleOrder` now states *what* happens in three named steps; the *how* lives in small functions you can name, test, and reuse independently. A change to receipt formatting touches only `formatReceipt`; validation can be unit-tested without a database.
+
+**Future improvements.** Apply the stepdown rule throughout the module so every function reads one level above the functions it calls; remove any function whose name needs "and" (a sign it still does two things).
+
+### 3.6 Exercises
+
+1. What is the precise test for whether a function "does one thing"?
+2. What is the stepdown rule, and how does it make code read like a narrative?
+3. Why is a function whose name contains "and" suspect?
+
+### 3.7 Challenges
+
+- **Challenge.** Take the longest function in code you know and extract until each resulting function does one thing at one level of abstraction. Name each extraction; if a name needs "and", split again.
+
+### 3.8 Checklist
+
+- [ ] My functions are small and do one thing.
+- [ ] Each function body is one level of abstraction below its name.
+- [ ] High-level functions read as a sequence of named steps (stepdown rule).
+- [ ] No function name needs "and".
+
+### 3.9 Best practices
+
+- Extract Function until each does one thing; let the name confirm it.
+- Keep one level of abstraction per function.
+- Prefer many small, well-named functions over one large one.
+
+### 3.10 Anti-patterns
+
+- Long functions mixing policy and mechanics.
+- Flag arguments that make a function do one thing or another.
+- Deep nesting that hides multiple responsibilities in one body.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Can't name a function without "and" | It does more than one thing | Extract until each does one |
+| Hard to unit-test part of a function | Mixed levels of abstraction | Extract the part into its own function |
+| Change ripples through a huge function | One function owns many concerns | Split by responsibility |
+
+### 3.12 References
+
+- R. C. Martin, *Clean Code* (Prentice Hall, 2008), ch. 3 "Functions" (Do One Thing; One Level of Abstraction per Function) — ISBN 978-0132350884.
+- S. McConnell, *Code Complete*, 2nd ed. (Microsoft Press, 2004), ch. 7 (high-quality routines) — ISBN 978-0735619678.
+
+---
+
+## Chapter 4 — Errors, comments, and the cost of cleverness
+
+### 4.1 Introduction
+
+Three habits separate maintainable code from a maintenance burden. Handle failures with **exceptions, not return codes**, so the happy path stays clean and no error is silently ignored. Treat **comments as a last resort**: a comment usually marks a failure to make the code express itself, and comments rot into lies as code changes. And resist **cleverness** — code that shows off costs every future reader the time to decode it. In all three, clarity beats ingenuity.
+
+### 4.2 Business context
+
+Return-code error handling tangles the main logic with `if (err)` checks and invites the one unchecked path that becomes a production incident; exceptions separate the two. Stale comments are worse than none — they actively mislead during the next change, and someone trusts them. Clever one-liners feel productive but tax every reviewer and every on-call engineer who must understand them at 3 a.m. Choosing the boring, explicit version is what keeps a codebase cheap to operate as the team and the code turn over.
+
+### 4.3 Theoretical concepts: express, don't comment; throw, don't return codes
+
+```mermaid
+flowchart LR
+    code["intent"] --> express["express it in names + small functions"]
+    express -. "only if truly needed" .-> comment["a comment (the last resort)"]
+    err["a failure"] --> exc["throw an exception (clean happy path)"]
+    err -. avoid .-> ret["return code checked at every call (clutter, easy to skip)"]
+```
+
+Use **exceptions rather than return codes**, and keep error handling itself "one thing" — extract the `try/catch` so a function either does work *or* handles errors, not both. Before writing a comment, try to **make the code say it**: rename a variable, extract a well-named function, introduce an explaining constant. Reserve comments for intent the code genuinely can't carry (a why, a legal note, a warning). Prefer the explicit, ordinary construct over the clever one; the reader's time is the scarce resource.
+
+### 4.4 Architecture: separate the happy path from failure
+
+```mermaid
+flowchart TB
+    work["business logic (happy path, no error clutter)"] --> boundary["a thin try/catch boundary"]
+    boundary --> handle["handle/translate the error once"]
+    note["Error handling is its own concern, extracted from the logic"]
+```
+
+Push error handling to a boundary: the core logic reads top-to-bottom without `if (err)` noise, and a surrounding handler deals with failure in one place. The same separation that keeps functions doing one thing (Ch. 3) keeps error handling from polluting them.
+
+### 4.5 Real example
+
+**Scenario.** A routine parses a file, with failure handled by return codes and explained by comments.
+
+**Problem.** Every call checks a code (easy to forget), the logic is buried under error branches, and a comment "// returns -1 if not found" drifts out of date.
+
+**Solution.** Throw exceptions, extract the handler, and replace the comment with an expressive name.
+
+**Implementation.**
+
+```text
+# Before: return codes + a comment that can rot
+parse(path):
+    code = open(path)              # returns -1 on missing file (comment may lie)
+    if code == -1: return -1
+    ... # logic interleaved with more code checks
+
+# After: exceptions + extracted handling + self-explaining code
+loadConfig(path):                  # name states intent — no comment needed
+    try:
+        return parse(open(path))   # happy path is clean
+    except NotFound:
+        raise ConfigMissing(path)  # translate at the boundary, once
+```
+
+**Result.** The happy path reads without error clutter, no caller can silently skip a forgotten code, and the intent lives in the name `loadConfig` rather than a comment that could go stale. Error handling is a single boundary concern, not smeared through the logic.
+
+**Future improvements.** Delete comments that merely restate code; keep only the "why". Audit clever expressions and replace any that a teammate can't read at a glance with an explicit equivalent.
+
+### 4.6 Exercises
+
+1. Why do exceptions keep the happy path cleaner than return codes?
+2. Why is a stale comment worse than no comment, and what should you try before writing one?
+3. What is the real cost of "clever" code, and who pays it?
+
+### 4.7 Challenges
+
+- **Challenge.** Find a function using return codes for errors. Convert it to exceptions, extract the `try/catch` to a boundary, and remove at least one comment by renaming or extracting so the code explains itself.
+
+### 4.8 Checklist
+
+- [ ] I use exceptions rather than return codes for failures.
+- [ ] Error handling is extracted so a function does work or handles errors, not both.
+- [ ] I try to express intent in code before adding a comment.
+- [ ] I prefer explicit, ordinary code over clever constructs.
+
+### 4.9 Best practices
+
+- Throw exceptions; keep the happy path free of error clutter.
+- Make comments a last resort; prefer names, small functions, explaining constants.
+- Write the boring, explicit version a tired teammate can read.
+
+### 4.10 Anti-patterns
+
+- Return codes checked (and forgotten) at every call site.
+- Comments that restate the code or that have drifted out of date.
+- Clever one-liners that trade readability for a feeling of brevity.
+
+### 4.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Errors occasionally ignored | Return codes not checked everywhere | Use exceptions; handle at a boundary |
+| Comment contradicts the code | Comment rotted as code changed | Delete it; express intent in the code |
+| Reviewers keep asking "what does this do?" | Clever, terse code | Rewrite explicitly with clear names |
+
+### 4.12 References
+
+- R. C. Martin, *Clean Code* (Prentice Hall, 2008), ch. 4 "Comments" & ch. 7 "Error Handling" (Use Exceptions Rather Than Return Codes) — ISBN 978-0132350884.
+- E. Evans, *Domain-Driven Design* (Addison-Wesley, 2003) — ISBN 978-0321125217, on shared domain vocabulary.
+
+---
+
+> **End of Part II.** Maintainable building blocks come from **functions that do one thing** at one level of abstraction (read top-down via the stepdown rule) and from disciplined **error handling, comments, and restraint with cleverness** — exceptions over return codes, expressive code over comments, the explicit over the clever. With Part I's reader-first mindset and naming, you now have the day-to-day habits that keep code easy to read and change.

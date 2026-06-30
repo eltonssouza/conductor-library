@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Choosing**
 3. Selecting a style by trade-off, not trend
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -248,4 +248,113 @@ billing-service:  owns billing DB; subscribes to OrderPlaced; charges async
 
 > **End of Part I.** You can now describe the main architecture styles — modular monolith, microservices, event-driven — and the quality attributes each buys and sacrifices, treating modularity and distribution as separate decisions. **Part II — Choosing** (Chapter 3) gives a method to select a style from your prioritized quality attributes and team context, rather than from industry fashion.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Choosing
+
+Part I surveyed the styles and what each buys and sacrifices. Part II is the decision itself: how to **select** a style from your prioritized quality attributes and team context — by trade-off, not by trend.
+
+---
+
+## Chapter 3 — Selecting a style by trade-off, not trend
+
+### 3.1 Introduction
+
+The first law of software architecture is that **everything is a trade-off** — and the corollary, *"why is more important than how."* There is no "best" style; there is only the style best suited to *this* system's prioritized **quality attributes**, team, and constraints. Microservices buy independent deployability and scalability at the cost of operational and distributed complexity; a modular monolith buys simplicity at the cost of coarse-grained scaling. Choosing well means ranking the few quality attributes that matter here and picking the style whose trade-offs favor them — not the one that's currently fashionable.
+
+### 3.2 Business context
+
+Choosing a style by trend is how teams end up with microservices they can't operate or a monolith that can't scale the one component under load. Both are expensive mistakes that show up months later as slow delivery or outages. Driving the decision from prioritized quality attributes ties architecture to **business needs**: if independent team deployment is the priority, that points one way; if time-to-market for a small team is the priority, it points another. Making the trade-offs explicit also makes the decision **defensible and revisable** when priorities change.
+
+### 3.3 Theoretical concepts: rank the attributes, then map to a style
+
+```mermaid
+flowchart TB
+    drivers["business drivers + constraints"] --> qa["prioritize a FEW quality attributes"]
+    qa --> map["map to the style whose trade-offs favor them"]
+    map --> adr["record the decision + trade-offs (ADR)"]
+    note["No best style — only best fit for THIS context"]
+```
+
+Start from the system's **architecture characteristics** (the "-ilities" that matter: scalability, deployability, simplicity, fault tolerance, time-to-market) and pick the **small number** that dominate — you cannot maximize them all. Then choose the style whose inherent trade-offs align: event-driven for high scalability and decoupling; microservices for independent deployability; a modular monolith for simplicity and speed with a small team. Record the choice and the trade-offs you accepted as an **ADR**, so the reasoning survives.
+
+### 3.4 Architecture: separate decisions, explicit trade-offs
+
+```mermaid
+flowchart LR
+    mod["modularity (well-structured?)"] --- dist["distribution (separate processes?)"]
+    note["Decide modularity and distribution independently;<br/>distribution adds capability AND cost"]
+```
+
+Modularity and distribution are **separate** decisions: you can have a well-modularized monolith or a poorly-modularized set of microservices. Distribution adds independent scaling and deployment but imposes network, consistency, and operational costs — take it only when a prioritized attribute requires it.
+
+### 3.5 Real example
+
+**Scenario.** A startup team of six must ship a product fast but expects one feature (image processing) to need heavy scaling later.
+
+**Problem.** "Everyone uses microservices" pushes them toward a dozen services they can't operate; a pure monolith risks the image component swamping the rest under load.
+
+**Solution.** Rank attributes (time-to-market and simplicity now; targeted scalability later) and choose a **modular monolith** with the image component isolated for later extraction.
+
+**Implementation.**
+
+```text
+Prioritized quality attributes (ranked, not maximized-all):
+  1. time-to-market   -> simplicity, one deploy
+  2. simplicity       -> small team can operate it
+  3. scalability (image processing only) -> isolate that module now
+
+Decision: modular monolith; image-processing as a well-bounded module
+behind an interface, ready to extract into a service IF/when load demands.
+ADR records: chose simplicity now; accepted coarse scaling; extraction path noted.
+```
+
+**Result.** The team ships quickly on a simple deploy, while the one component likely to need scale is already isolated behind a boundary — so extracting it to a service later is cheap. The decision is driven by ranked attributes and recorded with its trade-offs, not by industry fashion.
+
+**Future improvements.** Re-evaluate when a prioritized attribute changes (e.g., team growth or real scaling pressure); extract the isolated module to a service only when the trade-off flips.
+
+### 3.6 Exercises
+
+1. Why is there no "best" architecture style?
+2. Why must you prioritize only a *few* quality attributes rather than maximize all?
+3. Why are modularity and distribution separate decisions?
+
+### 3.7 Challenges
+
+- **Challenge.** For a system you know, rank its top three quality attributes, map them to a style, and write a one-paragraph ADR naming the trade-offs you accept. Then argue the opposite choice and see which trade-offs you'd rather live with.
+
+### 3.8 Checklist
+
+- [ ] I derive the style from prioritized quality attributes, not trends.
+- [ ] I rank a few attributes instead of trying to maximize all.
+- [ ] I decide modularity and distribution separately.
+- [ ] I record the decision and its trade-offs in an ADR.
+
+### 3.9 Best practices
+
+- Let business drivers and ranked quality attributes choose the style.
+- Prefer the simplest style that meets the priorities; add distribution only when required.
+- Capture the decision and trade-offs in an ADR.
+
+### 3.10 Anti-patterns
+
+- Resume-driven / trend-driven architecture (microservices by default).
+- Trying to optimize every quality attribute at once.
+- Distributing a poorly-modularized system and inheriting all the cost, none of the benefit.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Can't operate the architecture | Style chosen by trend, not capacity | Re-derive from prioritized attributes; consolidate |
+| One component can't scale | Wrong distribution boundary | Isolate and extract just that component |
+| Endless "which style?" debate | No ranked quality attributes | Prioritize a few attributes, then decide |
+
+### 3.12 References
+
+- M. Richards, N. Ford, *Fundamentals of Software Architecture*, 2nd ed. (O'Reilly, 2025), architecture styles & the trade-off laws — ISBN 978-1098175511.
+- S. Newman, *Monolith to Microservices* (O'Reilly, 2019), when (and when not) to distribute — ISBN 978-1492047841.
+
+---
+
+> **End of Part II.** There is no best architecture style — only the one whose **trade-offs** favor *this* system's **prioritized quality attributes**, team, and constraints. Decide modularity and distribution separately, take distribution only when an attribute demands it, and record the choice in an ADR. With Part I's survey of the styles, you can now choose by trade-off rather than trend.
