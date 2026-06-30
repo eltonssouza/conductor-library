@@ -33,6 +33,30 @@ software_dev: foundational
 
 ---
 
+## Canonical source map
+
+Every chapter is **originally written** but **grounded** in a canonical reference for accuracy and coverage; the per-chapter **References** sections cite the exact chapter and section. The primary source throughout is *Introduction to Algorithms*, 4th ed. (Cormen, Leiserson, Rivest, Stein; MIT Press, 2022; ISBN 978-0262046305) — abbreviated **CLRS**. This table maps each guide chapter to its canonical CLRS location so the grounding is verifiable at a glance.
+
+| Guide chapter | Canonical source (CLRS 4th ed.) |
+|---|---|
+| 1 — Asymptotic analysis: Big-O | Ch. 3 (§3.1–3.2 asymptotic notation) |
+| 2 — Why growth rate dominates | §1.2 (algorithms as a technology) |
+| 3 — Divide and conquer | Ch. 4 (§4.5 master method), §2.3 (merge sort) |
+| 4 — Randomized & probabilistic analysis | Ch. 5 (§5.1–5.3), §7.3–7.4 (randomized quicksort) |
+| 5 — Amortized analysis | Ch. 16 (§16.1 aggregate, §16.2 accounting, §16.3 potential, §16.4 dynamic tables) |
+| 6 — Heapsort and quicksort | Ch. 6 (§6.1–6.5), Ch. 7 (§7.1–7.2) |
+| 7 — Linear-time sorting & selection | Ch. 8 (§8.1–8.4), Ch. 9 (§9.2–9.3) |
+| 8 — Dynamic programming | Ch. 14 (§14.1–14.4) |
+| 9 — Greedy algorithms | Ch. 15 (§15.1–15.3) |
+| 10 — Elementary structures & hashing | Ch. 10 (§10.1–10.2), Ch. 11 (§11.2–11.4) |
+| 11 — Balanced search trees & disjoint sets | Ch. 12, Ch. 13 (§13.2–13.3), Ch. 18, Ch. 19 (§19.3–19.4) |
+| 12 — Graph search & MST | Ch. 20 (§20.1–20.5), Ch. 21 (§21.2) |
+| 13 — Shortest paths & network flow | Ch. 22 (§22.1, §22.3), Ch. 23 (§23.2), Ch. 24 (§24.2–24.3) |
+| 14 — Strings, number theory & FFT | Ch. 30 (§30.2), Ch. 31 (§31.2, §31.6–31.7), Ch. 32 (§32.2, §32.4) |
+| 15 — NP-completeness & approximation | Ch. 34 (§34.1–34.3, §34.5), Ch. 35 (§35.1–35.2); survey Ch. 26, 27, 33 |
+
+---
+
 ## Table of Contents
 
 **Part I – Analysis**
