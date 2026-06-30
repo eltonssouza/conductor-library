@@ -146,7 +146,7 @@ flowchart LR
 
 ### 1.12 References
 
-- S. Krug, *Don't Make Me Think, Revisited*, 3rd ed. (New Riders, 2014) — ISBN 978-0321965516.
+- S. Krug, *Don't Make Me Think, Revisited*, 3rd ed. (New Riders, 2014) — Ch. 1 (Don't make me think!), Ch. 2 (How we really use the Web). ISBN 978-0321965516.
 - J. Nielsen, "Usability Heuristics," https://www.nngroup.com/articles/ten-usability-heuristics/.
 
 ---
@@ -243,7 +243,7 @@ After:  key metric  -> 32px bold, high contrast
 
 ### 2.12 References
 
-- S. Krug, *Don't Make Me Think, Revisited*, 3rd ed. (New Riders, 2014) — ISBN 978-0321965516.
+- S. Krug, *Don't Make Me Think, Revisited*, 3rd ed. (New Riders, 2014) — Ch. 3 (Billboard Design 101 — conventions & visual hierarchy), Ch. 6 (Street Signs and Breadcrumbs). ISBN 978-0321965516.
 - J. Tidwell, *Designing Interfaces*, 3rd ed. (O'Reilly, 2020) — ISBN 978-1492051961.
 
 ---

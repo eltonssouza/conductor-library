@@ -148,7 +148,7 @@ GET    /orders?status=open # filtered list -> 200 OK
 
 ### 1.12 References
 
-- J. Webber, S. Parastatidis, I. Robinson, *REST in Practice* (O'Reilly, 2010) — ISBN 978-0596805821.
+- J. Webber, S. Parastatidis, I. Robinson, *REST in Practice* (O'Reilly, 2010) — Ch. 3 (Basic Web Integration), Ch. 4 (CRUD Services — HTTP verbs on resources). ISBN 978-0596805821.
 - R. Fielding, "Architectural Styles and the Design of Network-based Software Architectures" (2000), the REST dissertation.
 
 ---
@@ -251,7 +251,7 @@ Idempotency-Key: 8f3a-...-key
 
 ### 2.12 References
 
-- J. Webber, S. Parastatidis, I. Robinson, *REST in Practice* (O'Reilly, 2010) — ISBN 978-0596805821.
+- J. Webber, S. Parastatidis, I. Robinson, *REST in Practice* (O'Reilly, 2010) — Ch. 4 (CRUD Services — method semantics, safety, and idempotency). ISBN 978-0596805821.
 - MDN, "HTTP response status codes": https://developer.mozilla.org/en-US/docs/Web/HTTP/Status.
 
 ---
