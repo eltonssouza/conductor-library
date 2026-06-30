@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Change over time**
 3. Slowly changing dimensions
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete. **Ready:** Part I (Ch. 1–2), Part II (Ch. 3).
 
 ---
 
@@ -262,4 +262,130 @@ sales_line_fact
 
 > **End of Part I.** You can now model analytical data dimensionally: separate measurements (facts) from descriptive context (dimensions) in a star schema with denormalized dimensions, and declare a single, precise, preferably atomic grain per fact table so aggregations stay correct. **Part II — Change over time** (Chapter 3) covers slowly changing dimensions — how to track history when a dimension's attributes (a customer's address, a product's category) change.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Change over time
+
+Part I modeled a snapshot. But dimensions are not static: customers move, products get recategorized, sales reps change regions. The decisive question for an analytics model is *what should happen to history when a descriptive attribute changes* — and the answer is not one rule but a deliberate choice per attribute. That choice is the **slowly changing dimension**.
+
+---
+
+## Chapter 3 — Slowly changing dimensions
+
+### 3.1 Introduction
+
+A **slowly changing dimension (SCD)** is the set of techniques for handling change in a dimension's descriptive attributes over time. The name (coined by Ralph Kimball in 1995) captures that these attributes change occasionally and unpredictably — a customer's city, a product's category, an employee's department — unlike facts, which arrive continuously. The core decision is whether a new value should **overwrite** the old (keeping only the current truth) or **preserve history** (so a measurement is reported against the attribute value that was true *when it happened*). Get this wrong and your historical reports silently rewrite the past — last year's sales suddenly attributed to this year's territories.
+
+### 3.2 Business context
+
+Analytics exists to answer "how did this measure behave over time, sliced by these attributes?" If a sales rep moves from the West to the East region and you simply update their region, every historical sale they ever made instantly *moves* to the East — the West's past performance is falsified. Conversely, sometimes you *do* want the correction to apply everywhere (a misspelled product name should just be fixed). There is no universally right answer; the business question dictates whether history must be preserved. Choosing the SCD type per attribute is therefore a modeling decision with direct reporting consequences, not a technical detail.
+
+### 3.3 Theoretical concepts: the SCD types
+
+```mermaid
+flowchart TB
+    t0["Type 0: Retain original<br/>value never changes (e.g. original credit score, date attributes)"]
+    t1["Type 1: Overwrite<br/>update in place — NO history, only current truth"]
+    t2["Type 2: Add new row<br/>new surrogate key + effective/expiration dates + current flag — FULL history"]
+    t3["Type 3: Add new column<br/>keep 'previous' alongside 'current' — limited, alternate-reality history"]
+```
+
+Kimball numbers the techniques; three carry almost all real use:
+
+- **Type 1 — Overwrite.** Replace the old value. Simple, no history; the dimension always reflects the current truth. Right for corrections (a fixed typo) and any attribute where nobody needs the old value.
+- **Type 2 — Add a new row.** When the attribute changes, insert a *new* dimension row with a *new surrogate key*, an effective date, an expiration date on the old row, and a "current" flag. Facts from before the change still point at the old row; facts after point at the new one. This is the workhorse for true history.
+- **Type 3 — Add a new column.** Keep `current_value` and `previous_value` side by side. Allows exactly one level of "alternate reality" (group by old *or* new). Used rarely, for planned redefinitions.
+
+(Types 0, 5, 6, 7 are refinements — e.g. Type 6 layers a Type-1 "current" attribute onto a Type-2 row so you can report by either the historical or the present value.)
+
+### 3.4 Architecture: Type 2 mechanics
+
+```mermaid
+flowchart LR
+    change["Customer moves city"] --> expire["Expire old row: set expiration_date + current_flag = false"]
+    expire --> insert["Insert new row: new surrogate key, new city, effective_date = today, current_flag = true"]
+    insert --> facts["New facts use the new surrogate key; old facts keep the old one"]
+```
+
+Type 2 is why dimension tables use **surrogate keys** (Part I) rather than natural keys: one customer (one natural/durable key) can have many dimension rows over time, each with its own surrogate key. A fact row's foreign key captures *which version* of the customer was true at the moment of the measurement. To support point-in-time queries, the dimension row carries `effective_date`, `expiration_date`, and a `is_current` flag. "Total sales by the customer's city **at time of sale**" joins on the surrogate key (automatic). "Total sales by the customer's **current** city" filters `is_current = true` — or uses a Type-6 current attribute. Both questions become answerable because the history was preserved.
+
+### 3.5 Real example
+
+**Scenario.** A `dim_customer` records each customer's `region`. A customer relocates from West to East. A quarterly report breaks sales down by region.
+
+**Problem.** With **Type 1** (overwrite), updating the region retroactively moves *all* of that customer's past sales to East — last year's West totals are now wrong. The business needs sales attributed to the region the customer was in *at the time of each sale*.
+
+**Solution.** Make `region` a **Type 2** attribute: expire the old customer row and insert a new one with a new surrogate key. Past facts keep the old surrogate key (West); new facts get the new one (East).
+
+**Implementation (Type 2 transition).**
+
+```sql
+-- 1. Expire the existing version
+UPDATE dim_customer
+SET expiration_date = CURRENT_DATE - 1, is_current = false
+WHERE customer_natural_key = 'C-42' AND is_current = true;
+
+-- 2. Insert the new version with a fresh surrogate key
+INSERT INTO dim_customer
+  (customer_sk, customer_natural_key, name, region, effective_date, expiration_date, is_current)
+VALUES
+  (nextval('dim_customer_sk'), 'C-42', 'Acme Co', 'East', CURRENT_DATE, '9999-12-31', true);
+
+-- Past facts still join to the West (old) surrogate key; new facts use the East one.
+-- "sales by current region":   join dim_customer WHERE is_current = true
+-- "sales by region at sale time": join on the fact's customer_sk (no extra filter)
+```
+
+**Result.** Historical reports correctly attribute each sale to the region in effect when it occurred; the relocation does not falsify the past. Both "as-was" and "as-is" questions are answerable from the same model.
+
+**Future improvements.** Apply Type 1 to genuinely correctional attributes on the same table (mixed types in one dimension are normal); add a Type-6 current-region attribute if "current region" reporting is frequent enough to want without the `is_current` filter.
+
+### 3.6 Exercises
+
+1. State, in one sentence each, what Type 1, Type 2, and Type 3 do to history.
+2. Why does Type 2 require surrogate keys rather than natural keys in the dimension?
+3. Give one attribute best modeled Type 1 and one best modeled Type 2, and justify each.
+
+### 3.7 Challenges
+
+- **Challenge.** Pick a dimension you maintain and classify each attribute as Type 0, 1, or 2 by asking "if this changes, must past facts keep the old value?" Then design the Type 2 transition (expire + insert) for one attribute that needs history.
+
+### 3.8 Checklist
+
+- [ ] I choose an SCD type per attribute based on whether history must be preserved.
+- [ ] My Type 2 dimensions use surrogate keys, effective/expiration dates, and a current flag.
+- [ ] I can answer both "as-was" and "as-is" questions from a Type 2 dimension.
+- [ ] I use Type 1 only where the old value is genuinely disposable (corrections).
+- [ ] I understand mixing types within one dimension is normal and expected.
+
+### 3.9 Best practices
+
+- Decide the SCD type during modeling, driven by the business reporting need.
+- Default attributes that describe "who/what/where it was" to Type 2 history.
+- Use surrogate keys so one natural entity can have many time-versioned rows.
+- Maintain effective/expiration dates and a current flag for point-in-time queries.
+
+### 3.10 Anti-patterns
+
+- Overwriting (Type 1) an attribute whose history the business reports on — silently falsifying the past.
+- Using natural keys in a dimension that needs Type 2 history.
+- Pushing changing attributes into the fact table to "avoid" SCDs.
+- Treating the SCD type as a one-size decision for the whole dimension.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Past report totals change after an attribute update | Type 1 overwrite where history is needed | Convert the attribute to Type 2 |
+| Can't reproduce a prior period's breakdown | No historical versions kept | Add Type 2 versioning (surrogate keys + dates) |
+| Duplicate-looking dimension rows | Type 2 versions of one entity (expected) | Filter `is_current` or join on the fact's surrogate key |
+| "Current value" reporting is awkward | Pure Type 2 needs an `is_current` filter | Add a Type-6 current attribute |
+
+### 3.12 References
+
+- R. Kimball, M. Ross, *The Data Warehouse Toolkit*, 3rd ed. (Wiley, 2013), Chapter 5 "Procurement" — Slowly Changing Dimension Techniques (Types 0–7) — ISBN 978-1118530801.
+- Kimball Group, "Slowly Changing Dimensions" (design tips): https://www.kimballgroup.com.
+
+---
+
+> **End of guide.** You can now model analytical data dimensionally end to end: separate **facts** from **dimensions** in a star schema at a precise **grain** (Part I), and handle change over time with **slowly changing dimensions** (Part II) — overwriting (Type 1) where the past is disposable, and versioning rows (Type 2, with surrogate keys, effective/expiration dates, and a current flag) where history must be preserved. The recurring discipline is to let the business question drive the model: declare the grain, then decide per attribute whether a change should rewrite history or record it.
