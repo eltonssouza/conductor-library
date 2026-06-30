@@ -68,7 +68,7 @@ The book progresses through five maturity levels:
 **Part VIII – Real Projects**
 P1. Financial Automation · P2. AI-Powered Support · P3. Data Pipeline · P4. Intelligent CRM · P5. Automated SaaS Platform · P6. Corporate Agent
 
-> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Part I (Ch. 1–5). **In progress:** Parts II–VIII.
+> **Status of this edition:** complete. **Ready:** Parts I–VIII (Chapters 1–53 and Projects P1–P6).
 
 ---
 
@@ -9856,4 +9856,677 @@ return $input.all().map(i => ({ json: { ...i.json, tenantId } }));
 
 > **End of Part VII.** n8n is now enterprise-ready in your hands: secured by default and hardened, integrated with SSO and governed with RBAC/projects, fully observable, scalable via queue mode and autoscaling, highly available across AZs, and safely multi-tenant. **Part VIII — Real Projects** (P1–P6) applies everything in six complete, end-to-end builds.
 
-<!--APPEND-PARTE-II-->
+## Part VIII – Real Projects
+
+Part VIII is the synthesis: six complete, end-to-end projects that combine everything from Parts I–VII. Each follows the project format — **Scenario · Problem · Solution · Architecture · Implementation · Result · Future improvements** — with realistic n8n 2.x workflows (queue mode, secure defaults, error handling, observability) and importable JSON. These are blueprints you can adapt to your own organization.
+
+---
+
+## Project 1 — Financial Automation
+
+### Scenario
+
+A fintech processes thousands of daily transactions. Every transaction above a threshold must be screened for fraud, recorded, and — if risky — escalated to the risk team and flagged in the CRM. Finance also needs a daily reconciliation report. The system must be auditable, idempotent, and resilient (it sits near money movement).
+
+### Problem
+
+The existing setup was four disconnected scripts with no shared error handling, no idempotency (a retried webhook double-recorded transactions), no audit trail, and no reconciliation — a compliance and reliability liability.
+
+### Solution
+
+A queue-mode n8n pipeline: a signed webhook ingests transactions, deduplicates idempotently (Redis), screens high-value ones via a fraud API, records every transaction to Postgres, escalates risky ones to Slack + CRM, and a scheduled job produces a daily reconciliation report — all behind a central Error Trigger and observability (Chapters 19, 23, 27, 50).
+
+### Architecture
+
+```mermaid
+flowchart TB
+    tx[Transaction webhook<br/>signed] --> dedup[Redis dedup SET NX]
+    dedup --> rec[(Record to Postgres)]
+    rec --> thr{Amount > threshold?}
+    thr -->|yes| fraud[Fraud API screen]
+    thr -->|no| done[Done]
+    fraud --> risk{Risk score high?}
+    risk -->|yes| esc[Slack risk team + CRM flag]
+    risk -->|no| done
+    sched[Daily schedule] --> recon[Reconciliation report]
+    recon --> mail[Email finance]
+    err[Error Trigger] -. on failure .-> alert[Alert + dead-letter]
+```
+
+### Implementation
+
+Key decisions: HMAC-verified webhook (Chapter 23); Redis SET NX idempotency keyed on transaction ID (Chapter 27); parameterized Postgres writes (Chapter 24); retries on the fraud API with dead-letter (Chapter 19); a separate scheduled reconciliation workflow; central Error Trigger (Chapter 19) and metrics (Chapter 50).
+
+**Ingestion workflow (importable JSON):**
+
+```json
+{
+  "name": "p1-transaction-ingest",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "tx", "responseMode": "responseNode", "options": { "rawBody": true } },
+      "id": "d3000001-0000-0000-0000-000000000001",
+      "name": "TX Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [200, 320]
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "=tx:{{ $json.body.transactionId }}",
+        "value": "1", "keyType": "string", "expire": true, "ttl": 604800,
+        "options": { "setIfNotExist": true }
+      },
+      "id": "d3000002-0000-0000-0000-000000000002",
+      "name": "Idempotency",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [400, 320],
+      "credentials": { "redis": { "id": "1", "name": "Redis" } }
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "schema": { "__rl": true, "value": "public", "mode": "list" },
+        "table": { "__rl": true, "value": "transactions", "mode": "list" },
+        "columns": { "mappingMode": "autoMapInputData", "value": {} },
+        "options": {}
+      },
+      "id": "d3000003-0000-0000-0000-000000000003",
+      "name": "Record TX",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [600, 320],
+      "credentials": { "postgres": { "id": "2", "name": "Ledger DB" } }
+    },
+    {
+      "parameters": {
+        "conditions": { "options": {}, "conditions": [ { "leftValue": "={{ Number($json.body.amount) }}", "rightValue": 50000, "operator": { "type": "number", "operation": "gt" } } ] }
+      },
+      "id": "d3000004-0000-0000-0000-000000000004",
+      "name": "High Value?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [800, 320]
+    },
+    {
+      "parameters": {
+        "url": "https://fraud.api/screen",
+        "method": "POST",
+        "sendBody": true, "specifyBody": "json",
+        "jsonBody": "={{ { transactionId: $json.body.transactionId, amount: $json.body.amount } }}",
+        "options": {}
+      },
+      "id": "d3000005-0000-0000-0000-000000000005",
+      "name": "Fraud Screen",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1000, 240],
+      "retryOnFail": true, "maxTries": 3, "waitBetweenTries": 2000,
+      "onError": "continueErrorOutput",
+      "credentials": { "httpHeaderAuth": { "id": "3", "name": "Fraud API" } }
+    },
+    {
+      "parameters": { "respondWith": "text", "responseCode": 200, "responseBody": "received" },
+      "id": "d3000006-0000-0000-0000-000000000006",
+      "name": "Ack",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1000, 420]
+    }
+  ],
+  "connections": {
+    "TX Webhook": { "main": [[{ "node": "Idempotency", "type": "main", "index": 0 }]] },
+    "Idempotency": { "main": [[{ "node": "Record TX", "type": "main", "index": 0 }]] },
+    "Record TX": { "main": [[{ "node": "High Value?", "type": "main", "index": 0 }]] },
+    "High Value?": { "main": [[{ "node": "Fraud Screen", "type": "main", "index": 0 }], [{ "node": "Ack", "type": "main", "index": 0 }]] },
+    "Fraud Screen": { "main": [[{ "node": "Ack", "type": "main", "index": 0 }], []] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### Result
+
+Every transaction is recorded exactly once (idempotent), high-value ones are fraud-screened with retries, risky ones escalate automatically, and finance gets a daily reconciliation — fully audited and resilient. Manual handling and double-recording are eliminated.
+
+### Future improvements
+
+Add an ML risk score with human review for borderline cases (Part V), per-tenant ledgers (Chapter 53), and SLO-based alerting on screening latency (Chapter 50).
+
+---
+
+## Project 2 — AI-Powered Support
+
+### Scenario
+
+A SaaS company's support team is overwhelmed. They want an AI assistant that answers customer questions from the product docs and past tickets, resolves simple cases autonomously (with tools), escalates complex ones to humans with context, and logs everything for quality and cost tracking.
+
+### Problem
+
+A naive chatbot hallucinated answers, had no access to live order/account data, couldn't escalate gracefully, and gave no cost/quality visibility — eroding customer trust.
+
+### Solution
+
+A RAG + agent system: ingest docs/tickets into a vector store; a chat-triggered AI Agent retrieves context, uses governed tools (order lookup, account status) via MCP, answers grounded with citations, escalates low-confidence cases to a human with full context, and logs tokens/quality (Chapters 31–40).
+
+### Architecture
+
+```mermaid
+flowchart TB
+    msg[Customer message] --> agent[AI Agent]
+    model[Chat Model] -->|ai_languageModel| agent
+    mem[Session Memory] -->|ai_memory| agent
+    kb[Vector KB tool] -->|ai_tool| agent
+    orders[Order lookup MCP tool] -->|ai_tool| agent
+    agent --> conf{Confidence/scope ok?}
+    conf -->|yes| reply[Grounded reply + citations]
+    conf -->|no| esc[Escalate to human + context]
+    agent --> log[(Log tokens/quality)]
+```
+
+### Implementation
+
+RAG ingestion (Chapter 35) into PGVector (Chapter 36); an AI Agent (Chapter 38) with a vector retriever tool and an MCP order-lookup tool (Chapter 34); session-scoped memory (Chapter 37); a confidence gate to human escalation; PII redaction and token logging (Chapter 40).
+
+**Support agent workflow (importable JSON, abridged):**
+
+```json
+{
+  "name": "p2-support-agent",
+  "nodes": [
+    {
+      "parameters": { "public": true, "options": {} },
+      "id": "e3000001-0000-0000-0000-000000000001",
+      "name": "Chat Trigger",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [200, 340]
+    },
+    {
+      "parameters": { "options": { "systemMessage": "You are ACME support. Use the knowledge tool and order tool. Answer ONLY from retrieved context with citations. If unsure or out of scope, escalate.", "maxIterations": 6 } },
+      "id": "e3000002-0000-0000-0000-000000000002",
+      "name": "Support Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [440, 340]
+    },
+    {
+      "parameters": { "model": { "__rl": true, "value": "gpt-4o-mini", "mode": "list" }, "options": { "temperature": 0.2 } },
+      "id": "e3000003-0000-0000-0000-000000000003",
+      "name": "Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [320, 520],
+      "credentials": { "openAiApi": { "id": "1", "name": "OpenAI" } }
+    },
+    {
+      "parameters": { "sessionIdType": "fromInput", "contextWindowLength": 8 },
+      "id": "e3000004-0000-0000-0000-000000000004",
+      "name": "Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [460, 520]
+    },
+    {
+      "parameters": { "mode": "retrieve-as-tool", "topK": 4, "options": {} },
+      "id": "e3000005-0000-0000-0000-000000000005",
+      "name": "KB Tool",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.1,
+      "position": [600, 520],
+      "credentials": { "postgres": { "id": "2", "name": "Vector DB" } }
+    }
+  ],
+  "connections": {
+    "Chat Trigger": { "main": [[{ "node": "Support Agent", "type": "main", "index": 0 }]] },
+    "Model": { "ai_languageModel": [[{ "node": "Support Agent", "type": "ai_languageModel", "index": 0 }]] },
+    "Memory": { "ai_memory": [[{ "node": "Support Agent", "type": "ai_memory", "index": 0 }]] },
+    "KB Tool": { "ai_tool": [[{ "node": "Support Agent", "type": "ai_tool", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### Result
+
+The assistant resolves a large share of tickets autonomously with grounded, cited answers, escalates the rest to humans with full context, and gives leadership token-cost and quality dashboards — support throughput rises while trust is preserved.
+
+### Future improvements
+
+Add multi-agent specialization (triage → resolve → review, Chapter 39), golden-set evaluation in CI (Chapters 44–45), and per-tenant knowledge isolation (Chapter 53).
+
+---
+
+## Project 3 — Data Pipeline
+
+### Scenario
+
+A data team must run a nightly ELT: extract from several SaaS APIs and a production database, transform/normalize, load into BigQuery, and notify on completion or failure — reliably and observably, at growing volume.
+
+### Problem
+
+Cron + scripts were opaque, lacked retries and incremental loading (full re-pulls hammered source APIs), had no alerting, and silently produced partial loads.
+
+### Solution
+
+An orchestrated n8n pipeline (n8n orchestrates; BigQuery does the heavy lifting): scheduled trigger, incremental extraction with stored cursors, parameterized transforms, bulk load to BigQuery, completion/failure notifications, and full observability (Chapters 11, 17, 21, 24, 50).
+
+### Architecture
+
+```mermaid
+flowchart LR
+    sch[Nightly schedule] --> cur[Load cursors]
+    cur --> ext1[Extract API A incr]
+    cur --> ext2[Extract DB B incr]
+    ext1 --> tr[Transform/normalize]
+    ext2 --> tr
+    tr --> load[Bulk load BigQuery]
+    load --> save[Save cursors]
+    save --> notify[Notify success]
+    err[Error Trigger] -. fail .-> alert[Alert + partial-load guard]
+```
+
+### Implementation
+
+Incremental cursors in static data / a control table (Chapter 17); paginated extraction with retries (Chapter 21); bulk BigQuery load (Chapter 11/29); transactional cursor advance only on successful load (avoid gaps); Error Trigger alerting (Chapter 19); metrics on rows/duration (Chapter 50).
+
+**ELT orchestrator (importable JSON, abridged):**
+
+```json
+{
+  "name": "p3-nightly-elt",
+  "nodes": [
+    {
+      "parameters": { "rule": { "interval": [{ "field": "hours", "triggerAtHour": 2 }] } },
+      "id": "f3000001-0000-0000-0000-000000000001",
+      "name": "At 02:00",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [200, 320]
+    },
+    {
+      "parameters": { "operation": "executeQuery", "query": "SELECT source, cursor FROM elt_cursors;", "options": {} },
+      "id": "f3000002-0000-0000-0000-000000000002",
+      "name": "Load Cursors",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [400, 320],
+      "credentials": { "postgres": { "id": "1", "name": "Control DB" } }
+    },
+    {
+      "parameters": {
+        "url": "=https://api.source.example/v1/events?since={{ $json.cursor }}",
+        "options": { "pagination": { "pagination": { "paginationMode": "updateAParameterInEachRequest", "parameters": { "parameters": [ { "name": "cursor", "value": "={{ $response.body.next }}" } ] }, "paginationCompleteWhen": "other", "completeExpression": "={{ !$response.body.next }}" } } }
+      },
+      "id": "f3000003-0000-0000-0000-000000000003",
+      "name": "Extract (incremental)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [600, 320],
+      "retryOnFail": true, "maxTries": 3,
+      "credentials": { "httpHeaderAuth": { "id": "2", "name": "Source API" } }
+    },
+    {
+      "parameters": { "operation": "insert", "projectId": "my-project", "datasetId": "raw", "tableId": "events", "options": {} },
+      "id": "f3000004-0000-0000-0000-000000000004",
+      "name": "Load BigQuery",
+      "type": "n8n-nodes-base.googleBigQuery",
+      "typeVersion": 2.1,
+      "position": [800, 320],
+      "credentials": { "googleApi": { "id": "3", "name": "GCP SA" } }
+    },
+    {
+      "parameters": { "operation": "executeQuery", "query": "UPDATE elt_cursors SET cursor=$1 WHERE source='events'", "options": { "queryReplacement": "={{ $now.toISO() }}" } },
+      "id": "f3000005-0000-0000-0000-000000000005",
+      "name": "Advance Cursor",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.5,
+      "position": [1000, 320],
+      "credentials": { "postgres": { "id": "1", "name": "Control DB" } }
+    }
+  ],
+  "connections": {
+    "At 02:00": { "main": [[{ "node": "Load Cursors", "type": "main", "index": 0 }]] },
+    "Load Cursors": { "main": [[{ "node": "Extract (incremental)", "type": "main", "index": 0 }]] },
+    "Extract (incremental)": { "main": [[{ "node": "Load BigQuery", "type": "main", "index": 0 }]] },
+    "Load BigQuery": { "main": [[{ "node": "Advance Cursor", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### Result
+
+The nightly ELT runs incrementally (no source hammering), loads reliably to BigQuery, advances cursors only on success (no gaps/duplicates), and alerts on failure — with row/duration metrics for the data team.
+
+### Future improvements
+
+Add data-quality assertions (Chapter 44), parallelize sources, and orchestrate Spark/dbt for heavy transforms while n8n stays the conductor (Chapter 5).
+
+---
+
+## Project 4 — Intelligent CRM
+
+### Scenario
+
+A sales org wants an "intelligent CRM" layer: new leads are enriched, scored, and routed automatically; AI drafts personalized outreach; activities sync across CRM, email, and Slack; and reps get a daily prioritized list.
+
+### Problem
+
+Lead handling was manual and inconsistent — slow enrichment, gut-feel routing, generic outreach, and data scattered across tools, costing conversion and rep time.
+
+### Solution
+
+An n8n automation layer over the CRM: webhook on new lead → enrich (company API) → AI scoring/classification → route by score → AI-drafted outreach (human-approved) → multi-system sync → daily prioritization digest (Chapters 14, 18, 21, 31, 38, 50).
+
+### Architecture
+
+```mermaid
+flowchart TB
+    lead[New lead webhook] --> enr[Enrich company data]
+    enr --> score[AI score + classify]
+    score --> route{Score band}
+    route -->|hot| sf[Assign to AE + Slack]
+    route -->|warm| nurture[Nurture sequence]
+    route -->|cold| archive[Archive]
+    sf --> draft[AI draft outreach]
+    draft --> approve[Rep approves/sends]
+    sched[Daily] --> digest[Prioritized rep digest]
+```
+
+### Implementation
+
+Lead webhook + enrichment HTTP (Chapter 21); AI scoring with structured output (Chapter 31); Switch routing (Chapter 14); AI outreach draft behind human approval (Chapter 38/40); upsert to CRM + Slack + email mapping (Chapters 18, 24, 30); scheduled digest with metrics (Chapter 50).
+
+**Lead scoring + routing (importable JSON, abridged):**
+
+```json
+{
+  "name": "p4-intelligent-crm",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "lead", "responseMode": "onReceived" },
+      "id": "13000001-0000-0000-0000-000000000001",
+      "name": "New Lead",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [200, 320]
+    },
+    {
+      "parameters": { "url": "=https://enrich.api/company?domain={{ $json.body.email.split('@')[1] }}", "options": {} },
+      "id": "13000002-0000-0000-0000-000000000002",
+      "name": "Enrich",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [400, 320],
+      "credentials": { "httpHeaderAuth": { "id": "1", "name": "Enrich API" } }
+    },
+    {
+      "parameters": {
+        "modelId": { "__rl": true, "value": "gpt-4o-mini", "mode": "list" },
+        "messages": { "values": [
+          { "role": "system", "content": "Score this lead 0-100 and band it hot/warm/cold. Respond ONLY JSON: {score:number, band:string, reason:string}." },
+          { "role": "user", "content": "={{ JSON.stringify($json) }}" }
+        ] },
+        "jsonOutput": true,
+        "options": { "temperature": 0.2 }
+      },
+      "id": "13000003-0000-0000-0000-000000000003",
+      "name": "AI Score",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [600, 320],
+      "credentials": { "openAiApi": { "id": "2", "name": "OpenAI" } }
+    },
+    {
+      "parameters": {
+        "rules": { "values": [ { "conditions": { "options": {}, "conditions": [ { "leftValue": "={{ $json.message.content.band }}", "rightValue": "hot", "operator": { "type": "string", "operation": "equals" } } ] }, "outputKey": "hot" } ] },
+        "options": { "fallbackOutput": "extra" }
+      },
+      "id": "13000004-0000-0000-0000-000000000004",
+      "name": "Route Band",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [800, 320]
+    }
+  ],
+  "connections": {
+    "New Lead": { "main": [[{ "node": "Enrich", "type": "main", "index": 0 }]] },
+    "Enrich": { "main": [[{ "node": "AI Score", "type": "main", "index": 0 }]] },
+    "AI Score": { "main": [[{ "node": "Route Band", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### Result
+
+Leads are enriched and scored in seconds, routed consistently, and reps receive AI-drafted outreach to approve plus a daily prioritized list — faster response, better targeting, and a unified activity trail across systems.
+
+### Future improvements
+
+Add a feedback loop that retrains scoring on closed-won/lost outcomes, multi-agent research per lead (Chapter 39), and per-region data residency (Chapter 53).
+
+---
+
+## Project 5 — Automated SaaS Platform
+
+### Scenario
+
+A SaaS company wants to automate its customer lifecycle: signup provisioning, onboarding sequences, usage-based billing events, churn-risk detection, and account health — all driven by product events, multi-tenant and at scale.
+
+### Problem
+
+Lifecycle logic was hardcoded in the app, slow to change, and entangled with core code; there was no churn detection and billing events were brittle.
+
+### Solution
+
+An event-driven n8n platform consuming product events (Kafka), provisioning new tenants, running onboarding, emitting billing events, scoring churn risk with AI, and alerting CSMs — running in queue mode with HA and per-tenant isolation (Chapters 8, 25, 38, 52, 53).
+
+### Architecture
+
+```mermaid
+flowchart TB
+    evt[(Product events Kafka)] --> consume[Kafka Trigger consumer group]
+    consume --> type{Event type}
+    type -->|signup| prov[Provision tenant]
+    type -->|usage| bill[Emit billing event]
+    type -->|activity| health[Update health score]
+    prov --> onboard[Onboarding sequence]
+    health --> churn[AI churn risk]
+    churn -->|high| csm[Alert CSM]
+    consume --> obs[(Metrics/cost)]
+```
+
+### Implementation
+
+Kafka consumer group across workers for scale (Chapters 25, 51); idempotent event handling (Chapter 27); tenant provisioning sub-workflow with isolated credentials (Chapter 53); usage→billing events; AI churn scoring (Chapter 31/38); CSM alerts; HA topology (Chapter 52) and observability (Chapter 50).
+
+**Event router (importable JSON, abridged):**
+
+```json
+{
+  "name": "p5-saas-event-router",
+  "nodes": [
+    {
+      "parameters": { "topic": "product.events", "groupId": "n8n-saas", "options": { "jsonParseMessage": true } },
+      "id": "23000001-0000-0000-0000-000000000001",
+      "name": "Consume Events",
+      "type": "n8n-nodes-base.kafkaTrigger",
+      "typeVersion": 1.1,
+      "position": [200, 320],
+      "credentials": { "kafka": { "id": "1", "name": "Kafka" } }
+    },
+    {
+      "parameters": {
+        "operation": "set",
+        "key": "=evt:{{ $json.message.eventId }}",
+        "value": "1", "keyType": "string", "expire": true, "ttl": 86400,
+        "options": { "setIfNotExist": true }
+      },
+      "id": "23000002-0000-0000-0000-000000000002",
+      "name": "Idempotency",
+      "type": "n8n-nodes-base.redis",
+      "typeVersion": 1,
+      "position": [400, 320],
+      "credentials": { "redis": { "id": "2", "name": "Redis" } }
+    },
+    {
+      "parameters": {
+        "rules": { "values": [
+          { "conditions": { "options": {}, "conditions": [ { "leftValue": "={{ $json.message.type }}", "rightValue": "signup", "operator": { "type": "string", "operation": "equals" } } ] }, "outputKey": "signup" },
+          { "conditions": { "options": {}, "conditions": [ { "leftValue": "={{ $json.message.type }}", "rightValue": "usage", "operator": { "type": "string", "operation": "equals" } } ] }, "outputKey": "usage" }
+        ] },
+        "options": { "fallbackOutput": "extra" }
+      },
+      "id": "23000003-0000-0000-0000-000000000003",
+      "name": "Route Event",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [600, 320]
+    },
+    {
+      "parameters": { "name": "provision_tenant", "description": "Provision a new tenant.", "workflowId": { "__rl": true, "value": "WF_PROVISION", "mode": "list" } },
+      "id": "23000004-0000-0000-0000-000000000004",
+      "name": "Provision Sub-WF",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.1,
+      "position": [820, 220]
+    }
+  ],
+  "connections": {
+    "Consume Events": { "main": [[{ "node": "Idempotency", "type": "main", "index": 0 }]] },
+    "Idempotency": { "main": [[{ "node": "Route Event", "type": "main", "index": 0 }]] },
+    "Route Event": { "main": [[{ "node": "Provision Sub-WF", "type": "main", "index": 0 }], [], []] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### Result
+
+The customer lifecycle is automated end-to-end and decoupled from core code: tenants self-provision, onboarding runs automatically, billing events flow reliably, and churn risk surfaces proactively — scalable across workers and isolated per tenant.
+
+### Future improvements
+
+Add per-tenant quotas/cost attribution (Chapter 53), a multi-agent onboarding assistant (Chapter 39), and self-serve workflow customization via n8n Embed (Chapter 13/53).
+
+---
+
+## Project 6 — Corporate Agent
+
+### Scenario
+
+A large enterprise wants a governed internal AI agent ("the corporate agent") that employees access via chat to query internal systems (HR, IT, finance), execute approved actions through MCP tools, and get grounded answers — all SSO-gated, audited, and safe.
+
+### Problem
+
+Shadow AI tools proliferated with no governance: employees pasted sensitive data into public chatbots, there was no audit, and no safe way to let AI take actions in internal systems.
+
+### Solution
+
+A governed agent platform: SSO-gated chat (Entra ID), an AI Agent that retrieves from internal knowledge (RAG) and calls **governed MCP tools** for actions, with PII redaction, human approval for high-impact actions, full audit logging, and per-department access control (Chapters 34, 38, 40, 47, 48, 49).
+
+### Architecture
+
+```mermaid
+flowchart TB
+    emp[Employee chat<br/>SSO-gated] --> redact[PII redaction]
+    redact --> agent[Corporate AI Agent]
+    model[Chat Model] -->|ai_languageModel| agent
+    kb[Internal RAG tool] -->|ai_tool| agent
+    hr[HR MCP tool] -->|ai_tool| agent
+    it[IT MCP tool] -->|ai_tool| agent
+    agent --> impact{High-impact action?}
+    impact -->|yes| approve[Human approval]
+    impact -->|no| act[Execute + reply]
+    agent --> audit[(Full audit log)]
+```
+
+### Implementation
+
+SSO enforcement (Chapter 48) + RBAC per department (Chapter 49); PII redaction before the model (Chapter 40); RAG over internal docs (Chapter 35); governed MCP tools with input validation and per-tool authorization (Chapter 34); human approval gate for destructive actions (Chapter 38); comprehensive audit logging streamed to SIEM (Chapters 47, 50).
+
+**Corporate agent (importable JSON, abridged):**
+
+```json
+{
+  "name": "p6-corporate-agent",
+  "nodes": [
+    {
+      "parameters": { "public": false, "options": {} },
+      "id": "33000001-0000-0000-0000-000000000001",
+      "name": "Internal Chat",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [200, 340]
+    },
+    {
+      "parameters": {
+        "jsCode": "function redact(t){return String(t).replace(/[\\w.+-]+@[\\w-]+\\.[\\w.-]+/g,'[EMAIL]');}\nreturn [{ json: { ...$json, message: redact($json.chatInput || $json.message || '') } }];"
+      },
+      "id": "33000002-0000-0000-0000-000000000002",
+      "name": "Redact PII",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [380, 340]
+    },
+    {
+      "parameters": { "options": { "systemMessage": "You are ACME's internal assistant. Use knowledge and approved tools only. Never reveal data outside the user's department. High-impact actions require approval. Cite sources.", "maxIterations": 6 } },
+      "id": "33000003-0000-0000-0000-000000000003",
+      "name": "Corporate Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [580, 340]
+    },
+    {
+      "parameters": { "model": { "__rl": true, "value": "gpt-4o", "mode": "list" }, "options": { "temperature": 0.2 } },
+      "id": "33000004-0000-0000-0000-000000000004",
+      "name": "Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [460, 520],
+      "credentials": { "openAiApi": { "id": "1", "name": "OpenAI" } }
+    },
+    {
+      "parameters": { "mode": "retrieve-as-tool", "topK": 4, "options": {} },
+      "id": "33000005-0000-0000-0000-000000000005",
+      "name": "Internal KB",
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.1,
+      "position": [600, 520],
+      "credentials": { "postgres": { "id": "2", "name": "Vector DB" } }
+    },
+    {
+      "parameters": { "name": "it_actions", "description": "Approved IT actions (reset password, grant access) — high-impact ones require approval.", "workflowId": { "__rl": true, "value": "WF_IT_TOOLS", "mode": "list" } },
+      "id": "33000006-0000-0000-0000-000000000006",
+      "name": "IT Tools (MCP)",
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [740, 520]
+    }
+  ],
+  "connections": {
+    "Internal Chat": { "main": [[{ "node": "Redact PII", "type": "main", "index": 0 }]] },
+    "Redact PII": { "main": [[{ "node": "Corporate Agent", "type": "main", "index": 0 }]] },
+    "Model": { "ai_languageModel": [[{ "node": "Corporate Agent", "type": "ai_languageModel", "index": 0 }]] },
+    "Internal KB": { "ai_tool": [[{ "node": "Corporate Agent", "type": "ai_tool", "index": 0 }]] },
+    "IT Tools (MCP)": { "ai_tool": [[{ "node": "Corporate Agent", "type": "ai_tool", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" }
+}
+```
+
+### Result
+
+Employees get a single, governed AI assistant that answers from internal knowledge and safely executes approved actions — SSO-gated, PII-redacted, department-scoped, and fully audited. Shadow AI is replaced by a trusted, compliant platform.
+
+### Future improvements
+
+Add multi-agent specialization per domain (Chapter 39), automated evaluation and red-teaming (Chapters 40, 44), and fine-grained per-action authorization tied to IdP groups (Chapters 48–49).
+
+---
+
+> **End of Part VIII — and of the book.** Across eight parts and six projects, you have gone from "what is n8n" to building governed, scalable, AI-powered automation platforms on the n8n 2.x line. The throughline is consistent: **treat workflows as software** — version them, test them, secure them, observe them, and design them for the enterprise. The platform will keep evolving on its 1–2 majors/year cadence; the principles here are what endure. Build deliberately, automate without limits, and keep your data — and your judgment — at the center.
