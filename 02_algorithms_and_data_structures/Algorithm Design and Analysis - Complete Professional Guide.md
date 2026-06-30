@@ -54,7 +54,11 @@ software_dev: foundational
 8. Dynamic programming
 9. Greedy algorithms
 
-> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–V (Ch. 1–9).
+**Part VI – Data structures**
+10. Elementary data structures and hashing
+11. Balanced search trees and disjoint sets
+
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–VI (Ch. 1–11).
 
 ---
 
@@ -1091,3 +1095,247 @@ activity_selection(activities):              # each has (start, finish)
 ---
 
 > **End of Part V.** The two paradigms that defeat exponential blow-up both rest on **optimal substructure**, and the line between them is the **greedy-choice property**. **Dynamic programming** solves *overlapping subproblems* once — via memoization or tabulation — turning exponential recursion into polynomial time (edit distance, LCS, knapsack); design it by defining the subproblem, writing the recurrence, and reconstructing the solution from stored choices. **Greedy** commits to a provably safe local choice at each step (activity selection, Huffman) — simpler and faster, but correct *only* when an exchange argument holds; otherwise fall back to DP. **Part VI — Data structures** turns from designing algorithms to the structures that make them fast.
+
+---
+
+## Part VI – Data structures
+
+Algorithms are only as fast as the data structures they query. The right structure turns an `O(n)` operation into `O(1)` or `O(log n)`, and that choice often matters more than the surrounding algorithm. This part covers the structures every professional uses daily: the **elementary** ones (stacks, queues, linked lists) and the **hash table** that gives expected `O(1)` lookup; then the **balanced binary search trees** (red-black, B-trees) that guarantee `O(log n)` ordered operations, and the **disjoint-set (union-find)** structure whose operations are effectively constant time. Each exists to make a specific access pattern cheap; knowing the menu is what lets you pick the structure that fits the workload.
+
+---
+
+## Chapter 10 — Elementary data structures and hashing
+
+### 10.1 Introduction
+
+The **elementary structures** are the building blocks: **stacks** (last-in-first-out), **queues** (first-in-first-out), and **linked lists** (`O(1)` insert/delete given a node, but `O(n)` search). Built on arrays or nodes, they give `O(1)` access to their designated end. The star of this chapter is the **hash table**: it maps keys to array slots via a **hash function**, giving **expected `O(1)`** insert, delete, and lookup — the data structure behind every language's dictionary/map/set. Collisions (two keys hashing to one slot) are resolved by **chaining** (a list per slot) or **open addressing** (probe for the next free slot); a good hash function and a controlled **load factor** keep operations constant on average.
+
+### 10.2 Business context
+
+Hash tables are arguably the most-used data structure in software: the `dict` in Python, `HashMap` in Java, `object`/`Map` in JavaScript, `map` in Go, every database's in-memory index and join, every cache (Redis is essentially a giant hash table), deduplication, and membership tests. Their expected `O(1)` lookup is what makes "look this up by key" effectively free, and replacing an `O(n²)` nested scan with a hash-based join or set is the single most common large-scale performance fix (Part I). Stacks and queues are equally foundational: the **call stack**, undo/redo, expression evaluation, BFS queues, task/work queues, and rate limiters. The cost of getting these wrong is real — an unbounded queue causes memory blowups, and a hash table with a poor hash or an adversarial key set degrades to `O(n)` (the hash-flooding DoS from Part III).
+
+### 10.3 Theoretical concepts: hashing and collision resolution
+
+```mermaid
+flowchart TB
+    key["Key k"] --> hf["Hash function h(k) -> slot index"]
+    hf --> slot["Table slot"]
+    slot --> coll{"Collision?"}
+    coll -->|chaining| list["Slot holds a linked list of entries"]
+    coll -->|open addressing| probe["Probe sequence finds next free slot"]
+    list --> load["Keep load factor alpha = n/m bounded -> expected O(1)"]
+    probe --> load
+```
+
+A **hash function** `h` maps a key to one of `m` slots; ideally it spreads keys uniformly (simple uniform hashing). When two keys collide, **chaining** stores them in a per-slot linked list — expected search cost is `Θ(1 + α)` where `α = n/m` is the **load factor** — while **open addressing** stores all entries in the table itself and probes a sequence of slots (linear, quadratic, or double hashing) until it finds the key or an empty slot. Keeping `α` bounded (e.g. resizing — an amortized `O(1)` operation from Part V — when the table gets too full) keeps expected operations constant. The worst case is still `O(n)` (all keys collide), which is why adversarial inputs need a **randomized/seeded** hash.
+
+### 10.4 Architecture: choosing an elementary structure
+
+```mermaid
+flowchart TB
+    stack["Stack (LIFO): push/pop O(1) — call stack, undo, DFS"]
+    queue["Queue (FIFO): enqueue/dequeue O(1) — BFS, task queues, buffering"]
+    list["Linked list: O(1) splice given the node, O(n) search"]
+    hash["Hash table: expected O(1) by key, UNORDERED"]
+    note["Need order/range queries? A hash table cannot do it — use a search tree (Ch. 11)"]
+```
+
+Each structure makes one access pattern cheap. Use a **stack** for LIFO (recursion, backtracking, undo), a **queue** for FIFO (BFS, pipelines, buffering), a **linked list** when you splice nodes in the middle and rarely search, and a **hash table** for lookup-by-key when order does not matter. The decisive limitation of a hash table is that it is **unordered**: it cannot answer "smallest key ≥ x", "keys in `[a, b]`", or "elements in sorted order" — those need a **balanced search tree** (Chapter 11). Picking the structure is choosing which operation you want to be `O(1)`.
+
+### 10.5 Real example
+
+**Scenario.** A service must detect duplicate request IDs in a stream of millions of requests and reject repeats.
+
+**Problem.** Checking each new ID against all previously seen IDs with a linear scan is `O(n)` per request — `O(n²)` overall — and collapses under load.
+
+**Solution.** Keep seen IDs in a **hash set**: membership test and insert are each expected `O(1)`, so the whole stream is `O(n)`.
+
+**Implementation.**
+
+```text
+seen = hash_set()                   # expected O(1) operations
+for request in stream:
+    if request.id in seen:           # expected O(1) membership
+        reject(request)              # duplicate
+    else:
+        seen.add(request.id)         # expected O(1) insert
+        process(request)
+
+# Expected O(1) per request because a good hash spreads IDs across slots and
+# the load factor is kept bounded by resizing (amortized O(1), Part V).
+# Adversarial IDs? Use a SEEDED hash to avoid worst-case O(n) collisions.
+```
+
+**Result.** Duplicate detection runs in `O(n)` total instead of `O(n²)`; the service keeps up with millions of requests. The only caveats are bounding memory (evict old IDs, or use a fixed-size structure) and seeding the hash so untrusted IDs cannot force worst-case collisions.
+
+**Future improvements.** When the exact set is too large to keep in memory, switch to a **Bloom filter** (probabilistic membership in tiny space, with a tunable false-positive rate) or a sliding-window cache that expires old IDs; when ordering or range queries are also needed, use a balanced search tree instead.
+
+### 10.6 Exercises
+
+1. State the expected and worst-case time of hash-table lookup, and what causes each.
+2. Define the load factor `α` and explain its role in chaining's `Θ(1 + α)` cost.
+3. Contrast chaining with open addressing for collision resolution.
+4. Name one query a hash table *cannot* answer efficiently and the structure that can.
+
+### 10.7 Challenges
+
+- **Challenge.** Implement a hash table with chaining and one with open addressing (linear probing). Measure average probe length as the load factor rises from 0.5 to 0.95 for each, and observe open addressing degrading faster. Then trigger worst-case `O(n)` behavior with deliberately colliding keys and fix it with a seeded hash.
+
+### 10.8 Checklist
+
+- [ ] I use a hash table/set for expected `O(1)` lookup-by-key.
+- [ ] I keep the load factor bounded (resize) to preserve expected `O(1)`.
+- [ ] I seed/randomize the hash when keys are untrusted.
+- [ ] I reach for a search tree when I need ordering or range queries.
+- [ ] I bound queue/set memory to avoid unbounded growth.
+
+### 10.9 Best practices
+
+- Replace nested-scan membership/joins with hash sets/maps.
+- Resize the table to keep the load factor in a healthy range.
+- Use a seeded hash function in any public-facing service.
+- Match the structure to the access pattern: LIFO→stack, FIFO→queue, by-key→hash, ordered→tree.
+
+### 10.10 Anti-patterns
+
+- Linear scans for membership where a hash set gives expected `O(1)`.
+- Letting a hash table's load factor approach 1 (operations degrade).
+- A fixed, unseeded hash in a service exposed to untrusted keys (hash flooding).
+- Forcing ordering/range queries onto a hash table instead of using a tree.
+
+### 10.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Lookups slow as data grows | Linear scan instead of hashing | Use a hash set/map (expected `O(1)`) |
+| Hash table latency spikes | High load factor or adversarial collisions | Resize to lower `α`; use a seeded hash |
+| "Sorted order / range" needed but missing | Hash tables are unordered | Switch to a balanced search tree (Ch. 11) |
+| Queue exhausts memory | Unbounded growth | Bound capacity / apply backpressure |
+
+### 10.12 References
+
+- T. Cormen, C. Leiserson, R. Rivest, C. Stein, *Introduction to Algorithms*, 4th ed. (MIT Press, 2022), ch. 10 "Elementary Data Structures" (§10.1 stacks and queues, §10.2 linked lists) and ch. 11 "Hash Tables" (§11.2 hash tables, §11.3 hash functions, §11.4 open addressing) — ISBN 978-0262046305.
+- R. Sedgewick, K. Wayne, *Algorithms*, 4th ed. (Addison-Wesley, 2011), §3.4 (hash tables) & §1.3 (stacks/queues) — ISBN 978-0321573513.
+
+---
+
+## Chapter 11 — Balanced search trees and disjoint sets
+
+### 11.1 Introduction
+
+When you need **order** — sorted iteration, range queries, "next larger key" — a hash table cannot help; you need a **binary search tree (BST)**, where an in-order walk yields sorted keys and search follows the tree downward. A plain BST is `O(h)` per operation, where `h` is the height — great when balanced (`O(log n)`) but `O(n)` when it degenerates into a list. **Balanced** BSTs fix this: **red-black trees** maintain `O(log n)` height with colored nodes and rotations, and **B-trees** generalize to high branching factor so each node fills a disk block, the structure behind databases and filesystems. This chapter also covers the **disjoint-set (union-find)** structure, whose `union` and `find` run in near-constant **amortized** time and which underpins Kruskal's MST and connectivity queries.
+
+### 11.2 Business context
+
+Balanced search trees are the ordered counterpart to hash tables, and they power systems where range and order matter. **B-trees / B⁺-trees** are *the* index structure in relational databases (PostgreSQL, MySQL/InnoDB), key-value stores, and filesystems — chosen because their high fan-out minimizes slow disk/SSD reads, turning a lookup into a handful of block fetches. In-memory ordered maps (C++ `std::map`, Java `TreeMap`) are red-black trees, used whenever you need sorted keys, range scans, or floor/ceiling queries. **Union-find** is the workhorse of connectivity: detecting cycles while building a minimum spanning tree (Kruskal, Part VII), grouping connected components, image segmentation, and "are these two accounts in the same fraud ring?" queries. The business payoff is keeping ordered and connectivity operations at `O(log n)` or near-`O(1)` as data scales to billions of rows.
+
+### 11.3 Theoretical concepts: keeping trees balanced; union-find
+
+```mermaid
+flowchart TB
+    bst["BST: in-order walk = sorted; search/insert/delete O(h)"] --> bal["Unbalanced -> h = O(n); balanced -> h = O(log n)"]
+    bal --> rb["Red-black tree: color invariants + rotations keep h = O(log n)"]
+    bal --> bt["B-tree: high fan-out, every leaf at the same depth — disk-friendly"]
+    rb --> uf["Union-find (disjoint sets)"]
+    uf --> opt["Union by rank + path compression -> near-constant amortized"]
+```
+
+A BST stores keys so that left subtree < node < right subtree, making search, insert, and delete `O(h)`. The whole game is bounding `h`. **Red-black trees** color nodes red/black and enforce invariants (no two reds in a row; equal black-height on all paths) that force `h ≤ 2 log(n+1)`; **rotations** restore the invariants after insert/delete in `O(log n)`. **B-trees** instead make each node hold many keys and children (fan-out in the hundreds), so the tree is very shallow and each node maps to one disk block — minimizing I/O. **Union-find** keeps elements in disjoint sets with two optimizations — **union by rank** (attach the shorter tree under the taller) and **path compression** (flatten the find path) — giving a sequence of `m` operations a cost of `O(m·α(n))`, where `α` (inverse Ackermann) is ≤ 4 for any practical `n`: effectively constant.
+
+### 11.4 Architecture: which ordered/connectivity structure
+
+```mermaid
+flowchart TB
+    rb["Red-black / balanced BST: in-memory ordered map, O(log n), range + floor/ceiling"]
+    bt["B-tree / B+-tree: on-disk index, high fan-out, minimizes block reads"]
+    uf["Union-find: dynamic connectivity, near-O(1) union/find"]
+    hash["(Hash table from Ch. 10: faster by-key, but UNORDERED)"]
+    note["Order/range -> tree; pure key lookup -> hash; grouping/connectivity -> union-find"]
+```
+
+The choice follows the access pattern. For **in-memory ordered** data with range and successor queries, a balanced BST (red-black) gives `O(log n)`. For data **on disk** (databases, filesystems), a **B-tree** wins because its fan-out turns a lookup into a few block reads rather than `log₂ n` pointer chases. For **dynamic connectivity / grouping**, **union-find** is unbeatable at near-constant amortized cost. And remember Chapter 10's contrast: if you need *only* key lookup and never order, a hash table is faster — the tree's `O(log n)` buys you ordering you would otherwise lack.
+
+### 11.5 Real example
+
+**Scenario.** Build a minimum spanning tree of a large network, which requires repeatedly asking "would adding this edge create a cycle?" — i.e., "are these two endpoints already connected?"
+
+**Problem.** Recomputing connectivity from scratch for each candidate edge (e.g. a graph traversal) is `O(V + E)` per query — far too slow across all edges.
+
+**Solution.** Use **union-find**: each vertex starts in its own set; `find` returns a vertex's set representative, and two vertices are connected iff they share one. Adding an edge does a `union`. With union by rank + path compression, each operation is near-constant amortized.
+
+**Implementation.**
+
+```text
+make_set(x):  parent[x] = x;  rank[x] = 0
+
+find(x):                                   # with PATH COMPRESSION
+    if parent[x] != x:
+        parent[x] = find(parent[x])         # point x straight at the root
+    return parent[x]
+
+union(x, y):                               # with UNION BY RANK
+    rx, ry = find(x), find(y)
+    if rx == ry: return false               # already connected -> edge makes a cycle
+    if rank[rx] < rank[ry]: rx, ry = ry, rx
+    parent[ry] = rx
+    if rank[rx] == rank[ry]: rank[rx] += 1
+    return true                             # merged two components
+
+# Kruskal: sort edges by weight, add an edge iff union() returns true.
+# m operations cost O(m * alpha(n)) — alpha(n) <= 4 in practice: effectively O(m).
+```
+
+**Result.** Connectivity queries that powered the MST build run in effectively constant time each, so Kruskal's algorithm is dominated by the `O(E log E)` edge sort rather than connectivity checks. The same structure answers "are these two nodes in the same component?" across billions of operations at near-`O(1)`.
+
+**Future improvements.** For connectivity that also supports **deletion** (edges removed over time), union-find alone is insufficient (it only merges) — use a link-cut tree or an offline/dynamic-connectivity algorithm; for ordered keys with heavy concurrent access, consider lock-free skip lists as an alternative to balanced trees.
+
+### 11.6 Exercises
+
+1. Why is a plain BST `O(n)` in the worst case, and how do red-black trees prevent it?
+2. Why are B-trees preferred over red-black trees for on-disk indexes?
+3. Explain how union by rank and path compression each reduce union-find's cost.
+4. Which queries force a search tree over a hash table?
+
+### 11.7 Challenges
+
+- **Challenge.** Implement union-find with both union by rank and path compression, then use it to build Kruskal's MST on a large random graph. Empirically show the near-constant per-operation cost. Separately, insert sorted data into a plain BST (watch it degenerate to `O(n)` height) and compare with a balanced (red-black or library `TreeMap`) tree.
+
+### 11.8 Checklist
+
+- [ ] I use a balanced BST (not a plain BST) when worst-case `O(log n)` matters.
+- [ ] I use a B-tree/B⁺-tree for on-disk or block-oriented indexes.
+- [ ] I use union-find for dynamic connectivity / grouping.
+- [ ] I apply both union by rank and path compression to union-find.
+- [ ] I choose a tree over a hash table only when I need order or range queries.
+
+### 11.9 Best practices
+
+- Prefer the standard library's balanced map (`TreeMap`, `std::map`) over hand-rolled BSTs.
+- Use B-trees for anything backed by disk/SSD to minimize block reads.
+- Always pair union by rank with path compression for near-constant union-find.
+- Reach for a search tree precisely when ordering, range, or floor/ceiling queries are needed.
+
+### 11.10 Anti-patterns
+
+- Inserting ordered data into an unbalanced BST (degenerates to an `O(n)` list).
+- Using red-black trees for large on-disk indexes where B-trees fit the block model.
+- Union-find without path compression (loses the near-constant bound).
+- Choosing an ordered tree when a hash table's faster unordered lookup would do.
+
+### 11.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| BST operations are `O(n)` | Tree degenerated (sorted inserts) | Use a balanced tree (red-black) or library map |
+| Disk index does too many reads | Low fan-out structure (e.g. binary tree) | Use a B-tree/B⁺-tree to match block size |
+| Connectivity checks too slow | Re-traversing the graph per query | Use union-find with rank + path compression |
+| Range/sorted queries impossible | Data kept in a hash table | Move to a balanced search tree |
+
+### 11.12 References
+
+- T. Cormen, C. Leiserson, R. Rivest, C. Stein, *Introduction to Algorithms*, 4th ed. (MIT Press, 2022), ch. 12 "Binary Search Trees", ch. 13 "Red-Black Trees" (§13.2 rotations, §13.3 insertion), ch. 18 "B-Trees", and ch. 19 "Data Structures for Disjoint Sets" (§19.3 disjoint-set forests, §19.4 union by rank with path compression) — ISBN 978-0262046305.
+- R. Sedgewick, K. Wayne, *Algorithms*, 4th ed. (Addison-Wesley, 2011), §3.3 (balanced search trees) & §1.5 (union-find) — ISBN 978-0321573513.
+
+---
+
+> **End of Part VI.** The right data structure decides an algorithm's speed. **Hash tables** give expected `O(1)` lookup-by-key (dictionaries, caches, dedup, joins) but are **unordered**; **stacks**, **queues**, and **linked lists** make one access pattern `O(1)`. When **order** matters, **balanced search trees** guarantee `O(log n)` — **red-black trees** in memory, **B-trees** on disk (the index behind every database) — and the **disjoint-set (union-find)** structure answers connectivity queries in near-constant amortized time via union by rank and path compression. **Part VII — Graph algorithms** builds directly on these structures (priority queues, union-find) to traverse and optimize networks.
