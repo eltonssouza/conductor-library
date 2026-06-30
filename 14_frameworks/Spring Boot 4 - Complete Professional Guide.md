@@ -1846,4 +1846,731 @@ class SchemaMigrationTest {
 
 > **End of Part III.** You now have the data layer end to end: **Spring Data JPA** (entities, repositories, derived and `@Query` methods, record projections, and paging), **declarative transactions** with `@Transactional` (propagation, rollback rules, `readOnly`, and the self-invocation pitfall), and the **operational foundation** of versioned migrations (Flyway/Liquibase) plus HikariCP connection pooling. **Part IV — Security** (Chapters 10–12) builds on this to protect what you persist: the Spring Security architecture and the `SecurityFilterChain`, stateless authentication with JWT, and delegated authorization with OAuth2/OIDC.
 
+
+---
+
+# Part IV – Security
+
+Part IV turns a working Spring Boot 4 application into one that can be exposed safely. Security in the Spring Framework 7 / Boot 4 generation is built around **Spring Security 6.x / 7-generation**: a chain of servlet filters configured through the **lambda DSL**, authentication and authorization decided per request, and identity standardized on **OAuth2 / OIDC** with **JWT** access tokens. These three chapters move from the mechanics — the `SecurityFilterChain` and how a request is authenticated and authorized — to stateless JWT validation, and finally to a full OAuth2/OIDC story where the application is both a resource server protecting an API and a client logging users in and calling downstream services. Throughout we favor *secure by default* and *deny by default*: you open the few public paths explicitly and let everything else require authentication.
+
+---
+
+## Chapter 10 — Spring Security architecture and the `SecurityFilterChain`
+
+### 10.1 Introduction
+
+Spring Security is the authentication and authorization layer of the Spring ecosystem. It does not bolt security onto your controllers — it intercepts every request **before** it reaches your code, through an ordered chain of servlet filters. In Boot 4, that chain is expressed as a `SecurityFilterChain` `@Bean` configured with the **lambda DSL** (`http.authorizeHttpRequests(...)`), the modern, type-safe replacement for the old `WebSecurityConfigurerAdapter`. This chapter builds the mental model you need for the rest of Part IV: what the filter chain is, where authentication and authorization happen inside it, how the `SecurityContext` carries the authenticated principal, and how to configure all of it cleanly. Get this right and JWT (Chapter 11) and OAuth2/OIDC (Chapter 12) become small, well-understood additions rather than mysteries.
+
+### 10.2 Business context
+
+Security defects are the most expensive class of bug an organization can ship: a single broken-authentication or broken-authorization flaw can mean leaked customer data, regulatory fines, and lasting reputational harm. The economic argument for Spring Security is that you **do not hand-roll** any of it. Authentication, session handling, CSRF protection, password storage, and authorization checks are notoriously easy to get subtly wrong, and each mistake is a breach waiting to happen. By standardizing on Spring Security's filter chain, an engineering organization gets battle-tested primitives, a single consistent place to reason about access, and a configuration that auditors can read. The lambda DSL further lowers cost: security rules become declarative, reviewable code that lives next to the rest of the application and evolves with it.
+
+### 10.3 Theoretical concepts: the filter chain and the security context
+
+- **Servlet filter chain.** Spring Security installs a single `DelegatingFilterProxy` (`springSecurityFilterChain`) into the servlet container. It delegates to a `FilterChainProxy`, which selects the first matching `SecurityFilterChain` and runs its ordered list of filters.
+- **`SecurityFilterChain`.** A bean pairing a request matcher with the filters that apply. An application can have several, each matched in order — for example one for an API and one for a login UI.
+- **Authentication.** The process of establishing *who* the caller is. The result is an `Authentication` object stored in the `SecurityContext` (held, by default, in a `ThreadLocal` via `SecurityContextHolder`).
+- **Authorization.** The decision about *what* an authenticated caller may do, enforced by the `AuthorizationFilter` against the rules you declared in `authorizeHttpRequests(...)` and, optionally, by method security (`@PreAuthorize`).
+- **`GrantedAuthority`.** The unit of permission attached to a principal — a role (`ROLE_ADMIN`) or a scope (`SCOPE_orders:read`).
+- **`DelegatingPasswordEncoder`.** The default `PasswordEncoder`, which encodes new passwords with BCrypt and can verify hashes written by any supported algorithm via an `{id}` prefix — so credential storage can be upgraded without a flag day.
+
+```mermaid
+mindmap
+  root((Spring Security 6/7))
+    Filter chain
+      DelegatingFilterProxy
+      FilterChainProxy
+      SecurityFilterChain bean
+    Authentication
+      Authentication object
+      SecurityContextHolder
+      AuthenticationManager
+      UserDetailsService
+    Authorization
+      authorizeHttpRequests
+      AuthorizationFilter
+      method security @PreAuthorize
+    Credentials
+      DelegatingPasswordEncoder
+      BCrypt default
+    Configuration
+      lambda DSL
+      SecurityFilterChain @Bean
+```
+
+### 10.4 Architecture: a request through the filter chain
+
+A request does not reach your controller until it has passed every filter. Authentication filters populate the `SecurityContext`; the `AuthorizationFilter` near the end of the chain consults the context and your rules; only then is the request dispatched.
+
+```mermaid
+flowchart TB
+    req[Incoming HTTP request] --> proxy[DelegatingFilterProxy --> FilterChainProxy]
+    proxy --> match{Which SecurityFilterChain matches?}
+    match --> sec["SecurityContextPersistenceFilter<br/>(load/clear context)"]
+    sec --> authn["Authentication filters<br/>(form login · Basic · Bearer JWT)"]
+    authn --> ctx["Populate SecurityContextHolder<br/>(Authentication + authorities)"]
+    ctx --> authz["AuthorizationFilter<br/>(authorizeHttpRequests rules)"]
+    authz -- permitted --> dispatch[Dispatch to controller / handler]
+    authz -- denied --> resp["401 Unauthorized · 403 Forbidden<br/>(via AuthenticationEntryPoint / AccessDeniedHandler)"]
+```
+
+The filters run in a fixed, documented order. You rarely write a filter yourself; instead you *configure* the standard ones through the DSL and let Spring Security place them correctly.
+
+### 10.5 Real example
+
+**Scenario.** A team is building an internal back-office application. It serves a small HTML admin console (form login, session-based) and, on the same deployment, a JSON API consumed by another service that authenticates with HTTP Basic. They need both to be secured correctly, with the right CSRF and session behavior for each.
+
+**Problem.** A single, one-size-fits-all security configuration forces a bad compromise: disabling CSRF globally would weaken the browser console, while keeping CSRF and sessions on the API would break the service-to-service caller. They need two distinct policies in one application.
+
+**Solution.** Declare **two `SecurityFilterChain` beans**, ordered with `@Order`. The first matches `/api/**` and is stateless with CSRF disabled and HTTP Basic; the second matches everything else and uses form login with sessions and CSRF enabled. Store admin credentials with the `DelegatingPasswordEncoder` (BCrypt). Because filter chains are matched in order, the narrowest matcher must come first.
+
+**Implementation.**
+
+```java
+package com.example.security;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+public class SecurityConfig {
+
+    // Chain 1: the JSON API — stateless, HTTP Basic, no CSRF.
+    @Bean
+    @Order(1)
+    SecurityFilterChain apiChain(HttpSecurity http) throws Exception {
+        http
+            .securityMatcher("/api/**")                          // this chain only
+            .authorizeHttpRequests(auth -> auth
+                .anyRequest().authenticated())                   // deny by default
+            .httpBasic(Customizer.withDefaults())
+            .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .csrf(csrf -> csrf.disable());                       // safe: stateless, no cookies
+        return http.build();
+    }
+
+    // Chain 2: the browser admin console — form login, sessions, CSRF on.
+    @Bean
+    @Order(2)
+    SecurityFilterChain consoleChain(HttpSecurity http) throws Exception {
+        http
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/css/**", "/js/**", "/login").permitAll()
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+                .anyRequest().authenticated())
+            .formLogin(form -> form.loginPage("/login").permitAll())
+            .logout(Customizer.withDefaults());                  // CSRF stays enabled
+        return http.build();
+    }
+
+    @Bean
+    PasswordEncoder passwordEncoder() {
+        // DelegatingPasswordEncoder: BCrypt for new hashes, verifies any {id}-prefixed hash.
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
+
+    @Bean
+    UserDetailsService users(PasswordEncoder encoder) {
+        var admin = User.withUsername("admin")
+            .password(encoder.encode("change-me"))               // stored as {bcrypt}...
+            .roles("ADMIN")
+            .build();
+        return new InMemoryUserDetailsManager(admin);
+    }
+}
+```
+
+**Tests.**
+
+```java
+@WebMvcTest
+@Import(SecurityConfig.class)
+class SecurityConfigTest {
+
+    @Autowired MockMvc mvc;
+
+    @Test
+    void apiRequiresAuthentication() throws Exception {
+        mvc.perform(get("/api/orders")).andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void apiAcceptsBasicAuth() throws Exception {
+        mvc.perform(get("/api/orders").with(httpBasic("admin", "change-me")))
+           .andExpect(status().isOk());
+    }
+
+    @Test
+    @WithMockUser(roles = "ADMIN")
+    void consoleAllowsAdmin() throws Exception {
+        mvc.perform(get("/admin/dashboard")).andExpect(status().isOk());
+    }
+
+    @Test
+    @WithMockUser(roles = "USER")
+    void consoleForbidsNonAdmin() throws Exception {
+        mvc.perform(get("/admin/dashboard")).andExpect(status().isForbidden());
+    }
+}
+```
+
+**Result.** The same application serves a CSRF-protected, session-based admin console and a stateless, CSRF-free Basic-auth API, each with the policy appropriate to its threat model. Passwords are stored as `{bcrypt}` hashes and can be re-encoded to a stronger algorithm later without migrating users.
+
+**Future improvements.** Replace HTTP Basic on the API with JWT bearer tokens (Chapter 11); move the admin console to OIDC login (Chapter 12); externalize users into a database-backed `UserDetailsService`; and add method security (`@EnableMethodSecurity`) so service methods carry their own `@PreAuthorize` guards independent of URL rules.
+
+### 10.6 Exercises
+
+1. Explain the difference between authentication and authorization, and name the filter responsible for each in the chain.
+2. Why must the `/api/**` `SecurityFilterChain` be ordered before the catch-all chain?
+3. What does `DelegatingPasswordEncoder` store as a prefix on each hash, and why does that prefix matter for upgrades?
+
+### 10.7 Challenges
+
+- **Challenge.** Take an application with a single filter chain and split it into two: a stateless `/api/**` chain and a session-based UI chain. Verify with tests that CSRF is enforced on the UI and absent on the API, and that an unauthenticated API call returns 401 while an unauthenticated UI navigation redirects to the login page.
+
+### 10.8 Checklist
+
+- [ ] Every chain ends with `anyRequest().authenticated()` (deny by default).
+- [ ] Stateless chains use `SessionCreationPolicy.STATELESS` and disable CSRF; session chains keep CSRF on.
+- [ ] Passwords are stored via `DelegatingPasswordEncoder` (BCrypt), never in plain text.
+- [ ] Multiple `SecurityFilterChain` beans are ordered with `@Order`, narrowest matcher first.
+- [ ] Public paths (login page, static assets, health) are permitted explicitly.
+
+### 10.9 Best practices
+
+- Configure security exclusively through the lambda DSL and `SecurityFilterChain` beans; the `WebSecurityConfigurerAdapter` era is over.
+- Keep the number of public endpoints minimal and enumerate them; let everything else require authentication.
+- Use one filter chain per security policy (API vs. UI) instead of branching logic inside a single chain.
+- Always go through a `PasswordEncoder` bean; never compare raw passwords.
+
+### 10.10 Anti-patterns
+
+- Re-implementing authentication, session handling, or password hashing by hand instead of using the framework.
+- Disabling CSRF globally "to make things work," weakening the browser-facing parts of the app.
+- A catch-all `permitAll()` left in place from prototyping, silently exposing endpoints.
+- Storing roles and rules only in controllers, so the actual access policy is scattered and unauditable.
+
+### 10.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| All requests return 403 with CSRF token errors | CSRF enabled on a stateless API | Disable CSRF on the API filter chain only |
+| API chain never matches; UI rules apply | Catch-all chain ordered before `/api/**` | Add `@Order(1)` to the narrower API chain |
+| Login always fails with correct password | Raw password compared, no encoder | Inject `PasswordEncoder`; store `{bcrypt}` hashes |
+| `403` for a valid admin | Authority/role name mismatch (`ROLE_` prefix) | Use `hasRole("ADMIN")` with authority `ROLE_ADMIN` |
+| Endpoint open unexpectedly | Missing `anyRequest().authenticated()` | Add the deny-by-default terminal rule |
+
+### 10.12 Official references
+
+- Spring Security reference (servlet): https://docs.spring.io/spring-security/reference/servlet/index.html
+- The security filter chain: https://docs.spring.io/spring-security/reference/servlet/architecture.html
+- Authorize HTTP requests: https://docs.spring.io/spring-security/reference/servlet/authorization/authorize-http-requests.html
+- Password storage / DelegatingPasswordEncoder: https://docs.spring.io/spring-security/reference/features/authentication/password-storage.html
+- Spring Boot security: https://docs.spring.io/spring-boot/reference/web/spring-security.html
+
+---
+
+## Chapter 11 — Stateless authentication with JWT
+
+### 11.1 Introduction
+
+A REST API that scales horizontally cannot rely on server-side sessions: any instance must be able to handle any request without sticky load balancing or a shared session store. **JSON Web Tokens (JWTs)** solve this by carrying the authenticated identity *in the request itself*. The client presents a signed token in the `Authorization: Bearer ...` header; the server validates the signature, issuer, audience, and expiry, extracts the principal and authorities from the claims, and serves the request — storing nothing. In Spring Security this is configured with `oauth2ResourceServer(oauth2 -> oauth2.jwt(...))`. This chapter shows how to turn a Boot 4 application into a stateless JWT **resource server**, how the token-validation flow works, and how to map claims to Spring authorities.
+
+### 11.2 Business context
+
+Stateless authentication is what makes a microservice fleet operationally sane. With JWTs, there is no session replication, no sticky sessions, and no single point of failure in a session store — each service validates tokens independently against the identity provider's public keys. For the business this means cheaper horizontal scaling, simpler deployments, and clean service-to-service security: a token issued once can be forwarded across a call graph. The trade-off is that tokens are **bearer credentials** — whoever holds one can use it until it expires — so they must be short-lived, transmitted only over TLS, and validated strictly. Getting validation right (issuer, signature, expiry, audience, scopes) is the entire security boundary, which is exactly why you delegate it to Spring Security rather than parsing tokens yourself.
+
+### 11.3 Theoretical concepts: anatomy and validation of a JWT
+
+- **Structure.** A JWT is three Base64URL parts separated by dots: a **header** (algorithm, key id `kid`), a **payload** of **claims**, and a **signature**. It is signed, not encrypted — claims are readable, so never put secrets in them.
+- **Standard claims.** `iss` (issuer), `sub` (subject/principal), `aud` (audience), `exp` (expiry), `iat` (issued-at), `nbf` (not-before), plus custom claims like `scope` or `roles`.
+- **Signature verification.** Asymmetric signing (RS256/ES256) is the norm: the identity provider signs with a private key; the resource server verifies with the matching **public key**, fetched from the provider's **JWKS** endpoint and cached. The `kid` in the header selects the key, enabling key rotation.
+- **`JwtDecoder`.** The Spring component that decodes and validates a token. With `issuer-uri` configured, Boot auto-configures one that discovers the JWKS URI via OIDC metadata and applies default validators (signature, `exp`, and issuer).
+- **`JwtAuthenticationConverter`.** Maps validated claims to a Spring `Authentication`: by default it turns `scope`/`scp` into `SCOPE_*` authorities. Customize it to read roles from a custom claim.
+
+### 11.4 Architecture: the bearer-token validation flow
+
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant RS as Resource Server (Boot 4)
+    participant IdP as Identity Provider (JWKS)
+    C->>RS: GET /api/orders  Authorization: Bearer eyJ...
+    RS->>RS: BearerTokenAuthenticationFilter extracts token
+    RS->>IdP: Fetch JWKS (public keys) — cached after first call
+    IdP-->>RS: JWK set (keys by kid)
+    RS->>RS: Verify signature · iss · aud · exp · nbf
+    alt token valid
+        RS->>RS: JwtAuthenticationConverter maps claims to authorities
+        RS->>RS: AuthorizationFilter checks scopes/roles
+        RS-->>C: 200 OK (resource)
+    else token invalid or missing
+        RS-->>C: 401 Unauthorized (WWW-Authenticate: Bearer)
+    end
+```
+
+```mermaid
+flowchart LR
+    token["Bearer token<br/>header.payload.signature"] --> dec["JwtDecoder<br/>(signature + iss + exp)"]
+    jwks[("JWKS endpoint<br/>(public keys, cached)")] -. keys by kid .-> dec
+    dec -- valid --> conv["JwtAuthenticationConverter<br/>(claims --> authorities)"]
+    conv --> authz["AuthorizationFilter<br/>(hasAuthority SCOPE_*)"]
+    dec -- invalid --> err["401 Unauthorized"]
+```
+
+### 11.5 Real example
+
+**Scenario.** An `orders-api` must accept only valid JWT access tokens issued by the company identity provider. Reading orders requires the `orders:read` scope; cancelling an order requires the `orders:write` scope and an `admin` role carried in a custom `roles` claim.
+
+**Problem.** Without enforced validation any caller could reach the endpoints, and the provider emits roles in a non-standard `roles` claim that Spring will not map to authorities by default. The team also needs a strict check that the token's audience is `orders-api`, so tokens minted for other services cannot be replayed here.
+
+**Solution.** Configure the app as an OAuth2 **resource server** with `issuer-uri` so the `JwtDecoder` and JWKS are auto-wired. Add an **audience validator** alongside the default validators. Provide a custom `JwtAuthenticationConverter` that keeps the default `SCOPE_*` mapping and additionally maps the `roles` claim to `ROLE_*` authorities. Enforce scope rules at the URL level and the role at the method level.
+
+**Implementation.**
+
+```yaml
+# application.yml — Boot auto-configures the JwtDecoder from the issuer's OIDC metadata.
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://idp.example.com/realms/company
+          audiences: orders-api          # part of the default audience validation
+```
+
+```java
+package com.example.orders.security;
+
+import java.util.*;
+import java.util.stream.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.server.resource.authentication.*;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+@EnableMethodSecurity                       // enables @PreAuthorize on methods
+public class ResourceServerConfig {
+
+    @Bean
+    SecurityFilterChain api(HttpSecurity http, JwtAuthenticationConverter converter) throws Exception {
+        http
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/actuator/health/**").permitAll()
+                .requestMatchers(org.springframework.http.HttpMethod.GET, "/api/orders/**")
+                    .hasAuthority("SCOPE_orders:read")
+                .requestMatchers("/api/orders/**").hasAuthority("SCOPE_orders:write")
+                .anyRequest().authenticated())                  // deny by default
+            .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .csrf(csrf -> csrf.disable())                       // stateless bearer API
+            .oauth2ResourceServer(oauth2 -> oauth2
+                .jwt(jwt -> jwt.jwtAuthenticationConverter(converter)));
+        return http.build();
+    }
+
+    // Keep default SCOPE_* mapping AND map a custom "roles" claim to ROLE_* authorities.
+    @Bean
+    JwtAuthenticationConverter jwtAuthenticationConverter() {
+        var scopes = new JwtGrantedAuthoritiesConverter();      // -> SCOPE_orders:read, ...
+        var converter = new JwtAuthenticationConverter();
+        converter.setJwtGrantedAuthoritiesConverter(jwt -> {
+            Collection<GrantedAuthority> authorities = new ArrayList<>(scopes.convert(jwt));
+            List<String> roles = jwt.getClaimAsStringList("roles");
+            if (roles != null) {
+                roles.stream()
+                     .map(r -> new SimpleGrantedAuthority("ROLE_" + r))
+                     .forEach(authorities::add);
+            }
+            return authorities;
+        });
+        return converter;
+    }
+}
+```
+
+```java
+@RestController
+@RequestMapping("/api/orders")
+class OrderController {
+
+    @GetMapping
+    List<OrderView> list() { /* requires SCOPE_orders:read */ return ...; }
+
+    @PreAuthorize("hasRole('ADMIN')")               // method-level guard on the custom role
+    @DeleteMapping("/{id}")
+    void cancel(@PathVariable String id,
+                @AuthenticationPrincipal Jwt jwt) {  // injected validated token
+        log.info("Order {} cancelled by {}", id, jwt.getSubject());
+    }
+}
+```
+
+For a local or unit test you often want a token without a real IdP. Spring's test support mints a JWT-backed `Authentication` directly:
+
+```java
+@WebMvcTest(OrderController.class)
+@Import(ResourceServerConfig.class)
+class OrderControllerTest {
+
+    @Autowired MockMvc mvc;
+
+    @Test
+    void missingTokenIsUnauthorized() throws Exception {
+        mvc.perform(get("/api/orders")).andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void readScopeCanList() throws Exception {
+        mvc.perform(get("/api/orders").with(jwt()
+                .jwt(j -> j.claim("scope", "orders:read"))))
+           .andExpect(status().isOk());
+    }
+
+    @Test
+    void writeScopeWithoutAdminCannotCancel() throws Exception {
+        mvc.perform(delete("/api/orders/42").with(jwt()
+                .jwt(j -> j.claim("scope", "orders:write"))))   // no roles claim
+           .andExpect(status().isForbidden());
+    }
+
+    @Test
+    void adminCanCancel() throws Exception {
+        mvc.perform(delete("/api/orders/42").with(jwt()
+                .jwt(j -> j.claim("scope", "orders:write").claim("roles", List.of("ADMIN")))))
+           .andExpect(status().isOk());
+    }
+}
+```
+
+**Result.** The API is fully stateless: every instance validates tokens independently against the cached JWKS, with no session store. Tokens are rejected unless their signature, issuer, audience, and expiry all check out; scopes gate the URLs and the custom role gates the destructive operation — enforced at both the filter chain and the method.
+
+**Future improvements.** Add a custom `OAuth2TokenValidator` for finer audience/tenant checks; surface token-validation failures as RFC 7807 `ProblemDetail` bodies; cache JWKS with an explicit refresh policy for key rotation; and propagate the bearer token to downstream services (Chapter 12 covers the client side and client-credentials flow).
+
+### 11.6 Exercises
+
+1. List the parts of a JWT and explain why claims must never contain secrets.
+2. What does the resource server fetch from the JWKS endpoint, and how does the `kid` header field support key rotation?
+3. Why is an explicit **audience** check important even when the signature and issuer are valid?
+
+### 11.7 Challenges
+
+- **Challenge.** Convert an existing Basic-auth API into a JWT resource server. Map a custom `roles` claim to `ROLE_*` authorities, protect one endpoint with a scope and another with a role, and write tests for the missing-token, wrong-scope, and authorized cases using `jwt()` post-processors.
+
+### 11.8 Checklist
+
+- [ ] `issuer-uri` is set so the `JwtDecoder` and JWKS are auto-configured.
+- [ ] Audience is validated; tokens for other services are rejected.
+- [ ] The chain is `STATELESS` with CSRF disabled.
+- [ ] A `JwtAuthenticationConverter` maps scopes and any custom role claim to authorities.
+- [ ] Tokens travel only over TLS and are short-lived.
+- [ ] Tests cover missing token, insufficient scope/role, and the happy path.
+
+### 11.9 Best practices
+
+- Validate strictly: signature, issuer, audience, and expiry are all required — never skip one.
+- Keep access tokens short-lived; use refresh tokens (held by the client/IdP) for longevity, never long-lived access tokens.
+- Map claims to authorities in one place (`JwtAuthenticationConverter`) so authorization rules read naturally.
+- Treat the token as a bearer credential: TLS only, never log it, never store it in a place reachable by other tenants.
+
+### 11.10 Anti-patterns
+
+- Parsing or "verifying" JWTs by hand instead of using `JwtDecoder` — almost always insecure.
+- Trusting claims without checking the signature, or accepting `alg: none`.
+- Skipping the audience check, allowing tokens minted for another service to be replayed.
+- Putting sensitive data in claims (the payload is readable by anyone holding the token).
+
+### 11.11 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| 401 on a token that looks valid | Wrong `issuer-uri` / JWKS mismatch | Align `issuer-uri` with the token's `iss`; confirm JWKS reachable |
+| 401 `invalid_token: audience` | Audience validator rejects token | Mint tokens with the correct `aud`, or fix `audiences` |
+| Roles ignored, only scopes work | Default converter doesn't read custom claim | Provide a `JwtAuthenticationConverter` that maps the `roles` claim |
+| `403` despite a valid token | Missing required scope/role authority | Grant the scope/role; verify `SCOPE_`/`ROLE_` prefixes |
+| Intermittent 401 after key rotation | Stale cached JWKS | Allow the decoder to refresh keys on unknown `kid` |
+
+### 11.12 Official references
+
+- OAuth2 resource server (JWT): https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html
+- Resource server overview: https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/index.html
+- Spring Boot OAuth2 resource server: https://docs.spring.io/spring-boot/reference/web/spring-security.html#web.security.oauth2.server
+- Testing OAuth2 (`jwt()` support): https://docs.spring.io/spring-security/reference/servlet/test/mockmvc/oauth2.html
+- JSON Web Token (RFC 7519): https://datatracker.ietf.org/doc/html/rfc7519
+
+---
+
+## Chapter 12 — OAuth2 / OIDC resource server and client
+
+### 12.1 Introduction
+
+Chapter 11 secured an API as a resource server — the server side of OAuth2. This chapter completes the picture with the **client** side: logging human users in with **OpenID Connect (OIDC)** via `oauth2Login`, and calling protected downstream APIs with `oauth2Client`, including the **client-credentials** grant for machine-to-machine calls where there is no user at all. Together, resource server and client are the two halves of a modern identity architecture: a user authenticates once at the identity provider, the application receives an ID token (who they are) and an access token (what they may do), and that access token flows to downstream resource servers that validate it exactly as in Chapter 11. We will configure OIDC login, wire an authorized `RestClient` that attaches tokens automatically, and set up a background client-credentials flow.
+
+### 12.2 Business context
+
+Centralizing identity on OAuth2/OIDC is what lets an organization offer single sign-on, enforce multi-factor authentication in one place, and onboard or offboard people through the identity provider rather than touching every application. Applications stop storing passwords entirely; they delegate authentication to a trusted provider and receive standardized tokens. For service-to-service traffic, the client-credentials grant gives each service its own identity and least-privilege scopes, replacing shared API keys that are hard to rotate and easy to leak. The payoff is consistent, auditable access across a fleet, lower credential-handling risk, and a much smaller attack surface — at the cost of one more moving part, the identity provider, which must itself be highly available.
+
+### 12.3 Theoretical concepts: OIDC login and the OAuth2 grants
+
+- **OpenID Connect (OIDC).** An identity layer on top of OAuth2. The **authorization-code flow with PKCE** redirects the user to the provider, who returns an authorization code that the application exchanges for an **ID token** (a JWT describing the user) and an **access token**.
+- **`oauth2Login`.** Configures the application as an OIDC **client** for interactive login: it manages the redirect, the code exchange, and the resulting `OidcUser` principal in the session.
+- **`ClientRegistration` / `ClientRegistrationRepository`.** The configured providers (issuer URI, client id/secret, scopes, grant type). Boot reads these from `spring.security.oauth2.client.*`.
+- **`OAuth2AuthorizedClient` / manager.** Holds and refreshes access tokens for a registration. An `OAuth2AuthorizedClientManager` obtains tokens, refreshing or re-requesting as needed.
+- **Client-credentials grant.** No user is involved: the application authenticates *as itself* with its client id/secret to obtain an access token for machine-to-machine calls.
+- **Token propagation.** A `RestClient` (or `WebClient`) configured with an OAuth2 interceptor attaches the right bearer token to outbound calls automatically.
+
+### 12.4 Architecture: login flow and downstream call
+
+```mermaid
+sequenceDiagram
+    participant U as Browser (user)
+    participant App as Boot 4 App (OAuth2 client)
+    participant IdP as Identity Provider (OIDC)
+    participant API as Downstream Resource Server
+    U->>App: GET /dashboard (no session)
+    App-->>U: 302 redirect to IdP /authorize (PKCE)
+    U->>IdP: Authenticate (login + MFA)
+    IdP-->>U: 302 back to App with authorization code
+    U->>App: GET /login/oauth2/code/idp?code=...
+    App->>IdP: Exchange code for ID token + access token
+    IdP-->>App: id_token (OidcUser) + access_token
+    App->>API: GET /api/orders  Authorization: Bearer access_token
+    API-->>App: 200 OK (validates token as in Ch.11)
+    App-->>U: Rendered dashboard
+```
+
+```mermaid
+flowchart TB
+    subgraph Login["Interactive: oauth2Login (authorization code + PKCE)"]
+        user[User] --> code["Authorization code flow"]
+        code --> tokens["ID token (OidcUser) + access token"]
+    end
+    subgraph Machine["Background: client-credentials"]
+        job["Scheduled job / no user"] --> cc["Client authenticates as itself"]
+        cc --> at["Access token (service identity)"]
+    end
+    tokens --> rc["Authorized RestClient<br/>attaches Bearer token"]
+    at --> rc
+    rc --> ds["Downstream resource server"]
+```
+
+### 12.5 Real example
+
+**Scenario.** A customer portal lets users sign in through the corporate OIDC provider and, once logged in, view their orders by calling the `orders-api` resource server from Chapter 11 with the user's access token. Separately, a nightly reconciliation job must call the same API with no user present, using a service identity scoped to `orders:read`.
+
+**Problem.** The portal must not store passwords; it needs SSO and must forward the **user's** token to the downstream API so the API can enforce per-user scopes. The reconciliation job has no user session, so it cannot reuse the login flow — it needs a **client-credentials** token, obtained and refreshed automatically, attached to its outbound calls.
+
+**Solution.** Register two clients: `idp` (authorization-code, for `oauth2Login`) and `orders-svc` (client-credentials, for the job). Enable `oauth2Login` and `oauth2Client` in the filter chain. Build two `RestClient`s — one that propagates the logged-in user's token, one that uses the client-credentials registration via an `OAuth2AuthorizedClientManager`.
+
+**Implementation.**
+
+```yaml
+# application.yml — two registrations sharing one provider.
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          idp:
+            issuer-uri: https://idp.example.com/realms/company
+        registration:
+          idp:                                  # interactive OIDC login
+            provider: idp
+            client-id: portal-web
+            client-secret: ${PORTAL_SECRET}
+            authorization-grant-type: authorization_code
+            scope: openid, profile, orders:read
+          orders-svc:                           # machine-to-machine
+            provider: idp
+            client-id: portal-batch
+            client-secret: ${BATCH_SECRET}
+            authorization-grant-type: client_credentials
+            scope: orders:read
+```
+
+```java
+package com.example.portal.security;
+
+import org.springframework.context.annotation.*;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.oauth2.client.*;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.security.oauth2.client.web.*;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.client.RestClient;
+
+@Configuration
+public class ClientSecurityConfig {
+
+    @Bean
+    SecurityFilterChain web(HttpSecurity http) throws Exception {
+        http
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/", "/error", "/css/**").permitAll()
+                .anyRequest().authenticated())
+            .oauth2Login(Customizer.withDefaults())     // OIDC interactive login
+            .oauth2Client(Customizer.withDefaults())    // enables authorized-client support
+            .logout(Customizer.withDefaults());
+        return http.build();
+    }
+
+    // Manager that can mint/refresh client-credentials (and other) tokens.
+    @Bean
+    OAuth2AuthorizedClientManager authorizedClientManager(
+            ClientRegistrationRepository registrations,
+            OAuth2AuthorizedClientRepository authorizedClients) {
+        var provider = OAuth2AuthorizedClientProviderBuilder.builder()
+                .authorizationCode()
+                .refreshToken()
+                .clientCredentials()                    // for the batch job
+                .build();
+        var manager = new DefaultOAuth2AuthorizedClientManager(registrations, authorizedClients);
+        manager.setAuthorizedClientProvider(provider);
+        return manager;
+    }
+
+    // RestClient that forwards the logged-in user's access token downstream.
+    @Bean
+    RestClient ordersAsUser(OAuth2AuthorizedClientManager manager) {
+        var interceptor =
+            new org.springframework.security.oauth2.client.web.client
+                .OAuth2ClientHttpRequestInterceptor(manager);
+        interceptor.setClientRegistrationIdResolver(req -> "idp");   // use the login client
+        return RestClient.builder()
+                .baseUrl("https://orders-api.example.com")
+                .requestInterceptor(interceptor)
+                .build();
+    }
+
+    // RestClient for the no-user batch job, using client-credentials.
+    @Bean
+    RestClient ordersAsService(OAuth2AuthorizedClientManager manager) {
+        var interceptor =
+            new org.springframework.security.oauth2.client.web.client
+                .OAuth2ClientHttpRequestInterceptor(manager);
+        interceptor.setClientRegistrationIdResolver(req -> "orders-svc");
+        return RestClient.builder()
+                .baseUrl("https://orders-api.example.com")
+                .requestInterceptor(interceptor)
+                .build();
+    }
+}
+```
+
+```java
+@Controller
+class DashboardController {
+
+    private final RestClient ordersAsUser;
+    DashboardController(@Qualifier("ordersAsUser") RestClient ordersAsUser) {
+        this.ordersAsUser = ordersAsUser;
+    }
+
+    @GetMapping("/dashboard")
+    String dashboard(@AuthenticationPrincipal OidcUser user, Model model) {
+        // The interceptor attaches the user's bearer token automatically.
+        var orders = ordersAsUser.get().uri("/api/orders")
+                .retrieve().body(OrderView[].class);
+        model.addAttribute("name", user.getFullName());
+        model.addAttribute("orders", orders);
+        return "dashboard";
+    }
+}
+
+@Component
+class ReconciliationJob {
+
+    private final RestClient ordersAsService;
+    ReconciliationJob(@Qualifier("ordersAsService") RestClient ordersAsService) {
+        this.ordersAsService = ordersAsService;
+    }
+
+    @Scheduled(cron = "0 0 2 * * *")                 // 02:00 daily, no user present
+    void reconcile() {
+        var orders = ordersAsService.get().uri("/api/orders")
+                .retrieve().body(OrderView[].class);  // client-credentials token attached
+        // ... reconcile ...
+    }
+}
+```
+
+**Result.** Users sign in once through the corporate provider — no passwords stored in the portal — and their token flows to `orders-api`, which enforces per-user scopes exactly as in Chapter 11. The nightly job authenticates as a distinct service identity with only `orders:read`, its token obtained and refreshed automatically by the authorized-client manager. The portal is simultaneously an OAuth2 client and, where it exposes APIs, can be a resource server too.
+
+**Future improvements.** Add an `OidcUserService` to map provider groups to application roles; configure RP-initiated logout so signing out of the portal ends the IdP session; restrict the batch service to its own narrow scopes; and add resilience (timeouts and retries — Part V) around the downstream calls so a slow IdP or API degrades gracefully.
+
+### 12.6 Exercises
+
+1. Distinguish the **ID token** from the **access token** in OIDC: what is each for, and which one travels to the downstream resource server?
+2. When is the **client-credentials** grant appropriate, and why can it not be used for interactive user login?
+3. Why is **PKCE** used with the authorization-code flow even for confidential server-side clients?
+
+### 12.7 Challenges
+
+- **Challenge.** Build an OIDC-login app that calls a protected downstream API with the logged-in user's token, then add a scheduled job that calls the same API using a client-credentials registration. Confirm with logs that the user call carries the user's `sub` and the job call carries the service identity.
+
+### 12.8 Checklist
+
+- [ ] `oauth2Login` is configured with an OIDC `issuer-uri`; no passwords are stored locally.
+- [ ] Authorization-code flow uses PKCE.
+- [ ] Downstream calls go through an authorized `RestClient`/`WebClient` that attaches tokens automatically.
+- [ ] Machine-to-machine calls use a dedicated client-credentials registration with least-privilege scopes.
+- [ ] Client secrets come from the environment/secret store, never the repository.
+- [ ] Logout ends the local session (and, ideally, the IdP session via RP-initiated logout).
+
+### 12.9 Best practices
+
+- Delegate all human authentication to the OIDC provider; let the application be a client, not an identity store.
+- Use separate client registrations for interactive login and machine-to-machine traffic, each scoped minimally.
+- Never attach bearer tokens by hand — let the OAuth2 interceptor and `OAuth2AuthorizedClientManager` manage acquisition and refresh.
+- Keep client secrets in a secret manager; rotate them; prefer short-lived tokens with refresh.
+
+### 12.10 Anti-patterns
+
+- Treating the **ID token** as an API access token (or vice versa) — they have different audiences and purposes.
+- Sharing one client registration and one set of scopes across both user login and background jobs.
+- Hardcoding client secrets or long-lived tokens in configuration committed to source control.
+- Manually building `Authorization` headers and re-implementing token refresh instead of using the authorized-client support.
+
+### 12.11 Troubleshooting
+
+| Symptom | Cause | Action |
+|---------|-------|--------|
+| Redirect loop on login | Redirect URI mismatch at the IdP | Register `/login/oauth2/code/{registrationId}` exactly |
+| `invalid_grant` on code exchange | Clock skew or reused/expired code | Sync clocks (NTP); ensure the code is exchanged once |
+| Downstream call returns 401 | Token not attached or wrong audience | Verify the interceptor and the registration id resolver |
+| Client-credentials job gets 403 | Service client lacks the scope | Grant the scope to the `orders-svc` registration |
+| Token never refreshes | Refresh-token provider not enabled | Add `.refreshToken()` to the authorized-client provider |
+| Secret leaked in logs/repo | Secret hardcoded in `application.yml` | Move to env var / secret manager; rotate the secret |
+
+### 12.12 Official references
+
+- OAuth2 client (servlet): https://docs.spring.io/spring-security/reference/servlet/oauth2/client/index.html
+- OIDC login (`oauth2Login`): https://docs.spring.io/spring-security/reference/servlet/oauth2/login/index.html
+- Client-credentials grant: https://docs.spring.io/spring-security/reference/servlet/oauth2/client/authorization-grants.html#oauth2-client-client-credentials
+- Spring Boot OAuth2 client: https://docs.spring.io/spring-boot/reference/web/spring-security.html#web.security.oauth2.client
+- OpenID Connect Core: https://openid.net/specs/openid-connect-core-1_0.html
+- The OAuth 2.0 Authorization Framework (RFC 6749): https://datatracker.ietf.org/doc/html/rfc6749
+
+---
+
+> **End of Part IV.** You can now reason about security across the whole request lifecycle: the **`SecurityFilterChain`** and the lambda DSL that decide authentication and authorization (Chapter 10), **stateless JWT** resource servers that validate bearer tokens against a provider's JWKS and map claims to authorities (Chapter 11), and the **OAuth2 / OIDC** client side — interactive login plus client-credentials and automatic token propagation to downstream APIs (Chapter 12). **Part V — Reactive & Resilience** (Chapters 13–15) shifts from securing requests to handling them at scale and under failure: **Project Reactor** (`Mono`/`Flux` and backpressure), **Spring WebFlux** with **R2DBC** for fully non-blocking persistence, and core resilience patterns including declarative retries with `@Retryable` and concurrency control with `@ConcurrencyLimit`.
+
 <!--APPEND-PARTE-II-->
