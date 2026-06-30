@@ -42,7 +42,7 @@ stack: react-native
 **Part II – Mobile concerns**
 3. Navigation, platform differences, and performance
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete. **Ready:** Part I (Ch. 1–2) and Part II (Ch. 3).
 
 ---
 
@@ -255,4 +255,140 @@ const styles = StyleSheet.create({
 
 > **End of Part I.** You can now build with React Native's model: React **components that render to real native views** (`<View>`, `<Text>`, `<FlatList>` — not HTML) for one codebase producing native iOS and Android apps, styled with **JS style objects and Flexbox** (the default layout, remembering RN's column-by-default direction and lack of CSS cascade). **Part II — Mobile concerns** (Chapter 3) covers navigation between screens, handling platform differences (iOS vs Android), and performance (keeping the JS thread free, optimizing lists) for production-quality apps.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Mobile concerns
+
+A React component that renders a native view is the easy part. What makes a *mobile app* — and what the web doesn't prepare you for — is everything around it: there is no URL bar, so you must build navigation between full screens with native gesture and transition semantics; the same code runs on two platforms whose conventions, components, and APIs genuinely differ; and the user is holding a touch device that judges you on smoothness, so a janky list or a blocked JS thread is immediately visible. Part II covers those three production concerns.
+
+---
+
+## Chapter 3 — Navigation, platform differences, and performance
+
+### 3.1 Introduction
+
+The web gives you the browser's history, URLs, and the back button for free. Native apps give you none of that: you assemble **navigation** yourself — stacks, tabs, and the gestures/animations users expect (iOS swipe-back, Android hardware back) — typically with **React Navigation**. You also ship to **two platforms** that look and behave differently, so you adapt via the `Platform` API and platform-specific files rather than forking the app. And because mobile users feel every dropped frame, **performance** work centers on keeping the JavaScript thread free and rendering long lists efficiently with `FlatList`. This chapter covers all three.
+
+### 3.2 Business context
+
+These three concerns are where React Native apps succeed or get rejected. Navigation that ignores platform conventions (no swipe-back on iOS, a broken hardware-back on Android) feels "not native" and tanks reviews. Treating iOS and Android as identical produces an app that's subtly wrong on both; treating them as separate codebases throws away React Native's core benefit (Eisenman reports apps sharing ~85–100% of code across platforms). And performance is existential on mobile: a janky scroll or a UI that freezes during work reads as a broken app, and app-store ratings punish it directly. Getting Part II right is what turns "a React app on a phone" into a shippable native product.
+
+### 3.3 Theoretical concepts: navigation as a stack
+
+```mermaid
+flowchart LR
+    stack["Stack navigator: screens pushed/popped"] --> push["navigate('Details', params) -> push"]
+    push --> back["Back gesture / hardware back -> pop"]
+    stack --> tabs["Tab / drawer navigators compose with stacks"]
+```
+
+There is no DOM history, so navigation is an explicit **navigator** that owns a stack of screens. A **stack navigator** pushes a screen with `navigation.navigate('Details', { id })` and pops it on the back gesture or Android hardware-back; params pass data between screens. **Tab** and **drawer** navigators compose with stacks for real app structures (a tab bar where each tab has its own stack). The navigator also owns the **header** (title, back button) configured per screen. Crucially, React Navigation maps these to **native** transition and gesture behavior per platform, so the app feels right without you hand-coding animations.
+
+### 3.4 Architecture: one codebase, two platforms
+
+```mermaid
+flowchart TB
+    shared["Shared components & logic (~85-100%)"] --> plat["Platform.OS / Platform.select for small forks"]
+    plat --> files["Component.ios.js / Component.android.js for larger splits"]
+    files --> bundle["Bundler picks the right file per platform automatically"]
+```
+
+The goal is **maximum shared code with surgical divergence**. For small differences, branch at runtime: `Platform.OS === 'ios'` or `Platform.select({ ios, android })`. For a component that genuinely differs, use **platform extensions** — `Button.ios.js` and `Button.android.js` — and import `./Button`; the bundler picks the right file. Some components are inherently platform-specific (date pickers, action sheets); wrap them behind a shared interface. The discipline is to keep the *shape* of the app shared and push platform code to the leaves, not to fork whole screens.
+
+### 3.5 Real example
+
+**Scenario.** A list app: a scrollable list of items, tapping one opens a detail screen, and a "share" affordance should match each platform.
+
+**Problem.** The first version renders the list by `.map()`-ing 1,000 items into `<View>`s, navigates by conditionally rendering screens with state, and uses an iOS-style share button on both platforms. Scrolling janks, the back gesture doesn't work, and Android users get a foreign-looking control.
+
+**Solution.** `FlatList` for virtualization, a stack navigator for screens, and platform-aware sharing.
+
+**Implementation.**
+
+```jsx
+// Navigation: a real stack with native back gesture + header
+const Stack = createNativeStackNavigator();
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="List" component={ListScreen} />
+        <Stack.Screen name="Details" component={DetailsScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+// Performance: FlatList virtualizes — only renders what's on screen
+function ListScreen({ navigation }) {
+  return (
+    <FlatList
+      data={items}
+      keyExtractor={(item) => item.id}
+      renderItem={({ item }) => (
+        <Pressable onPress={() => navigation.navigate('Details', { id: item.id })}>
+          <Text>{item.title}</Text>
+        </Pressable>
+      )}
+    />
+  );
+}
+
+// Platform difference: right control per OS
+const ShareLabel = Platform.select({ ios: 'Share', android: 'SHARE' });
+```
+
+**Result.** `FlatList` keeps scrolling at 60fps by only mounting visible rows; the stack navigator gives a working back gesture and native transitions; `Platform.select` (and `.ios.js`/`.android.js` where needed) makes each platform feel native — all from one shared codebase.
+
+**Future improvements.** Move expensive work off the JS thread (native modules or `InteractionManager`) so animations never block; tune `FlatList` (`getItemLayout`, `windowSize`, memoized `renderItem`) for very large lists; add deep linking through the navigator so URLs open the right screen.
+
+### 3.6 Exercises
+
+1. Why must navigation be explicit in React Native when it's free on the web?
+2. Give two mechanisms for handling platform differences and when to use each.
+3. Why does `FlatList` outperform mapping a large array into views?
+
+### 3.7 Challenges
+
+- **Challenge.** Build a two-screen app with a native stack navigator (list → detail, params passed through) and render the list with `FlatList`. Then make one control diverge per platform using `Platform.select` or a `.ios.js`/`.android.js` pair, and verify the back gesture works on both.
+
+### 3.8 Checklist
+
+- [ ] Screens are managed by a navigator (stack/tab/drawer), not conditional rendering.
+- [ ] Back gesture / Android hardware-back behave natively.
+- [ ] Long lists use `FlatList`/`SectionList`, never `.map()` of all items.
+- [ ] Platform differences are handled with `Platform`/extensions, keeping most code shared.
+- [ ] Expensive work is kept off the JS thread so the UI stays smooth.
+
+### 3.9 Best practices
+
+- Use React Navigation's native stack for platform-correct gestures and transitions.
+- Maximize shared code; push platform-specific code to the leaves.
+- Virtualize lists and memoize `renderItem`; provide `keyExtractor`.
+- Profile the JS thread; offload heavy computation to keep 60fps.
+
+### 3.10 Anti-patterns
+
+- Hand-rolling navigation with state and conditional screen rendering.
+- Forking entire screens per platform instead of branching at the leaves.
+- Rendering large lists by mapping the whole array into views (no virtualization).
+- Blocking the JS thread with synchronous heavy work during interactions.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| No back gesture / wrong transitions | Ad hoc navigation | Use a native stack navigator |
+| Scrolling janks on long lists | No virtualization | Switch to `FlatList` + `getItemLayout` |
+| App feels foreign on one OS | Platform conventions ignored | Branch with `Platform`/platform files |
+| UI freezes during work | JS thread blocked | Offload to native module / `InteractionManager` |
+
+### 3.12 References
+
+- B. Eisenman, *Learning React Native*, 2nd ed. (O'Reilly, 2018) — Ch. 2 (components vs. web), Ch. 4 (navigation, platform-specific components, `FlatList`), Ch. 9 (debugging & performance). ISBN 978-1491989142.
+- React Navigation docs: https://reactnavigation.org/docs/getting-started.
+- React Native docs, "Platform-specific code" & "Optimizing FlatList": https://reactnative.dev/docs/platform-specific-code and https://reactnative.dev/docs/optimizing-flatlist-configuration.
+
+---
+
+> **End of guide.** You can now build production React Native apps end to end: compose UIs from components that render to real native views, styled with Flexbox (Part I), then handle the mobile concerns the web doesn't teach — native navigation, two-platform divergence kept at the leaves, and list/thread performance that keeps the app smooth (Part II).
