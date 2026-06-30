@@ -41,7 +41,7 @@ software_dev: core
 **Part II – Collaboration**
 3. Running design as a team activity
 
-> **Status of this guide:** phased delivery. **Ready:** Part I (Ch. 1–2). **In progress:** Part II.
+> **Status of this guide:** complete for its declared scope. **Ready:** Parts I–II (Ch. 1–3).
 
 ---
 
@@ -256,4 +256,112 @@ Alternatives considered: MongoDB (rejected: weaker multi-document integrity).
 
 > **End of Part I.** You can now treat architecting as a continuous, risk-driven activity — investing design effort in proportion to risk and stopping when risk is acceptable — and capture significant choices as short, immutable ADRs stored with the code. **Part II — Collaboration** (Chapter 3) covers running architecture as a team activity: shared modeling, decision ownership, and avoiding the ivory-tower architect.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Collaboration
+
+Part I treated architecting as an activity — making and validating decisions, not producing a binder. Part II covers how that activity works best: **as a team**, not as a lone architect handing down a design. Architecting is a social, hands-on practice.
+
+---
+
+## Chapter 3 — Running design as a team activity
+
+### 3.1 Introduction
+
+The "ivory tower" architect who designs in isolation and throws a diagram over the wall is an anti-pattern. Modern architecting is a **team activity**: the people who will build the system participate in shaping it, which produces better decisions (more perspectives, fewer blind spots) and far better buy-in (the team owns a design it helped create). The architect's job shifts from *deciding everything* to **facilitating** design — running collaborative activities, guiding decisions toward the quality attributes, and growing the team's architectural skill. Think **architect as gardener**, not dictator.
+
+### 3.2 Business context
+
+Architecture decisions made alone are slower to land and quicker to be ignored: the team doesn't understand the rationale, doesn't agree, and routes around it. Running design collaboratively means the people closest to the code surface constraints early, commit to the result, and can carry the architecture forward without the architect as a bottleneck. It also **builds the team's capability**, so good decisions keep happening when the architect isn't in the room. For a business, that's faster delivery, fewer expensive late surprises, and resilience against bus-factor.
+
+### 3.3 Theoretical concepts: facilitate, don't dictate
+
+```mermaid
+flowchart TB
+    problem["a design problem"] --> activity["collaborative activity (whiteboard, workshop, decision)"]
+    activity --> team["whole team contributes + commits"]
+    team --> decision["shared decision, recorded (ADR)"]
+    note["Architect facilitates and guides toward quality attributes"]
+```
+
+Collaborative architecting uses lightweight, structured **activities**: divergent thinking to generate options, convergent thinking to choose, and visualization (whiteboarding, modeling) to make the design shared and visible. The architect frames the problem around the **quality attributes** (so the team optimizes the right things), facilitates the activity, and ensures the decision is captured (an ADR). Authority comes from helping the team reach a good decision, not from making it for them.
+
+### 3.4 Architecture: the architect as guide
+
+```mermaid
+flowchart LR
+    arch["architect: frames problem, facilitates, guards quality attributes, mentors"] --> team["team: explores options, decides, builds"]
+    note["Decisions are shared and owned; the architect grows the team's skill"]
+```
+
+The architect spends less time drawing the final design and more time enabling the team to produce it — running the workshop, asking the sharpening questions, and mentoring so the next decision needs them less.
+
+### 3.5 Real example
+
+**Scenario.** A team must choose how to split a monolith and isn't aligned.
+
+**Problem.** The architect could decree the boundaries — fast to write down, slow to land, and resented — or let the team debate endlessly with no structure.
+
+**Solution.** Run a **collaborative design activity** framed by the quality attributes, and capture the shared decision.
+
+**Implementation.**
+
+```text
+Workshop (whole team, ~2 hours), facilitated by the architect:
+  1. Frame: prioritized quality attributes (independent deployability, team ownership)
+  2. Diverge: each pair proposes a boundary split on the whiteboard
+  3. Converge: score proposals against the quality attributes; discuss trade-offs
+  4. Decide: choose a split the team commits to
+  5. Capture: write an ADR (context / decision / consequences)
+Architect's role: frame, facilitate, keep focus on quality attributes — not dictate the answer
+```
+
+**Result.** The boundaries are chosen *by the team*, framed by the right quality attributes, so the design is better-informed and the team owns and defends it. The decision lands immediately (everyone was there) and is recorded in an ADR. The architect guided the outcome without dictating it — and the team is more capable of the next such decision.
+
+**Future improvements.** Rotate facilitation to grow architectural skill across the team; make collaborative design and ADRs a routine cadence, not a one-off.
+
+### 3.6 Exercises
+
+1. Why does collaborative architecting produce better decisions *and* better buy-in than solo design?
+2. What does the architect do in a design activity if not "decide everything"?
+3. How does framing an activity around quality attributes change its outcome?
+
+### 3.7 Challenges
+
+- **Challenge.** Facilitate a short design activity for a real decision: frame it with two quality attributes, run a diverge/converge round on a whiteboard, and capture the team's decision in an ADR. Note how ownership differs from a decision handed down.
+
+### 3.8 Checklist
+
+- [ ] The people who build the system participate in designing it.
+- [ ] I facilitate design activities rather than dictate the design.
+- [ ] Activities are framed around prioritized quality attributes.
+- [ ] Shared decisions are captured (ADRs) and the team is mentored.
+
+### 3.9 Best practices
+
+- Run design as collaborative, structured activities (diverge then converge).
+- Frame problems around quality attributes; let the team choose.
+- Capture decisions and grow the team's architectural skill.
+
+### 3.10 Anti-patterns
+
+- Ivory-tower architecture handed down as a finished diagram.
+- Unstructured debate with no framing or decision capture.
+- The architect as a permanent decision bottleneck.
+
+### 3.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Team ignores the architecture | Designed in isolation, no buy-in | Run collaborative design; involve the builders |
+| Design debates never resolve | No framing or facilitation | Frame by quality attributes; diverge then converge |
+| Architect is the bottleneck | All decisions centralized | Facilitate and mentor; distribute decision-making |
+
+### 3.12 References
+
+- M. Keeling, *Design It! From Programmer to Software Architect* (Pragmatic Bookshelf, 2017), architecture as a team activity & design activities — ISBN 978-1680502091.
+- G. Hohpe, *The Software Architect Elevator* (O'Reilly, 2020), the connecting, non-ivory-tower architect.
+
+---
+
+> **End of Part II.** Architecting is a **team activity**: the builders participate, the architect **facilitates** structured design activities framed by **quality attributes**, decisions are shared and captured in ADRs, and the team's skill grows so the architect isn't a bottleneck. With Part I's view of architecting as decision-making, you can now run it collaboratively — producing better designs the team actually owns.
