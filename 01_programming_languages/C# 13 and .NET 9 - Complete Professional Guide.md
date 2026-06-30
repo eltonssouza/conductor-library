@@ -79,7 +79,7 @@ Progressive depth across five maturity levels:
 19. ASP.NET Core minimal APIs — overview
 20. EF Core overview, testing (xUnit), performance, and publishing/AOT
 
-> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Parts I–III (Ch. 1–8). **In progress:** Parts IV–VIII.
+> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Parts I–IV (Ch. 1–10). **In progress:** Parts V–VIII.
 
 ---
 
@@ -1061,4 +1061,225 @@ var (x, y) = point;   // pulls members into variables in one step
 
 > **End of Part III.** **Records** give value equality, immutability, and `with`-based copies with zero boilerplate, and **pattern matching** (type/property/relational/logical/list patterns in `switch` expressions, plus deconstruction) makes branching declarative and exhaustiveness-checked. Part IV covers **collections and generics** — `List<T>`, dictionaries, collection expressions, and type parameters with constraints and variance.
 
-<!--APPEND-PART-IV-->
+---
+
+## Part IV – Collections & Generics
+
+Part IV covers how C# stores and parameterizes data: the **collection** types you reach for daily (`List<T>`, dictionaries, sets) with C# 12 **collection expressions**, and **generics** — the type-parameter mechanism that makes those collections type-safe and reusable.
+
+---
+
+## Chapter 9 — Arrays, `List<T>`, dictionaries, and collection expressions
+
+### 9.1 Introduction
+
+C# offers a built-in collection for every access pattern. A fixed-size **array** (`int[]`) is contiguous and fast by index. A **`List<T>`** is a growable, ordered sequence — the default general-purpose collection. A **`Dictionary<TKey,TValue>`** maps keys to values with O(1) average lookup; a **`HashSet<T>`** stores unique values with O(1) membership. C# 12 adds **collection expressions** — a unified `[...]` syntax that initializes any of them (`int[] a = [1, 2, 3];`) and a **spread** (`[..first, ..second]`) to combine sequences.
+
+### 9.2 Business context
+
+Choosing the right collection is a cheap, high-leverage performance decision (echoing the algorithms guide): a `List<T>.Contains` is O(n), while a `HashSet<T>.Contains` is O(1) — the difference between a fast feature and a timeout on large data. Dictionaries turn repeated lookups into constant-time access. Collection expressions reduce initialization boilerplate and make code read uniformly regardless of the concrete type, lowering the cognitive cost of working with data structures across a codebase.
+
+### 9.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    arr["array T[]: fixed size, index O(1)"]
+    list["List<T>: growable, ordered, index O(1), Contains O(n)"]
+    dict["Dictionary<K,V>: key -> value, lookup O(1) avg"]
+    set["HashSet<T>: unique, membership O(1) avg"]
+    note["Collection expressions [..] initialize them all uniformly"]
+```
+
+Pick by access pattern: index/iteration → array or `List<T>`; key lookup → `Dictionary`; uniqueness/membership → `HashSet`. **Collection expressions** (`[1, 2, 3]`, `[]` for empty) target whatever collection type the variable expects, and the **spread** element `..other` flattens one sequence into another. For read-only exposure, return `IReadOnlyList<T>`/`IReadOnlyDictionary<K,V>` so callers can't mutate your internals.
+
+### 9.4 Architecture: match the structure to the access pattern
+
+```mermaid
+flowchart LR
+    need["what do you do most?"] --> idx["index/iterate -> List<T>"]
+    need --> key["look up by key -> Dictionary"]
+    need --> uniq["membership/uniqueness -> HashSet"]
+```
+
+The collection choice is an O(...) decision: select the structure whose dominant operation is cheapest for your workload.
+
+### 9.5 Real example
+
+**Scenario.** Detect duplicate SKUs in a large import and count occurrences per category.
+
+**Problem.** Nested scanning for duplicates is O(n²); accumulating counts in a list is awkward and slow.
+
+**Solution.** A **`HashSet`** for O(1) duplicate detection and a **`Dictionary`** for O(1) counting.
+
+**Implementation.**
+
+```csharp
+var seen = new HashSet<string>();
+var perCategory = new Dictionary<string, int>();
+
+foreach (var item in import)            // single pass, O(n)
+{
+    if (!seen.Add(item.Sku))            // Add returns false if already present
+        Console.WriteLine($"duplicate SKU: {item.Sku}");
+    perCategory[item.Category] = perCategory.GetValueOrDefault(item.Category) + 1;
+}
+
+int[] sample = [1, 2, 3];               // collection expression
+int[] combined = [..sample, 4, 5];      // spread
+```
+
+**Result.** Duplicate detection and per-category counting both run in one O(n) pass using O(1) operations, scaling to large imports where a nested-loop approach would crawl. The collection expressions initialize and combine arrays concisely.
+
+**Future improvements.** Expose results as `IReadOnlyDictionary` to prevent callers mutating them; for concurrent imports use `ConcurrentDictionary`.
+
+### 9.6 Exercises
+
+1. Which collection gives O(1) membership tests, and which gives O(1) key lookup?
+2. What does a collection expression target, and what does the spread `..` do?
+3. Why prefer returning `IReadOnlyList<T>` over `List<T>` from an API?
+
+### 9.7 Challenges
+
+- **Challenge.** Given a list of orders, build a `Dictionary<string, decimal>` of total revenue per customer in a single pass, and a `HashSet<string>` of customers who ordered more than once.
+
+### 9.8 Checklist
+
+- [ ] I choose the collection by its dominant operation's cost.
+- [ ] I use `HashSet`/`Dictionary` for membership/lookup instead of scanning a list.
+- [ ] I use collection expressions for concise initialization.
+- [ ] I expose read-only interfaces to protect internal collections.
+
+### 9.9 Best practices
+
+- Default to `List<T>`; switch to `Dictionary`/`HashSet` for lookup/uniqueness.
+- Use collection expressions and spreads for clarity.
+- Return read-only collection interfaces from public APIs.
+
+### 9.10 Anti-patterns
+
+- `List<T>.Contains` in a loop (O(n²)) where a `HashSet` is O(n).
+- Exposing mutable collections that callers can corrupt.
+- Using an array where a growable `List<T>` is needed (or vice versa).
+
+### 9.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Slow membership/duplicate checks | `List.Contains` (O(n)) | Use a `HashSet<T>` |
+| Repeated linear lookups | Scanning a list by key | Use a `Dictionary<K,V>` |
+| Caller mutated your collection | Returned a mutable `List<T>` | Return `IReadOnlyList<T>` |
+
+### 9.12 References
+
+- Microsoft, "Collections" & "Collection expressions": https://learn.microsoft.com/dotnet/csharp/language-reference/operators/collection-expressions.
+- J. Albahari, *C# 13 in a Nutshell* (O'Reilly, 2025) — ISBN 978-1098159474.
+
+---
+
+## Chapter 10 — Generics: type parameters, constraints, and variance
+
+### 10.1 Introduction
+
+**Generics** let you write a type or method once and use it with many element types, with full type safety and no boxing. `List<T>`, `Dictionary<K,V>`, and your own `Repository<T>` are generic. A **type parameter** (`T`) is a placeholder; **constraints** (`where T : ...`) restrict it (must be a `class`, a `struct`, implement an interface, or have a parameterless constructor `new()`), unlocking the operations you can perform on `T`. **Variance** (`out`/`in` on interface type parameters) controls whether `IEnumerable<Derived>` can be used where `IEnumerable<Base>` is expected.
+
+### 10.2 Business context
+
+Before generics, reusable collections and algorithms used `object`, which lost type safety (runtime cast errors) and boxed value types (allocation cost). Generics give **one** implementation that is type-safe and efficient across all element types — less duplicated code, no casting bugs, better performance. Constraints document and enforce what a generic component requires, so misuse is a compile error rather than a runtime surprise. This is the foundation of reusable, robust library and domain code.
+
+### 10.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    gen["class Repository<T> where T : IEntity"] --> safe["type-safe for any T that is an IEntity"]
+    cons["constraints: class / struct / new() / interface / base"] --> ops["enable operations on T"]
+    var["variance: out T (covariant) / in T (contravariant)"] --> assign["IEnumerable<Derived> -> IEnumerable<Base>"]
+```
+
+A **constraint** both restricts callers and grants capabilities: `where T : IComparable<T>` lets the body call `CompareTo`; `where T : new()` lets it `new T()`. **Covariance** (`out T`, as in `IEnumerable<out T>`) allows a more-derived `T` where a less-derived is expected (producers); **contravariance** (`in T`, as in `IComparer<in T>`) allows the reverse (consumers). Variance applies to interface and delegate type parameters, not classes.
+
+### 10.4 Architecture: write once, reuse safely
+
+```mermaid
+flowchart LR
+    one["one generic implementation"] --> many["used with int, string, Order, ..."]
+    note["Type safety + no boxing, across all element types"]
+```
+
+A single generic component replaces N hand-written type-specific versions, checked by the compiler for each usage.
+
+### 10.5 Real example
+
+**Scenario.** A reusable in-memory repository for any entity that has an `Id`.
+
+**Problem.** Writing a separate repository per entity duplicates code; using `object` loses type safety.
+
+**Solution.** A **generic** `Repository<T>` with an **interface constraint**.
+
+**Implementation.**
+
+```csharp
+public interface IEntity { int Id { get; } }
+
+public class Repository<T> where T : IEntity      // constraint: T must have an Id
+{
+    private readonly Dictionary<int, T> _items = new();
+    public void Add(T item) => _items[item.Id] = item;   // uses T.Id thanks to the constraint
+    public T? Get(int id) => _items.TryGetValue(id, out var v) ? v : default;
+}
+
+// one implementation, reused type-safely:
+var orders = new Repository<Order>();   // Order : IEntity
+var users  = new Repository<User>();    // User  : IEntity
+```
+
+**Result.** One `Repository<T>` serves every `IEntity` with compile-time type safety (a `Repository<Order>.Get` returns an `Order`, not an `object`) and no boxing. The `where T : IEntity` constraint is what lets the body read `item.Id`, and it rejects any `T` that isn't an entity at compile time.
+
+**Future improvements.** Add `where T : class, IEntity, new()` if the repository must construct instances; expose `IReadOnlyCollection<T>` for enumeration with covariance.
+
+### 10.6 Exercises
+
+1. What two things does a generic constraint do?
+2. What does `where T : new()` enable, and `where T : IComparable<T>`?
+3. Explain covariance (`out T`) vs contravariance (`in T`) with an example.
+
+### 10.7 Challenges
+
+- **Challenge.** Write a generic `Max<T>(IEnumerable<T> items)` constrained with `where T : IComparable<T>` that returns the largest element, and use it with `int` and a custom type.
+
+### 10.8 Checklist
+
+- [ ] I use generics instead of `object` for reusable, type-safe components.
+- [ ] I add constraints to enable the operations the body needs.
+- [ ] I understand which interfaces are covariant/contravariant.
+- [ ] My generic APIs avoid boxing value types.
+
+### 10.9 Best practices
+
+- Prefer generic types/methods over `object`-based code.
+- Constrain type parameters to document and enable requirements.
+- Use variance (`out`/`in`) to make generic interfaces flexible.
+
+### 10.10 Anti-patterns
+
+- `object`-typed collections requiring casts (lost safety, boxing).
+- Over-constraining or under-constraining type parameters.
+- Duplicating near-identical type-specific classes instead of one generic.
+
+### 10.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Runtime cast errors from a collection | `object`-based, not generic | Use a generic `List<T>`/`Dictionary` |
+| "T has no method X" compile error | Missing constraint | Add `where T : ...` to enable X |
+| Can't assign `IEnumerable<Derived>` to `IEnumerable<Base>` | Variance not understood | It's covariant (`out T`) — the assignment is allowed |
+
+### 10.12 References
+
+- Microsoft, "Generics" & "Constraints on type parameters": https://learn.microsoft.com/dotnet/csharp/fundamentals/types/generics.
+- J. Albahari, *C# 13 in a Nutshell* (O'Reilly, 2025) — ISBN 978-1098159474.
+
+---
+
+> **End of Part IV.** C# stores data in **collections** chosen by access pattern (`List<T>`, `Dictionary`, `HashSet`, with C# 12 collection expressions), and parameterizes them with **generics** — type parameters made capable by **constraints** and flexible by **variance** — for reuse without losing type safety or boxing. Part V covers **LINQ and functional constructs** — querying data and working with delegates, lambdas, and expression trees.
+
+<!--APPEND-PART-V-->
