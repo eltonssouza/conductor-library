@@ -83,7 +83,7 @@ Progressive depth across five maturity levels:
 23. Security: input, output, secrets, and crypto
 24. Deployment: configuration, processes, and observability
 
-> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Parts I–IV (Ch. 1–13). **In progress:** Parts V–VIII.
+> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Parts I–V (Ch. 1–16). **In progress:** Parts VI–VIII.
 
 ---
 
@@ -1709,4 +1709,338 @@ $u->email = 'a@x.com';    // validated via set hook
 
 > **End of Part IV.** PHP 8's modern features: **attributes** + **reflection** for declarative, type-checked metadata; the strict, exhaustive **`match`** expression and **`new` in initializers**; **fibers** as the cooperative-concurrency primitive under async runtimes; and 8.4's **property hooks** and **asymmetric visibility** that give real encapsulation with plain property syntax. Part V covers **errors, namespaces, and autoloading**.
 
-<!--APPEND-PART-V-->
+---
+
+## Part V – Errors, Namespaces & Autoloading
+
+Part V covers how PHP signals failure and how code is organized and loaded: the **`Throwable`** hierarchy (errors vs. exceptions), **namespaces** with **Composer** and **PSR-4** autoloading, and signalling obsolete APIs with the **`#[\Deprecated]`** attribute.
+
+---
+
+## Chapter 14 — Errors vs. exceptions, the `Throwable` hierarchy
+
+### 14.1 Introduction
+
+In modern PHP, almost everything thrown implements **`Throwable`**, which splits into two branches: **`Exception`** (recoverable application conditions you catch and handle) and **`Error`** (engine-level problems like `TypeError`, `DivisionByZeroError` — usually bugs you fix, not catch). You handle them with `try`/`catch`/`finally`, catching the **narrowest** type you can act on, and you can define **custom exception** classes to let callers branch on specific failures. Catching `Throwable` is reserved for top-level last-resort handlers.
+
+### 14.2 Business context
+
+A clear error model is the difference between diagnosable failures and silent corruption. Treating engine `Error`s (a `TypeError`) the same as a recoverable `Exception` (a failed HTTP call) hides bugs and masks real problems. Catching narrowly — and translating low-level failures into meaningful domain exceptions — gives operators actionable diagnostics and lets the app recover where it genuinely can. A consistent strategy across a codebase reduces incident time and prevents the "swallowed exception" bugs that plague large PHP applications.
+
+### 14.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    th["Throwable (interface)"] --> exc["Exception (recoverable: catch & handle)"]
+    th --> err["Error (engine: TypeError, DivisionByZeroError — usually bugs)"]
+    exc --> custom["custom domain exceptions (callers branch on type)"]
+```
+
+Catch the **specific** `Exception` subtype you can handle; let others propagate. **`finally`** runs regardless (cleanup). Re-throw to translate: wrap a low-level exception in a domain one passing the original as `previous` (`new DomainException($msg, 0, $previous)`) so the chain is preserved. Generally **don't catch `Error`** — a `TypeError` means a contract was violated and should be fixed — except at a global handler that logs and returns a 500. Custom exception classes (`class PaymentFailed extends RuntimeException {}`) let callers `catch (PaymentFailed $e)` precisely.
+
+### 14.4 Architecture: throw low, catch narrowly, handle high
+
+```mermaid
+flowchart LR
+    low["low-level failure"] --> wrap["translate -> domain exception (keep previous)"]
+    wrap --> prop["propagate"]
+    prop --> top["global handler: log, respond 500"]
+    note["finally / cleanup along the way"]
+```
+
+Most code throws or lets exceptions flow; a few deliberate handlers (and one global one) catch, log, and respond.
+
+### 14.5 Real example
+
+**Scenario.** A payment service calls a gateway that may fail; callers need to distinguish payment failure from bugs.
+
+**Problem.** Catching everything hides `TypeError` bugs; leaking the raw gateway exception couples callers to it.
+
+**Solution.** Catch the specific gateway exception, **translate** it into a domain `PaymentFailed`, and let engine `Error`s propagate.
+
+**Implementation.**
+
+```php
+final class PaymentFailed extends RuntimeException {}
+
+function charge(Gateway $g, int $cents): string
+{
+    try {
+        return $g->charge($cents);                 // may throw GatewayException
+    } catch (GatewayException $e) {
+        throw new PaymentFailed('charge failed', previous: $e);  // translate, keep cause
+    }
+    // a TypeError (bug) is NOT caught here — it propagates to be fixed/logged
+}
+
+// caller branches precisely:
+try { charge($g, 1990); }
+catch (PaymentFailed $e) { /* show "payment failed, try again" */ }
+```
+
+**Result.** Callers catch `PaymentFailed` and react meaningfully, with the original gateway exception preserved as `previous` for logs. A `TypeError` from a programming mistake is not swallowed — it surfaces to be fixed. The error model cleanly separates recoverable conditions from bugs.
+
+**Future improvements.** Add a global exception handler (`set_exception_handler`) that logs unhandled `Throwable`s and returns a 500; define an exception hierarchy per domain area.
+
+### 14.6 Exercises
+
+1. How do `Exception` and `Error` differ, and which do you normally catch?
+2. Why translate a low-level exception into a domain exception, and how do you keep the cause?
+3. When is catching `Throwable` appropriate?
+
+### 14.7 Challenges
+
+- **Challenge.** Write a `readConfig()` that catches a low-level `JsonException`, wraps it in a custom `ConfigException` preserving `previous`, and lets other throwables propagate. Catch `ConfigException` at the call site.
+
+### 14.8 Checklist
+
+- [ ] I catch the narrowest exception type I can handle.
+- [ ] I translate low-level failures into domain exceptions (keeping `previous`).
+- [ ] I let engine `Error`s propagate (don't catch bugs).
+- [ ] I have a global handler for unhandled throwables.
+
+### 14.9 Best practices
+
+- Throw meaningful, specific exceptions; preserve the cause when wrapping.
+- Reserve `catch (Throwable)` for top-level handlers.
+- Use `finally`/`try-with-resources`-style cleanup.
+
+### 14.10 Anti-patterns
+
+- `catch (\Throwable) {}` swallowing everything, including bugs.
+- Catching `Error` to "handle" a programming mistake.
+- Losing the original exception when re-throwing (no `previous`).
+
+### 14.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Bugs disappear silently | Over-broad catch | Catch specific types; let `Error` propagate |
+| No root cause in logs | `previous` not set when wrapping | Pass the original as `previous` |
+| Uncaught fatal crashes the app | No global handler | Register `set_exception_handler` |
+
+### 14.12 References
+
+- PHP Manual, "Exceptions" & "Errors (`Throwable`)": https://www.php.net/manual/en/language.exceptions.php.
+- J. Lockhart, *Modern PHP* (O'Reilly, 2015) — ISBN 978-1491905012.
+
+---
+
+## Chapter 15 — Namespaces, Composer, and PSR-4 autoloading
+
+### 15.1 Introduction
+
+**Namespaces** organize classes and prevent name clashes (`App\Billing\Invoice` vs `App\Mail\Invoice`), declared with `namespace App\Billing;` and imported with `use`. **Composer** is PHP's dependency manager: `composer.json` declares dependencies and an **autoload** mapping; `composer install` fetches packages and generates an **autoloader**. **PSR-4** is the standard that maps a namespace prefix to a directory, so `App\Billing\Invoice` loads from `src/Billing/Invoice.php` automatically — no manual `require`. This is how every modern PHP project is structured.
+
+### 15.2 Business context
+
+Namespaces + Composer + PSR-4 are the backbone of the PHP ecosystem. Composer's Packagist registry and autoloading are why teams can pull in tested libraries instead of reinventing them, and why their own code stays navigable as it grows. PSR-4's predictable file-to-class mapping means any developer can find a class from its name and tooling can autoload without configuration. Skipping these (manual `require`s, global namespace) produces fragile, hard-to-maintain code that can't use the ecosystem. Fluency here is table stakes for professional PHP.
+
+### 15.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    ns["namespace App\\Billing; class Invoice"] --> file["PSR-4: src/Billing/Invoice.php"]
+    composer["composer.json autoload: { 'App\\\\': 'src/' }"] --> gen["composer dump-autoload -> vendor/autoload.php"]
+    gen --> auto["classes loaded on first use, no require"]
+```
+
+A **namespace** prefixes a class's fully-qualified name; `use App\Billing\Invoice;` imports it. **PSR-4** maps a namespace prefix to a base directory; the autoloader translates `App\Billing\Invoice` to `<base>/Billing/Invoice.php`. **Composer** reads `composer.json`'s `autoload` section, installs dependencies into `vendor/`, and generates `vendor/autoload.php`; requiring that one file at the entry point makes every class load on demand. `composer require vendor/pkg` adds a dependency.
+
+### 15.4 Architecture: predictable structure, automatic loading
+
+```mermaid
+flowchart LR
+    entry["require 'vendor/autoload.php'"] --> loader["Composer autoloader"]
+    loader --> ondemand["maps FQCN -> file, loads on first use"]
+    note["One require at the entry point; everything else autoloads"]
+```
+
+The entry point includes the Composer autoloader once; from then on, namespaces and PSR-4 make every class load automatically by name.
+
+### 15.5 Real example
+
+**Scenario.** Structure a small app with autoloaded classes and a third-party dependency.
+
+**Problem.** Manual `require` statements are brittle and don't scale; pulling in libraries by hand is error-prone.
+
+**Solution.** Declare **PSR-4** autoloading in `composer.json`, namespace the code, and add a dependency with Composer.
+
+**Implementation.**
+
+```json
+// composer.json
+{
+  "require": { "ramsey/uuid": "^4.7" },
+  "autoload": { "psr-4": { "App\\": "src/" } }
+}
+```
+
+```php
+// src/Billing/Invoice.php
+namespace App\Billing;
+use Ramsey\Uuid\Uuid;                 // third-party, autoloaded from vendor/
+
+final class Invoice { public string $id { get => Uuid::uuid4()->toString(); } }
+
+// public/index.php
+require __DIR__ . '/../vendor/autoload.php';   // the ONLY require
+$invoice = new \App\Billing\Invoice();         // autoloaded from src/Billing/Invoice.php
+```
+
+**Result.** `App\Billing\Invoice` loads automatically from `src/Billing/Invoice.php` (PSR-4), and the `ramsey/uuid` dependency loads from `vendor/` — with a single `require 'vendor/autoload.php'`. Adding code or libraries needs no new `require`s; the structure is predictable and ecosystem-ready.
+
+**Future improvements.** Run `composer dump-autoload -o` (optimized classmap) for production; commit `composer.lock` for reproducible installs; separate `autoload-dev` for tests.
+
+### 15.6 Exercises
+
+1. What problem do namespaces solve, and how do you import a class?
+2. How does PSR-4 map a class name to a file?
+3. What does `require 'vendor/autoload.php'` set up?
+
+### 15.7 Challenges
+
+- **Challenge.** Set up a `composer.json` with PSR-4 mapping `App\` to `src/`, create a namespaced class, add one Composer dependency, and instantiate both through the autoloader.
+
+### 15.8 Checklist
+
+- [ ] Code is namespaced; classes imported with `use`.
+- [ ] PSR-4 autoloading is configured in `composer.json`.
+- [ ] The entry point requires `vendor/autoload.php` (and nothing else manually).
+- [ ] `composer.lock` is committed for reproducible installs.
+
+### 15.9 Best practices
+
+- Follow PSR-4: one class per file, path mirrors the namespace.
+- Manage all dependencies via Composer; commit the lock file.
+- Optimize the autoloader (`-o`) for production.
+
+### 15.10 Anti-patterns
+
+- Manual `require`/`include` chains instead of autoloading.
+- Global-namespace code with name clashes.
+- Committing `vendor/` or omitting `composer.lock`.
+
+### 15.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| "Class not found" | PSR-4 mapping/path mismatch | Align namespace to directory; `dump-autoload` |
+| Library missing at runtime | Not installed / wrong require | `composer require`; include the autoloader |
+| Different deps across environments | No lock file | Commit and install from `composer.lock` |
+
+### 15.12 References
+
+- Composer docs & PHP-FIG, "PSR-4: Autoloader": https://www.php-fig.org/psr/psr-4/ · https://getcomposer.org.
+- PHP Manual, "Namespaces": https://www.php.net/manual/en/language.namespaces.php.
+
+---
+
+## Chapter 16 — Deprecations with `#[\Deprecated]`
+
+### 16.1 Introduction
+
+PHP 8.4 adds the **`#[\Deprecated]`** attribute to mark a function, method, or class constant as obsolete **in a structured, engine-recognized way**. Calling a deprecated element emits a standard `E_USER_DEPRECATED` notice, and the attribute carries a `message` and `since` version. This replaces ad-hoc approaches (a doc-comment `@deprecated`, or a manual `trigger_error`) with a first-class, discoverable signal that tooling, IDEs, and static analyzers understand — the proper way to evolve an API without breaking callers immediately.
+
+### 16.2 Business context
+
+APIs must evolve, but breaking callers without warning is costly and erodes trust. A structured deprecation gives consumers a **migration window**: their code keeps working while emitting a clear, attributed warning telling them what to use instead and since when. Because `#[\Deprecated]` is machine-readable, IDEs strike through deprecated calls and static analysis can flag them in CI — so teams find and fix usages proactively rather than discovering breakage at upgrade time. This is how a library maintains backward compatibility responsibly while moving forward.
+
+### 16.3 Theoretical concepts
+
+```mermaid
+flowchart LR
+    dep["#[\\Deprecated(message: 'use Y', since: '2.1')]"] --> call["calling it emits E_USER_DEPRECATED"]
+    call --> tools["IDEs/static analysis flag usages"]
+    note["Structured, discoverable signal — not a comment"]
+```
+
+Apply `#[\Deprecated(message: '...', since: '...')]` to a function, method, or class constant. At call time the engine raises `E_USER_DEPRECATED` with the message — visible in logs/dev, suppressible in production error reporting. Crucially, the attribute is **introspectable**, so tooling surfaces it statically. Pair a deprecation with the replacement and a removal plan (e.g., remove in the next major), following semantic versioning.
+
+### 16.4 Architecture: announce, warn, then remove
+
+```mermaid
+flowchart TB
+    keep["keep the old API working"] --> mark["mark #[\\Deprecated] with message + since"]
+    mark --> window["callers see warnings, migrate"]
+    window --> remove["remove in a later major version"]
+```
+
+Deprecation is a transition, not a deletion: the old API stays functional but clearly flagged until a planned major release removes it.
+
+### 16.5 Real example
+
+**Scenario.** A library renames `getUser()` to `findUser()` but can't break callers immediately.
+
+**Problem.** A `@deprecated` doc comment or `trigger_error` is easy to miss and not machine-readable.
+
+**Solution.** Mark the old method with **`#[\Deprecated]`**, pointing to the replacement.
+
+**Implementation.**
+
+```php
+final class UserService
+{
+    #[\Deprecated(message: 'use findUser() instead', since: '2.1.0')]
+    public function getUser(int $id): ?User
+    {
+        return $this->findUser($id);     // delegates — still works during the migration window
+    }
+
+    public function findUser(int $id): ?User { /* ... */ }
+}
+
+$svc->getUser(1);   // works, but emits E_USER_DEPRECATED: "use findUser() instead"; IDE strikes it through
+```
+
+**Result.** Existing callers of `getUser()` keep working but receive a clear, attributed deprecation notice naming the replacement and the version — and their IDE/static analyzer flags every call. Teams migrate to `findUser()` at their own pace, and the old method can be removed safely in the next major version. The API evolved without an abrupt break.
+
+**Future improvements.** Track deprecated-call warnings in CI (treat as errors on the library's own test suite) to ensure internal usages are migrated; document the removal version in the changelog.
+
+### 16.6 Exercises
+
+1. What does `#[\Deprecated]` emit when the marked element is used?
+2. Why is an attribute better than a `@deprecated` doc comment or `trigger_error`?
+3. What should accompany a deprecation to make migration smooth?
+
+### 16.7 Challenges
+
+- **Challenge.** Deprecate a `format()` method in favor of `render()` using `#[\Deprecated(message, since)]`, have it delegate to the new method, and confirm the deprecation notice on call.
+
+### 16.8 Checklist
+
+- [ ] Obsolete APIs are marked with `#[\Deprecated]` (message + since).
+- [ ] The deprecated element still works during the migration window.
+- [ ] The message names the replacement.
+- [ ] Removal is planned for a future major version.
+
+### 16.9 Best practices
+
+- Use `#[\Deprecated]` over comments/`trigger_error` for machine-readable signals.
+- Always point to the replacement and the `since` version.
+- Track and remove deprecated usages before a major release.
+
+### 16.10 Anti-patterns
+
+- Removing an API without a deprecation window.
+- `@deprecated` doc comments tooling can't reliably act on.
+- Deprecating with no guidance on what to use instead.
+
+### 16.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Callers blindsided by removal | No deprecation period | Mark `#[\Deprecated]` first; remove in a later major |
+| Deprecations not noticed | Notices suppressed everywhere | Surface `E_USER_DEPRECATED` in dev/CI |
+| Unclear how to migrate | No replacement in the message | Add `message:` pointing to the new API |
+
+### 16.12 References
+
+- PHP Manual, "The Deprecated attribute" (8.4): https://www.php.net/manual/en/class.deprecated.php.
+- PHP RFC "Deprecated attribute" (8.4); Semantic Versioning: https://semver.org.
+
+---
+
+> **End of Part V.** PHP signals failure through the **`Throwable`** hierarchy (catch recoverable **`Exception`**s narrowly, let engine **`Error`**s propagate), organizes code with **namespaces** loaded automatically via **Composer** and **PSR-4**, and evolves APIs safely with the **`#[\Deprecated]`** attribute. Part VI covers the **standard library, dates, databases (PDO), and HTTP**.
+
+<!--APPEND-PART-VI-->
