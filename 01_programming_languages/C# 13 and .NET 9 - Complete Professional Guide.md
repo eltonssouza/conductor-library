@@ -79,7 +79,7 @@ Progressive depth across five maturity levels:
 19. ASP.NET Core minimal APIs — overview
 20. EF Core overview, testing (xUnit), performance, and publishing/AOT
 
-> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Part I (Ch. 1–3). **In progress:** Parts II–VIII.
+> **Status of this edition:** phased delivery (each part keeps the same depth standard). **Ready:** Parts I–II (Ch. 1–6). **In progress:** Parts III–VIII.
 
 ---
 
@@ -500,4 +500,346 @@ public static class Calculator
 
 > **End of Part I.** You now have the foundations of C# 13 on .NET 9: the value/reference type split that governs storage, copying, and equality (Chapter 1); nullable reference types and the variable/`const`/`var` mechanics that make null-safety a compile-time concern (Chapter 2); and the program structure, method, and parameter-passing model — file-scoped namespaces, top-level statements, `ref`/`out`/`in`/`params` (Chapter 3). **Part II — Object-Oriented Programming** (Chapters 4–6) builds on these to cover classes, constructors, properties, inheritance, polymorphism, and interfaces.
 
-<!--APPEND-PART-II-->
+---
+
+## Part II – Object-Oriented Programming
+
+Part I covered types, null-safety, and program structure. Part II builds the object model: **classes** that encapsulate state behind constructors and properties, **inheritance** with abstract classes and polymorphism, and **interfaces** (with default implementations) that — together with composition — keep designs flexible.
+
+---
+
+## Chapter 4 — Classes, fields, constructors, and properties
+
+### 4.1 Introduction
+
+A **class** is a reference type that bundles **state** (fields) with **behavior** (methods), exposing its state through **properties** rather than public fields. C# 13 makes this concise: **auto-implemented properties** (`public int Age { get; set; }`) generate the backing field; **`init`-only** setters allow assignment only during construction; **`required`** members force callers to set them; and **primary constructors** let a class declare its constructor parameters on the class header. Constructors establish a valid object; properties guard its invariants thereafter.
+
+### 4.2 Business context
+
+Encapsulation is what lets a class change its internals without breaking callers and enforce that its data is always valid. Exposing public fields ties every caller to the representation and removes the chance to validate; exposing **properties** keeps a stable surface while the implementation is free to evolve, and lets the type reject invalid state at the boundary. `required` and `init` make immutability and mandatory data compile-time guarantees, turning whole classes of "forgot to set X" and "mutated after construction" bugs into errors caught before shipping.
+
+### 4.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    ctor["constructor / primary constructor"] --> obj["valid object"]
+    obj --> props["properties (get / set / init)"]
+    props --> field["backing field (hidden)"]
+    note["required: caller must set; init: set only at construction"]
+```
+
+A **field** stores data; a **property** is a pair of accessors (`get`/`set`) over a (usually hidden) backing field. **Auto-properties** generate the field for you. **`init`** accessors permit assignment in a constructor or object initializer only, enabling immutable-after-construction objects; **`required`** forces the caller to provide a value (checked at compile time). A **primary constructor** (`class Customer(string name)`) puts constructor parameters in scope for the whole class, reducing boilerplate. **Object initializers** (`new Customer { Name = "A" }`) set properties right after construction.
+
+### 4.4 Architecture: encapsulate state behind a stable surface
+
+```mermaid
+flowchart LR
+    caller["caller"] -->|"reads/writes via properties"| api["property surface (validated)"]
+    api --> internal["fields / representation (free to change)"]
+    note["Validation and invariants live in the property/constructor, not the caller"]
+```
+
+The constructor and property accessors are the one place invariants are enforced, so no caller can put the object into an invalid state — the foundation of a maintainable type.
+
+### 4.5 Real example
+
+**Scenario.** A `BankAccount` must never have a negative balance and its owner must be set at creation.
+
+**Problem.** Public fields would let any code set a negative balance or forget the owner.
+
+**Solution.** Use a primary constructor with a `required`/`init` owner and a property that validates deposits.
+
+**Implementation.**
+
+```csharp
+public class BankAccount(string owner)
+{
+    public string Owner { get; } = owner;          // set once, from the primary constructor
+    public decimal Balance { get; private set; }    // external code can read, not write directly
+
+    public void Deposit(decimal amount)
+    {
+        if (amount <= 0) throw new ArgumentOutOfRangeException(nameof(amount));
+        Balance += amount;                           // invariant enforced here
+    }
+}
+
+var acc = new BankAccount("Ana");
+acc.Deposit(100);          // OK
+// acc.Balance = -5;       // compile error: no public setter — invariant protected
+```
+
+**Result.** `Owner` is fixed at construction; `Balance` can only change through `Deposit`, which rejects invalid amounts. No caller can corrupt the account's state, because validation lives in the type, not scattered across call sites.
+
+**Future improvements.** Make the type a `record` (Ch. 7) if it should be value-compared and immutable; add `required` members for mandatory data set via object initializers.
+
+### 4.6 Exercises
+
+1. What is the difference between a field and an auto-implemented property?
+2. What do `init` and `required` each guarantee, and when are they checked?
+3. How does a primary constructor reduce boilerplate?
+
+### 4.7 Challenges
+
+- **Challenge.** Model a `Temperature` class that stores Celsius, exposes a computed `Fahrenheit` property, and rejects values below absolute zero in its constructor.
+
+### 4.8 Checklist
+
+- [ ] I expose state through properties, not public fields.
+- [ ] Constructors leave the object in a valid state.
+- [ ] I use `init`/`required` for immutable or mandatory data.
+- [ ] Invariants are enforced in the type, not by callers.
+
+### 4.9 Best practices
+
+- Prefer auto-properties; add a body only when you need validation/logic.
+- Use `init` for immutability and `required` for mandatory members.
+- Keep setters as private/`init` as the invariants allow.
+
+### 4.10 Anti-patterns
+
+- Public mutable fields exposing the representation.
+- Constructors that leave objects half-initialized.
+- Validation duplicated at every call site instead of in the property/constructor.
+
+### 4.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Object reaches an invalid state | State set via public field/setter | Encapsulate behind a validating property |
+| "Required member not set" | `required` member omitted | Set it in the initializer/constructor |
+| Mutated after creation unexpectedly | Public setter | Use `init` or `private set` |
+
+### 4.12 References
+
+- Microsoft, "Classes, structs, and records (C# guide)": https://learn.microsoft.com/dotnet/csharp/fundamentals/types/.
+- J. Albahari, *C# 13 in a Nutshell* (O'Reilly, 2025) — ISBN 978-1098159474.
+
+---
+
+## Chapter 5 — Inheritance, abstract classes, and polymorphism
+
+### 5.1 Introduction
+
+**Inheritance** lets a class derive from a base class, reusing and specializing its members. C# makes the polymorphic contract explicit: a base method must be **`virtual`** to be overridden, and a derived class uses **`override`**; an **abstract class** can declare **`abstract`** members that have no body and *must* be overridden, and cannot be instantiated. **Polymorphism** then lets code call a `virtual`/`abstract` method on a base reference and get the derived implementation at runtime. `sealed` stops further overriding or derivation.
+
+### 5.2 Business context
+
+Inheritance models genuine "is-a" specialization and lets shared behavior live in one base class. Polymorphism is what makes code **open to extension**: a payroll routine that calls `employee.CalculatePay()` works for every current and future `Employee` subtype without change. Abstract classes encode a contract plus shared scaffolding, so each subtype fills in only what differs. Used for real specialization (not mere code reuse — see Ch. 6 for composition), this keeps variant-heavy domains extensible and consistent.
+
+### 5.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    base["abstract class Shape { abstract Area() }"] --> c["Circle : override Area()"]
+    base --> r["Rectangle : override Area()"]
+    caller["caller holds Shape, calls Area()"] --> base
+    note["virtual/abstract enable runtime dispatch to the derived override"]
+```
+
+A method is dispatched **virtually** only if it's declared `virtual` or `abstract` and the derived class uses `override`. An **abstract class** may mix abstract members (no body, must be overridden) with concrete ones (shared implementation); it cannot be `new`-ed directly. Marking a method or class **`sealed`** prevents further overriding/derivation (and can help performance). Hiding with **`new`** (instead of `override`) is a different, usually-undesirable behavior where dispatch depends on the static type — prefer `override`.
+
+### 5.4 Architecture: shared base, specialized leaves
+
+```mermaid
+flowchart LR
+    abs["abstract base: contract + shared code"] --> leaf1["subtype A (overrides what differs)"]
+    abs --> leaf2["subtype B"]
+    note["Add a subtype without touching callers (open for extension)"]
+```
+
+Callers depend on the base type; each subtype supplies its own behavior for the virtual/abstract members, so new variants slot in without changing the calling code.
+
+### 5.5 Real example
+
+**Scenario.** A reporting tool exports in several formats that share header/footer logic but differ in the body.
+
+**Problem.** Copying export logic per format duplicates the shared parts and risks drift.
+
+**Solution.** An **abstract** `Report` with a concrete template method and an **abstract** body hook overridden per format.
+
+**Implementation.**
+
+```csharp
+public abstract class Report
+{
+    public string Render()                      // shared scaffolding (concrete)
+        => Header() + Body() + Footer();
+    protected string Header() => "=== Report ===\n";
+    protected abstract string Body();           // each subtype MUST supply this
+    protected string Footer() => "\n=== End ===";
+}
+
+public sealed class CsvReport : Report
+{
+    protected override string Body() => "a,b,c";   // the part that varies
+}
+
+Report r = new CsvReport();   // base reference...
+Console.WriteLine(r.Render()); // ...calls the CsvReport body via polymorphism
+```
+
+**Result.** Header/footer live once in the base; each format overrides only `Body`. `Render` works for any `Report` subtype through polymorphism, so adding a `JsonReport` means one new class and no change to callers. `sealed` on the leaf signals it isn't meant to be extended further.
+
+**Future improvements.** If formats need to combine behaviors (e.g., compressed + encrypted), prefer **composition** (Ch. 6) over deepening the hierarchy.
+
+### 5.6 Exercises
+
+1. What must be true for a method call to dispatch to a derived override?
+2. How does an abstract class differ from a concrete one, and why can't it be instantiated?
+3. When would you mark a class or method `sealed`?
+
+### 5.7 Challenges
+
+- **Challenge.** Build an abstract `Notification` with a concrete `Send()` template and an abstract `Format()` hook; implement `Email` and `Sms` subtypes and invoke them through a `Notification` reference.
+
+### 5.8 Checklist
+
+- [ ] I mark base members `virtual`/`abstract` when subtypes must specialize them.
+- [ ] Derived types use `override` (not `new`) for polymorphic behavior.
+- [ ] I use abstract classes for a contract plus shared scaffolding.
+- [ ] I reserve inheritance for genuine "is-a" specialization.
+
+### 5.9 Best practices
+
+- Use `override` for polymorphism; avoid member hiding with `new`.
+- Put shared behavior in an abstract base, variant behavior in overrides.
+- Keep hierarchies shallow; consider `sealed` for leaves.
+
+### 5.10 Anti-patterns
+
+- Deep inheritance trees built only to share code (prefer composition).
+- Hiding base members with `new`, causing type-dependent dispatch.
+- Base classes that downcast to know their subtypes.
+
+### 5.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Base implementation runs, not the override | Method not `virtual`/`override` (hidden with `new`) | Make it `virtual` + `override` |
+| "Cannot create an instance of abstract type" | Trying to `new` an abstract class | Instantiate a concrete subtype |
+| Fragile base class breaks subtypes | Inheritance used for reuse | Refactor to composition (Ch. 6) |
+
+### 5.12 References
+
+- Microsoft, "Inheritance" & "Polymorphism (C# guide)": https://learn.microsoft.com/dotnet/csharp/fundamentals/object-oriented/.
+- J. Albahari, *C# 13 in a Nutshell* (O'Reilly, 2025) — ISBN 978-1098159474.
+
+---
+
+## Chapter 6 — Interfaces, default implementations, and composition
+
+### 6.1 Introduction
+
+An **interface** declares a contract — a set of members a type promises to provide — without dictating how. A class can implement **many** interfaces (unlike single base-class inheritance), which is C#'s primary tool for polymorphism and decoupling. Since C# 8, an interface may also carry **default implementations** for members, letting an API evolve without breaking existing implementers. Combined with **composition** (building behavior by holding objects), interfaces let you favor flexible assembly over rigid inheritance.
+
+### 6.2 Business context
+
+Interfaces are what make code testable and swappable: a service that depends on `IClock` or `IPaymentGateway` can be given a real implementation in production and a fake in tests, and a new implementation never touches the consumer. Default interface methods let library authors add a member to a published interface without breaking the implementers already in the field — a real compatibility win for evolving APIs. Composition over inheritance keeps behaviors recombinable (logging + retry + caching as wrappers) instead of exploding into a subclass per combination.
+
+### 6.3 Theoretical concepts
+
+```mermaid
+flowchart TB
+    i["interface IRepository<T> { T Get(int id); }"] --> a["SqlRepository<T>"]
+    i --> b["InMemoryRepository<T> (test fake)"]
+    caller["service depends on IRepository<T>"] --> i
+    note["Many implementations; a class can implement many interfaces"]
+```
+
+A type lists the interfaces it implements; the compiler checks every member is provided. **Explicit interface implementation** (`T IFoo.Get(...)`) lets a class implement two interfaces with clashing members or hide a member from the class's public surface. **Default interface methods** provide a body in the interface itself, used unless an implementer overrides it. Because callers depend on the **interface**, any implementation — including a test double the interface never knew about — can be substituted.
+
+### 6.4 Architecture: depend on contracts, compose behaviors
+
+```mermaid
+flowchart LR
+    svc["consumer depends on IThing"] --> impl["any IThing implementation"]
+    wrap["LoggingThing(inner: IThing)"] -->|"wraps"| impl
+    note["Compose cross-cutting behavior by wrapping, not subclassing"]
+```
+
+Dependency on interfaces plus composition (wrapping one implementation in another) is how cross-cutting concerns are added without inheritance — and how dependency injection wires real or fake implementations at runtime.
+
+### 6.5 Real example
+
+**Scenario.** A checkout service needs a payment gateway, testable offline and extensible to new providers.
+
+**Problem.** Hard-coding one concrete gateway makes the service untestable and tied to that provider.
+
+**Solution.** Depend on an **interface**; provide implementations and a **composed** retry wrapper.
+
+**Implementation.**
+
+```csharp
+public interface IPaymentGateway { Task<bool> ChargeAsync(decimal amount); }
+
+public sealed class StripeGateway : IPaymentGateway { /* real call */ public Task<bool> ChargeAsync(decimal a) => /* ... */; }
+public sealed class FakeGateway   : IPaymentGateway { public Task<bool> ChargeAsync(decimal a) => Task.FromResult(true); } // tests
+
+public sealed class RetryingGateway(IPaymentGateway inner) : IPaymentGateway   // composition
+{
+    public async Task<bool> ChargeAsync(decimal amount)
+    {
+        for (var i = 0; i < 3; i++) if (await inner.ChargeAsync(amount)) return true;
+        return false;
+    }
+}
+
+// Checkout depends only on the interface:
+public sealed class Checkout(IPaymentGateway gateway)
+{
+    public Task<bool> PayAsync(decimal amount) => gateway.ChargeAsync(amount);
+}
+```
+
+**Result.** `Checkout` works with `StripeGateway`, a `FakeGateway` in tests, or `new RetryingGateway(new StripeGateway())` — none of which it imports. Retry is added by **wrapping** (composition), so it applies to any gateway and is independently testable. New providers are new classes; the consumer never changes.
+
+**Future improvements.** Register implementations with dependency injection (Ch. 18) so wiring is configured, not hard-coded; add default interface methods if the contract must grow without breaking implementers.
+
+### 6.6 Exercises
+
+1. Why can a class implement many interfaces but inherit from only one base class?
+2. What problem do default interface methods solve for evolving APIs?
+3. How does depending on an interface make a class testable?
+
+### 6.7 Challenges
+
+- **Challenge.** Define `INotifier`, implement `EmailNotifier` and a `LoggingNotifier` that wraps another `INotifier`, and inject them into a service that depends only on `INotifier`.
+
+### 6.8 Checklist
+
+- [ ] Consumers depend on interfaces, not concrete types.
+- [ ] I use explicit implementation only when needed (clashes / hiding).
+- [ ] I compose cross-cutting behavior by wrapping implementations.
+- [ ] New behavior is a new implementation, not an edit to consumers.
+
+### 6.9 Best practices
+
+- Program to interfaces; inject implementations (DI).
+- Keep interfaces small and focused (one responsibility).
+- Use default interface methods to evolve published contracts compatibly.
+
+### 6.10 Anti-patterns
+
+- Depending on concrete classes, blocking substitution and testing.
+- Fat interfaces forcing implementers to provide unused members.
+- Using inheritance where composition (wrapping) reads more clearly.
+
+### 6.11 Troubleshooting
+
+| Symptom | Likely cause | Action |
+|---------|--------------|--------|
+| Can't unit-test a class offline | Depends on a concrete external type | Depend on an interface; inject a fake |
+| Two interfaces have clashing members | Implicit implementation conflict | Use explicit interface implementation |
+| Adding an interface member breaks implementers | No default provided | Add a default interface method |
+
+### 6.12 References
+
+- Microsoft, "Interfaces" & "Default interface methods": https://learn.microsoft.com/dotnet/csharp/fundamentals/types/interfaces.
+- J. Albahari, *C# 13 in a Nutshell* (O'Reilly, 2025) — ISBN 978-1098159474.
+
+---
+
+> **End of Part II.** C#'s object model: **classes** encapsulate state behind constructors and validating **properties** (`init`/`required`); **inheritance** with `virtual`/`abstract`/`override` provides polymorphism for genuine specialization; and **interfaces** (with default implementations) plus **composition** keep designs decoupled and testable. Part III covers **records and pattern matching** — value-equality types and expressive `switch`.
+
+<!--APPEND-PART-III-->
