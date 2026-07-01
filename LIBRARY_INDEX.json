@@ -1,5 +1,6 @@
 {
   "schema": "conductor-library-index/v1",
+  "version": "0.1.0",
   "totals": {
     "files": 136,
     "categories": 14,
