@@ -1,3 +1,5 @@
+![Biblioteca de Engenharia de Computação](assets/images/library_2026_16_28_33.png)
+
 # 📚 Biblioteca de Engenharia de Computação
 
 > 🌐 **Idioma:** [English](README.md) · **Português (este arquivo)**
