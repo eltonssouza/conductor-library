@@ -1,3 +1,5 @@
+![Computer Engineering Library](assets/images/library_2026_16_28_33.png)
+
 # 📚 Computer Engineering Library
 
 > 🌐 **Language:** **English (this file)** · [Português](README.pt-BR.md)

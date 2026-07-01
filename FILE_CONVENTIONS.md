@@ -5,7 +5,7 @@
 > Three rules are absolute and apply to **every** file:
 >
 > 1. **English only.** No Portuguese (or any other language). Titles, metadata, descriptions, and body text are in English. *(One deliberate exception: the root `README.pt-BR.md`, a Portuguese translation of the top-level README for navigation — it is not ingested corpus content.)*
-> 2. **No images.** No book covers, figures, or embedded image references. (Literal `<img>` text that appears *inside* a book's prose or code examples — e.g. an HTML/JavaScript book teaching the `<img>` tag — is content, not an image, and is kept.)
+> 2. **No images.** No book covers, figures, or embedded image references. (Literal `<img>` text that appears *inside* a book's prose or code examples — e.g. an HTML/JavaScript book teaching the `<img>` tag — is content, not an image, and is kept.) *(One deliberate exception: a top banner image in the root `README.md` / `README.pt-BR.md`, stored under `assets/images/` — navigation branding, not ingested corpus content.)*
 > 3. **Standard header.** Every file opens with the standard metadata header (section 4), then `---`, then content.
 
 ---
