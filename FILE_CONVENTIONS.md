@@ -4,7 +4,7 @@
 >
 > Three rules are absolute and apply to **every** file:
 >
-> 1. **English only.** No Portuguese (or any other language). Titles, metadata, descriptions, and body text are in English.
+> 1. **English only.** No Portuguese (or any other language). Titles, metadata, descriptions, and body text are in English. *(One deliberate exception: the root `README.pt-BR.md`, a Portuguese translation of the top-level README for navigation — it is not ingested corpus content.)*
 > 2. **No images.** No book covers, figures, or embedded image references. (Literal `<img>` text that appears *inside* a book's prose or code examples — e.g. an HTML/JavaScript book teaching the `<img>` tag — is content, not an image, and is kept.)
 > 3. **Standard header.** Every file opens with the standard metadata header (section 4), then `---`, then content.
 
@@ -207,15 +207,16 @@ So Conductor (and humans) can **always see what the library holds** without scan
 
 ### What is generated
 
-`scripts/build_index.py` scans the numbered topic folders, reads each file's frontmatter (`software_dev`, `stack`, `version`), and writes two artifacts:
+`scripts/build_index.py` scans the numbered topic folders, reads each file's frontmatter (`software_dev`, `stack`, `version`) and the root `VERSION` file, and writes three artifacts:
 
 - **`LIBRARY_INDEX.json`** — the machine-readable manifest Conductor reads. Shape (`schema: conductor-library-index/v1`):
+  - `version` — the library version, copied verbatim from the root `VERSION` file (section 7.1).
   - `totals` — file / category / stack counts.
   - `categories[]` — one per topic folder (`id`, `number`, `title`, and `files[]` with `path`, `title`, `tier`, optional `stack`/`version`).
   - `stacks{}` — every `stack` id mapped to its available `versions[]` and `editions[]`. This is what powers `stack@major` edition selection (CONDUCTOR.md §Edition): the resolver reads the versions here and picks the nearest.
-- **`README.md`** — the human navigable index. Only the region between `<!-- AUTO-INDEX:START -->` and `<!-- AUTO-INDEX:END -->` is generated; the intro above the markers is manual.
+- **`README.md`** (English) and **`README.pt-BR.md`** (Portuguese) — the human navigable index. Only the region between `<!-- AUTO-INDEX:START -->` and `<!-- AUTO-INDEX:END -->` is generated (catalog + the current version line); the intro above the markers is manual. The two files carry the same catalog with localized headings.
 
-Both artifacts are **deterministic** — stable sort, no timestamps — so re-running produces no spurious diffs.
+All artifacts are **deterministic** — stable sort, no timestamps — so re-running produces no spurious diffs.
 
 ### The rule
 
@@ -226,7 +227,23 @@ python scripts/build_index.py            # regenerate LIBRARY_INDEX.json + READM
 python scripts/build_index.py --check    # CI guard: non-zero exit if stale
 ```
 
-Do not hand-edit `LIBRARY_INDEX.json` or the README catalog region — your change will be overwritten on the next run. To add a new topic folder, give it the `NN_` prefix (section 1) and add its display title to `CATEGORY_TITLES` in the script.
+Do not hand-edit `LIBRARY_INDEX.json` or the README catalog region — your change will be overwritten on the next run. To add a new topic folder, give it the `NN_` prefix (section 1) and add its display title to `CATEGORY_TITLES` (and `CATEGORY_TITLES_PT`) in the script.
+
+---
+
+## 7.1 Versioning
+
+The library carries a single, human-readable **version** in the root **`VERSION`** file — the one source of truth. It follows a simple semantic scheme, mirroring the Conductor app it feeds:
+
+```
+MAJOR.MINOR.PATCH        e.g. 0.1.0
+```
+
+**Bump rule:** on every substantive change to the corpus (adding, removing, rewriting, or retagging content), **increment the patch digit** in `VERSION`. On rollover at `99`, reset patch to `0` and bump the **minor**; bump the **major** only for a deliberate, breaking reorganization of the corpus or the catalog schema.
+
+`scripts/build_index.py` reads `VERSION` and stamps it into `LIBRARY_INDEX.json` (`version` field) and into both READMEs' generated region, so the displayed version can never drift from the file. After bumping `VERSION`, regenerate the catalog (and run `--check`) exactly as in section 7. Optionally tag the commit `vMAJOR.MINOR.PATCH` to mark a release.
+
+> **Note on the `VERSION` file's own `version:` — none.** `VERSION` is a plain one-line text file (just the number), not a content `.md`; it has no frontmatter and is not part of the ingested corpus.
 
 ---
 
@@ -234,7 +251,7 @@ Do not hand-edit `LIBRARY_INDEX.json` or the README catalog region — your chan
 
 | Item | Standard |
 |------|----------|
-| Language | **English only**, every file |
+| Language | **English only** for every corpus file; the root `README.pt-BR.md` is the one allowed translation (navigation courtesy, not ingested content) |
 | Images | **None** — covers and figure embeds removed (literal `<img>` in prose/code is kept) |
 | Frontmatter | `software_dev: core \| stack \| supporting \| foundational \| optional` at the very top of every file |
 | Folder | `NN_lowercase_words` (English, no accents/spaces) |
@@ -242,5 +259,6 @@ Do not hand-edit `LIBRARY_INDEX.json` or the README catalog region — your chan
 | Professional book | `Title (Edition) - Author.md`, English, raw body + standard header |
 | Header | frontmatter, then standard metadata block (section 5) at the top of every file |
 | Support docs (root) | `UPPERCASE_WITH_UNDERSCORE.md` |
-| Catalog | `LIBRARY_INDEX.json` + README region — **generated** via `scripts/build_index.py`, never hand-edited |
+| Version | root `VERSION` file (`MAJOR.MINOR.PATCH`) — single source of truth; bump patch per change, `99` → minor (section 7.1) |
+| Catalog | `LIBRARY_INDEX.json` + both READMEs' AUTO-INDEX region — **generated** via `scripts/build_index.py`, never hand-edited |
 | Ordering | by the numeric `NN_` prefix |
